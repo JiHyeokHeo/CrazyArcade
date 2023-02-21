@@ -17,6 +17,23 @@ namespace ty
 	{
 		mHwnd = hWnd;
 		mHdc = GetDC(hWnd); 
+		mWidth = 1600;
+		mHeight = 900;
+
+		RECT rect = { 0,0, mWidth, mHeight };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+		SetWindowPos(mHwnd
+			, nullptr, 100, 50
+			, rect.right - rect.left
+			, rect.bottom - rect.top
+			, 0);
+		ShowWindow(hWnd, true);
+
+		mBackBuffer = CreateCompatibleBitmap(mHdc, mWidth, mHeight);
+		mBackHDC = CreateCompatibleDC(mHdc);
+		HBITMAP defaultBitmap = (HBITMAP)SelectObject(mBackHDC, mBackBuffer);
+		DeleteObject(defaultBitmap);
 
 		Time::Initialize();
 		Input::Initialize();
@@ -38,9 +55,16 @@ namespace ty
 
 	void Application::Render()
 	{
-		Time::Render(mHdc);
-		Input::Render(mHdc);
-		SceneManager::Render(mHdc);
+		// Clear
+		Rectangle(mBackHDC, -1, -1, 1602, 902);
+
+		Time::Render(mBackHDC);
+		Input::Render(mBackHDC);
+		SceneManager::Render(mBackHDC);
+
+		// 백버퍼에 있는 그림을 원본 버퍼에 그려야 한다. // 원본을 가져다가 복사
+		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHDC, 0, 0, SRCCOPY);
+
 	}
 	
 }
