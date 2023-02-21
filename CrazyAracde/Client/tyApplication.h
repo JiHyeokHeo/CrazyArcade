@@ -16,10 +16,18 @@ namespace ty
 		//void Release();
 
 		HWND GetHwnd() { return mHwnd; }
+		HDC GetHdc() { return mHdc; }
 
 	private:
 		HWND mHwnd;
 		HDC mHdc;
+
+		// 백버퍼 캐릭터가 100개가 되면 DC도 100개가 필요!
+		HBITMAP mBackBuffer;
+		HDC mBackHDC;
+
+		UINT mWidth;
+		UINT mHeight;
 
 		Vector2 mPos;
 		//Scene mScene[256];

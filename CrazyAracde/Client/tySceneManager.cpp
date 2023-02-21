@@ -8,8 +8,9 @@ namespace ty
 	{
 		mScenes.resize((UINT)eSceneType::MAX); 
 
-		mScenes[(UINT)eSceneType::Play] = new PlayScene(); 
-		
+		mScenes[(UINT)eSceneType::PLAY] = new PlayScene(); 
+		mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
+
 		for (Scene* scene : mScenes)
 		{
 			if (scene == nullptr)

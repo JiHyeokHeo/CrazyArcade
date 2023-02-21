@@ -13,6 +13,8 @@ namespace ty
 	void PlayScene::Initialize()
 	{
 		Bazzi* bazzi = new Bazzi();
+
+		bazzi->SetName(L"Player");
 		AddGameObject(bazzi, eLayerType::PLAYER);
 
 		Scene::Initialize();

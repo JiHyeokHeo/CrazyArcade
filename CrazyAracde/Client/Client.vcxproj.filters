@@ -44,6 +44,9 @@
     <Filter Include="Engine\input">
       <UniqueIdentifier>{2015ebbb-4a1a-4a15-a941-0e87415697a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Resource">
+      <UniqueIdentifier>{d6ef7a82-8b73-444c-aa18-d9670438226b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -103,6 +106,13 @@
     <ClInclude Include="tyinput.h">
       <Filter>Engine\input</Filter>
     </ClInclude>
+    <ClInclude Include="tyResource.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="tyResources.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="tyImage.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -157,5 +167,12 @@
     <ClCompile Include="tyinput.cpp">
       <Filter>Engine\input</Filter>
     </ClCompile>
+    <ClCompile Include="tyResource.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="tyResources.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="tyImage.cpp" />
   </ItemGroup>
 </Project>

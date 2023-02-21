@@ -1,5 +1,6 @@
 #pragma once
 #include "tyGameObject.h"
+#include "tyImage.h"
 
 namespace ty
 {
@@ -16,6 +17,6 @@ namespace ty
 
 
 	private:
-
+		Image* mImage;
 	};
 }

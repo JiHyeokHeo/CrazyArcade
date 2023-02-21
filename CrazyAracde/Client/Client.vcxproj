@@ -140,10 +140,13 @@
     <ClInclude Include="tyApplication.h" />
     <ClInclude Include="tyEnum.h" />
     <ClInclude Include="tyGameObject.h" />
+    <ClInclude Include="tyImage.h" />
     <ClInclude Include="tyinput.h" />
     <ClInclude Include="tyLayer.h" />
     <ClInclude Include="tyMath.h" />
     <ClInclude Include="tyPlayScene.h" />
+    <ClInclude Include="tyResource.h" />
+    <ClInclude Include="tyResources.h" />
     <ClInclude Include="tyScene.h" />
     <ClInclude Include="tySceneManager.h" />
     <ClInclude Include="tyTime.h" />
@@ -155,10 +158,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tyApplication.cpp" />
     <ClCompile Include="tyGameObject.cpp" />
+    <ClCompile Include="tyImage.cpp" />
     <ClCompile Include="tyinput.cpp" />
     <ClCompile Include="tyLayer.cpp" />
     <ClCompile Include="tyMath.cpp" />
     <ClCompile Include="tyPlayScene.cpp" />
+    <ClCompile Include="tyResource.cpp" />
+    <ClCompile Include="tyResources.cpp" />
     <ClCompile Include="tyScene.cpp" />
     <ClCompile Include="tySceneManager.cpp" />
     <ClCompile Include="tyTime.cpp" />
