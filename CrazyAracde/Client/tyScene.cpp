@@ -5,7 +5,7 @@ namespace ty
 	Scene::Scene()
 	{
 		mLayers.reserve(5);
-		mLayers.resize((UINT)eLayerType::END);
+		mLayers.resize((UINT)eLayerType::End);
 	}
 	Scene::~Scene()
 	{

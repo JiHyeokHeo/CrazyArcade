@@ -131,6 +131,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="tyBazzi.h" />
+    <ClInclude Include="tyBG.h" />
     <ClInclude Include="tyComponent.h" />
     <ClInclude Include="tyEntity.h" />
     <ClInclude Include="framework.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="tyImage.h" />
     <ClInclude Include="tyinput.h" />
     <ClInclude Include="tyLayer.h" />
+    <ClInclude Include="tyLobbyScene.h" />
     <ClInclude Include="tyMath.h" />
     <ClInclude Include="tyPlayScene.h" />
     <ClInclude Include="tyResource.h" />
@@ -155,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tyBazzi.cpp" />
+    <ClCompile Include="tyBG.cpp" />
     <ClCompile Include="tyComponent.cpp" />
     <ClCompile Include="tyEntity.cpp" />
     <ClCompile Include="main.cpp" />
@@ -163,6 +166,7 @@
     <ClCompile Include="tyImage.cpp" />
     <ClCompile Include="tyinput.cpp" />
     <ClCompile Include="tyLayer.cpp" />
+    <ClCompile Include="tyLobbyScene.cpp" />
     <ClCompile Include="tyMath.cpp" />
     <ClCompile Include="tyPlayScene.cpp" />
     <ClCompile Include="tyResource.cpp" />

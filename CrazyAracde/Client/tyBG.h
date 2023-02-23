@@ -1,15 +1,14 @@
 #pragma once
-#include "tyGameObject.h"
-
+#include"tyScene.h"
 
 namespace ty
 {
 	class Image;
-	class Bazzi : public GameObject
+	class BG : public GameObject
 	{
 	public:
-		Bazzi();
-		~Bazzi();
+		BG();
+		~BG();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -21,3 +20,4 @@ namespace ty
 		Image* mImage;
 	};
 }
+

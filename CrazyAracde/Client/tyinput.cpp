@@ -10,7 +10,7 @@ namespace ty
 		VK_LEFT, VK_UP, VK_RIGHT, VK_DOWN,
 	};
 
-	std::vector<Input::Key> Input::mKeys;
+	std::vector<Input::Key> Input::mKeys; //
 
 	void Input::Initialize()
 	{
@@ -24,6 +24,7 @@ namespace ty
 			mKeys.push_back(keyInfo);
 		}
 	}
+
 	void Input::Update()
 	{
 		for (size_t i = 0; i < (UINT)eKeyCode::END; i++)

@@ -2,6 +2,8 @@
 #include "tyBazzi.h"
 #include "tyInput.h"
 #include "tySceneManager.h"
+#include "tyBG.h"
+
 
 namespace ty
 {
@@ -13,16 +15,17 @@ namespace ty
 	}
 	void PlayScene::Initialize()
 	{
-		mbazzi = new Bazzi();
-		AddGameObject(mbazzi, eLayerType::PLAYER);
-		
+		mBazzi = new Bazzi();
+		mBG = new BG();
+		AddGameObject(mBazzi, eLayerType::Player);
+		AddGameObject(mBG, eLayerType::BG);
 		Scene::Initialize();
 	}
 	void PlayScene::Update()
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			SceneManager::LoadScene(eSceneType::TITLE);
+			SceneManager::LoadScene(eSceneType::Title);
 		}
 		Scene::Update();
 	}

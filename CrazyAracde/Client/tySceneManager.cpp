@@ -10,15 +10,15 @@ namespace ty
 
 	void SceneManager::Initialize()
 	{
-		mScenes.resize((UINT)eSceneType::END); 
+		mScenes.resize((UINT)eSceneType::End); 
 
-		mScenes[(UINT)eSceneType::TITLE] = new TitleScene();
-		mScenes[(UINT)eSceneType::PLAY] = new PlayScene(); 
-
+		mScenes[(UINT)eSceneType::Title] = new TitleScene();
+		mScenes[(UINT)eSceneType::Play] = new PlayScene(); 
+		
 
 		//mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
 
-		mActiveScene = mScenes[(UINT)eSceneType::PLAY];
+		mActiveScene = mScenes[(UINT)eSceneType::Play];
 
 
 		for (Scene* scene : mScenes)

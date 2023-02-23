@@ -5,6 +5,7 @@ namespace ty
 	Transform::Transform()
 		:Component(eComponentType::Transform)
 	{
+
 	}
 	Transform::~Transform()
 	{

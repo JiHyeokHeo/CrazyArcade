@@ -47,6 +47,9 @@
     <Filter Include="Engine\Resource">
       <UniqueIdentifier>{d6ef7a82-8b73-444c-aa18-d9670438226b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\BG">
+      <UniqueIdentifier>{1024238b-0f5e-48d6-837d-71e9c6d7077f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -121,6 +124,12 @@
     <ClInclude Include="tyTransform.h">
       <Filter>Engine\Component</Filter>
     </ClInclude>
+    <ClInclude Include="tyLobbyScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="tyBG.h">
+      <Filter>Contents\BG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -189,6 +198,12 @@
     </ClCompile>
     <ClCompile Include="tyTransform.cpp">
       <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="tyLobbyScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBG.cpp">
+      <Filter>Contents\BG</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

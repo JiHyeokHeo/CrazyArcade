@@ -17,7 +17,7 @@ namespace ty
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			SceneManager::LoadScene(eSceneType::PLAY);
+			SceneManager::LoadScene(eSceneType::Play);
 		}
 
 	}

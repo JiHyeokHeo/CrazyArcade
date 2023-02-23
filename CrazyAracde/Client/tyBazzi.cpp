@@ -4,6 +4,7 @@
 #include "tyinput.h"
 #include "tyResources.h"
 #include "tyTransform.h"
+#include "tyImage.h"
 
 namespace ty
 {
