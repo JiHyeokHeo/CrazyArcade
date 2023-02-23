@@ -50,6 +50,15 @@ namespace ty
 			return dynamic_cast<T*>(resource);
 		}
 
+		static void Release()
+		{
+			for (auto pair : mResources)
+			{
+				delete pair.second;
+				pair.second = nullptr;
+			}
+		}
+
 	private:
 		static std::map<std::wstring, Resource*> mResources;
 	};

@@ -4,6 +4,7 @@ namespace ty
 {
 	Scene::Scene()
 	{
+		mLayers.reserve(5);
 		mLayers.resize((UINT)eLayerType::END);
 	}
 	Scene::~Scene()
@@ -32,10 +33,13 @@ namespace ty
 	}
 	void Scene::Release()
 	{
-		for (Layer& layer : mLayers)
-		{
-			layer.Release();
-		}
+	
+	}
+	void Scene::OnEnter()
+	{
+	}
+	void Scene::OnExit()
+	{
 	}
 	void Scene::AddGameObject(GameObject* obj, eLayerType layer)
 	{

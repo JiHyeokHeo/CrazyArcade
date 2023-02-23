@@ -3,7 +3,7 @@
 #include "tySceneManager.h"
 #include "tyinput.h"
 #include "tyResources.h"
-#include "tyImage.h"
+#include "tyTransform.h"
 
 namespace ty
 {
@@ -22,14 +22,18 @@ namespace ty
 	void Bazzi::Update()
 	{
 		GameObject::Update();
-		if (Input::GetKeyState(eKeyCode::LEFT) == eKeyState::Pressed)
+
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+
+		if (Input::GetKeyState(eKeyCode::A) == eKeyState::Pressed)
 		{
-			mPos.x -= 100.0f * Time::DeltaTime();
+			pos.x -= 100.0f * Time::DeltaTime();
 		}
 
-		if (Input::GetKeyState(eKeyCode::RIGHT) == eKeyState::Pressed)
+		if (Input::GetKeyState(eKeyCode::D) == eKeyState::Pressed)
 		{
-			mPos.x += 100.0f * Time::DeltaTime();
+			pos.x += 100.0f * Time::DeltaTime();
 		}
 
 		//if (Input::GetKeyState(eKeyCode::SPACEBAR) == eKeyState::Down)
@@ -42,21 +46,23 @@ namespace ty
 		//    아이템 사용
 		//}
 
-		if (Input::GetKeyState(eKeyCode::UP) == eKeyState::Pressed)
+		if (Input::GetKeyState(eKeyCode::W) == eKeyState::Pressed)
 		{
-			mPos.y -= 100.0f * Time::DeltaTime();
+			pos.y -= 100.0f * Time::DeltaTime();
 		}
 
-		if (Input::GetKeyState(eKeyCode::DOWN) == eKeyState::Pressed)
+		if (Input::GetKeyState(eKeyCode::S) == eKeyState::Pressed)
 		{
-			mPos.y += 100.0f * Time::DeltaTime();
+			pos.y += 100.0f * Time::DeltaTime();
 		}
+		tr->SetPos(pos);
 	}
 	void Bazzi::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
-
-		BitBlt(hdc, mPos.x, mPos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+		BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
 	}
 	void Bazzi::Release()
 	{

@@ -15,9 +15,30 @@ namespace ty
 		virtual void Render(HDC hdc);
 		virtual void Release();
 
+		template <typename T>
+		T* AddComponent()
+		{
+			T* comp = new T();
+			UINT compType = (UINT)comp->GetType();
+			mComponents[compType] = comp;
 
-	protected:
-		Vector2 mPos;
+			return comp;
+		}
+
+		template <typename T>
+		T* GetComponent()
+		{
+			for (Component* comp : mComponents )
+			{
+				if (dynamic_cast<T*>(comp))
+				{
+					return dynamic_cast<T*> (comp);
+				}
+			}
+
+			return nullptr;
+		}
+
 
 	private:
 		std::vector<Component*> mComponents; // 스프라이트 렌더러, 중력 , 콜라이더 캐릭터

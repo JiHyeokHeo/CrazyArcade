@@ -1,3 +1,4 @@
+#pragma once
 #include "ToryEngine.h"
 
 namespace ty

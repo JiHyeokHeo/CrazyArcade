@@ -11,6 +11,8 @@ namespace ty
 	}
 	Application::~Application()
 	{
+		//SceneManager::Release();
+		//Time::Release();
 	}
 
 	void Application::Initialize(HWND hWnd)
@@ -20,9 +22,11 @@ namespace ty
 		mWidth = 1600;
 		mHeight = 900;
 
+		//비트맵 해상도를 설정하기 위한 실제 윈도우 크기를 계산해준다.
 		RECT rect = { 0,0, mWidth, mHeight };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
+		// 윈도우 크기 변경및 출력 설정
 		SetWindowPos(mHwnd
 			, nullptr, 100, 50
 			, rect.right - rect.left

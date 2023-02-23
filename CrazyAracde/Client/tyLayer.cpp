@@ -7,6 +7,11 @@ namespace ty
 	}
 	Layer::~Layer()
 	{
+		for (GameObject* gameObj : mGameObjects)
+		{
+			delete gameObj;
+			gameObj = nullptr;
+		}
 	}
 	void Layer::Initialize()
 	{
@@ -40,13 +45,7 @@ namespace ty
 	}
 	void Layer::Release()
 	{
-		for (GameObject* gameObj : mGameObjects)
-		{
-			if (gameObj == nullptr)
-				continue;
 
-			gameObj->Release();
-		}
 	}
 	void Layer::AddGameObject(GameObject* gameObj)
 	{

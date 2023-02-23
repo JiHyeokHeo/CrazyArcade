@@ -7,16 +7,26 @@ enum class eSceneType
 	GAMELOBBY, // 게임 로비
 	PLAY, // 플레이
 	REWARD, // 결과창
-	MAX,
+	END,
 };
 
 enum class eLayerType
 {
-	WALLPAPER, // 배경
+	BG, // 배경
 	MONSTER, // 몬스터
 	PLAYER, // 플레이어
 	EFFECT, // 이펙트
 	UI, // UI
 	END,
+};
+
+enum class eComponentType
+{
+	Transform,
+	Collider,
+	SpriteRenderer,
+	Animator,
+	Audio,
+	End,
 };
 

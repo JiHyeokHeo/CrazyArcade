@@ -150,6 +150,8 @@
     <ClInclude Include="tyScene.h" />
     <ClInclude Include="tySceneManager.h" />
     <ClInclude Include="tyTime.h" />
+    <ClInclude Include="tyTitleScene.h" />
+    <ClInclude Include="tyTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tyBazzi.cpp" />
@@ -168,6 +170,8 @@
     <ClCompile Include="tyScene.cpp" />
     <ClCompile Include="tySceneManager.cpp" />
     <ClCompile Include="tyTime.cpp" />
+    <ClCompile Include="tyTitleScene.cpp" />
+    <ClCompile Include="tyTransform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
