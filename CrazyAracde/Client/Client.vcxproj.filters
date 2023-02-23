@@ -115,7 +115,7 @@
     <ClInclude Include="tyResources.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="tyTitleScene.h">
+    <ClInclude Include="tyLoginScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
     <ClInclude Include="tyImage.h">
@@ -127,8 +127,26 @@
     <ClInclude Include="tyLobbyScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="tyBG.h">
+    <ClInclude Include="tyPlag_BG.h">
       <Filter>Contents\BG</Filter>
+    </ClInclude>
+    <ClInclude Include="tyLobby_BG.h">
+      <Filter>Contents\BG</Filter>
+    </ClInclude>
+    <ClInclude Include="tyRewardScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="tyLogin_BG.h">
+      <Filter>Contents\BG</Filter>
+    </ClInclude>
+    <ClInclude Include="tyReward_BG.h">
+      <Filter>Contents\BG</Filter>
+    </ClInclude>
+    <ClInclude Include="tyLogo_BG.h">
+      <Filter>Contents\BG</Filter>
+    </ClInclude>
+    <ClInclude Include="tyLogoScene.h">
+      <Filter>Contents\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -190,7 +208,7 @@
     <ClCompile Include="tyResources.cpp">
       <Filter>Engine\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="tyTitleScene.cpp">
+    <ClCompile Include="tyLoginScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
     <ClCompile Include="tyImage.cpp">
@@ -202,8 +220,26 @@
     <ClCompile Include="tyLobbyScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="tyBG.cpp">
+    <ClCompile Include="tyPlag_BG.cpp">
       <Filter>Contents\BG</Filter>
+    </ClCompile>
+    <ClCompile Include="tyLobby_BG.cpp">
+      <Filter>Contents\BG</Filter>
+    </ClCompile>
+    <ClCompile Include="tyRewardScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="tyLogin_BG.cpp">
+      <Filter>Contents\BG</Filter>
+    </ClCompile>
+    <ClCompile Include="tyReward_BG.cpp">
+      <Filter>Contents\BG</Filter>
+    </ClCompile>
+    <ClCompile Include="tyLogo_BG.cpp">
+      <Filter>Contents\BG</Filter>
+    </ClCompile>
+    <ClCompile Include="tyLogoScene.cpp">
+      <Filter>Contents\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

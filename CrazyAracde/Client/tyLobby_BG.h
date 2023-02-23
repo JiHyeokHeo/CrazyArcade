@@ -1,22 +1,22 @@
 #pragma once
-#include "tyScene.h"
+#include"tyScene.h"
+#include "tyImage.h"
 
 namespace ty
 {
-	class TitleScene : public Scene
+	class Lobby_BG : public GameObject
 	{
 	public:
-		TitleScene();
-		~TitleScene();
+		Lobby_BG();
+		~Lobby_BG();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 		virtual void Release() override;
 
-		virtual void OnEnter() override;
-		virtual void OnExit() override;
-	private:
 
+	private:
+		Image* mImage;
 	};
 }

@@ -2,7 +2,8 @@
 
 enum class eSceneType
 {
-	Title, // 타이틀
+	Logo, // 로고
+	Login, // 로그인
 	Lobby, // 그냥 로비
 	Play, // 플레이
 	Reward, // 결과창
@@ -19,12 +20,20 @@ enum class eLayerType
 	End,
 };
 
-enum class ePlayerType
-{
-	Bazzi,
-	Uni,
-	End,
-};
+//enum class ePlayerType
+//{
+//	Bazzi,
+//	Uni,
+//	End,
+//};
+
+//enum class eItemType
+//{
+//	Shield,
+//	Dart,
+//	Spring,
+//	End,
+//};
 
 enum class eComponentType
 {

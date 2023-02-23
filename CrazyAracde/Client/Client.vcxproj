@@ -131,7 +131,10 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="tyBazzi.h" />
-    <ClInclude Include="tyBG.h" />
+    <ClInclude Include="tyLobby_BG.h" />
+    <ClInclude Include="tyLogoScene.h" />
+    <ClInclude Include="tyLogo_BG.h" />
+    <ClInclude Include="tyPlag_BG.h" />
     <ClInclude Include="tyComponent.h" />
     <ClInclude Include="tyEntity.h" />
     <ClInclude Include="framework.h" />
@@ -149,15 +152,21 @@
     <ClInclude Include="tyPlayScene.h" />
     <ClInclude Include="tyResource.h" />
     <ClInclude Include="tyResources.h" />
+    <ClInclude Include="tyRewardScene.h" />
+    <ClInclude Include="tyReward_BG.h" />
     <ClInclude Include="tyScene.h" />
     <ClInclude Include="tySceneManager.h" />
     <ClInclude Include="tyTime.h" />
-    <ClInclude Include="tyTitleScene.h" />
+    <ClInclude Include="tyLoginScene.h" />
+    <ClInclude Include="tyLogin_BG.h" />
     <ClInclude Include="tyTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tyBazzi.cpp" />
-    <ClCompile Include="tyBG.cpp" />
+    <ClCompile Include="tyLobby_BG.cpp" />
+    <ClCompile Include="tyLogoScene.cpp" />
+    <ClCompile Include="tyLogo_BG.cpp" />
+    <ClCompile Include="tyPlag_BG.cpp" />
     <ClCompile Include="tyComponent.cpp" />
     <ClCompile Include="tyEntity.cpp" />
     <ClCompile Include="main.cpp" />
@@ -171,10 +180,13 @@
     <ClCompile Include="tyPlayScene.cpp" />
     <ClCompile Include="tyResource.cpp" />
     <ClCompile Include="tyResources.cpp" />
+    <ClCompile Include="tyRewardScene.cpp" />
+    <ClCompile Include="tyReward_BG.cpp" />
     <ClCompile Include="tyScene.cpp" />
     <ClCompile Include="tySceneManager.cpp" />
     <ClCompile Include="tyTime.cpp" />
-    <ClCompile Include="tyTitleScene.cpp" />
+    <ClCompile Include="tyLoginScene.cpp" />
+    <ClCompile Include="tyLogin_BG.cpp" />
     <ClCompile Include="tyTransform.cpp" />
   </ItemGroup>
   <ItemGroup>

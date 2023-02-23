@@ -1,6 +1,9 @@
 #include "tySceneManager.h"
 #include "tyPlayScene.h"
-#include "tyTitleScene.h"
+#include "tyLoginScene.h"
+#include "tyLobbyScene.h"
+#include "tyLogoScene.h"
+//#include "tyRewardScene.h"
 
 
 namespace ty
@@ -12,13 +15,15 @@ namespace ty
 	{
 		mScenes.resize((UINT)eSceneType::End); 
 
-		mScenes[(UINT)eSceneType::Title] = new TitleScene();
+		mScenes[(UINT)eSceneType::Logo] = new LogoScene();
+		mScenes[(UINT)eSceneType::Login] = new LoginScene();
+		mScenes[(UINT)eSceneType::Lobby] = new LobbyScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene(); 
 		
 
 		//mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
 
-		mActiveScene = mScenes[(UINT)eSceneType::Play];
+		mActiveScene = mScenes[(UINT)eSceneType::Logo];
 
 
 		for (Scene* scene : mScenes)

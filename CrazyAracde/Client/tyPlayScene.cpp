@@ -1,8 +1,7 @@
 #include "tyPlayScene.h"
-#include "tyBazzi.h"
+#include "tyBazzi.h" // 전방 선언을 할 경우 cpp 파일에 헤더를 추가해야한다.
 #include "tyInput.h"
 #include "tySceneManager.h"
-#include "tyBG.h"
 
 
 namespace ty
@@ -16,16 +15,16 @@ namespace ty
 	void PlayScene::Initialize()
 	{
 		mBazzi = new Bazzi();
-		mBG = new BG();
+		mPlayBG = new Play_BG();
 		AddGameObject(mBazzi, eLayerType::Player);
-		AddGameObject(mBG, eLayerType::BG);
+		AddGameObject(mPlayBG, eLayerType::BG);
 		Scene::Initialize();
 	}
 	void PlayScene::Update()
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			SceneManager::LoadScene(eSceneType::Title);
+			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 		Scene::Update();
 	}
