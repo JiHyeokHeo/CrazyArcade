@@ -130,6 +130,8 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
+    <ClInclude Include="tyAnimation.h" />
+    <ClInclude Include="tyAnimator.h" />
     <ClInclude Include="tyBazzi.h" />
     <ClInclude Include="tyLobby_BG.h" />
     <ClInclude Include="tyLogoScene.h" />
@@ -162,6 +164,8 @@
     <ClInclude Include="tyTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tyAnimation.cpp" />
+    <ClCompile Include="tyAnimator.cpp" />
     <ClCompile Include="tyBazzi.cpp" />
     <ClCompile Include="tyLobby_BG.cpp" />
     <ClCompile Include="tyLogoScene.cpp" />

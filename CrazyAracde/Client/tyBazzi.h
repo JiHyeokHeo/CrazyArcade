@@ -19,5 +19,7 @@ namespace ty
 
 	private:
 		Image* mImage;
+		float mTime;
+		int mIdx;
 	};
 }
