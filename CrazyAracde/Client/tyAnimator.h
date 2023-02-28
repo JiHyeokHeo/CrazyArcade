@@ -50,7 +50,8 @@ namespace ty
 			, UINT coulmn, UINT row, UINT spriteLength
 			, Vector2 offset, float duration);
 		
-		void CreateAnimations(); // 파일별로 돌릴때는 이 함수
+		// 파일별로 돌릴때는 이 함수
+		void CreateAnimations(const std::wstring& path, Vector2 offset, float duration);
 
 		Animation* FindAnimation(const std::wstring& name);
 		void Play(const std::wstring& name, bool loop);

@@ -41,6 +41,25 @@ namespace ty
 			return mKeys[(UINT)keyCode].state;
 		}
 
+		//GetKey()		키를 누르는 시간만큼 true를 반환
+		//GetKeyDown()	키를 눌렀을 때, 딱 한번 true를 반환
+		//GetKeyUp()	키를 누르다 땠을 때, 딱 한번 true를 반환
+
+		static __forceinline bool GetKey(eKeyCode keyCode)
+		{
+			return mKeys[static_cast<UINT>(keyCode)].state == eKeyState::Pressed;
+		}
+
+		static __forceinline bool GetKeyDown(eKeyCode keyCode)
+		{
+			return mKeys[static_cast<UINT>(keyCode)].state == eKeyState::Down;
+		}
+
+		static __forceinline bool GetKeyUp(eKeyCode keyCode)
+		{
+			return mKeys[static_cast<UINT>(keyCode)].state == eKeyState::Up;
+		}
+
 	private:
 		static std::vector<Key> mKeys;
 	};

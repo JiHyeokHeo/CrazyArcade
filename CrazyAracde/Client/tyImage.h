@@ -7,6 +7,8 @@ namespace ty
 	class Image : public Resource
 	{
 	public:
+		static Image* Create(const std::wstring& name, UINT width, UINT height);
+
 		Image();
 		~Image();
 

@@ -4,9 +4,18 @@
 
 namespace ty
 {
+	class Animator;
 	class Bazzi : public GameObject
 	{
 	public:
+		enum class eBazziState
+		{
+			Move,
+			Shoot,
+			Death,
+			Idle
+		};
+
 		Bazzi();
 		~Bazzi();
 
@@ -15,8 +24,14 @@ namespace ty
 		virtual void Render(HDC hdc) override;
 		virtual void Release() override;
 
+	private:
+		void move();
+		void shoot();
+		void death();
+		void idle();
 
 	private:
-	
+		eBazziState mState;
+		Animator* mAnimator;
 	};
 }
