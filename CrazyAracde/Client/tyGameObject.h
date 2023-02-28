@@ -21,6 +21,7 @@ namespace ty
 			T* comp = new T();
 			UINT compType = (UINT)comp->GetType();
 			mComponents[compType] = comp;
+			comp->SetOwner(this);
 
 			return comp;
 		}

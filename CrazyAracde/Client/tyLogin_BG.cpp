@@ -23,7 +23,8 @@ namespace ty
 	}
 	void Login_BG::Render(HDC hdc)
 	{
-		BitBlt(hdc, 0, 0, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+		TransparentBlt(hdc, 0, 0, 1600, 900, mImage->GetHdc(),
+			0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(255, 0, 255));
 	}
 	void Login_BG::Release()
 	{

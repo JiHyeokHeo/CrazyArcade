@@ -4,13 +4,11 @@
 #include "tyinput.h"
 #include "tyResources.h"
 #include "tyTransform.h"
-#include "tyImage.h"
+#include "tyAnimator.h"
 
 namespace ty
 {
 	Bazzi::Bazzi()
-		: mTime(0.0f)
-		, mIdx(0)
 	{
 	}
 	Bazzi::~Bazzi()
@@ -18,9 +16,13 @@ namespace ty
 	}
 	void Bazzi::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Idle.bmp");
-		
+		Image* mImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\right.bmp");
+		Animator* animator = AddComponent<Animator>();
+		animator->CreateAnimation(L"right", mImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
+
+		animator->Play(L"right", false);
 		GameObject::Initialize();
+
 	}
 	void Bazzi::Update()
 	{
@@ -63,28 +65,6 @@ namespace ty
 	void Bazzi::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-
-
-		mTime += Time::DeltaTime();
-
-		if (mIdx >= 16)
-		{
-			mIdx = 0;
-		}
-
-		if (mTime > 0.1f)
-		{
-			mIdx++;
-			mTime = 0.0f;
-		}
-
-		// 시작 지점 103, 113 그리고 103 x좌표는 midx만큼 계속 곱해진다
-		TransparentBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(),
-			0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(255, 0, 255));
-
-		//BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
 		
 	}
 	void Bazzi::Release()

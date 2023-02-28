@@ -14,7 +14,7 @@ namespace ty
 	}
 	void Play_BG::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Play_BG", L"..\\Resources\\play_bg.bmp");
+		//mImage = Resources::Load<Image>(L"Play_BG", L"..\\Resources\\play_bg.bmp");
 
 		GameObject::Initialize();
 	}
@@ -24,7 +24,7 @@ namespace ty
 	}
 	void Play_BG::Render(HDC hdc)
 	{
-		BitBlt(hdc, 0, 0, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+		//BitBlt(hdc, 0, 0, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
 	}
 	void Play_BG::Release()
 	{

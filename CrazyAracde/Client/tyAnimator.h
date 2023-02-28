@@ -43,21 +43,28 @@ namespace ty
 		virtual void Render(HDC hdc)override;
 		virtual void Release()override;
 
-		void CreateAnimation(); // 이건 하나의 이미지에 다 돌때
+		// 이건 하나의 이미지에 다 돌때
+		void CreateAnimation(const std::wstring& name
+			, Image* sheet
+			, Vector2 leftTop
+			, UINT coulmn, UINT row, UINT spriteLength
+			, Vector2 offset, float duration);
+		
 		void CreateAnimations(); // 파일별로 돌릴때는 이 함수
 
 		Animation* FindAnimation(const std::wstring& name);
 		void Play(const std::wstring& name, bool loop);
 
 		Events* FindEvents(const std::wstring& name);
-		std::function<void>& GetStartEvent(const std::wstring& name);
-		std::function<void>& GetCompleteEvent(const std::wstring& name);
-		std::function<void>& GetEndEvent(const std::wstring& name);
+		//std::function<void>& GetStartEvent(const std::wstring& name);
+		//std::function<void>& GetCompleteEvent(const std::wstring& name);
+		//std::function<void>& GetEndEvent(const std::wstring& name);
 
 	private:
-		std::map<std::wstring, Animation*> mAnimation;
+		std::map<std::wstring, Animation*> mAnimations;
 		std::map<std::wstring, Event*> mEvents;
 		Animation* mActiveAnimation;
 		Image* mSpriteSheet; // 한 이미지에서 하나하나 장면들을 다 스프라이트라고 한다.
+		bool mbLoop;
 	};
 }

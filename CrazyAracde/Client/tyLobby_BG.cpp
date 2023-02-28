@@ -23,7 +23,7 @@ namespace ty
 	}
 	void Lobby_BG::Render(HDC hdc)
 	{
-		BitBlt(hdc, 0, 0, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+		//BitBlt(hdc, 0, 0, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
 	}
 	void Lobby_BG::Release()
 	{

@@ -1,10 +1,9 @@
 #pragma once
 #include "tyGameObject.h"
-
+#include "tyImage.h"
 
 namespace ty
 {
-	class Image;
 	class Bazzi : public GameObject
 	{
 	public:
@@ -18,8 +17,6 @@ namespace ty
 
 
 	private:
-		Image* mImage;
-		float mTime;
-		int mIdx;
+	
 	};
 }

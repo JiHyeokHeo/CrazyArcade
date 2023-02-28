@@ -15,9 +15,9 @@ namespace ty
 	void PlayScene::Initialize()
 	{
 		mBazzi = new Bazzi();
-		mPlayBG = new Play_BG();
+		//mPlayBG = new Play_BG();
 		AddGameObject(mBazzi, eLayerType::Player);
-		AddGameObject(mPlayBG, eLayerType::BG);
+		//AddGameObject(mPlayBG, eLayerType::BG);
 		Scene::Initialize();
 	}
 	void PlayScene::Update()

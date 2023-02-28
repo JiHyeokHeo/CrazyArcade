@@ -2,6 +2,13 @@
 
 struct Vector2 // ¡°¿Ã¥Ÿ
 {
+	static Vector2 Up;
+	static Vector2 Right;
+
+	static Vector2 One;
+	static Vector2 Zero;
+
+
 	float x;
 	float y;
 
