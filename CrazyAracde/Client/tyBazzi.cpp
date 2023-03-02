@@ -38,7 +38,8 @@ namespace ty
 		mAnimator->Play(L"downIdle", true);
 
 		Collider* collider = AddComponent<Collider>();
-		collider->SetScale(Vector2(-60.0f, -80.0f)); // 추후에 set함수 찾아서 크기 조절 합시다.
+		collider->SetScale(Vector2(150.0f, 150.0f)); // 추후에 set함수 찾아서 크기 조절 합시다. 질무운..
+		//collider->SetSize(Vector2(100.f, 150.0f));
 
 
 		mState = eBazziState::Idle;
@@ -171,11 +172,11 @@ namespace ty
 
 		if (Input::GetKey(eKeyCode::LEFT))
 			pos.x -= 200.0f * Time::DeltaTime();
-		if (Input::GetKey(eKeyCode::RIGHT))
+		else if (Input::GetKey(eKeyCode::RIGHT))
 			pos.x += 200.0f * Time::DeltaTime();
-		if (Input::GetKey(eKeyCode::UP))
+		else if (Input::GetKey(eKeyCode::UP))
 			pos.y -= 200.0f * Time::DeltaTime();
-		if (Input::GetKey(eKeyCode::DOWN))
+		else if (Input::GetKey(eKeyCode::DOWN))
 			pos.y += 200.0f * Time::DeltaTime();
 
 		tr->SetPos(pos);
