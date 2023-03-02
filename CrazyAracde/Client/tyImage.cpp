@@ -30,6 +30,8 @@ namespace ty
 		image->SetKey(name);
 		Resources::Insert<Image>(name, image);
 
+		Rectangle(image->GetHdc(), -1, -1, image->mWidth + 1, image->mHeight + 1);
+
 		return image;
 	}
 	Image::Image()

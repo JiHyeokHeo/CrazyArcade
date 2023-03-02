@@ -5,6 +5,9 @@
 #include "tyResources.h"
 #include "tyTransform.h"
 #include "tyAnimator.h"
+#include "tyCollider.h"
+#include "tyBaseBomb.h"
+#include "tyScene.h"
 
 namespace ty
 {
@@ -30,7 +33,13 @@ namespace ty
 		mAnimator->CreateAnimation(L"downIdle", mImage, Vector2(0.0f, 150.0f * 2), 8, 4, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"leftIdle", mImage, Vector2(0.0f, 150.0f * 3), 8, 4, 1, Vector2::Zero, 0.1);
 
+		//mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2::Zero, 0.1f);
+
 		mAnimator->Play(L"downIdle", true);
+
+		Collider* collider = AddComponent<Collider>();
+		collider->SetScale(Vector2(-60.0f, -80.0f)); // 추후에 set함수 찾아서 크기 조절 합시다.
+
 
 		mState = eBazziState::Idle;
 
@@ -155,7 +164,7 @@ namespace ty
 			|| Input::GetKeyUp(eKeyCode::DOWN))
 		{
 			mState = eBazziState::Idle;
-			mAnimator->Play(L"downIdle", true);
+			//mAnimator->Play(L"downIdle", true);
 		}
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
@@ -173,6 +182,14 @@ namespace ty
 	}
 	void Bazzi::shoot()
 	{
+		Transform* tr = GetComponent<Transform>();
+		if (Input::GetKey(eKeyCode::SPACEBAR))
+		{
+			Scene* curScene = SceneManager::GetActiveScene();
+			BaseBomb* bomb = new BaseBomb();
+			bomb->GetComponent<Transform>()->SetPos(tr->GetPos());
+			curScene->AddGameObject(new BaseBomb(), eLayerType::Bomb);
+		}
 	}
 	void Bazzi::death()
 	{
@@ -185,7 +202,13 @@ namespace ty
 			|| Input::GetKeyDown(eKeyCode::DOWN))
 		{
 			mState = eBazziState::Move;
-			mAnimator->Play(L"down", true);
+			//mAnimator->Play(L"down", true);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
+		{
+			mState = eBazziState::Shoot;
+			// mAnimator->Play("L")
 		}
 	}
 }

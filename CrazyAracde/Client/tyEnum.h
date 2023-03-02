@@ -15,32 +15,18 @@ enum class eLayerType
 	BG, // 배경
 	Monster, // 몬스터
 	Player, // 플레이어
+	Bomb, // 폭탄
 	Effect, // 이펙트
 	UI, // UI
 	End,
 };
 
-//enum class ePlayerType
-//{
-//	Bazzi,
-//	Uni,
-//	End,
-//};
-
-//enum class eItemType
-//{
-//	Shield,
-//	Dart,
-//	Spring,
-//	End,
-//};
-
 enum class eComponentType
 {
 	Transform,
-	Collider,
 	SpriteRenderer,
 	Animator,
+	Collider,
 	Audio,
 	End,
 };
