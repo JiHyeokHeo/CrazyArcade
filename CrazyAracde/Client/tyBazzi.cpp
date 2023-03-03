@@ -21,7 +21,7 @@ namespace ty
 	{
 		Image* mImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi.bmp");
 		mAnimator = AddComponent<Animator>();
-
+		
 		mAnimator->CreateAnimation(L"up", mImage, Vector2::Zero, 8, 4, 8, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"right", mImage, Vector2(0.0f, 150.0f), 8, 4, 6, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"down", mImage, Vector2(0.0f, 150.0f * 2), 8, 4, 8, Vector2::Zero, 0.1);
@@ -29,18 +29,14 @@ namespace ty
 
 		mAnimator->CreateAnimation(L"upIdle", mImage, Vector2::Zero, 8, 4, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"rightIdle", mImage, Vector2(0.0f, 150.0f), 8, 4, 1, Vector2(-50.0f, -50.0f), 0.1);
-		// 이게 오프셋 변경 시작 위치 애니메이션쪽 렌더 transblt쪽 관련(offset)
+																							// 이게 오프셋 변경 시작 위치 애니메이션쪽 렌더 transblt쪽 관련(offset)
 		mAnimator->CreateAnimation(L"downIdle", mImage, Vector2(0.0f, 150.0f * 2), 8, 4, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"leftIdle", mImage, Vector2(0.0f, 150.0f * 3), 8, 4, 1, Vector2::Zero, 0.1);
-
-		//mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2::Zero, 0.1f);
 
 		mAnimator->Play(L"downIdle", true);
 
 		Collider* collider = AddComponent<Collider>();
-		collider->SetScale(Vector2(150.0f, 150.0f)); // 추후에 set함수 찾아서 크기 조절 합시다. 질무운..
-		//collider->SetSize(Vector2(100.f, 150.0f));
-
+		collider->SetCenter(Vector2(0.0f, 0.0f));
 
 		mState = eBazziState::Idle;
 
@@ -151,7 +147,7 @@ namespace ty
 	void Bazzi::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
-
+		
 	}
 	void Bazzi::Release()
 	{
@@ -165,7 +161,7 @@ namespace ty
 			|| Input::GetKeyUp(eKeyCode::DOWN))
 		{
 			mState = eBazziState::Idle;
-			//mAnimator->Play(L"downIdle", true);
+			mAnimator->Play(L"downIdle", true);
 		}
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
@@ -189,7 +185,7 @@ namespace ty
 			Scene* curScene = SceneManager::GetActiveScene();
 			BaseBomb* bomb = new BaseBomb();
 			bomb->GetComponent<Transform>()->SetPos(tr->GetPos());
-			curScene->AddGameObject(new BaseBomb(), eLayerType::Bomb);
+			curScene->AddGameObject(bomb, eLayerType::Bomb);
 		}
 	}
 	void Bazzi::death()
@@ -203,13 +199,13 @@ namespace ty
 			|| Input::GetKeyDown(eKeyCode::DOWN))
 		{
 			mState = eBazziState::Move;
-			//mAnimator->Play(L"down", true);
+			mAnimator->Play(L"down", true);
 		}
 
 		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
 		{
 			mState = eBazziState::Shoot;
-			// mAnimator->Play("L")
+			mAnimator->Play(L"downIdle", true);
 		}
 	}
 }

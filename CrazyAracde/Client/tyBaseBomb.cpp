@@ -24,7 +24,6 @@ namespace ty
 	{
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-
 		HPEN pen = CreatePen(BS_SOLID, 2, RGB(0, 255, 0));
 
 		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
