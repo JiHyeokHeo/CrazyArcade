@@ -18,7 +18,7 @@ enum class eLayerType
 	Bomb, // 폭탄
 	Effect, // 이펙트
 	UI, // UI
-	End,
+	End, // 최대 16까지 이건 콜리전 매니저에 최대 수용치를 16바이트로 해놨기 때문이다.
 };
 
 enum class eComponentType

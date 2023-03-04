@@ -16,7 +16,7 @@ namespace ty
 		virtual void Release() override;
 
 		void SetPos(Vector2 pos) { mPos = pos; }
-		void SetSize(Vector2 size) { mScale = size; }
+		void SetScale(Vector2 size) { mScale = size; }
 		Vector2 GetPos() { return mPos; }
 		Vector2 GetScale() { return mScale; }
 

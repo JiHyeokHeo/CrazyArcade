@@ -135,9 +135,11 @@
     <ClInclude Include="tyBazzi.h" />
     <ClInclude Include="tyBaseBomb.h" />
     <ClInclude Include="tyCollider.h" />
+    <ClInclude Include="tyCollisionManager.h" />
     <ClInclude Include="tyLobby_BG.h" />
     <ClInclude Include="tyLogoScene.h" />
     <ClInclude Include="tyLogo_BG.h" />
+    <ClInclude Include="tyMonster.h" />
     <ClInclude Include="tyPlag_BG.h" />
     <ClInclude Include="tyComponent.h" />
     <ClInclude Include="tyEntity.h" />
@@ -171,9 +173,11 @@
     <ClCompile Include="tyBazzi.cpp" />
     <ClCompile Include="tyBaseBomb.cpp" />
     <ClCompile Include="tyCollider.cpp" />
+    <ClCompile Include="tyCollisionManager.cpp" />
     <ClCompile Include="tyLobby_BG.cpp" />
     <ClCompile Include="tyLogoScene.cpp" />
     <ClCompile Include="tyLogo_BG.cpp" />
+    <ClCompile Include="tyMonster.cpp" />
     <ClCompile Include="tyPlag_BG.cpp" />
     <ClCompile Include="tyComponent.cpp" />
     <ClCompile Include="tyEntity.cpp" />

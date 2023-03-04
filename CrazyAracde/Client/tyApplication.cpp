@@ -2,6 +2,9 @@
 #include "tySceneManager.h"
 #include "tyTime.h"
 #include "tyinput.h"
+#include "tyCollisionManager.h"
+
+
 namespace ty
 {
 	Application::Application()
@@ -64,6 +67,7 @@ namespace ty
 		Time::Render(mBackHDC);
 		Input::Render(mBackHDC);
 		SceneManager::Render(mBackHDC);
+		
 
 		// 백버퍼에 있는 그림을 원본 버퍼에 그려야 한다. // 원본을 가져다가 복사
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHDC, 0, 0, SRCCOPY);

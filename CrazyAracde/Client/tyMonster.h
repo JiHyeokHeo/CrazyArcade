@@ -1,21 +1,20 @@
 #pragma once
 #include "tyGameObject.h"
-
+#include "tyImage.h"
 
 namespace ty
 {
-
-	class BaseBomb : public GameObject
+	class Animator;
+	class Monster : public GameObject
 	{
 	public:
-		enum class eBombState
+		enum class eMonsterState
 		{
 			Idle,
-			Bomb,
+			Damaged,
 		};
-
-		BaseBomb();
-		~BaseBomb();
+		Monster();
+		~Monster();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -24,6 +23,7 @@ namespace ty
 
 
 	private:
+		Animator* mAnimator;
+		eMonsterState mState;
 	};
-	
 }

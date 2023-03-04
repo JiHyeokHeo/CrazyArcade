@@ -20,7 +20,7 @@ namespace ty
 		mScenes[(UINT)eSceneType::Lobby] = new LobbyScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene(); 
 		
-
+		
 		//mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
 
 		mActiveScene = mScenes[(UINT)eSceneType::Play];

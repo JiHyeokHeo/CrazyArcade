@@ -53,6 +53,12 @@
     <Filter Include="Contents\Bomb">
       <UniqueIdentifier>{2fd57f45-30ac-4ccb-a6eb-77217d2c0e27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Monster">
+      <UniqueIdentifier>{d2e28354-c0f8-4ec4-bb06-bb03951a80b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Collider">
+      <UniqueIdentifier>{9d44e35f-1130-444f-8a21-ab48793d9fd3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -157,11 +163,17 @@
     <ClInclude Include="tyAnimator.h">
       <Filter>Engine\Component</Filter>
     </ClInclude>
-    <ClInclude Include="tyCollider.h">
-      <Filter>Engine\Component</Filter>
-    </ClInclude>
     <ClInclude Include="tyBaseBomb.h">
       <Filter>Contents\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="tyMonster.h">
+      <Filter>Contents\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="tyCollider.h">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="tyCollisionManager.h">
+      <Filter>Engine\Component\Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -262,11 +274,17 @@
     <ClCompile Include="tyAnimator.cpp">
       <Filter>Engine\Component</Filter>
     </ClCompile>
-    <ClCompile Include="tyCollider.cpp">
-      <Filter>Engine\Component</Filter>
-    </ClCompile>
     <ClCompile Include="tyBaseBomb.cpp">
       <Filter>Contents\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="tyMonster.cpp">
+      <Filter>Contents\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="tyCollider.cpp">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="tyCollisionManager.cpp">
+      <Filter>Engine\Component\Collider</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

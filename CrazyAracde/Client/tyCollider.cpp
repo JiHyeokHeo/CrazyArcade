@@ -7,7 +7,6 @@ namespace ty
 	Collider::Collider()
 		:Component(eComponentType::Collider)
 		, mCenter(Vector2::Zero)
-		, mScale(Vector2::One)
 		, mPos(Vector2::Zero)
 		, mSize(100.0f, 100.0f)
 	{

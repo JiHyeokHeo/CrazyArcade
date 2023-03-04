@@ -19,6 +19,10 @@ namespace ty
 	}
 	void Bazzi::Initialize()
 	{
+		Transform* tr = GetComponent<Transform>();
+		tr->SetPos(Vector2(400.0f, 400.0f));
+		//¹èÀ² tr->SetScale(Vector2(2.0f, 2.0f));
+
 		Image* mImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi.bmp");
 		mAnimator = AddComponent<Animator>();
 		
