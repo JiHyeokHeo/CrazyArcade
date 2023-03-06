@@ -24,7 +24,7 @@ namespace ty
 	}
 	void Play_BG::Render(HDC hdc)
 	{
-		BitBlt(hdc, 0, 0, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+		StretchBlt(hdc, 250, 0, mImage->GetWidth()+280, mImage->GetHeight()+280, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), SRCCOPY);
 	}
 	void Play_BG::Release()
 	{

@@ -21,8 +21,8 @@ namespace ty
 	{
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(400.0f, 400.0f));
-		//tr->SetScale(Vector2(1.28f, 1.26f));
-
+		tr->SetScale(Vector2(1.18f, 1.18f));
+		
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
 		Image* mLeftImage = Resources::Load<Image>(L"BazziL", L"..\\Resources\\Bazzi\\left.bmp");
 		Image* mRightImage = Resources::Load<Image>(L"BazziR", L"..\\Resources\\Bazzi\\right.bmp");
@@ -39,15 +39,18 @@ namespace ty
 		mAnimator->CreateAnimation(L"downIdle", mDownImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"leftIdle", mLeftImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"rightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"ready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"ready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2(0.0f, -10.0f), 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
+
 
 		mAnimator->Play(L"ready", false);
 		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(0.0f, 0.0f));
-		collider->SetSize(Vector2(64.0f,76.0f));
+		collider->SetSize(Vector2(75.52f,89.68f));
+		
 		mState = eBazziState::Idle;
 
+		//mAnimator->GetStartEvent(L"downIdle") = std::bind(&Bazzi::idleCompleteEvent, this);
 		
 
 		//mAnimator->Play(L"downIlde", true);
@@ -82,84 +85,6 @@ namespace ty
 			break;
 		}
 
-		//Transform* tr = GetComponent<Transform>();
-		//Vector2 pos = tr->GetPos();
-
-		//Animator* animator = GetComponent<Animator>();
-		//if (Input::GetKeyState(eKeyCode::LEFT) == eKeyState::Pressed)
-		//{
-		//	pos.x -= 200.0f * Time::DeltaTime();
-		//	animator->Play(L"left", true);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::LEFT) == eKeyState::Down)
-		//{
-		//	animator->Play(L"left", true);
-		//}
-		//
-		//if (Input::GetKeyState(eKeyCode::LEFT) == eKeyState::Up)
-		//{
-		//	animator->Play(L"leftIdle", false);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::RIGHT) == eKeyState::Pressed)
-		//{
-		//	pos.x += 200.0f * Time::DeltaTime();
-		//	animator->Play(L"right", true);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::RIGHT) == eKeyState::Down)
-		//{
-		//	animator->Play(L"right", true);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::RIGHT) == eKeyState::Up)
-		//{
-		//	animator->Play(L"rightIdle", false);
-		//}
-
-		////if (Input::GetKeyState(eKeyCode::SPACEBAR) == eKeyState::Down)
-		////{
-		////	  물풍선 사용 추후에 Sprite쪽이랑 연결하는걸까?
-		////}
-
-		////if (Input::GetKeyState(eKeyCode::CTRL) == eKeyState::Down)
-		////{
-		////    아이템 사용
-		////}
-
-		//if (Input::GetKeyState(eKeyCode::UP) == eKeyState::Pressed)
-		//{
-		//	pos.y -= 200.0f * Time::DeltaTime();
-		//	animator->Play(L"up", true);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::UP) == eKeyState::Down)
-		//{
-		//	animator->Play(L"up", true);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::UP) == eKeyState::Up)
-		//{
-		//	animator->Play(L"upIdle", false);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::DOWN) == eKeyState::Pressed)
-		//{
-		//	pos.y += 200.0f * Time::DeltaTime();
-		//	animator->Play(L"down", true);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::DOWN) == eKeyState::Down)
-		//{
-		//	animator->Play(L"down", true);
-		//}
-
-		//if (Input::GetKeyState(eKeyCode::DOWN) == eKeyState::Up)
-		//{
-		//	animator->Play(L"downIdle", false);
-		//}
-		//tr->SetPos(pos);
 	}
 	void Bazzi::Render(HDC hdc)
 	{
@@ -189,7 +114,6 @@ namespace ty
 			mAnimator->Play(L"downIdle", true);
 		}
 			
-	
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 
@@ -248,5 +172,15 @@ namespace ty
 			mState = eBazziState::Move;
 			//mAnimator->Play(L"down", true);
 		}
+	}
+	void Bazzi::idleCompleteEvent(/*const Cuphead* this*/)
+	{
+		int a = 0;
+		//mState =
+		//Transform* tr = GetComponent<Transform>();
+		//Scene* curScene = SceneManager::GetActiveScene();
+		//BaseBullet* bullet = new BaseBullet();
+		//bullet->GetComponent<Transform>()->SetPos(tr->GetPos());
+		//curScene->AddGameObeject(bullet, eLayerType::Bullet);
 	}
 }

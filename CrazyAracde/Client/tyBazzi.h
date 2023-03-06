@@ -31,12 +31,11 @@ namespace ty
 		void death();
 		void idle();
 
+		void idleCompleteEvent();
 	private:
 		eBazziState mState;
 		Animator* mAnimator;
 		double mTime;
-		
-		
 
 	};
 }

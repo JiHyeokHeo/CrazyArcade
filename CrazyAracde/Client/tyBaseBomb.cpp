@@ -24,13 +24,12 @@ namespace ty
 
 		mAnimator->CreateAnimation(L"bomb", BombImage, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.1);
 		mAnimator->Play(L"bomb", true);
-		GameObject::Initialize();
 	}
 	void BaseBomb::Update()
 	{
 		Transform* tr = GetComponent<Transform>();
 		
-		Vector2 pos = tr->GetPos(); // 이쪽에서 뭔가 물풍선 밀거나 하는 조건을 걸 수 있을듯함
+		Vector2 pos = tr->GetPos() + Vector2::Vector2(6.0f, 10.0f); // 이쪽에서 뭔가 물풍선 밀거나 하는 조건을 걸 수 있을듯함
 		//pos.x += 100.0f * Time::DeltaTime();
 		tr->SetPos(pos);
 	}

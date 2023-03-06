@@ -18,6 +18,11 @@ namespace ty
 			delete animation.second;
 			animation.second = nullptr;
 		}
+		for (auto events : mEvents)
+		{
+			delete events.second;
+			events.second = nullptr;
+		}
 	}
 	void Animator::Initialize()
 	{
@@ -30,9 +35,12 @@ namespace ty
 
 			if (mbLoop && mActiveAnimation->isComplete())
 			{
-			/*Animator:Events* events
-				= mEvents.find()
-				;*/
+				Animator::Events* events
+					= FindEvents(mActiveAnimation->GetName());
+				
+				if (events != nullptr)
+					events->mCompleteEvent();
+
 				mActiveAnimation->Reset();
 			}
 		}
@@ -64,7 +72,7 @@ namespace ty
 
 		mAnimations.insert(std::make_pair(name, animation));
 		Events* event = new Events();
-	/*	mEvents.insert(std::make_pair(name, event));*/
+		mEvents.insert(std::make_pair(name, event));
 	}
 
 	void Animator::CreateAnimations(const std::wstring& path, Vector2 offset, float duration)
@@ -131,11 +139,59 @@ namespace ty
 	}
 	void Animator::Play(const std::wstring& name, bool loop)
 	{
+		if (mActiveAnimation != nullptr)
+		{
+			Animator::Events* prevEvents
+				= FindEvents(mActiveAnimation->GetName());
+
+			if (prevEvents != nullptr)
+				prevEvents->mEndEvent();
+		}
 		mActiveAnimation = FindAnimation(name);
 		mbLoop = loop;
+
+		Animator::Events* events
+			= FindEvents(mActiveAnimation->GetName());
+
+		if (events != nullptr)
+			events->mStartEvent();
+
 	}
 	Animator::Events* Animator::FindEvents(const std::wstring& name)
 	{
-		return nullptr;
+		std::map<std::wstring, Events*>::iterator iter
+			= mEvents.find(name);
+
+		if (iter == mEvents.end())
+			return nullptr;
+
+		return iter->second;
+	}
+	std::function<void()>& Animator::GetStartEvent(const std::wstring& name)
+	{
+		Animation* animation = FindAnimation(name);
+
+		Animator::Events* events
+			= FindEvents(animation->GetName());
+
+		return events->mStartEvent.mEvent;
+	}
+	std::function<void()>& Animator::GetCompleteEvent(const std::wstring& name)
+	{
+		Animation* animation = FindAnimation(name);
+
+		Animator::Events* events
+			= FindEvents(animation->GetName());
+
+		return events->mCompleteEvent.mEvent;
+	}
+	std::function<void()>& Animator::GetEndEvent(const std::wstring& name)
+	{
+		Animation* animation = FindAnimation(name);
+
+		Animator::Events* events
+			= FindEvents(animation->GetName());
+
+		return events->mEndEvent.mEvent;
 	}
 }

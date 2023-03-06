@@ -1,7 +1,7 @@
 #include "tyLobby_BG.h"
 #include "tySceneManager.h"
 #include "tyResources.h"
-
+#include "tyTransform.h"
 
 namespace ty
 {
@@ -14,7 +14,7 @@ namespace ty
 	void Lobby_BG::Initialize()
 	{
 		mImage = Resources::Load<Image>(L"Lobby_BG", L"..\\Resources\\Bg\\lobby_scene_bg.bmp");
-
+		
 		GameObject::Initialize();
 	}
 	void Lobby_BG::Update()

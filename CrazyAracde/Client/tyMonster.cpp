@@ -30,7 +30,7 @@ namespace ty
 
 
 		mAnimator->Play(L"Idle", true);
-
+		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(0.0f, 0.0f));
 

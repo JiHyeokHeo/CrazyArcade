@@ -57,13 +57,13 @@ namespace ty
 		void Play(const std::wstring& name, bool loop);
 
 		Events* FindEvents(const std::wstring& name);
-		//std::function<void>& GetStartEvent(const std::wstring& name);
-		//std::function<void>& GetCompleteEvent(const std::wstring& name);
-		//std::function<void>& GetEndEvent(const std::wstring& name);
+		std::function<void()>& GetStartEvent(const std::wstring& name);
+		std::function<void()>& GetCompleteEvent(const std::wstring& name);
+		std::function<void()>& GetEndEvent(const std::wstring& name);
 
 	private:
 		std::map<std::wstring, Animation*> mAnimations;
-		std::map<std::wstring, Event*> mEvents;
+		std::map<std::wstring, Events*> mEvents;
 		Animation* mActiveAnimation;
 		Image* mSpriteSheet; // 한 이미지에서 하나하나 장면들을 다 스프라이트라고 한다.
 		bool mbLoop;
