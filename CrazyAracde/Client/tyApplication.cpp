@@ -29,6 +29,7 @@ namespace ty
 		RECT rect = { 0,0, mWidth, mHeight };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
+		//GetClientRect(mHwnd, &rect);
 		// 윈도우 크기 변경및 출력 설정
 		SetWindowPos(mHwnd
 			, nullptr, 100, 50

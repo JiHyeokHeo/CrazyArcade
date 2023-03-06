@@ -21,37 +21,48 @@ namespace ty
 	{
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(400.0f, 400.0f));
-		//배율 tr->SetScale(Vector2(2.0f, 2.0f));
+		//tr->SetScale(Vector2(1.28f, 1.26f));
 
-		Image* mDownImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi\\down.bmp");
-		Image* mUpImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi\\up.bmp");
-		Image* mRightImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi\\right.bmp");
-		Image* mLeftImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi\\left.bmp");
+		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
+		Image* mLeftImage = Resources::Load<Image>(L"BazziL", L"..\\Resources\\Bazzi\\left.bmp");
+		Image* mRightImage = Resources::Load<Image>(L"BazziR", L"..\\Resources\\Bazzi\\right.bmp");
+		Image* mDownImage = Resources::Load<Image>(L"BazziD", L"..\\Resources\\Bazzi\\down.bmp");
+		Image* mReadyImage = Resources::Load<Image>(L"BazziReady", L"..\\Resources\\Bazzi\\ready.bmp");
 		mAnimator = AddComponent<Animator>();
 		
 		mAnimator->CreateAnimation(L"up", mUpImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"right", mRightImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"down", mDownImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"left", mLeftImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"right", mRightImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
 
 		mAnimator->CreateAnimation(L"upIdle", mUpImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"rightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"downIdle", mDownImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"leftIdle", mLeftImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"rightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"ready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2::Zero, 0.1);
 
-		mAnimator->Play(L"downIdle", true);
-
+		mAnimator->Play(L"ready", false);
+		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(0.0f, 0.0f));
-
+		collider->SetSize(Vector2(64.0f,76.0f));
 		mState = eBazziState::Idle;
 
+		
+
+		//mAnimator->Play(L"downIlde", true);
 		GameObject::Initialize();
 
 	}
 	void Bazzi::Update()
 	{
 		GameObject::Update();
+
+		//if()
+		//if (mbombtime == 3)
+		//{
+		//	delete [] bomb;
+		//}
 
 		switch (mState)
 		{
@@ -161,40 +172,67 @@ namespace ty
 	}
 	void Bazzi::move()
 	{
-		if (Input::GetKeyUp(eKeyCode::LEFT)
-			|| Input::GetKeyUp(eKeyCode::RIGHT)
-			|| Input::GetKeyUp(eKeyCode::UP)
-			|| Input::GetKeyUp(eKeyCode::DOWN))
+		if (Input::GetKeyUp(eKeyCode::LEFT))
 		{
-			mState = eBazziState::Idle;
+			mAnimator->Play(L"leftIdle", true);
+		}
+		else if (Input::GetKeyUp(eKeyCode::RIGHT))
+		{
+			mAnimator->Play(L"rightIdle", true);
+		}
+		else if (Input::GetKeyUp(eKeyCode::UP))
+		{
+			mAnimator->Play(L"upIdle", true);
+		}
+		else if (Input::GetKeyUp(eKeyCode::DOWN))
+		{
 			mAnimator->Play(L"downIdle", true);
 		}
+			
+	
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 
 		if (Input::GetKey(eKeyCode::LEFT))
 		{
+			mAnimator->Play(L"left", true); 
 			pos.x -= 200.0f * Time::DeltaTime();
-			mAnimator->Play(L"right", true); // 이따가 봐야할것 
 		}
 		else if (Input::GetKey(eKeyCode::RIGHT))
+		{
+			mAnimator->Play(L"right", true);
 			pos.x += 200.0f * Time::DeltaTime();
+		}
 		else if (Input::GetKey(eKeyCode::UP))
+		{
+			mAnimator->Play(L"up", true);
 			pos.y -= 200.0f * Time::DeltaTime();
+		}
 		else if (Input::GetKey(eKeyCode::DOWN))
+		{
+			mAnimator->Play(L"down", true);
 			pos.y += 200.0f * Time::DeltaTime();
+		}
+
+		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
+		{
+			mState = eBazziState::Shoot;
+			//mAnimator->Play(L"downIdle", true);
+		}
 
 		tr->SetPos(pos);
 	}
 	void Bazzi::shoot()
-	{
+ 	{
 		Transform* tr = GetComponent<Transform>();
+		
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
-			Scene* curScene = SceneManager::GetActiveScene();
-			BaseBomb* bomb = new BaseBomb();
-			bomb->GetComponent<Transform>()->SetPos(tr->GetPos());
-			curScene->AddGameObject(bomb, eLayerType::Bomb);
+ 			Scene* curScene = SceneManager::GetActiveScene();
+			BaseBomb* mBomb = new BaseBomb();
+			mBomb->GetComponent<Transform>()->SetPos(tr->GetPos());
+			curScene->AddGameObject(mBomb, eLayerType::Bomb);
+			mState = eBazziState::Move;
 		}
 	}
 	void Bazzi::death()
@@ -208,13 +246,7 @@ namespace ty
 			|| Input::GetKeyDown(eKeyCode::DOWN))
 		{
 			mState = eBazziState::Move;
-			mAnimator->Play(L"down", true);
-		}
-
-		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
-		{
-			mState = eBazziState::Shoot;
-			mAnimator->Play(L"downIdle", true);
+			//mAnimator->Play(L"down", true);
 		}
 	}
 }

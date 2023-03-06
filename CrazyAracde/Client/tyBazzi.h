@@ -1,6 +1,7 @@
 #pragma once
 #include "tyGameObject.h"
 #include "tyImage.h"
+#include "tyBaseBomb.h"
 
 namespace ty
 {
@@ -33,5 +34,9 @@ namespace ty
 	private:
 		eBazziState mState;
 		Animator* mAnimator;
+		double mTime;
+		
+		
+
 	};
 }

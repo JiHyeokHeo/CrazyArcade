@@ -9,6 +9,7 @@ namespace ty
 		, mSpriteSheet(nullptr)
 		, mbLoop(false)
 	{
+
 	}
 	Animator::~Animator()
 	{
@@ -29,6 +30,9 @@ namespace ty
 
 			if (mbLoop && mActiveAnimation->isComplete())
 			{
+			/*Animator:Events* events
+				= mEvents.find()
+				;*/
 				mActiveAnimation->Reset();
 			}
 		}
@@ -59,6 +63,8 @@ namespace ty
 		animation->SetAnimator(this);
 
 		mAnimations.insert(std::make_pair(name, animation));
+		Events* event = new Events();
+	/*	mEvents.insert(std::make_pair(name, event));*/
 	}
 
 	void Animator::CreateAnimations(const std::wstring& path, Vector2 offset, float duration)

@@ -4,7 +4,7 @@
 
 namespace ty
 {
-
+	class Animator;
 	class BaseBomb : public GameObject
 	{
 	public:
@@ -24,6 +24,7 @@ namespace ty
 
 
 	private:
+		Animator* mAnimator;
 	};
 	
 }

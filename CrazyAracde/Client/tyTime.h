@@ -11,7 +11,6 @@ namespace ty
 		static void Render(HDC hdc);
 
 		__forceinline static double DeltaTime() { return mDeltaTime; }
-		
 	private:
 		static double mDeltaTime;
 		static double mSecond;

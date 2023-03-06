@@ -5,7 +5,7 @@ extern ty::Application application;
 
 namespace ty
 {
-	double Time :: mDeltaTime = 0.0l;
+	double Time::mDeltaTime = 0.0l;
 	double Time::mSecond = 0.0f;
 	LARGE_INTEGER Time::mCpuFrequency = {};
 	LARGE_INTEGER Time::mPrevFrequency = {};
