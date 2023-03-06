@@ -38,7 +38,6 @@ namespace ty
 		(HBRUSH)SelectObject(hdc, oldbrush);
 		DeleteObject(pen);
 		
-		
 		if(Time::mSecond == 3.0)
 
 	}
