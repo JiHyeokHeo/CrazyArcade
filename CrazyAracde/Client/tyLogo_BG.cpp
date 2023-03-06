@@ -13,7 +13,7 @@ namespace ty
 	}
 	void Logo_BG::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Logo_BG", L"..\\Resources\\Logo.bmp");
+		mImage = Resources::Load<Image>(L"Logo_BG", L"..\\Resources\\Bg\\Logo.bmp");
 
 		GameObject::Initialize();
 	}

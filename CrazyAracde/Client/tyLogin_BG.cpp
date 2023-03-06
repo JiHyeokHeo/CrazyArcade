@@ -13,7 +13,7 @@ namespace ty
 	}
 	void Login_BG::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Login_BG", L"..\\Resources\\login_scene_bg.bmp");
+		mImage = Resources::Load<Image>(L"Login_BG", L"..\\Resources\\Bg\\login_scene_bg.bmp");
 		GameObject::Initialize();
 	}
 	void Login_BG::Update()

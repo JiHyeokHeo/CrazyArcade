@@ -23,19 +23,21 @@ namespace ty
 		tr->SetPos(Vector2(400.0f, 400.0f));
 		//배율 tr->SetScale(Vector2(2.0f, 2.0f));
 
-		Image* mImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi.bmp");
+		Image* mDownImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi\\down.bmp");
+		Image* mUpImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi\\up.bmp");
+		Image* mRightImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi\\right.bmp");
+		Image* mLeftImage = Resources::Load<Image>(L"Bazzi", L"..\\Resources\\Bazzi\\left.bmp");
 		mAnimator = AddComponent<Animator>();
 		
-		mAnimator->CreateAnimation(L"up", mImage, Vector2::Zero, 8, 4, 8, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"right", mImage, Vector2(0.0f, 150.0f), 8, 4, 6, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"down", mImage, Vector2(0.0f, 150.0f * 2), 8, 4, 8, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"left", mImage, Vector2(0.0f, 150.0f * 3), 8, 4, 6, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"up", mUpImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"right", mRightImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"down", mDownImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"left", mLeftImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
 
-		mAnimator->CreateAnimation(L"upIdle", mImage, Vector2::Zero, 8, 4, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"rightIdle", mImage, Vector2(0.0f, 150.0f), 8, 4, 1, Vector2(-50.0f, -50.0f), 0.1);
-																							// 이게 오프셋 변경 시작 위치 애니메이션쪽 렌더 transblt쪽 관련(offset)
-		mAnimator->CreateAnimation(L"downIdle", mImage, Vector2(0.0f, 150.0f * 2), 8, 4, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"leftIdle", mImage, Vector2(0.0f, 150.0f * 3), 8, 4, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"upIdle", mUpImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"rightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"downIdle", mDownImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"leftIdle", mLeftImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
 
 		mAnimator->Play(L"downIdle", true);
 
@@ -171,7 +173,10 @@ namespace ty
 		Vector2 pos = tr->GetPos();
 
 		if (Input::GetKey(eKeyCode::LEFT))
+		{
 			pos.x -= 200.0f * Time::DeltaTime();
+			mAnimator->Play(L"right", true); // 이따가 봐야할것 
+		}
 		else if (Input::GetKey(eKeyCode::RIGHT))
 			pos.x += 200.0f * Time::DeltaTime();
 		else if (Input::GetKey(eKeyCode::UP))

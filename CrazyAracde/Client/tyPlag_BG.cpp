@@ -14,7 +14,7 @@ namespace ty
 	}
 	void Play_BG::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Play_BG", L"..\\Resources\\play_bg.bmp");
+		mImage = Resources::Load<Image>(L"Play_BG", L"..\\Resources\\Bg\\stage.bmp");
 
 		GameObject::Initialize();
 	}

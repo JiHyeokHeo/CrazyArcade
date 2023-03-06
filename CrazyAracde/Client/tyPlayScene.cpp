@@ -23,7 +23,7 @@ namespace ty
 
 		Monster* monster = new Monster();
 		AddGameObject(monster, eLayerType::Monster);
-
+		
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
 
 		Scene::Initialize();
