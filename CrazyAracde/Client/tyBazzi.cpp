@@ -28,6 +28,8 @@ namespace ty
 		Image* mRightImage = Resources::Load<Image>(L"BazziR", L"..\\Resources\\Bazzi\\right.bmp");
 		Image* mDownImage = Resources::Load<Image>(L"BazziD", L"..\\Resources\\Bazzi\\down.bmp");
 		Image* mReadyImage = Resources::Load<Image>(L"BazziReady", L"..\\Resources\\Bazzi\\ready.bmp");
+		Image* mBubbleImage = Resources::Load<Image>(L"BazziBubble", L"..\\Resources\\Bazzi\\trap.bmp");
+		Image* mDieImage = Resources::Load<Image>(L"BazziDie", L"..\\Resources\\Bazzi\\die.bmp");
 		mAnimator = AddComponent<Animator>();
 		
 		mAnimator->CreateAnimation(L"up", mUpImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
@@ -40,7 +42,8 @@ namespace ty
 		mAnimator->CreateAnimation(L"leftIdle", mLeftImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"rightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"ready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2(0.0f, -10.0f), 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
-
+		mAnimator->CreateAnimation(L"bubble", mBubbleImage, Vector2::Zero, 13, 1, 13, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"die", mDieImage, Vector2::Zero, 13, 1, 13, Vector2::Zero, 0.1);
 
 		
 		Collider* collider = AddComponent<Collider>();
@@ -49,8 +52,8 @@ namespace ty
 		
 		mState = eBazziState::Idle;
 
-		mAnimator->GetStartEvent(L"ready") = std::bind(&Bazzi::idleCompleteEvent, this);
-		//mAnimator->Play(L"ready", false);
+		mAnimator->GetStartEvent(L"bubble") = std::bind(&Bazzi::idleCompleteEvent, this);
+		mAnimator->Play(L"bubble", true);
 		
 
 		//mAnimator->Play(L"downIlde", true);
