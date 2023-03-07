@@ -20,20 +20,16 @@ namespace ty
 	void Monster::Initialize()
 	{
 		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(700.0f, 700.0f));
-		tr->SetScale(Vector2(1.2f, 1.2f));
+		tr->SetPos(Vector2(400.0f, 500.0f));
+		tr->SetScale(Vector2(1.5f, 1.5f));
 
 		mAnimator = AddComponent<Animator>();
-		Image* mImage = Resources::Load<Image>(L"Croco", L"..\\Resources\\Monster\\Croco.bmp");
-
-		mAnimator->CreateAnimation(L"Idle", mImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1f);
-
-
-		mAnimator->Play(L"Idle", true);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Down", Vector2::Zero, 0.1f);
+		mAnimator->Play(L"PirateDown", true);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(0.0f, 0.0f));
-
+		collider->SetCenter(Vector2(0.0f, 10.0f));
+		collider->SetSize(Vector2(48.0f, 50.0f));
 		mState = eMonsterState::Idle;
 		GameObject::Initialize();
 	}

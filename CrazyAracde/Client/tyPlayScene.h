@@ -2,6 +2,7 @@
 #include "tyScene.h"
 #include "tyPlag_BG.h"
 
+
 namespace ty
 {
 	class Bazzi; // 이것이 전방선언

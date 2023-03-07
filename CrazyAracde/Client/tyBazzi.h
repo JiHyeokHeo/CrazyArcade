@@ -35,7 +35,8 @@ namespace ty
 	private:
 		eBazziState mState;
 		Animator* mAnimator;
-		double mTime;
-
+		float mTime;
+		int maxBomb;
+		BaseBomb* mBomb;
 	};
 }

@@ -31,7 +31,7 @@ namespace ty
 			if (scene == nullptr)
 				continue;
 
-			scene->Initialize();
+ 			scene->Initialize();
 		}
 	}
 

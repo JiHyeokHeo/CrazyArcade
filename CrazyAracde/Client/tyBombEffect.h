@@ -5,27 +5,20 @@
 namespace ty
 {
 	class Animator;
-	class BaseBomb : public GameObject
+	class BombEffect : public GameObject
 	{
 	public:
-		enum class eBombState
-		{
-			Idle,
-			Bombed,
-		};
-
-		BaseBomb();
-		~BaseBomb();
+		BombEffect();
+		~BombEffect();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 		virtual void Release() override;
 
+
 	private:
 		Animator* mAnimator;
 		float mTime;
-		//bool mbombed;
 	};
-	
 }

@@ -22,9 +22,13 @@ namespace ty
 		AddGameObject(mPlayBG, eLayerType::BG);
 
 		Monster* monster = new Monster();
-		AddGameObject(monster, eLayerType::Monster);
 		
+		AddGameObject(monster, eLayerType::Monster);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Bomb, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Bomb, true);
+		CollisionManager::SetLayer(eLayerType::Bomb, eLayerType::Bomb, true);
+
 
 		Scene::Initialize();
 	}

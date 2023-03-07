@@ -61,28 +61,28 @@ namespace ty
 	{
 		GameObject::Update();
 
-		//if()
-		//if (mbombtime == 3)
-		//{
-		//	delete [] bomb;
-		//}
+		mTime += Time::DeltaTime();
 
-		switch (mState)
+		//delete mBomb;
+		if (mTime >= 1.2)
 		{
-		case ty::Bazzi::eBazziState::Move:
-			move();
-			break;
-		case ty::Bazzi::eBazziState::Shoot:
-			shoot();
-			break;
-		case ty::Bazzi::eBazziState::Death:
-			death();
-			break;
-		case ty::Bazzi::eBazziState::Idle:
-			idle();
-			break;
-		default:
-			break;
+			switch (mState)
+			{
+			case ty::Bazzi::eBazziState::Move:
+				move();
+				break;
+			case ty::Bazzi::eBazziState::Shoot:
+				shoot();
+				break;
+			case ty::Bazzi::eBazziState::Death:
+				death();
+				break;
+			case ty::Bazzi::eBazziState::Idle:
+				idle();
+				break;
+			default:
+				break;
+			}
 		}
 
 	}
@@ -150,10 +150,18 @@ namespace ty
  	{
 		Transform* tr = GetComponent<Transform>();
 		
-		if (Input::GetKey(eKeyCode::SPACEBAR))
+		if (maxBomb == 7)
+		{
+			mState = eBazziState::Move();
+			return;
+		}
+			maxBomb++;
+		if (Input::GetKey(eKeyCode::SPACEBAR) && maxBomb <= 7)
 		{
  			Scene* curScene = SceneManager::GetActiveScene();
-			BaseBomb* mBomb = new BaseBomb();
+			mBomb = new BaseBomb();
+			
+			mBomb->Initialize(); /*가독성을 위해서 basebomb 생성자쪽에 이니셜 라이즈 붙임*/
 			mBomb->GetComponent<Transform>()->SetPos(tr->GetPos());
 			curScene->AddGameObject(mBomb, eLayerType::Bomb);
 			mState = eBazziState::Move;

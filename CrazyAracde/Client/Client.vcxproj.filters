@@ -59,6 +59,9 @@
     <Filter Include="Engine\Component\Collider">
       <UniqueIdentifier>{9d44e35f-1130-444f-8a21-ab48793d9fd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Bomb\BombEffect">
+      <UniqueIdentifier>{5504fd7f-653b-4b55-abd5-f26f5cb63cc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -175,6 +178,9 @@
     <ClInclude Include="tyCollisionManager.h">
       <Filter>Engine\Component\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="tyBombEffect.h">
+      <Filter>Contents\Bomb\BombEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -285,6 +291,9 @@
     </ClCompile>
     <ClCompile Include="tyCollisionManager.cpp">
       <Filter>Engine\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBombEffect.cpp">
+      <Filter>Contents\Bomb\BombEffect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
