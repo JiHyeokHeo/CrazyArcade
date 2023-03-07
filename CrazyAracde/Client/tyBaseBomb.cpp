@@ -31,11 +31,11 @@ namespace ty
 
 		//mAnimator->CreateAnimation(L"bomb", BombImage, Vector2::Zero, 2, 1, 2, Vector2(11.76f, 22.84f), 0.16);
 		//mAnimator->Play(L"bomb", true);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->Play(L"BombIdle", true);
 
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(0.0f, 0.0f));
+		collider->SetCenter(Vector2(12.76f, 22.84f));
 		collider->SetSize(Vector2(56.0f, 61.6f));
 
 		GameObject::Initialize();

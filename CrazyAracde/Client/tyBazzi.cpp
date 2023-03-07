@@ -42,15 +42,15 @@ namespace ty
 		mAnimator->CreateAnimation(L"ready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2(0.0f, -10.0f), 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
 
 
-		mAnimator->Play(L"ready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(0.0f, 0.0f));
-		collider->SetSize(Vector2(75.52f,89.68f));
+		collider->SetCenter(Vector2(10.76f, 22.84f));
+		collider->SetSize(Vector2(56.0f, 61.6f));
 		
 		mState = eBazziState::Idle;
 
-		//mAnimator->GetStartEvent(L"downIdle") = std::bind(&Bazzi::idleCompleteEvent, this);
+		mAnimator->GetStartEvent(L"ready") = std::bind(&Bazzi::idleCompleteEvent, this);
+		//mAnimator->Play(L"ready", false);
 		
 
 		//mAnimator->Play(L"downIlde", true);
