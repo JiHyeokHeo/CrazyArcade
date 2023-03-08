@@ -3,7 +3,7 @@
 #include "tyLoginScene.h"
 #include "tyLobbyScene.h"
 #include "tyLogoScene.h"
-//#include "tyRewardScene.h"
+#include "tyCollisionManager.h"
 
 
 namespace ty
@@ -23,8 +23,8 @@ namespace ty
 		
 		//mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
 		
-		mActiveScene = mScenes[(UINT)eSceneType::Logo];
-
+		mActiveScene = mScenes[(UINT)eSceneType::Play];
+		
 
 		for (Scene* scene : mScenes)
 		{
@@ -67,6 +67,7 @@ namespace ty
 		// ÇöÀç¾À
 		mActiveScene->OnExit();
 
+		CollisionManager::Clear();
 		// ´ÙÀ½¾À
 		mActiveScene = mScenes[(UINT)type];
 		mActiveScene->OnEnter();

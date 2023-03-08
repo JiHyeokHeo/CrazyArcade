@@ -134,7 +134,6 @@
     <ClInclude Include="tyAnimator.h" />
     <ClInclude Include="tyBazzi.h" />
     <ClInclude Include="tyBaseBomb.h" />
-    <ClInclude Include="tyBombEffect.h" />
     <ClInclude Include="tyCollider.h" />
     <ClInclude Include="tyCollisionManager.h" />
     <ClInclude Include="tyLobby_BG.h" />
@@ -173,7 +172,6 @@
     <ClCompile Include="tyAnimator.cpp" />
     <ClCompile Include="tyBazzi.cpp" />
     <ClCompile Include="tyBaseBomb.cpp" />
-    <ClCompile Include="tyBombEffect.cpp" />
     <ClCompile Include="tyCollider.cpp" />
     <ClCompile Include="tyCollisionManager.cpp" />
     <ClCompile Include="tyLobby_BG.cpp" />

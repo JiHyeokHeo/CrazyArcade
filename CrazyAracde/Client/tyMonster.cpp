@@ -9,6 +9,7 @@
 #include "tyBaseBomb.h"
 #include "tyScene.h"
 
+
 namespace ty
 {
 	Monster::Monster()

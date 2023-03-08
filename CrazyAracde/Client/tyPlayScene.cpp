@@ -4,6 +4,7 @@
 #include "tySceneManager.h"
 #include "tyMonster.h"
 #include "tyCollisionManager.h"
+#include "tyTransform.h"
 
 namespace ty
 {
@@ -22,12 +23,15 @@ namespace ty
 		AddGameObject(mPlayBG, eLayerType::BG);
 
 		Monster* monster = new Monster();
-		
 		AddGameObject(monster, eLayerType::Monster);
+		
+		//monster = new Monster();
+		//AddGameObject(mPlayBG, eLayerType::Monster);
+
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Bomb, true);
-		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Bomb, true);
-		CollisionManager::SetLayer(eLayerType::Bomb, eLayerType::Bomb, true);
+		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Bomb, true);
+		//CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Bomb, true);
+		//CollisionManager::SetLayer(eLayerType::Bomb, eLayerType::Bomb, true);
 
 
 		Scene::Initialize();
@@ -53,6 +57,6 @@ namespace ty
 	}
 	void PlayScene::OnExit()
 	{
-		//mbazzi->SetPos(Vector2{ 0.0f, 0.0f });
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(300.0f, 300.0f)); // 화면 전환시 기능 추가
 	}
 }
