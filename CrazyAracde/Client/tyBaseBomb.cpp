@@ -13,6 +13,9 @@ namespace ty
 	BaseBomb::BaseBomb()
 	{	
 		BaseBomb::Initialize();
+		Collider* collider = AddComponent<Collider>();
+		collider->SetCenter(Vector2(12.76f, 22.84f));
+		collider->SetSize(Vector2(56.0f, 61.6f));
 	}
 	BaseBomb::~BaseBomb()
 	{
@@ -53,7 +56,21 @@ namespace ty
 		//Vector2 pos = tr->GetPos(); //+ Vector2::Vector2(6.0f, 10.0f); // 이쪽에서 뭔가 물풍선 밀거나 하는 조건을 걸 수 있을듯함
 		////pos.x += 100.0f * Time::DeltaTime();
 		//tr->SetPos(pos);
-		
+		//
+		//Transform* tr = GetComponent<Transform>();
+
+		//Vector2 dir = Vector2(500.0f, 500.0f) - tr->GetPos();
+		//dir.Normalize();
+		///*float x = cosf(-PI / 4.0f);
+		//float y = sinf(-PI / 4.0f);*/
+		////float x = dir.x * cosf(PI / 5.0f) - dir.y * sinf(PI / 5.0f);
+		////float y = dir.x * sinf(PI / 5.0f) + dir.y * cosf(PI / 5.0f);
+
+
+		//Vector2 pos = tr->GetPos();
+		//pos.x += 100.0f * dir.x * Time::DeltaTime();
+		//pos.y += 100.0f * dir.y * Time::DeltaTime();
+
 		GameObject::Update();
     }
 	
