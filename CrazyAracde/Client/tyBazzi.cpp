@@ -48,7 +48,7 @@ namespace ty
 		mAnimator->CreateAnimation(L"trap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2(-12.0f, -50.0f), 0.1);
 		
 
-		mAnimator->GetStartEvent(L"ready") = std::bind(&Bazzi::idleCompleteEvent, this);
+		//mAnimator->GetStartEvent(L"ready") = std::bind(&Bazzi::idleCompleteEvent, this);
 		mAnimator->Play(L"ready", false);
 		
 		Collider* collider = AddComponent<Collider>();
@@ -175,7 +175,7 @@ namespace ty
 		{
  			Scene* curScene = SceneManager::GetActiveScene();
 			mBomb = new BaseBomb();
-			mBomb->Initialize(); /*가독성을 위해서 basebomb 생성자쪽에 이니셜 라이즈 붙임*/
+			//mBomb->Initialize(); /*가독성을 위해서 basebomb 생성자쪽에 이니셜 라이즈 붙임*/
 			mBomb->GetComponent<Transform>()->SetPos(tr->GetPos());
 			curScene->AddGameObject(mBomb, eLayerType::Bomb);
 			mState = eBazziState::Move;
@@ -196,7 +196,7 @@ namespace ty
 			//mAnimator->Play(L"down", true);
 		}
 	}
-	void Bazzi::idleCompleteEvent(/*const Cuphead* this*/)
+	void Bazzi::idleCompleteEvent(/*const Cuphead* this*/) // 애니메이션 동작이 끝나면 실행되도록 할 수 있다.
 	{
 		int a = 0;
 		//mState =
