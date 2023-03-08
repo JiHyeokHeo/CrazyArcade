@@ -62,6 +62,9 @@
     <Filter Include="Contents\Bomb\BombEffect">
       <UniqueIdentifier>{5504fd7f-653b-4b55-abd5-f26f5cb63cc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Camera">
+      <UniqueIdentifier>{74033d0b-51c9-4a6b-ae45-8cf55198c8fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -178,8 +181,8 @@
     <ClInclude Include="tyCollisionManager.h">
       <Filter>Engine\Component\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="tyBombEffect.h">
-      <Filter>Contents\Bomb\BombEffect</Filter>
+    <ClInclude Include="tyCamera.h">
+      <Filter>Engine\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -292,8 +295,8 @@
     <ClCompile Include="tyCollisionManager.cpp">
       <Filter>Engine\Component\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="tyBombEffect.cpp">
-      <Filter>Contents\Bomb\BombEffect</Filter>
+    <ClCompile Include="tyCamera.cpp">
+      <Filter>Engine\Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

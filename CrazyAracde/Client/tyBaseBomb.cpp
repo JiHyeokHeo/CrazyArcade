@@ -12,10 +12,10 @@ namespace ty
 {
 	BaseBomb::BaseBomb()
 	{	
-		BaseBomb::Initialize();
-		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(12.76f, 22.84f));
-		collider->SetSize(Vector2(56.0f, 61.6f));
+		//BaseBomb::Initialize();
+		////Collider* collider = AddComponent<Collider>();
+		////collider->SetCenter(Vector2(12.76f, 22.84f));
+		////collider->SetSize(Vector2(56.0f, 61.6f));
 	}
 	BaseBomb::~BaseBomb()
 	{

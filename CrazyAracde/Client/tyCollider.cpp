@@ -1,6 +1,7 @@
 #include "tyCollider.h"
 #include "tyTransform.h"
 #include "tyGameObject.h"
+#include "tyCamera.h"
 
 namespace ty
 {
@@ -31,7 +32,8 @@ namespace ty
 		HBRUSH brush = (HBRUSH)GetStockObject(NULL_BRUSH);
 		HBRUSH oldbrush = (HBRUSH)SelectObject(hdc,brush);
 
-		Rectangle(hdc, mPos.x, mPos.y, mPos.x + mSize.x, mPos.y + mSize.y);
+		Vector2 pos = Camera::CalculatePos(mPos);
+		Rectangle(hdc, pos.x, pos.y, pos.x + mSize.x, pos.y + mSize.y);
 		(HPEN)SelectObject(hdc, oldPen);
 		(HBRUSH)SelectObject(hdc, oldbrush);
 		DeleteObject(pen);

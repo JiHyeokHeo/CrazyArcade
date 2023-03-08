@@ -19,6 +19,7 @@ namespace ty
 		HDC mainHdc = application.GetHdc();
 
 		image->mBitmap = CreateCompatibleBitmap(mainHdc, width, height);
+
 		image->mHdc = CreateCompatibleDC(mainHdc);
 
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);

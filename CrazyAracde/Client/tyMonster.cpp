@@ -29,7 +29,7 @@ namespace ty
 		mAnimator->Play(L"PirateDown", true);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(0.0f, 10.0f));
+		collider->SetCenter(Vector2::Zero);
 		collider->SetSize(Vector2(48.0f, 50.0f));
 		mState = eMonsterState::Idle;
 		GameObject::Initialize();

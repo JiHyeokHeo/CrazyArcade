@@ -52,7 +52,7 @@ namespace ty
 		mAnimator->Play(L"ready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(10.76f, 22.84f));
+		collider->SetCenter(Vector2::Zero);
 		collider->SetSize(Vector2(56.0f, 61.6f));
 		
 		mState = eBazziState::Idle;

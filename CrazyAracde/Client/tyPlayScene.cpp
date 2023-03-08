@@ -5,6 +5,7 @@
 #include "tyMonster.h"
 #include "tyCollisionManager.h"
 #include "tyTransform.h"
+#include "tyCamera.h"
 
 namespace ty
 {
@@ -18,6 +19,8 @@ namespace ty
 	{
 		mBazzi = new Bazzi();
 		AddGameObject(mBazzi, eLayerType::Player);
+
+		//Camera::SetTarget(mBazzi);
 
 		mPlayBG = new Play_BG();
 		AddGameObject(mPlayBG, eLayerType::BG);
@@ -54,6 +57,7 @@ namespace ty
 	}
 	void PlayScene::OnEnter()
 	{
+		//mBazzi->Initialize();
 	}
 	void PlayScene::OnExit()
 	{
