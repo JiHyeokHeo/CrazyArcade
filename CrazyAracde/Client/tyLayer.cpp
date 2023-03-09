@@ -19,7 +19,8 @@ namespace ty
 		{
 			if (gameObj == nullptr)
 				continue;
-
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
 			gameObj->Initialize();
 		}
 	}

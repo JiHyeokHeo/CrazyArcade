@@ -18,6 +18,7 @@ namespace ty
 	}
 	void PlayScene::Initialize()
 	{
+		Scene::Initialize();
 		object::Instantiate<Bazzi>(Vector2(400.0f, 400.0f), eLayerType::Player);
 		//Camera::SetTarget(mBazzi);
 
@@ -31,7 +32,6 @@ namespace ty
 		//CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Bomb, true);
 		//CollisionManager::SetLayer(eLayerType::Bomb, eLayerType::Bomb, true);
 
-		Scene::Initialize();
 	}
 	void PlayScene::Update()
 	{

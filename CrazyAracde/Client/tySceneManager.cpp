@@ -4,7 +4,7 @@
 #include "tyLobbyScene.h"
 #include "tyLogoScene.h"
 #include "tyCollisionManager.h"
-
+#include "tyCamera.h"
 
 namespace ty
 {
@@ -29,7 +29,7 @@ namespace ty
 		{
 			if (scene == nullptr)
 				continue;
-			mActiveScene = scene;
+			
  			scene->Initialize();
 		}
 		mActiveScene = mScenes[(UINT)eSceneType::Logo];
@@ -42,13 +42,14 @@ namespace ty
 
 	void SceneManager::Render(HDC hdc)
 	{
-		for (Scene* scene : mScenes)
-		{
-			if (scene == nullptr)
-				continue;
+	
+		mActiveScene->Render(hdc);
+		
+	}
 
-			mActiveScene->Render(hdc);
-		}
+	void SceneManager::Destroy()
+	{
+		mActiveScene->Destroy();
 	}
 
 	void SceneManager::Release()
@@ -64,6 +65,7 @@ namespace ty
 	}
 	void SceneManager::LoadScene(eSceneType type)
 	{
+		Camera::Clear();
 		// ÇöÀç¾À
 		mActiveScene->OnExit();
 

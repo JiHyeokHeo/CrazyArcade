@@ -148,7 +148,7 @@ namespace ty
 			mAnimator->Play(L"up", true);
 			pos.y -= 200.0f * Time::DeltaTime();
 		}
-		else if (Input::GetKey(eKeyCode::DOWN))
+		if (Input::GetKey(eKeyCode::DOWN))
 		{
 			mAnimator->Play(L"down", true);
 			pos.y += 200.0f * Time::DeltaTime();
@@ -166,14 +166,8 @@ namespace ty
  	{
 		Transform* tr = GetComponent<Transform>();
 		
-		if (maxBomb == 7)
+		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
-			mState = eBazziState::Move();
-			return;
-		}
-		if (Input::GetKey(eKeyCode::SPACEBAR) && maxBomb <= 7)
-		{
-			maxBomb++;
 			mState = eBazziState::Move();
 			object::Instantiate<BaseBomb>(tr->GetPos(), eLayerType::Bomb);
 		}

@@ -13,16 +13,16 @@ namespace ty
 	}
 	void LoginScene::Initialize()
 	{
-		object::Instantiate<Login_BG>(eLayerType::BG);
 		Scene::Initialize();
+		object::Instantiate<Login_BG>(eLayerType::BG);
 	}
 	void LoginScene::Update()
 	{
+		Scene::Update();
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
-		Scene::Update();
 	}
 	void LoginScene::Render(HDC hdc)
 	{

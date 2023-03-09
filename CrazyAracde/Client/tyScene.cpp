@@ -1,4 +1,5 @@
 #include "tyScene.h"
+#include "tySceneManager.h"
 
 namespace ty
 {
@@ -12,10 +13,7 @@ namespace ty
 	}
 	void Scene::Initialize()
 	{
-		//for (Layer& layer : mLayers)
-		//{
-		//	layer.Initialize();
-		//}
+		SceneManager::SetActiveScene(this);
 	}
 	void Scene::Update()
 	{

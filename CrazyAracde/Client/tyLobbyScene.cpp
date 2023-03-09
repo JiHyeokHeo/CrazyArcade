@@ -13,8 +13,8 @@ namespace ty
 	}
 	void LobbyScene::Initialize()
 	{
-		object::Instantiate<Lobby_BG>(eLayerType::BG);
 		Scene::Initialize();
+		object::Instantiate<Lobby_BG>(eLayerType::BG);
 	}
 	void LobbyScene::Update()
 	{

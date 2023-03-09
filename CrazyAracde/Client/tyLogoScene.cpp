@@ -13,8 +13,8 @@ namespace ty
 	}
 	void LogoScene::Initialize()
 	{
-		object::Instantiate<Logo_BG>(eLayerType::BG);
 		Scene::Initialize();
+		object::Instantiate<Logo_BG>(eLayerType::BG);
 	}
 	void LogoScene::Update()
 	{

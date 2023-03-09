@@ -33,7 +33,7 @@ namespace ty
 		{
 			mActiveAnimation->Update();
 
-			if (mbLoop && mActiveAnimation->isComplete())
+			if (mActiveAnimation->isComplete())
 			{
 				Animator::Events* events
 					= FindEvents(mActiveAnimation->GetName());
@@ -41,8 +41,9 @@ namespace ty
 				if (events != nullptr)
 					events->mCompleteEvent();
 
-				mActiveAnimation->Reset();
 			}
+			if (mbLoop && mActiveAnimation->isComplete())
+				mActiveAnimation->Reset();	
 		}
 	}
 	void Animator::Render(HDC hdc)
@@ -67,7 +68,7 @@ namespace ty
 
 		animation = new Animation();
 		animation->Create(sheet, leftTop, coulmn, row, spriteLength, offset, duration);
-		animation->SetName(name);
+		animation->SetAnimationName(name);
 		animation->SetAnimator(this);
 
 		mAnimations.insert(std::make_pair(name, animation));
@@ -148,6 +149,7 @@ namespace ty
 				prevEvents->mEndEvent();
 		}
 		mActiveAnimation = FindAnimation(name);
+		mActiveAnimation -> Reset();
 		mbLoop = loop;
 
 		Animator::Events* events
