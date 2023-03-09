@@ -23,7 +23,7 @@ namespace ty
 	}
 	void Login_BG::Render(HDC hdc)
 	{
-		StretchBlt(hdc, 150, 0, mImage->GetWidth() + 280, mImage->GetHeight() + 280, mImage->GetHdc()
+		StretchBlt(hdc, 0, 0, mImage->GetWidth() +160, mImage->GetHeight() +160, mImage->GetHdc()
 			, 0, 0, mImage->GetWidth(), mImage->GetHeight(), SRCCOPY);
 	}
 	void Login_BG::Release()

@@ -1,6 +1,7 @@
 #include "tyLobbyScene.h"
 #include "tySceneManager.h"
 #include "tyinput.h"
+#include "tyObject.h"
 
 namespace ty
 {
@@ -12,8 +13,7 @@ namespace ty
 	}
 	void LobbyScene::Initialize()
 	{
-		mLobbyBG = new Lobby_BG();
-		AddGameObject(mLobbyBG, eLayerType::BG);
+		object::Instantiate<Lobby_BG>(eLayerType::BG);
 		Scene::Initialize();
 	}
 	void LobbyScene::Update()

@@ -23,16 +23,16 @@ namespace ty
 		
 		//mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
 		
-		mActiveScene = mScenes[(UINT)eSceneType::Play];
 		
 
 		for (Scene* scene : mScenes)
 		{
 			if (scene == nullptr)
 				continue;
-
+			mActiveScene = scene;
  			scene->Initialize();
 		}
+		mActiveScene = mScenes[(UINT)eSceneType::Logo];
 	}
 
 	void SceneManager::Update()

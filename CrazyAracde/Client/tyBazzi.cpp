@@ -102,7 +102,7 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		mState = eBazziState::Death;
+		//mState = eBazziState::Death;
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -171,10 +171,11 @@ namespace ty
 			mState = eBazziState::Move();
 			return;
 		}
-			maxBomb++;
 		if (Input::GetKey(eKeyCode::SPACEBAR) && maxBomb <= 7)
 		{
-			object::Instantiate<BaseBomb>(Vector2(400.0f, 400.0f), eLayerType::Bomb);
+			maxBomb++;
+			mState = eBazziState::Move();
+			object::Instantiate<BaseBomb>(tr->GetPos(), eLayerType::Bomb);
 		}
 	}
 	void Bazzi::death()

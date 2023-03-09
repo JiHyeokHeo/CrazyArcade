@@ -1,7 +1,7 @@
 #include "tyLoginScene.h"
 #include "tyInput.h"
 #include "tySceneManager.h"
-
+#include "tyObject.h"
 
 namespace ty
 {
@@ -13,8 +13,7 @@ namespace ty
 	}
 	void LoginScene::Initialize()
 	{
-		mLoginBG = new Login_BG();
-		AddGameObject(mLoginBG, eLayerType::BG);
+		object::Instantiate<Login_BG>(eLayerType::BG);
 		Scene::Initialize();
 	}
 	void LoginScene::Update()

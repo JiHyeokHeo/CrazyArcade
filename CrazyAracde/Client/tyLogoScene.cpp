@@ -1,6 +1,7 @@
 #include "tyLogoScene.h"
 #include "tyInput.h"
 #include "tySceneManager.h"
+#include "tyObject.h"
 
 namespace ty
 {
@@ -12,8 +13,7 @@ namespace ty
 	}
 	void LogoScene::Initialize()
 	{
-		mLogoBG = new Logo_BG();
-		AddGameObject(mLogoBG, eLayerType::BG);
+		object::Instantiate<Logo_BG>(eLayerType::BG);
 		Scene::Initialize();
 	}
 	void LogoScene::Update()

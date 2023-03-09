@@ -23,7 +23,7 @@ namespace ty
 	}
 	void Logo_BG::Render(HDC hdc)
 	{
-		StretchBlt(hdc, 250, 0, mImage->GetWidth() + 280, mImage->GetHeight() + 280
+		StretchBlt(hdc, 0, 0, mImage->GetWidth()*1.43f, mImage->GetHeight()*1.43f
 			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), SRCCOPY);
 	}
 	void Logo_BG::Release()
