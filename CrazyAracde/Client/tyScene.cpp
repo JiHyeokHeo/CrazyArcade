@@ -12,10 +12,10 @@ namespace ty
 	}
 	void Scene::Initialize()
 	{
-		for (Layer& layer : mLayers)
-		{
-			layer.Initialize();
-		}
+		//for (Layer& layer : mLayers)
+		//{
+		//	layer.Initialize();
+		//}
 	}
 	void Scene::Update()
 	{

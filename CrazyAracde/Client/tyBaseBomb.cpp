@@ -36,7 +36,7 @@ namespace ty
 		collider->SetCenter(Vector2(12.76f, 22.84f));
 		collider->SetSize(Vector2(56.0f, 61.6f));
 
-		GameObject::Initialize();
+		//GameObject::Initialize();
 	}
 
 	void BaseBomb::Update()
@@ -48,7 +48,7 @@ namespace ty
 		//
 		Transform* tr = GetComponent<Transform>();
 
-		Vector2 dir = Vector2(500.0f, 500.0f) - tr->GetPos();
+		Vector2 dir = Vector2(500.0f, 500.0f);// - tr->GetPos();
 		dir.Normalize();
 		///*float x = cosf(-PI / 4.0f);
 		//float y = sinf(-PI / 4.0f);*/
@@ -57,16 +57,16 @@ namespace ty
 
 
 		Vector2 pos = tr->GetPos();
-		//pos.x += 100.0f * dir.x * Time::DeltaTime();
-		//pos.y += 100.0f * dir.y * Time::DeltaTime();
+		pos.x += 100.0f * dir.x * Time::DeltaTime();
+		pos.y += 100.0f * dir.y * Time::DeltaTime();
 
-		mTime = Time::DeltaTime();
+		mTime += Time::DeltaTime();
 
-		if (mTime == 3)
+		if (mTime >= 3)
 		{
-			object::Destroy(this); // 자기 스스로를 없애는거기 때문에 this 사용
+ 			object::Destroy(this); // 자기 스스로를 없애는거기 때문에 this 사용
 		}
-		
+		GameObject::Update();
     }
 	
 	void BaseBomb::Render(HDC hdc)
@@ -88,7 +88,6 @@ namespace ty
 
 
 		GameObject::Render(hdc);
-		
 	}
 	void BaseBomb::Release()
 	{
