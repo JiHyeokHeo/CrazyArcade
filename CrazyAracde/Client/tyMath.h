@@ -1,4 +1,6 @@
 #pragma once
+#include <math.h>
+#define PI 3.141592
 
 struct Vector2 // 점이다
 {
@@ -38,7 +40,7 @@ struct Vector2 // 점이다
 	Vector2(Vector2&&) = default;
 	Vector2& operator=(Vector2&&) = default;
 
-	Vector2& operator+(const Vector2& other)
+	Vector2 operator+(const Vector2& other)
 	{
 		Vector2 temp;
 
@@ -48,7 +50,7 @@ struct Vector2 // 점이다
 		return temp;
 	}
 
-	Vector2& operator-(const Vector2& other)
+	Vector2 operator-(const Vector2& other)
 	{
 		Vector2 temp;
 		temp.x = x - other.x;
@@ -57,7 +59,7 @@ struct Vector2 // 점이다
 		return temp;
 	}
 
-	Vector2& operator*(const Vector2& other)
+	Vector2 operator*(const Vector2& other)
 	{
 		Vector2 temp;
 		temp.x = x * other.x;
@@ -65,6 +67,16 @@ struct Vector2 // 점이다
 
 		return temp;
 	}
+
+	Vector2 operator/(const float ratio) // 비율이라는 뜻
+	{
+		Vector2 temp;
+		temp.x = x / ratio;
+		temp.y = y / ratio;
+
+		return temp;
+	}
+
 
 	void operator+=(const Vector2& other)
 	{
@@ -77,5 +89,37 @@ struct Vector2 // 점이다
 		x -= other.x;
 		y -= other.y;
 	}
+
+	float Length()
+	{
+		return sqrtf(x * x + y * y);
+	}
+
+	Vector2& Normalize()
+	{
+		float length = Length();
+		x /= length;
+		y /= length;
+
+		return *this;
+	}
 };
 
+namespace ya::math
+{
+						//코샤인
+	//float x = dir.x * cosf(PI / 5.0f) - dir.y * sinf(PI / 5.0f);
+	//float y = dir.x * sinf(PI / 5.0f) + dir.y * cosf(PI / 5.0f);
+
+	inline static Vector2 Rotate(Vector2 vector, float degree)
+	{
+		float radian = (degree / 180.0f) * PI;
+		vector.Normalize();
+
+		float x = vector.x * cosf(radian) - vector.y * sinf(radian);
+		float y = vector.x * sinf(radian) + vector.y * cosf(radian);
+		//atan
+		//atan();
+		return Vector2(x, y);
+	}
+}

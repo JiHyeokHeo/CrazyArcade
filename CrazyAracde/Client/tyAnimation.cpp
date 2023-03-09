@@ -4,6 +4,7 @@
 #include "tyAnimator.h"
 #include "tyTransform.h"
 #include "tyGameObject.h"
+#include "tyCamera.h"
 
 namespace ty
 {
@@ -50,12 +51,12 @@ namespace ty
 		// 이미지가 그려질 좌표는 오브젝트 좌표의 위쪽 중간에 그려진다.
 		// 캐릭터의 발을 기준으로 포지션을 계산
 		Vector2 pos = tr->GetPos();
+		pos = Camera::CalculatePos(pos);
 		pos += mSpriteSheet[mSpriteIndex].offset;
-		pos.x += mSpriteSheet[mSpriteIndex].size.x / 2.0f;
-		pos.y += mSpriteSheet[mSpriteIndex].size.y;
+		pos.x -= mSpriteSheet[mSpriteIndex].size.x / 2.0f;
+		pos.y -= mSpriteSheet[mSpriteIndex].size.y;
 
-		TransparentBlt(hdc, tr->GetPos().x + mSpriteSheet[mSpriteIndex].offset.x
-			, tr->GetPos().y + mSpriteSheet[mSpriteIndex].offset.y
+		TransparentBlt(hdc, pos.x, pos.y
 			, mSpriteSheet[mSpriteIndex].size.x * scale.x
 			, mSpriteSheet[mSpriteIndex].size.y * scale.y
 			, mSheetImage->GetHdc()

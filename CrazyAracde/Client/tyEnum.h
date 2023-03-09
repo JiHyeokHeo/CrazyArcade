@@ -13,9 +13,9 @@ enum class eSceneType
 enum class eLayerType
 {
 	BG, // 배경
+	Bomb, // 폭탄
 	Monster, // 몬스터
 	Player, // 플레이어
-	Bomb, // 폭탄
 	Effect, // 이펙트
 	UI, // UI
 	End, // 최대 16까지 이건 콜리전 매니저에 최대 수용치를 16바이트로 해놨기 때문이다.

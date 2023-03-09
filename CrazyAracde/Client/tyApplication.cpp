@@ -3,7 +3,7 @@
 #include "tyTime.h"
 #include "tyinput.h"
 #include "tyCollisionManager.h"
-
+#include "tyCamera.h"
 
 namespace ty
 {
@@ -46,6 +46,7 @@ namespace ty
 		Time::Initialize();
 		Input::Initialize();
 ;		SceneManager::Initialize();
+		Camera::Initialize();
 	}
 
 	void Application::Run()
@@ -58,7 +59,10 @@ namespace ty
 	{
 		Time::Update();
 		Input::Update();
+		Camera::Update();
+
 		SceneManager::Update();
+		CollisionManager::Update();
 	}
 
 	void Application::Render()

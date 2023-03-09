@@ -1,14 +1,17 @@
 #include "tyCollider.h"
 #include "tyTransform.h"
 #include "tyGameObject.h"
+#include "tyCamera.h"
 
 namespace ty
 {
+	UINT Collider::ColliderNumber = 0;
 	Collider::Collider()
 		:Component(eComponentType::Collider)
 		, mCenter(Vector2::Zero)
 		, mPos(Vector2::Zero)
 		, mSize(100.0f, 100.0f)
+		, mID(ColliderNumber++)
 	{
 	}
 	Collider::~Collider()
@@ -29,7 +32,8 @@ namespace ty
 		HBRUSH brush = (HBRUSH)GetStockObject(NULL_BRUSH);
 		HBRUSH oldbrush = (HBRUSH)SelectObject(hdc,brush);
 
-		Rectangle(hdc, mPos.x, mPos.y, mPos.x + mSize.x, mPos.y + mSize.y);
+		Vector2 pos = Camera::CalculatePos(mPos);
+		Rectangle(hdc, pos.x, pos.y, pos.x + mSize.x, pos.y + mSize.y);
 		(HPEN)SelectObject(hdc, oldPen);
 		(HBRUSH)SelectObject(hdc, oldbrush);
 		DeleteObject(pen);
@@ -37,5 +41,17 @@ namespace ty
 	}
 	void Collider::Release()
 	{
+	}
+	void Collider::OnCollisionEnter(Collider* other)
+	{
+		GetOwner()->OnCollisionEnter(other);
+	}
+	void Collider::OnCollisionStay(Collider* other)
+	{
+		GetOwner()->OnCollisionStay(other);
+	}
+	void Collider::OnCollisionExit(Collider* other)
+	{
+		GetOwner()->OnCollisionExit(other);
 	}
 }

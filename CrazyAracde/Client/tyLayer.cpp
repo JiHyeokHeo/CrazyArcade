@@ -29,6 +29,9 @@ namespace ty
 		{
 			if (gameObj == nullptr)
 				continue;
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
+				continue;
 
 			gameObj->Update();
 		}
@@ -38,6 +41,10 @@ namespace ty
 		for (GameObject* gameObj : mGameObjects)
 		{
 			if (gameObj == nullptr)
+				continue;
+
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
 				continue;
 
 			gameObj->Render(hdc);
@@ -54,4 +61,5 @@ namespace ty
 
 		mGameObjects.push_back(gameObj);
 	}
+
 }

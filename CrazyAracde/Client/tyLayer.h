@@ -18,7 +18,7 @@ namespace ty
 
 		void AddGameObject(GameObject* gameObj);
 	
-		const std::vector<GameObject*>& GetGameObject() { return mGameObjects; }
+		std::vector<GameObject*>& GetGameObject() { return mGameObjects; }
 
 	private:
 		std::vector<GameObject*> mGameObjects;
