@@ -52,9 +52,13 @@ namespace ty
 			return nullptr;
 		}
 
+		eState GetState() { return mState; }
+		void SetState(eState state) { mState = state; }
+
 
 	private:
 		std::vector<Component*> mComponents; // 스프라이트 렌더러, 중력 , 콜라이더 캐릭터
+		eState mState;
 	};
 }
 

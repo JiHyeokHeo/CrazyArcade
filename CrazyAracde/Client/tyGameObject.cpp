@@ -4,6 +4,7 @@
 namespace ty
 {
 	GameObject::GameObject()
+		: mState(eState::Active)
 	{
 		mComponents.resize((UINT)eComponentType::End);
 		AddComponent<Transform>();
@@ -49,7 +50,7 @@ namespace ty
 	}
 	void GameObject::Release()
 	{
-	
+		
 	}
 	void GameObject::OnCollisionEnter(Collider* other)
 	{

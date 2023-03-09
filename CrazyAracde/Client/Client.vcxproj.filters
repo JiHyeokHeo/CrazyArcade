@@ -184,6 +184,9 @@
     <ClInclude Include="tyCamera.h">
       <Filter>Engine\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="tyObject.h">
+      <Filter>Engine\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">

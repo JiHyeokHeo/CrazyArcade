@@ -6,6 +6,7 @@
 #include "tyCollisionManager.h"
 #include "tyTransform.h"
 #include "tyCamera.h"
+#include "tyObject.h"
 
 namespace ty
 {
@@ -17,25 +18,18 @@ namespace ty
 	}
 	void PlayScene::Initialize()
 	{
-		mBazzi = new Bazzi();
-		AddGameObject(mBazzi, eLayerType::Player);
-
+		object::Instantiate<Bazzi>(Vector2(400.0f, 400.0f), eLayerType::Player);
 		//Camera::SetTarget(mBazzi);
 
-		mPlayBG = new Play_BG();
-		AddGameObject(mPlayBG, eLayerType::BG);
+		object::Instantiate<Play_BG>(eLayerType::BG);
+		object::Instantiate<Monster>(Vector2(500.0f, 400.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(800.0f, 400.0f), eLayerType::Monster);
 
-		Monster* monster = new Monster();
-		AddGameObject(monster, eLayerType::Monster);
-		
-		//monster = new Monster();
-		//AddGameObject(mPlayBG, eLayerType::Monster);
 
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
 		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Bomb, true);
 		//CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Bomb, true);
 		//CollisionManager::SetLayer(eLayerType::Bomb, eLayerType::Bomb, true);
-
 
 		Scene::Initialize();
 	}
@@ -57,10 +51,10 @@ namespace ty
 	}
 	void PlayScene::OnEnter()
 	{
-		//mBazzi->Initialize();
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 	}
 	void PlayScene::OnExit()
 	{
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(300.0f, 300.0f)); // 화면 전환시 기능 추가
+		//mBazzi->GetComponent<Transform>()->SetPos(Vector2(300.0f, 300.0f)); // 화면 전환시 기능 추가
 	}
 }

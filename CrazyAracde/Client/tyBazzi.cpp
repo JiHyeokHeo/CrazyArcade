@@ -8,6 +8,7 @@
 #include "tyCollider.h"
 #include "tyBaseBomb.h"
 #include "tyScene.h"
+#include "tyObject.h"
 
 namespace ty
 {
@@ -52,8 +53,8 @@ namespace ty
 		mAnimator->Play(L"ready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2::Zero);
-		collider->SetSize(Vector2(56.0f, 61.6f));
+		collider->SetCenter(Vector2(-23.0f, -55.0f));
+		collider->SetSize(Vector2(50.0f, 43.6f));
 		
 		mState = eBazziState::Idle;
 
@@ -105,7 +106,7 @@ namespace ty
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
-		mState = eBazziState::Death;
+		//mState = eBazziState::Death;
 	}
 	void Bazzi::OnCollisionExit(Collider* other)
 	{
@@ -173,12 +174,7 @@ namespace ty
 			maxBomb++;
 		if (Input::GetKey(eKeyCode::SPACEBAR) && maxBomb <= 7)
 		{
- 			Scene* curScene = SceneManager::GetActiveScene();
-			mBomb = new BaseBomb();
-			//mBomb->Initialize(); /*가독성을 위해서 basebomb 생성자쪽에 이니셜 라이즈 붙임*/
-			mBomb->GetComponent<Transform>()->SetPos(tr->GetPos());
-			curScene->AddGameObject(mBomb, eLayerType::Bomb);
-			mState = eBazziState::Move;
+			object::Instantiate<BaseBomb>(Vector2(400.0f, 400.0f), eLayerType::Bomb);
 		}
 	}
 	void Bazzi::death()

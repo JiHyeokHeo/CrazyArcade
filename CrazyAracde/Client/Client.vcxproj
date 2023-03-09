@@ -141,6 +141,7 @@
     <ClInclude Include="tyLogoScene.h" />
     <ClInclude Include="tyLogo_BG.h" />
     <ClInclude Include="tyMonster.h" />
+    <ClInclude Include="tyObject.h" />
     <ClInclude Include="tyPlag_BG.h" />
     <ClInclude Include="tyComponent.h" />
     <ClInclude Include="tyEntity.h" />
