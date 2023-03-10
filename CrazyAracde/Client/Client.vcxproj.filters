@@ -65,6 +65,12 @@
     <Filter Include="Engine\Camera">
       <UniqueIdentifier>{74033d0b-51c9-4a6b-ae45-8cf55198c8fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\UI">
+      <UniqueIdentifier>{98ac7742-792a-4f93-8a45-7888a7165723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\PlayStage">
+      <UniqueIdentifier>{69c58ebe-f196-40cf-82e8-64732d78d100}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -117,9 +123,6 @@
     </ClInclude>
     <ClInclude Include="tyBazzi.h">
       <Filter>Contents\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="tyPlayScene.h">
-      <Filter>Contents\Scene</Filter>
     </ClInclude>
     <ClInclude Include="tyinput.h">
       <Filter>Engine\input</Filter>
@@ -187,6 +190,15 @@
     <ClInclude Include="tyObject.h">
       <Filter>Engine\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="tyTitleUI.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPlayScene.h">
+      <Filter>Contents\Scene\PlayStage</Filter>
+    </ClInclude>
+    <ClInclude Include="tyStage2.h">
+      <Filter>Contents\Scene\PlayStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -234,9 +246,6 @@
     </ClCompile>
     <ClCompile Include="tyBazzi.cpp">
       <Filter>Contents\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="tyPlayScene.cpp">
-      <Filter>Contents\Scene</Filter>
     </ClCompile>
     <ClCompile Include="tyinput.cpp">
       <Filter>Engine\input</Filter>
@@ -300,6 +309,15 @@
     </ClCompile>
     <ClCompile Include="tyCamera.cpp">
       <Filter>Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="tyTitleUI.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPlayScene.cpp">
+      <Filter>Contents\Scene\PlayStage</Filter>
+    </ClCompile>
+    <ClCompile Include="tyStage2.cpp">
+      <Filter>Contents\Scene\PlayStage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

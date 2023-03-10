@@ -15,11 +15,11 @@ namespace ty
 	{
 		mImage = Resources::Load<Image>(L"Logo_BG", L"..\\Resources\\Bg\\Logo.bmp");
 
-		GameObject::Initialize();
+		//GameObject::Initialize();
 	}
 	void Logo_BG::Update()
 	{
-		GameObject::Update();
+		//GameObject::Update();
 	}
 	void Logo_BG::Render(HDC hdc)
 	{

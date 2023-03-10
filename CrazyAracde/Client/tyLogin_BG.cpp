@@ -14,12 +14,12 @@ namespace ty
 	void Login_BG::Initialize()
 	{
 		mImage = Resources::Load<Image>(L"Login_BG", L"..\\Resources\\Bg\\login_scene_bg.bmp");
-		GameObject::Initialize();
+		//GameObject::Initialize();
 	}
 	void Login_BG::Update()
 	{
 		
-		GameObject::Update();
+		//GameObject::Update();
 	}
 	void Login_BG::Render(HDC hdc)
 	{

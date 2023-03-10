@@ -164,10 +164,12 @@
     <ClInclude Include="tyReward_BG.h" />
     <ClInclude Include="tyScene.h" />
     <ClInclude Include="tySceneManager.h" />
+    <ClInclude Include="tyStage2.h" />
     <ClInclude Include="tyTime.h" />
     <ClInclude Include="tyLoginScene.h" />
     <ClInclude Include="tyLogin_BG.h" />
     <ClInclude Include="tyTransform.h" />
+    <ClInclude Include="tyTitleUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tyAnimation.cpp" />
@@ -199,10 +201,12 @@
     <ClCompile Include="tyReward_BG.cpp" />
     <ClCompile Include="tyScene.cpp" />
     <ClCompile Include="tySceneManager.cpp" />
+    <ClCompile Include="tyStage2.cpp" />
     <ClCompile Include="tyTime.cpp" />
     <ClCompile Include="tyLoginScene.cpp" />
     <ClCompile Include="tyLogin_BG.cpp" />
     <ClCompile Include="tyTransform.cpp" />
+    <ClCompile Include="tyTitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

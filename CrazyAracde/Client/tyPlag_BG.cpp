@@ -16,11 +16,11 @@ namespace ty
 	{
 		mImage = Resources::Load<Image>(L"Play_BG", L"..\\Resources\\Bg\\play.bmp");
 
-		GameObject::Initialize();
+		//GameObject::Initialize();
 	}
 	void Play_BG::Update()
 	{
-		GameObject::Update();
+		//GameObject::Update();
 	}
 	void Play_BG::Render(HDC hdc)
 	{
