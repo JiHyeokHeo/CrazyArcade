@@ -142,7 +142,7 @@ namespace ty
 		
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-		mPos = pos;
+		
 
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false)
 		{
