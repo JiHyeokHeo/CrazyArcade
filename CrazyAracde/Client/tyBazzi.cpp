@@ -14,6 +14,7 @@ namespace ty
 {
 	Bazzi::Bazzi()
 		: maxHP(1)
+		
 	{
 	}
 	Bazzi::~Bazzi()
@@ -43,7 +44,7 @@ namespace ty
 		mAnimator->CreateAnimation(L"downIdle", mDownImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"leftIdle", mLeftImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"rightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"ready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2(0.0f, -10.0f), 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
+		mAnimator->CreateAnimation(L"ready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2::Zero, 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
 
 		mAnimator->CreateAnimation(L"die", mDieImage, Vector2(352.0f,0.0f), 13, 1, 13, Vector2(-12.0f, -50.0f), 0.15);
 		mAnimator->CreateAnimation(L"trap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2(-12.0f, -50.0f), 0.1);
@@ -102,6 +103,7 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
+		int a = 0;
 		//mState = eBazziState::Death;
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
@@ -115,43 +117,47 @@ namespace ty
 	{
 		if (Input::GetKeyUp(eKeyCode::LEFT))
 		{
-			mAnimator->Play(L"leftIdle", true);
+			mAnimator->Play(L"leftIdle", false);
+			mState = eBazziState::Idle;
 		}
-		else if (Input::GetKeyUp(eKeyCode::RIGHT))
+		if (Input::GetKeyUp(eKeyCode::RIGHT))
 		{
-			mAnimator->Play(L"rightIdle", true);
+			mAnimator->Play(L"rightIdle", false);
+			mState = eBazziState::Idle;
 		}
-		else if (Input::GetKeyUp(eKeyCode::UP))
+		if (Input::GetKeyUp(eKeyCode::UP))
 		{
-			mAnimator->Play(L"upIdle", true);
+			mAnimator->Play(L"upIdle", false);
+			mState = eBazziState::Idle;
 		}
-		else if (Input::GetKeyUp(eKeyCode::DOWN))
-		{
-			mAnimator->Play(L"downIdle", true);
+		if (Input::GetKeyUp(eKeyCode::DOWN))
+		{	
+			mAnimator->Play(L"downIdle", false);
+			mState = eBazziState::Idle;
 		}
-			
+		
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 
-		if (Input::GetKey(eKeyCode::LEFT))
+		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false)
 		{
-			mAnimator->Play(L"left", true); 
-			pos.x -= 200.0f * Time::DeltaTime();
+			//isLPressed = true;
+			pos.x -= 250.0f  * Time::DeltaTime();
 		}
-		else if (Input::GetKey(eKeyCode::RIGHT))
+		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false)
 		{
-			mAnimator->Play(L"right", true);
-			pos.x += 200.0f * Time::DeltaTime();
+			//isRPressed = true;
+			pos.x += 250.0f * Time::DeltaTime();
 		}
-		else if (Input::GetKey(eKeyCode::UP))
+		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false)
 		{
-			mAnimator->Play(L"up", true);
-			pos.y -= 200.0f * Time::DeltaTime();
+			//isUPressed = true;
+			pos.y -= 250.0f  * Time::DeltaTime();
 		}
-		if (Input::GetKey(eKeyCode::DOWN))
+		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false)
 		{
-			mAnimator->Play(L"down", true);
-			pos.y += 200.0f * Time::DeltaTime();
+			//isDPressed = true;
+			pos.y += 250.0f  * Time::DeltaTime();
 		}
 
 		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
@@ -166,10 +172,11 @@ namespace ty
  	{
 		Transform* tr = GetComponent<Transform>();
 		
+
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
-			mState = eBazziState::Move();
-			object::Instantiate<BaseBomb>(tr->GetPos(), eLayerType::Bomb);
+			mState = eBazziState::Idle;
+			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2(-10.0f, -20.0f), eLayerType::Bomb);
 		}
 	}
 	void Bazzi::death()
@@ -178,14 +185,40 @@ namespace ty
 	}
 	void Bazzi::idle()
 	{
-		if (Input::GetKeyDown(eKeyCode::LEFT)
-			|| Input::GetKeyDown(eKeyCode::RIGHT)
-			|| Input::GetKeyDown(eKeyCode::UP)
-			|| Input::GetKeyDown(eKeyCode::DOWN))
+		isLPressed = false;
+		isRPressed = false;
+		isUPressed = false;
+		isDPressed = false;
+		if (Input::GetKey(eKeyCode::LEFT))
 		{
+			isLPressed = true;
+			mAnimator->Play(L"left", true);
 			mState = eBazziState::Move;
-			//mAnimator->Play(L"down", true);
 		}
+		if (Input::GetKey(eKeyCode::RIGHT))
+		{
+			isRPressed = true;
+			mAnimator->Play(L"right", true);
+			mState = eBazziState::Move;
+		}
+		if (Input::GetKey(eKeyCode::UP))
+		{
+			isUPressed = true;
+			mAnimator->Play(L"up", true);
+			mState = eBazziState::Move;
+		}
+		if(Input::GetKey(eKeyCode::DOWN))
+		{
+			isDPressed = true;
+			mAnimator->Play(L"down", true);
+			mState = eBazziState::Move;
+		}
+		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
+		{
+			mState = eBazziState::Shoot;
+			//mAnimator->Play(L"downIdle", true);
+		}
+
 	}
 	void Bazzi::idleCompleteEvent(/*const Cuphead* this*/) // 애니메이션 동작이 끝나면 실행되도록 할 수 있다.
 	{

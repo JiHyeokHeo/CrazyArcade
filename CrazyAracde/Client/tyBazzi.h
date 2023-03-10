@@ -43,5 +43,9 @@ namespace ty
 		int maxBomb;
 		int maxHP;
 		BaseBomb* mBomb;
+		bool isLPressed;
+		bool isRPressed;
+		bool isUPressed;
+		bool isDPressed;
 	};
 }

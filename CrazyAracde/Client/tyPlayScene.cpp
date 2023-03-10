@@ -24,7 +24,7 @@ namespace ty
 
 		object::Instantiate<Play_BG>(eLayerType::BG);
 		object::Instantiate<Monster>(Vector2(500.0f, 400.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(800.0f, 400.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
 
 
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.

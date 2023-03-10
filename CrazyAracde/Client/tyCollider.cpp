@@ -37,7 +37,6 @@ namespace ty
 		(HPEN)SelectObject(hdc, oldPen);
 		(HBRUSH)SelectObject(hdc, oldbrush);
 		DeleteObject(pen);
-		
 	}
 	void Collider::Release()
 	{

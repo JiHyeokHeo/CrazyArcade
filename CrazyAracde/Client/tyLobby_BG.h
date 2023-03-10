@@ -7,7 +7,7 @@ namespace ty
 	class Lobby_BG : public GameObject
 	{
 	public:
-		Lobby_BG(Vector2 mPos);
+		Lobby_BG();
 		~Lobby_BG();
 
 		virtual void Initialize() override;

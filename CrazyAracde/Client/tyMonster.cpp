@@ -8,7 +8,7 @@
 #include "tyCollider.h"
 #include "tyBaseBomb.h"
 #include "tyScene.h"
-
+#include "tyBazzi.h"
 
 namespace ty
 {
@@ -20,9 +20,10 @@ namespace ty
 	}
 	void Monster::Initialize()
 	{
+
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(400.0f, 500.0f));
-		tr->SetScale(Vector2(1.5f, 1.5f));
+		tr->SetScale(Vector2(1.18f, 1.18f));
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Down", Vector2::Zero, 0.1f);
@@ -30,7 +31,7 @@ namespace ty
 		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2::Zero);
-		collider->SetSize(Vector2(48.0f, 50.0f));
+		collider->SetSize(Vector2(44.0f, 44.0f));
 		mState = eMonsterState::Idle;
 		GameObject::Initialize();
 	}
@@ -45,5 +46,14 @@ namespace ty
 	void Monster::Release()
 	{
 		GameObject::Release();
+	}
+	void Monster::OnCollisionEnter(Collider* other)
+	{
+	}
+	void Monster::OnCollisionStay(Collider* other)
+	{
+	}
+	void Monster::OnCollisionExit(Collider* other)
+	{
 	}
 }

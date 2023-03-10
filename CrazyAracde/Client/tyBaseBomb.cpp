@@ -8,20 +8,9 @@
 
 namespace ty
 {
-	BaseBomb::BaseBomb(Vector2{})
+	BaseBomb::BaseBomb()
 		: mTime(0.0f)
-		, maxBomb(0)
 	{	
-		Transform* tr = GetComponent<Transform>();
-		Vector2 mPos = tr->GetPos();
-		tr->SetPos();
-		maxBomb++;
-		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(12.76f, 22.84f));
-		collider->SetSize(Vector2(56.0f, 61.6f));
-		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->Play(L"BombIdle", true);
 		if (maxBomb == 7)
 		{
 			return;
@@ -33,20 +22,26 @@ namespace ty
 	}
 	void BaseBomb::Initialize()
 	{
-		//maxBomb++;
-  //  	//Transform* tr = GetComponent<Transform>();
-		////tr->SetPos(Vector2(400.0f, 400.0f));
-		////tr->SetScale(Vector2(1.4f, 1.4f));
+		maxBomb++;
+    	Transform* tr = GetComponent<Transform>();
+		//tr->SetPos(Vector2(400.0f, 400.0f));
+		tr->SetScale(Vector2(1.1f, 1.1f));
 		////
 		////Image* BombImage = Resources::Load<Image>(L"Bomb", L"..\\Resources\\Bomb\\bomb.bmp");
 		//mAnimator = AddComponent<Animator>();
 
+		mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->Play(L"BombIdle", true);
 		////mAnimator->CreateAnimation(L"bomb", BombImage, Vector2::Zero, 2, 1, 2, Vector2(11.76f, 22.84f), 0.16);
 		////mAnimator->Play(L"bomb", true);
 		//mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
 		//mAnimator->Play(L"BombIdle", true);
 
-
+		Collider* collider = AddComponent<Collider>();
+		collider->SetCenter(Vector2(12.76f, 22.84f));
+		collider->SetSize(Vector2(56.0f, 61.6f));
+		
 
 		//GameObject::Initialize();
 	}
@@ -60,7 +55,7 @@ namespace ty
 		//
 		Transform* tr = GetComponent<Transform>();
 
-		Vector2 dir = Vector2(500.0f, 500.0f);// - tr->GetPos();
+		Vector2 dir = Vector2(1.0f, 1.0f);// - tr->GetPos();
 		dir.Normalize();
 		///*float x = cosf(-PI / 4.0f);
 		//float y = sinf(-PI / 4.0f);*/
@@ -71,6 +66,8 @@ namespace ty
 		Vector2 pos = tr->GetPos();
 		pos.x += 100.0f * dir.x * Time::DeltaTime();
 		pos.y += 100.0f * dir.y * Time::DeltaTime();
+
+		//tr->SetPos(pos);
 
 		mTime += Time::DeltaTime();
 
