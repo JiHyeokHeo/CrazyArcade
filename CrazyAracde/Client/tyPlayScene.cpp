@@ -20,7 +20,7 @@ namespace ty
 	void PlayScene::Initialize()
 	{
 		Scene::Initialize();
-		object::Instantiate<Bazzi>(Vector2(400.0f, 400.0f), eLayerType::Player);
+		mBazzi = object::Instantiate<Bazzi>(Vector2(400.0f, 400.0f), eLayerType::Player);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
 		object::Instantiate<BossMonster>(Vector2(300.0f, 300.0f), eLayerType::Monster);
