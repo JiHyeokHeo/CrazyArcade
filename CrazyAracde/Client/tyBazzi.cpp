@@ -103,17 +103,19 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		//isDead = true;
+		isDead = true;
+		maxHP--;
 		//mState = eBazziState::Death;
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
-		//mState = eBazziState::Death;
+		isDead = true;
+		mState = eBazziState::Death;
 	}
 	void Bazzi::OnCollisionExit(Collider* other)
 	{
-		//isDead = false;
-		//mState = eBazziState::Idle;
+		/*maxHP
+		mState = eBazziState::Idle;*/
 	}
 	void Bazzi::move()
 	{
@@ -140,6 +142,7 @@ namespace ty
 		
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
+		mPos = pos;
 
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false)
 		{
@@ -183,9 +186,10 @@ namespace ty
 	}
 	void Bazzi::death()
 	{
-		if (isDead == true)
+		if (isDead == true && maxHP == 0)
 		{
 			mAnimator->Play(L"Bazzidie", false);
+			maxHP = -1;
 		}
 	}
 	void Bazzi::idle()

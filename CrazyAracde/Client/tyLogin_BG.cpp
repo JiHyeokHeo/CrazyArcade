@@ -19,7 +19,6 @@ namespace ty
 	void Login_BG::Update()
 	{
 		
-		//GameObject::Update();
 	}
 	void Login_BG::Render(HDC hdc)
 	{
