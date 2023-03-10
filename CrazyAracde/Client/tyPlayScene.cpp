@@ -7,6 +7,7 @@
 #include "tyTransform.h"
 #include "tyCamera.h"
 #include "tyObject.h"
+#include "tyBossMonster.h"
 
 namespace ty
 {
@@ -21,13 +22,13 @@ namespace ty
 		Scene::Initialize();
 		object::Instantiate<Bazzi>(Vector2(400.0f, 400.0f), eLayerType::Player);
 		//Camera::SetTarget(mBazzi);
-
 		object::Instantiate<Play_BG>(eLayerType::BG);
+		object::Instantiate<BossMonster>(Vector2(300.0f, 300.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(500.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
 
 
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
+		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
 		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Bomb, true);
 		//CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Bomb, true);
 		//CollisionManager::SetLayer(eLayerType::Bomb, eLayerType::Bomb, true);

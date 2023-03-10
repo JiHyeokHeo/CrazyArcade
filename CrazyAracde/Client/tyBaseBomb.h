@@ -29,7 +29,7 @@ namespace ty
 	private:
 		Animator* mAnimator;
 		float mTime;
-		int maxBomb;
+		
 		//bool mbombed;
 	};
 	

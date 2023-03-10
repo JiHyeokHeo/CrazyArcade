@@ -35,23 +35,23 @@ namespace ty
 		Image* mTrapeImage = Resources::Load<Image>(L"BazziTrap", L"..\\Resources\\Bazzi\\trap.bmp");
 		mAnimator = AddComponent<Animator>();
 		
-		mAnimator->CreateAnimation(L"up", mUpImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"down", mDownImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"left", mLeftImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"right", mRightImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Bazziup", mUpImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Bazzidown", mDownImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Bazzileft", mLeftImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Bazziright", mRightImage, Vector2::Zero, 6, 1, 6, Vector2::Zero, 0.1);
 
-		mAnimator->CreateAnimation(L"upIdle", mUpImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"downIdle", mDownImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"leftIdle", mLeftImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"rightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"ready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2::Zero, 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
+		mAnimator->CreateAnimation(L"BazziupIdle", mUpImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"BazzidownIdle", mDownImage, Vector2::Zero, 8, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"BazzileftIdle", mLeftImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"BazzirightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Bazziready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2::Zero, 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
 
-		mAnimator->CreateAnimation(L"die", mDieImage, Vector2(352.0f,0.0f), 13, 1, 13, Vector2(-12.0f, -50.0f), 0.15);
-		mAnimator->CreateAnimation(L"trap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2(-12.0f, -50.0f), 0.1);
+		mAnimator->CreateAnimation(L"Bazzidie", mDieImage, Vector2(352.0f,0.0f), 13, 1, 13, Vector2::Zero,  0.15);
+		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2::Zero,  0.1);
 		
 
 		//mAnimator->GetStartEvent(L"ready") = std::bind(&Bazzi::idleCompleteEvent, this);
-		mAnimator->Play(L"ready", false);
+		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(-23.0f, -55.0f));
@@ -103,7 +103,7 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		int a = 0;
+		//isDead = true;
 		//mState = eBazziState::Death;
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
@@ -112,27 +112,29 @@ namespace ty
 	}
 	void Bazzi::OnCollisionExit(Collider* other)
 	{
+		//isDead = false;
+		//mState = eBazziState::Idle;
 	}
 	void Bazzi::move()
 	{
 		if (Input::GetKeyUp(eKeyCode::LEFT))
 		{
-			mAnimator->Play(L"leftIdle", false);
+			mAnimator->Play(L"BazzileftIdle", false);
 			mState = eBazziState::Idle;
 		}
 		if (Input::GetKeyUp(eKeyCode::RIGHT))
 		{
-			mAnimator->Play(L"rightIdle", false);
+			mAnimator->Play(L"BazzirightIdle", false);
 			mState = eBazziState::Idle;
 		}
 		if (Input::GetKeyUp(eKeyCode::UP))
 		{
-			mAnimator->Play(L"upIdle", false);
+			mAnimator->Play(L"BazziupIdle", false);
 			mState = eBazziState::Idle;
 		}
 		if (Input::GetKeyUp(eKeyCode::DOWN))
 		{	
-			mAnimator->Play(L"downIdle", false);
+			mAnimator->Play(L"BazzidownIdle", false);
 			mState = eBazziState::Idle;
 		}
 		
@@ -181,7 +183,10 @@ namespace ty
 	}
 	void Bazzi::death()
 	{
-		mAnimator->Play(L"die", false);
+		if (isDead == true)
+		{
+			mAnimator->Play(L"Bazzidie", false);
+		}
 	}
 	void Bazzi::idle()
 	{
@@ -192,25 +197,25 @@ namespace ty
 		if (Input::GetKey(eKeyCode::LEFT))
 		{
 			isLPressed = true;
-			mAnimator->Play(L"left", true);
+			mAnimator->Play(L"Bazzileft", true);
 			mState = eBazziState::Move;
 		}
 		if (Input::GetKey(eKeyCode::RIGHT))
 		{
 			isRPressed = true;
-			mAnimator->Play(L"right", true);
+			mAnimator->Play(L"Bazziright", true);
 			mState = eBazziState::Move;
 		}
 		if (Input::GetKey(eKeyCode::UP))
 		{
 			isUPressed = true;
-			mAnimator->Play(L"up", true);
+			mAnimator->Play(L"Bazziup", true);
 			mState = eBazziState::Move;
 		}
 		if(Input::GetKey(eKeyCode::DOWN))
 		{
 			isDPressed = true;
-			mAnimator->Play(L"down", true);
+			mAnimator->Play(L"Bazzidown", true);
 			mState = eBazziState::Move;
 		}
 		if (Input::GetKeyDown(eKeyCode::SPACEBAR))

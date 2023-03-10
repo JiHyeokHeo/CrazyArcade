@@ -11,10 +11,7 @@ namespace ty
 	BaseBomb::BaseBomb()
 		: mTime(0.0f)
 	{	
-		if (maxBomb == 7)
-		{
-			return;
-		}
+	
 	}
 	BaseBomb::~BaseBomb()
 	{
@@ -22,7 +19,7 @@ namespace ty
 	}
 	void BaseBomb::Initialize()
 	{
-		maxBomb++;
+		//maxBomb++;
     	Transform* tr = GetComponent<Transform>();
 		//tr->SetPos(Vector2(400.0f, 400.0f));
 		tr->SetScale(Vector2(1.1f, 1.1f));
@@ -73,7 +70,6 @@ namespace ty
 
 		if (mTime >= 3)
 		{
-			maxBomb--;
  			object::Destroy(this); // 자기 스스로를 없애는거기 때문에 this 사용
 		}
 		GameObject::Update();

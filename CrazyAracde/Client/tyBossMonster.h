@@ -1,24 +1,20 @@
 #pragma once
 #include "tyGameObject.h"
 #include "tyImage.h"
-#include "tyBaseBomb.h"
 
 namespace ty
 {
 	class Animator;
-	class Bazzi : public GameObject
+	class BossMonster : public GameObject
 	{
 	public:
-		enum class eBazziState
+		enum class eMonsterState
 		{
-			Move,
-			Shoot,
-			Death,
-			Idle
+			Idle,
+			Damaged,
 		};
-
-		Bazzi();
-		~Bazzi();
+		BossMonster();
+		~BossMonster();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -28,26 +24,11 @@ namespace ty
 		virtual void OnCollisionEnter(class Collider* other) override;
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
-		
-		int GetBombCnt() { return maxBomb; }
-	private:
-		void move();
-		void shoot();
-		void death();
-		void idle();
 
-		void idleCompleteEvent();
 	private:
-		eBazziState mState;
 		Animator* mAnimator;
-		float mTime;
-		int maxBomb;
-		int BombCnt;
-		bool isDead;
-		int maxHP;
-		bool isLPressed;
-		bool isRPressed;
-		bool isUPressed;
-		bool isDPressed;
+		eMonsterState mState;
 	};
 }
+
+
