@@ -30,6 +30,7 @@ namespace ty
 		virtual void OnCollisionExit(class Collider* other) override;
 		
 		int GetBombCnt() { return maxBomb; }
+		Vector2 GetBazziPos() { return BazziPos; }
 	private:
 		void move();
 		void shoot();
@@ -43,8 +44,9 @@ namespace ty
 		float mTime;
 		int maxBomb;
 		int BombCnt;
-		bool isDead;
+		bool isColl;
 		int maxHP;
+		Vector2 BazziPos;
 		bool isLPressed;
 		bool isRPressed;
 		bool isUPressed;

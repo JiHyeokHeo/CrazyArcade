@@ -56,6 +56,6 @@ namespace ty
 	}
 	void PlayScene::OnExit()
 	{
-		//mBazzi->GetComponent<Transform>()->SetPos(Vector2(300.0f, 300.0f)); // 화면 전환시 기능 추가
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(300.0f, 300.0f)); // 화면 전환시 기능 추가
 	}
 }
