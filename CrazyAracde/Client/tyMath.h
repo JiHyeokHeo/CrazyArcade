@@ -77,6 +77,15 @@ struct Vector2 // 점이다
 		return temp;
 	}
 
+	Vector2 operator*(const float ratio) // 비율이라는 뜻
+	{
+		Vector2 temp;
+		temp.x = x * ratio;
+		temp.y = y * ratio;
+
+		return temp;
+	}
+
 
 	void operator+=(const Vector2& other)
 	{
@@ -88,6 +97,12 @@ struct Vector2 // 점이다
 	{
 		x -= other.x;
 		y -= other.y;
+	}
+
+	void Clear()
+	{
+		x = 0.0f;
+		y = 0.0f;
 	}
 
 	float Length()

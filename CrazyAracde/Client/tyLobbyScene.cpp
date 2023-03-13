@@ -1,7 +1,11 @@
 #include "tyLobbyScene.h"
 #include "tySceneManager.h"
-#include "tyinput.h"
+#include "tyInput.h"
+#include "tyCollisionManager.h"
+#include "tyTransform.h"
+#include "tyCamera.h"
 #include "tyObject.h"
+#include "tyBossMonster.h"
 
 namespace ty
 {

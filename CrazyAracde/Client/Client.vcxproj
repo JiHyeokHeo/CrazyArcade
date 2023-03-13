@@ -130,7 +130,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
-    <ClInclude Include="tyAlphaBlend.h" />
+    <ClInclude Include="tyAlphaBlender.h" />
     <ClInclude Include="tyAnimation.h" />
     <ClInclude Include="tyAnimator.h" />
     <ClInclude Include="tyBazzi.h" />
@@ -176,7 +176,7 @@
     <ClInclude Include="tyTitleUI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tyAlphaBlend.cpp" />
+    <ClCompile Include="tyAlphaBlender.cpp" />
     <ClCompile Include="tyAnimation.cpp" />
     <ClCompile Include="tyAnimator.cpp" />
     <ClCompile Include="tyBazzi.cpp" />

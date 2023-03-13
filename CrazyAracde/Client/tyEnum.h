@@ -13,6 +13,7 @@ enum class eSceneType
 enum class eLayerType
 {
 	BG, // 배경
+	AlphaBlender,
 	Bomb, // 폭탄
 	Monster, // 몬스터
 	Player, // 플레이어

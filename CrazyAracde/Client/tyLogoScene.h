@@ -1,9 +1,11 @@
 #pragma once
 #include "tyScene.h"
 #include "tyLogo_BG.h"
+#include "tyAlphaBlender.h"
 
 namespace ty
 {
+	
 	class LogoScene : public Scene
 	{
 	public:
@@ -19,6 +21,7 @@ namespace ty
 		virtual void OnExit() override;
 	private:
 		Logo_BG* mLogoBG;
+		float mTime;
 	};
 };
 

@@ -13,24 +13,27 @@ namespace ty
 	}
 	void AlphaBlender::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Play_BG", L"..\\Resources\\Bg\\play.bmp");
+		mImage = Resources::Load<Image>(L"Play_BG", L"..\\Resources\\AlphaBlend\\AlphaBlender.bmp");
 	}
-
 	void AlphaBlender::Update()
 	{
 		mTime += Time::DeltaTime();
 	}
 	void AlphaBlender::Render(HDC hdc)
 	{
+		func.BlendOp = AC_SRC_OVER;
+		func.BlendFlags = 0;
+		func.AlphaFormat = 0; // 이게 좀 특이하네요
+		func.SourceConstantAlpha = mAlpha;
+
 		AlphaBlend(hdc, 0, 0
 			, mImage->GetWidth()
 			, mImage->GetHeight()
 			, mImage->GetHdc()
+			, 0, 0
 			, mImage->GetWidth()
 			, mImage->GetHeight()
-			, RGB(255, 0, 255));
-		// 이쪽을 집가서 수정을 할 것
-		
+			, func);
 	}
 	void AlphaBlender::Release()
 	{

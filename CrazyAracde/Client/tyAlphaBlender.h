@@ -17,7 +17,9 @@ namespace ty
 
 
 	private:
-		Image* mImage;
 		float mTime;
+		Image* mImage;
+		BLENDFUNCTION func;
+		int mAlpha;
 	};
 }

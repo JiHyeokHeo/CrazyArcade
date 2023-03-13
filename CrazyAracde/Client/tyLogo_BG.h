@@ -18,6 +18,9 @@ namespace ty
 
 	private:
 		Image* mImage;
+		float mTime;
+		float mAlpha;
+		bool isTransparent;
 	};
 };
 

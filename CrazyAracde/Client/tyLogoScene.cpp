@@ -2,6 +2,7 @@
 #include "tyInput.h"
 #include "tySceneManager.h"
 #include "tyObject.h"
+#include "tyTime.h"
 
 namespace ty
 {
@@ -14,11 +15,13 @@ namespace ty
 	void LogoScene::Initialize()
 	{
 		Scene::Initialize();
+		//object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		object::Instantiate<Logo_BG>(eLayerType::BG);
 	}
 	void LogoScene::Update()
 	{
-		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+		mTime += Time::DeltaTime();
+		if (mTime >= 20)
 		{
 			SceneManager::LoadScene(eSceneType::Login);
 		}
