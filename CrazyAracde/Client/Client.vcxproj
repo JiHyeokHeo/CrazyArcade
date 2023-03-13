@@ -130,10 +130,13 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
+    <ClInclude Include="tyAlphaBlend.h" />
     <ClInclude Include="tyAnimation.h" />
     <ClInclude Include="tyAnimator.h" />
     <ClInclude Include="tyBazzi.h" />
     <ClInclude Include="tyBaseBomb.h" />
+    <ClInclude Include="tyBlock.h" />
+    <ClInclude Include="tyBombEffect.h" />
     <ClInclude Include="tyBossMonster.h" />
     <ClInclude Include="tyCamera.h" />
     <ClInclude Include="tyCollider.h" />
@@ -173,10 +176,13 @@
     <ClInclude Include="tyTitleUI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tyAlphaBlend.cpp" />
     <ClCompile Include="tyAnimation.cpp" />
     <ClCompile Include="tyAnimator.cpp" />
     <ClCompile Include="tyBazzi.cpp" />
     <ClCompile Include="tyBaseBomb.cpp" />
+    <ClCompile Include="tyBlock.cpp" />
+    <ClCompile Include="tyBombEffect.cpp" />
     <ClCompile Include="tyBossMonster.cpp" />
     <ClCompile Include="tyCamera.cpp" />
     <ClCompile Include="tyCollider.cpp" />

@@ -1,15 +1,14 @@
 #pragma once
-#include "tyGameObject.h"
-
+#include"tyScene.h"
+#include"tyImage.h"
 
 namespace ty
 {
-	class Animator;
-	class BombEffect : public GameObject
+	class AlphaBlender : public GameObject
 	{
 	public:
-		BombEffect();
-		~BombEffect();
+		AlphaBlender();
+		~AlphaBlender();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -18,8 +17,7 @@ namespace ty
 
 
 	private:
-		Animator* mAnimator;
+		Image* mImage;
 		float mTime;
 	};
 }
-

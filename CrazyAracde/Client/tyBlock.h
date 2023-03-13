@@ -1,21 +1,20 @@
 #pragma once
 #include "tyGameObject.h"
-
+#include "tyImage.h"
 
 namespace ty
 {
 	class Animator;
-	class BaseBomb : public GameObject
+	class Block : public GameObject
 	{
 	public:
-		enum class eBombState
+		enum class eBlcokState
 		{
 			Idle,
-			Bombed,
+			Damaged,
 		};
-
-		BaseBomb();
-		~BaseBomb();
+		Block();
+		~Block();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -27,14 +26,8 @@ namespace ty
 		virtual void OnCollisionExit(class Collider* other) override;
 
 	private:
-		void bombed();
-		void idle();
-
-	private:
 		Animator* mAnimator;
-		float mTime;
-		int maxWaterWave;
-		eBombState mState;
+		eBlcokState mState;
 	};
-	
 }
+

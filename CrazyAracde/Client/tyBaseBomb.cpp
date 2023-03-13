@@ -5,11 +5,13 @@
 #include "tyGameObject.h"
 #include "tyAnimator.h"
 #include "tyObject.h"
+#include "tyBombEffect.h"
 
 namespace ty
 {
 	BaseBomb::BaseBomb()
 		: mTime(0.0f)
+		, maxWaterWave(7)
 	{	
 	
 	}
@@ -45,54 +47,45 @@ namespace ty
 
 	void BaseBomb::Update()
 	{
-		/*Transform* tr = GetComponent<Transform>();*/
+		Transform* tr = GetComponent<Transform>();
 		//Vector2 pos = tr->GetPos(); //+ Vector2::Vector2(6.0f, 10.0f); // 이쪽에서 뭔가 물풍선 밀거나 하는 조건을 걸 수 있을듯함
 		////pos.x += 100.0f * Time::DeltaTime();
 		//tr->SetPos(pos);
 		//
-		Transform* tr = GetComponent<Transform>();
+		//Transform* tr = GetComponent<Transform>();
 
-		Vector2 dir = Vector2(1.0f, 1.0f);// - tr->GetPos();
-		dir.Normalize();
+		//Vector2 dir = Vector2(1.0f, 1.0f);// - tr->GetPos();
+		//dir.Normalize();
 		///*float x = cosf(-PI / 4.0f);
 		//float y = sinf(-PI / 4.0f);*/
 		////float x = dir.x * cosf(PI / 5.0f) - dir.y * sinf(PI / 5.0f);
 		////float y = dir.x * sinf(PI / 5.0f) + dir.y * cosf(PI / 5.0f);
-
-
-		Vector2 pos = tr->GetPos();
-		pos.x += 100.0f * dir.x * Time::DeltaTime();
-		pos.y += 100.0f * dir.y * Time::DeltaTime();
+		
+		//Vector2 pos = tr->GetPos();
+		//pos.x += 100.0f * dir.x * Time::DeltaTime();
+		//pos.y += 100.0f * dir.y * Time::DeltaTime();
 
 		//tr->SetPos(pos);
 
 		mTime += Time::DeltaTime();
 
-		if (mTime >= 3)
+		switch (mState)
 		{
- 			object::Destroy(this); // 자기 스스로를 없애는거기 때문에 this 사용
+		case ty::BaseBomb::eBombState::Idle:
+			idle();
+			break;
+		case ty::BaseBomb::eBombState::Bombed:
+			bombed();
+			break;
+		default:
+			break;
 		}
+
 		GameObject::Update();
     }
 	
 	void BaseBomb::Render(HDC hdc)
 	{
-		//Transform* tr = GetComponent<Transform>();
-		//Vector2 pos = tr->GetPos() + Vector2::Vector2(6.0f, 10.0f);;
-		//HPEN pen = CreatePen(BS_SOLID, 2, RGB(0, 255, 0));
-
-		//HPEN oldPen = (HPEN)SelectObject(hdc, pen);
-		//HBRUSH brush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		//HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, brush);
-
-		//Ellipse(hdc, pos.x, pos.y, pos.x + 50, pos.y + 50);
-
-
-		//(HPEN)SelectObject(hdc, oldPen);
-		//(HBRUSH)SelectObject(hdc, oldbrush);
-		//DeleteObject(pen);
-
-
 		GameObject::Render(hdc);
 	}
 	void BaseBomb::Release()
@@ -108,4 +101,31 @@ namespace ty
 	void BaseBomb::OnCollisionExit(Collider* other)
 	{
 	}
+
+	void BaseBomb::bombed()
+	{
+		if (mTime >= 6)
+		{
+			//object::Destroy(this);
+			mTime = 0;
+		}
+	}
+
+	void BaseBomb::idle()
+	{
+		Transform* tr = GetComponent<Transform>();
+		if (mTime >= 3)
+		{
+			for (int i = 1; i < 7; i++)
+			{
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((maxWaterWave * 6), 0), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (maxWaterWave * 6)), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((maxWaterWave * 6), 0), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (maxWaterWave * 6)), eLayerType::Bomb);
+			}
+			
+			mState = eBombState::Bombed;
+		}
+	}
+
 }

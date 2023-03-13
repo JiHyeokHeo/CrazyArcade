@@ -7,7 +7,7 @@
 #include "tyAnimator.h"
 #include "tyCollider.h"
 #include "tyBaseBomb.h"
-#include "tyScene.h"
+
 
 namespace ty
 {
