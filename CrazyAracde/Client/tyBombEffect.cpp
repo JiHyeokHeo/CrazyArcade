@@ -6,7 +6,7 @@
 #include "tyTransform.h"
 #include "tyAnimator.h"
 #include "tyCollider.h"
-#include "tyScene.h"
+#include "tyObject.h"
 
 namespace ty
 {
@@ -19,15 +19,16 @@ namespace ty
 	void BombEffect::Initialize()
 	{
 		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(400.0f, 400.0f));
-		tr->SetScale(Vector2(1.4f, 1.4f));
+		//tr->SetPos(Vector2(400.0f, 400.0f));
+		tr->SetScale(Vector2(1.1f, 1.1f));
 
 
-		Image* BombImage = Resources::Load<Image>(L"Bomb", L"..\\Resources\\Bomb\\bomb.bmp");
 		mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Downflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Upflow", Vector2(11.76f, 22.84f), 0.16f);
 
-		mAnimator->CreateAnimation(L"bomb", BombImage, Vector2::Zero, 2, 1, 2, Vector2(11.76f, 22.84f), 0.16);
-		mAnimator->Play(L"bomb", true);
+		mAnimator->Play(L"BombDownflow", false);
+		//mAnimator->Play(L"BombUpflow", false);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(11.76f, 22.84f));
@@ -36,11 +37,19 @@ namespace ty
 	}
 	void BombEffect::Update()
 	{
+		if (mAnimator->isComplete() == true)
+		{
+			object::Destroy(this);
+		}
+			
+		GameObject::Update();
 	}
 	void BombEffect::Render(HDC hdc)
 	{
+		GameObject::Render(hdc);
 	}
 	void BombEffect::Release()
 	{
+		GameObject::Release();
 	}
 }

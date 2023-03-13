@@ -71,6 +71,9 @@
     <Filter Include="Contents\Scene\PlayStage">
       <UniqueIdentifier>{69c58ebe-f196-40cf-82e8-64732d78d100}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Block">
+      <UniqueIdentifier>{a6ff2b9b-fe51-47a3-a360-93338ea44c4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -199,6 +202,15 @@
     <ClInclude Include="tyStage2.h">
       <Filter>Contents\Scene\PlayStage</Filter>
     </ClInclude>
+    <ClInclude Include="tyBlock.h">
+      <Filter>Contents\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="tyBossMonster.h">
+      <Filter>Contents\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="tyBombEffect.h">
+      <Filter>Contents\Bomb\BombEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -318,6 +330,15 @@
     </ClCompile>
     <ClCompile Include="tyStage2.cpp">
       <Filter>Contents\Scene\PlayStage</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBlock.cpp">
+      <Filter>Contents\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBossMonster.cpp">
+      <Filter>Contents\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBombEffect.cpp">
+      <Filter>Contents\Bomb\BombEffect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
