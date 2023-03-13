@@ -74,6 +74,9 @@
     <Filter Include="Contents\Block">
       <UniqueIdentifier>{a6ff2b9b-fe51-47a3-a360-93338ea44c4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\AlphaBlend">
+      <UniqueIdentifier>{f8da073a-6f86-4c68-a40e-a461bff6275b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -211,6 +214,9 @@
     <ClInclude Include="tyBombEffect.h">
       <Filter>Contents\Bomb\BombEffect</Filter>
     </ClInclude>
+    <ClInclude Include="tyAlphaBlend.h">
+      <Filter>Contents\AlphaBlend</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -283,9 +289,6 @@
     <ClCompile Include="tyPlag_BG.cpp">
       <Filter>Contents\BG</Filter>
     </ClCompile>
-    <ClCompile Include="tyLobby_BG.cpp">
-      <Filter>Contents\BG</Filter>
-    </ClCompile>
     <ClCompile Include="tyRewardScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
@@ -339,6 +342,12 @@
     </ClCompile>
     <ClCompile Include="tyBombEffect.cpp">
       <Filter>Contents\Bomb\BombEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="tyLobby_BG.cpp">
+      <Filter>Contents\BG</Filter>
+    </ClCompile>
+    <ClCompile Include="tyAlphaBlend.cpp">
+      <Filter>Contents\AlphaBlend</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

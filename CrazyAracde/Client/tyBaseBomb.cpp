@@ -81,19 +81,6 @@ namespace ty
 			break;
 		}
 
-		if (mTime >= 3)
-		{
-			for (int i = 0; i < maxWaterWave; i++)
-			{
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((maxWaterWave * 6) ,0), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (maxWaterWave * 6)), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((maxWaterWave * 6), 0), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (maxWaterWave * 6)), eLayerType::Bomb);
-			}
-
- 			object::Destroy(this); // 자기 스스로를 없애는거기 때문에 this 사용
-			mTime = 0;
-		}
 		GameObject::Update();
     }
 	
@@ -117,10 +104,28 @@ namespace ty
 
 	void BaseBomb::bombed()
 	{
+		if (mTime >= 6)
+		{
+			//object::Destroy(this);
+			mTime = 0;
+		}
 	}
 
 	void BaseBomb::idle()
 	{
+		Transform* tr = GetComponent<Transform>();
+		if (mTime >= 3)
+		{
+			for (int i = 1; i < 7; i++)
+			{
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((maxWaterWave * 6), 0), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (maxWaterWave * 6)), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((maxWaterWave * 6), 0), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (maxWaterWave * 6)), eLayerType::Bomb);
+			}
+			
+			mState = eBombState::Bombed;
+		}
 	}
 
 }

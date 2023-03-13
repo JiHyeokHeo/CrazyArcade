@@ -18,6 +18,7 @@ namespace ty
 	}
 	void BombEffect::Initialize()
 	{
+		
 		Transform* tr = GetComponent<Transform>();
 		//tr->SetPos(Vector2(400.0f, 400.0f));
 		tr->SetScale(Vector2(1.1f, 1.1f));
@@ -37,12 +38,12 @@ namespace ty
 	}
 	void BombEffect::Update()
 	{
+		GameObject::Update();
 		if (mAnimator->isComplete() == true)
 		{
-			object::Destroy(this);
+			//object::Destroy(this);
 		}
 			
-		GameObject::Update();
 	}
 	void BombEffect::Render(HDC hdc)
 	{
