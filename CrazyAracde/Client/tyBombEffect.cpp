@@ -42,7 +42,7 @@ namespace ty
 		GameObject::Update();
 		if (mAnimator->isComplete() == true)
 		{
-			//object::Destroy(this);
+			object::Destroy(this);
 		}
 			
 	}
