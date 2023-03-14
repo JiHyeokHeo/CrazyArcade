@@ -35,9 +35,10 @@ namespace ty
 	}
 	void LoginScene::OnEnter()
 	{
-		object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
+		mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 	}
 	void LoginScene::OnExit()
 	{
+		object::Destroy(mBlender);
 	}
 }

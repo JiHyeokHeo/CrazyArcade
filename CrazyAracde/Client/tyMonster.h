@@ -11,7 +11,10 @@ namespace ty
 		enum class eMonsterState
 		{
 			Idle,
-			Damaged,
+			Left,
+			Right,
+			Up,
+			Down,
 		};
 		Monster();
 		~Monster();
@@ -26,8 +29,18 @@ namespace ty
 		virtual void OnCollisionExit(class Collider* other) override;
 
 	private:
+		void idle();
+		void left();
+		void right();
+		void up();
+		void down();
+
+		void animationCtr();
+
+	private:
 		Animator* mAnimator;
 		eMonsterState mState;
 		float mTime;
+		Vector2 mPos;
 	};
 }

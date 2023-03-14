@@ -35,6 +35,7 @@ namespace ty
 		float mTime;
 		int maxWaterWave;
 		eBombState mState;
+		bool isBomb;
 	};
 	
 }

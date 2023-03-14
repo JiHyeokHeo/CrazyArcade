@@ -50,7 +50,7 @@ namespace ty
 		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2::Zero,  0.1);
 		
 
-		//mAnimator->GetStartEvent(L"ready") = std::bind(&Bazzi::idleCompleteEvent, this);
+		mAnimator->GetStartEvent(L"Bazziright") = std::bind(&Bazzi::idleCompleteEvent, this);
 		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
@@ -140,8 +140,7 @@ namespace ty
 		
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-		BazziPos = pos;
-
+		
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false)
 		{
 			//isLPressed = true;

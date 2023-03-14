@@ -40,9 +40,10 @@ namespace ty
 	}
 	void LobbyScene::OnEnter()
 	{
-		object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
+		mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 	}
 	void LobbyScene::OnExit()
 	{
+		object::Destroy(mBlender);
 	}
 }

@@ -119,9 +119,7 @@ namespace ty
 				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::Bomb);
 				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::Bomb);
 			}
-		
 			object::Destroy(this);
-				
 		}
 	}
 

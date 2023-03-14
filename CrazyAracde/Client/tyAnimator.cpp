@@ -143,17 +143,18 @@ namespace ty
 		if (mActiveAnimation != nullptr)
 		{
 			Animator::Events* prevEvents
-				= FindEvents(mActiveAnimation->GetName());
+				= FindEvents(mActiveAnimation->GetAnimationName());
 
 			if (prevEvents != nullptr)
 				prevEvents->mEndEvent();
 		}
 		mActiveAnimation = FindAnimation(name);
 		mActiveAnimation -> Reset();
+		
 		mbLoop = loop;
 
 		Animator::Events* events
-			= FindEvents(mActiveAnimation->GetName());
+			= FindEvents(mActiveAnimation->GetAnimationName());
 
 		if (events != nullptr)
 			events->mStartEvent();
@@ -174,7 +175,7 @@ namespace ty
 		Animation* animation = FindAnimation(name);
 
 		Animator::Events* events
-			= FindEvents(animation->GetName());
+			= FindEvents(animation->GetAnimationName());
 
 		return events->mStartEvent.mEvent;
 	}
@@ -183,7 +184,7 @@ namespace ty
 		Animation* animation = FindAnimation(name);
 
 		Animator::Events* events
-			= FindEvents(animation->GetName());
+			= FindEvents(animation->GetAnimationName());
 
 		return events->mCompleteEvent.mEvent;
 	}
@@ -192,7 +193,7 @@ namespace ty
 		Animation* animation = FindAnimation(name);
 
 		Animator::Events* events
-			= FindEvents(animation->GetName());
+			= FindEvents(animation->GetAnimationName());
 
 		return events->mEndEvent.mEvent;
 	}

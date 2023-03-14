@@ -4,6 +4,7 @@
 
 namespace ty
 {
+	class AlphaBlender;
 	class LoginScene : public Scene
 	{
 	public:
@@ -19,5 +20,6 @@ namespace ty
 		virtual void OnExit() override;
 	private:
 		Login_BG* mLoginBG;
+		AlphaBlender* mBlender;
 	};
 }

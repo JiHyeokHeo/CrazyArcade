@@ -5,6 +5,7 @@
 
 namespace ty
 {
+	class AlphaBlender;
 	class Bazzi; // 이것이 전방선언
 	class PlayScene : public Scene
 	{
@@ -24,6 +25,7 @@ namespace ty
 	private:
 		Bazzi* mBazzi;
 		Play_BG* mPlayBG;
+		AlphaBlender* mBlender;
 	};
 };
 

@@ -29,6 +29,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Upflow", Vector2(11.76f, 22.84f), 0.16f);
 
 		mAnimator->Play(L"BombDownflow", false);
+		mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
 
 		Collider* collider = AddComponent<Collider>();
@@ -41,7 +42,7 @@ namespace ty
 		GameObject::Update();
 		if (mAnimator->isComplete() == true)
 		{
-			object::Destroy(this);
+			//object::Destroy(this);
 		}
 			
 	}
@@ -52,5 +53,9 @@ namespace ty
 	void BombEffect::Release()
 	{
 		GameObject::Release();
+	}
+	void BombEffect::bombCompleteEvent()
+	{
+		int a = 0;
 	}
 }

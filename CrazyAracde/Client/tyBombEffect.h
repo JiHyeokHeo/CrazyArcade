@@ -16,6 +16,8 @@ namespace ty
 		virtual void Render(HDC hdc) override;
 		virtual void Release() override;
 
+	private:
+		void bombCompleteEvent();
 
 	private:
 		Animator* mAnimator;
