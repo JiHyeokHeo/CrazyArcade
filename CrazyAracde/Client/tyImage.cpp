@@ -6,7 +6,7 @@ extern ty::Application application;
 
 namespace ty
 {
-	Image* Image::Create(const std::wstring& name, UINT width, UINT height)
+	Image* Image::Create(const std::wstring& name, UINT width, UINT height, COLORREF rgb)
 	{
 		if (width == 0 || height == 0)
 			return nullptr;
@@ -32,6 +32,13 @@ namespace ty
 		Resources::Insert<Image>(name, image);
 
 		Rectangle(image->GetHdc(), -1, -1, image->mWidth + 1, image->mHeight + 1);
+
+		// Setting Image Color
+		HBRUSH brush = CreateSolidBrush(rgb);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(image->GetHdc(), brush);
+		Rectangle(image->GetHdc(), -1, -1, image->mWidth + 1, image->mHeight + 1);
+		SelectObject(image->GetHdc(), oldBrush);
+		DeleteObject(oldBrush);
 
 		return image;
 	}

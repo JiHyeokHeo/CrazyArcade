@@ -45,6 +45,7 @@ namespace ty
 		int maxBomb;
 		int BombCnt;
 		bool isColl;
+		bool isReady;
 		int maxHP;
 		bool isLPressed;
 		bool isRPressed;

@@ -73,6 +73,7 @@ namespace ty
 		Time::Render(mBackHDC);
 		Input::Render(mBackHDC);
 		SceneManager::Render(mBackHDC);
+		Camera::Render(mBackHDC);
 		
 
 		// 백버퍼에 있는 그림을 원본 버퍼에 그려야 한다. // 원본을 가져다가 복사

@@ -166,6 +166,7 @@
     <ClInclude Include="tyResources.h" />
     <ClInclude Include="tyRewardScene.h" />
     <ClInclude Include="tyReward_BG.h" />
+    <ClInclude Include="tyRigidBody.h" />
     <ClInclude Include="tyScene.h" />
     <ClInclude Include="tySceneManager.h" />
     <ClInclude Include="tyStage2.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="tyResources.cpp" />
     <ClCompile Include="tyRewardScene.cpp" />
     <ClCompile Include="tyReward_BG.cpp" />
+    <ClCompile Include="tyRigidBody.cpp" />
     <ClCompile Include="tyScene.cpp" />
     <ClCompile Include="tySceneManager.cpp" />
     <ClCompile Include="tyStage2.cpp" />

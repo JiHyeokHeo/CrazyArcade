@@ -16,10 +16,6 @@
     <Filter Include="Engine\GameObject">
       <UniqueIdentifier>{a60a7796-0ec6-4022-a3fa-f94646d3b73a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Engine\High Level interface">
       <UniqueIdentifier>{6fb6567a-7494-467a-9485-43758115f13f}</UniqueIdentifier>
     </Filter>
@@ -76,6 +72,19 @@
     </Filter>
     <Filter Include="Contents\AlphaBlend">
       <UniqueIdentifier>{f8da073a-6f86-4c68-a40e-a461bff6275b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Animator">
+      <UniqueIdentifier>{87da3cd7-658d-4698-9076-5fc270a1ec38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Transform">
+      <UniqueIdentifier>{c8d5a46a-57c7-424b-a4a8-c445a7948c08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\RigidBody">
+      <UniqueIdentifier>{d92a5237-d0ca-418c-862f-ffb9da6ed76e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -145,9 +154,6 @@
     <ClInclude Include="tyImage.h">
       <Filter>Engine\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="tyTransform.h">
-      <Filter>Engine\Component</Filter>
-    </ClInclude>
     <ClInclude Include="tyLobbyScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
@@ -171,12 +177,6 @@
     </ClInclude>
     <ClInclude Include="tyLogoScene.h">
       <Filter>Contents\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="tyAnimation.h">
-      <Filter>Engine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="tyAnimator.h">
-      <Filter>Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="tyBaseBomb.h">
       <Filter>Contents\Bomb</Filter>
@@ -214,8 +214,20 @@
     <ClInclude Include="tyBombEffect.h">
       <Filter>Contents\Bomb\BombEffect</Filter>
     </ClInclude>
-    <ClInclude Include="tyAlphaBlend.h">
+    <ClInclude Include="tyAlphaBlender.h">
       <Filter>Contents\AlphaBlend</Filter>
+    </ClInclude>
+    <ClInclude Include="tyAnimation.h">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="tyAnimator.h">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="tyTransform.h">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="tyRigidBody.h">
+      <Filter>Engine\Component\RigidBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -280,9 +292,6 @@
     <ClCompile Include="tyImage.cpp">
       <Filter>Engine\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="tyTransform.cpp">
-      <Filter>Engine\Component</Filter>
-    </ClCompile>
     <ClCompile Include="tyLobbyScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
@@ -303,12 +312,6 @@
     </ClCompile>
     <ClCompile Include="tyLogoScene.cpp">
       <Filter>Contents\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="tyAnimation.cpp">
-      <Filter>Engine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="tyAnimator.cpp">
-      <Filter>Engine\Component</Filter>
     </ClCompile>
     <ClCompile Include="tyBaseBomb.cpp">
       <Filter>Contents\Bomb</Filter>
@@ -346,8 +349,20 @@
     <ClCompile Include="tyLobby_BG.cpp">
       <Filter>Contents\BG</Filter>
     </ClCompile>
-    <ClCompile Include="tyAlphaBlend.cpp">
+    <ClCompile Include="tyAlphaBlender.cpp">
       <Filter>Contents\AlphaBlend</Filter>
+    </ClCompile>
+    <ClCompile Include="tyAnimation.cpp">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="tyAnimator.cpp">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="tyTransform.cpp">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="tyRigidBody.cpp">
+      <Filter>Engine\Component\RigidBody</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -112,14 +112,15 @@ namespace ty
 		Transform* tr = GetComponent<Transform>();
 		if (mTime >= 3)
 		{
-			for (int i = 1; i < 7; i++)
-			{
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 50), 0), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 50)), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::Bomb);
-			}
-			object::Destroy(this);
+			//for (int i = 1; i < 7; i++)
+			//{
+			//	object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 50), 0), eLayerType::Bomb);
+			//	object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 50)), eLayerType::Bomb);
+			//	object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::Bomb);
+			//	object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::Bomb);
+			//	mTime = 0;
+			//}
+		object::Destroy(this);
 		}
 	}
 

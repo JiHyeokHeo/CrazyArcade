@@ -9,6 +9,7 @@
 #include "tyBaseBomb.h"
 #include "tyScene.h"
 #include "tyObject.h"
+#include "tyBombEffect.h"
 
 namespace ty
 {
@@ -50,8 +51,8 @@ namespace ty
 		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2::Zero,  0.1);
 		
 
-		mAnimator->GetStartEvent(L"Bazziright") = std::bind(&Bazzi::idleCompleteEvent, this);
-		mAnimator->Play(L"Bazziready", false);
+		mAnimator->GetEndEvent(L"Bazziready") = std::bind(&Bazzi::idleCompleteEvent, this);
+		mAnimator->Play(L"Bazziready", true);
 		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(-23.0f, -55.0f));
@@ -69,7 +70,7 @@ namespace ty
 		mTime += Time::DeltaTime();
 
 		//delete mBomb;
-		if (mTime >= 1.2)
+		if (isReady)
 		{
 			switch (mState)
 			{
@@ -179,6 +180,15 @@ namespace ty
 		{
 			mState = eBazziState::Move;
 			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2(-10.0f, -20.0f), eLayerType::Bomb);
+			
+			for (int i = 0; i < 5; i++)
+			{
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 50), 0), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 50)), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::Bomb);
+			}
+			
 		}
 	}
 	void Bazzi::death()
@@ -228,7 +238,7 @@ namespace ty
 	}
 	void Bazzi::idleCompleteEvent(/*const Cuphead* this*/) // 애니메이션 동작이 끝나면 실행되도록 할 수 있다.
 	{
-		int a = 0;
+		isReady = true;
 		//mState =
 		//Transform* tr = GetComponent<Transform>();
 		//Scene* curScene = SceneManager::GetActiveScene();

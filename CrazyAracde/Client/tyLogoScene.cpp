@@ -3,6 +3,7 @@
 #include "tySceneManager.h"
 #include "tyObject.h"
 #include "tyTime.h"
+#include "tyCamera.h"
 
 namespace ty
 {
@@ -26,10 +27,10 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Login);
 		}
 		Scene::Update();
+		
 	}
 	void LogoScene::Render(HDC hdc)
 	{
-
 		Scene::Render(hdc);
 	}
 	void LogoScene::Release()

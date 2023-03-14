@@ -21,6 +21,7 @@ namespace ty
 				continue;
 			if (gameObj->GetState()
 				!= GameObject::eState::Active)
+				continue;
 			gameObj->Initialize();
 		}
 	}

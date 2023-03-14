@@ -45,22 +45,24 @@ namespace ty
 		(HPEN)SelectObject(hdc, oldPen);
 		(HBRUSH)SelectObject(hdc, oldbrush);
 		DeleteObject(pen);
+
+		mCollisionCount = 0;
 	}
 	void Collider::Release()
 	{
 	}
 	void Collider::OnCollisionEnter(Collider* other)
 	{
-		mCollisionCount++;
+		
 		GetOwner()->OnCollisionEnter(other);
 	}
 	void Collider::OnCollisionStay(Collider* other)
 	{
+		mCollisionCount = 1;
 		GetOwner()->OnCollisionStay(other);
 	}
 	void Collider::OnCollisionExit(Collider* other)
 	{
-		mCollisionCount--;
 		GetOwner()->OnCollisionExit(other);
 	}
 }

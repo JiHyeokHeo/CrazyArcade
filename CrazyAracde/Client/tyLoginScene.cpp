@@ -3,6 +3,7 @@
 #include "tySceneManager.h"
 #include "tyObject.h"
 #include "tyAlphaBlender.h"
+#include "tyCamera.h"
 
 namespace ty
 {
@@ -27,6 +28,7 @@ namespace ty
 	}
 	void LoginScene::Render(HDC hdc)
 	{
+		/*Camera::Render(hdc);*/
 		Scene::Render(hdc);
 	}
 	void LoginScene::Release()
@@ -35,10 +37,10 @@ namespace ty
 	}
 	void LoginScene::OnEnter()
 	{
-		mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
+		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 	}
 	void LoginScene::OnExit()
 	{
-		object::Destroy(mBlender);
+		//object::Destroy(mBlender);
 	}
 }

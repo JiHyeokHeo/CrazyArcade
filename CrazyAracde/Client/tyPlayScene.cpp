@@ -53,7 +53,7 @@ namespace ty
 	}
 	void PlayScene::OnEnter()
 	{
-		mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
+		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Player, true);
 		
 	}
@@ -61,6 +61,6 @@ namespace ty
 	{
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(300.0f, 300.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
-		object::Destroy(mBlender);
+		//object::Destroy(mBlender);
 	}
 }
