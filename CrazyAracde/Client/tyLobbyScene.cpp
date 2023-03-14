@@ -6,6 +6,7 @@
 #include "tyCamera.h"
 #include "tyObject.h"
 #include "tyBossMonster.h"
+#include "tyAlphaBlender.h"
 
 namespace ty
 {
@@ -22,6 +23,7 @@ namespace ty
 	}
 	void LobbyScene::Update()
 	{
+
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::Play);
@@ -38,6 +40,7 @@ namespace ty
 	}
 	void LobbyScene::OnEnter()
 	{
+		object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 	}
 	void LobbyScene::OnExit()
 	{

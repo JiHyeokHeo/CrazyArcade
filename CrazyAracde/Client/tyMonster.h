@@ -28,5 +28,6 @@ namespace ty
 	private:
 		Animator* mAnimator;
 		eMonsterState mState;
+		float mTime;
 	};
 }

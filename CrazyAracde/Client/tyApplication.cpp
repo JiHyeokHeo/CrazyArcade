@@ -53,6 +53,7 @@ namespace ty
 	{
 		Update();
 		Render();
+		SceneManager::Destroy();
 	}
 
 	void Application::Update()

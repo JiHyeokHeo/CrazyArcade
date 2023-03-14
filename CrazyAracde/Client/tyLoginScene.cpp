@@ -2,6 +2,7 @@
 #include "tyInput.h"
 #include "tySceneManager.h"
 #include "tyObject.h"
+#include "tyAlphaBlender.h"
 
 namespace ty
 {
@@ -34,6 +35,7 @@ namespace ty
 	}
 	void LoginScene::OnEnter()
 	{
+		object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 	}
 	void LoginScene::OnExit()
 	{

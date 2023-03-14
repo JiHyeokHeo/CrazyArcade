@@ -32,7 +32,7 @@ namespace ty
 			
  			scene->Initialize();
 		}
-		mActiveScene = mScenes[(UINT)eSceneType::Logo];
+		mActiveScene = mScenes[(UINT)eSceneType::Login];
 	}
 
 	void SceneManager::Update()
@@ -42,9 +42,7 @@ namespace ty
 
 	void SceneManager::Render(HDC hdc)
 	{
-	
 		mActiveScene->Render(hdc);
-		
 	}
 
 	void SceneManager::Destroy()

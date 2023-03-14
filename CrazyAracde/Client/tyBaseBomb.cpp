@@ -104,11 +104,7 @@ namespace ty
 
 	void BaseBomb::bombed()
 	{
-		if (mTime >= 6)
-		{
-			//object::Destroy(this);
-			mTime = 0;
-		}
+		
 	}
 
 	void BaseBomb::idle()
@@ -118,13 +114,14 @@ namespace ty
 		{
 			for (int i = 1; i < 7; i++)
 			{
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((maxWaterWave * 6), 0), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (maxWaterWave * 6)), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((maxWaterWave * 6), 0), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (maxWaterWave * 6)), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 50), 0), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 50)), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::Bomb);
 			}
-			
-			mState = eBombState::Bombed;
+		
+			object::Destroy(this);
+				
 		}
 	}
 

@@ -7,7 +7,7 @@
 #include "tyAnimator.h"
 #include "tyCollider.h"
 #include "tyBaseBomb.h"
-
+#include "tyObject.h"
 
 namespace ty
 {
@@ -25,6 +25,9 @@ namespace ty
 		//tr->SetScale(Vector2(1.18f, 1.18f));
 
 		mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Up", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Right", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Left", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Down", Vector2::Zero, 0.1f);
 		mAnimator->Play(L"PirateDown", true);
 		
@@ -36,6 +39,7 @@ namespace ty
 	}
 	void Monster::Update()
 	{
+		
 		GameObject::Update();
 	}
 	void Monster::Render(HDC hdc)

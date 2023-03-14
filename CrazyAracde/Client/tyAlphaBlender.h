@@ -21,5 +21,6 @@ namespace ty
 		Image* mImage;
 		BLENDFUNCTION func;
 		int mAlpha;
+		bool isTransparent;
 	};
 }

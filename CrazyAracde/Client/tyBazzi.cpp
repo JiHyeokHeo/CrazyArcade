@@ -102,8 +102,8 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		isColl = true;
-		mState = eBazziState::Death;
+		//isColl = true;
+		//mState = eBazziState::Death;
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -178,7 +178,7 @@ namespace ty
 
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
-			mState = eBazziState::Idle;
+			mState = eBazziState::Move;
 			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2(-10.0f, -20.0f), eLayerType::Bomb);
 		}
 	}

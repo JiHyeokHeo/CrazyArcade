@@ -21,7 +21,7 @@ namespace ty
 	void LogoScene::Update()
 	{
 		mTime += Time::DeltaTime();
-		if (mTime >= 20)
+		if (mTime >= 6.0f)
 		{
 			SceneManager::LoadScene(eSceneType::Login);
 		}

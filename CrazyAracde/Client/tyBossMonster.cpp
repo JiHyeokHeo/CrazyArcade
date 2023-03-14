@@ -20,7 +20,7 @@ namespace ty
 	void BossMonster::Initialize()
 	{
 		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(600.0f, 500.0f));
+		tr->SetPos(Vector2(300.0f, 500.0f));
 		tr->SetScale(Vector2(1.18f, 1.18f));
 
 		

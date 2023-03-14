@@ -37,8 +37,7 @@ namespace ty
 			mAlpha = 255 - mTime * 90;
 		}
 
-		
-		GameObject::Update();
+		//GameObject::Update();
 	}
 	void Logo_BG::Render(HDC hdc)
 	{
