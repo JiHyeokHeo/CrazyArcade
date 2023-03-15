@@ -54,7 +54,8 @@ namespace ty
 	void PlayScene::OnEnter()
 	{
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Player, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
 		
 	}
 	void PlayScene::OnExit()

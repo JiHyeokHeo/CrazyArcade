@@ -14,6 +14,7 @@ namespace ty
 			Move,
 			Shoot,
 			Death,
+			Bubble,
 			Idle
 		};
 
@@ -36,8 +37,9 @@ namespace ty
 		void shoot();
 		void death();
 		void idle();
-
+		void bubble();
 		void idleCompleteEvent();
+		void dieCompeleteEvent();
 	private:
 		eBazziState mState;
 		Animator* mAnimator;

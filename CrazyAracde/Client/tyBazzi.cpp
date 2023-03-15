@@ -51,7 +51,8 @@ namespace ty
 		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2::Zero,  0.1);
 		
 
-		mAnimator->GetEndEvent(L"Bazziready") = std::bind(&Bazzi::idleCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Bazzitrap") = std::bind(&Bazzi::idleCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Bazzidie") = std::bind(&Bazzi::dieCompeleteEvent, this);
 		mAnimator->Play(L"Bazziready", true);
 		
 		Collider* collider = AddComponent<Collider>();
@@ -86,6 +87,9 @@ namespace ty
 			case ty::Bazzi::eBazziState::Idle:
 				idle();
 				break;
+			case ty::Bazzi::eBazziState::Bubble:
+				bubble();
+				break;
 			default:
 				break;
 			}
@@ -103,8 +107,8 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		//isColl = true;
-		//mState = eBazziState::Death;
+		isColl = true;
+		mState = eBazziState::Death;
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -183,10 +187,10 @@ namespace ty
 			
 			for (int i = 0; i < 5; i++)
 			{
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 50), 0), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 50)), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::Bomb);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::Bomb);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 50), 0), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 50)), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::BombEffect);
 			}
 			
 		}
@@ -196,7 +200,7 @@ namespace ty
 		if (isColl == true)
 		{
 			isColl = false;
-			mAnimator->Play(L"Bazzidie", false);
+			mAnimator->Play(L"Bazzitrap", false);
 		}
 	}
 	void Bazzi::idle()
@@ -236,16 +240,17 @@ namespace ty
 		}
 
 	}
+	void Bazzi::bubble()
+	{
+		//mAnimator->Play(L"Bazzidie", false);
+	}
 	void Bazzi::idleCompleteEvent(/*const Cuphead* this*/) // 애니메이션 동작이 끝나면 실행되도록 할 수 있다.
 	{
-		isReady = true;
-		//mState =
-		//Transform* tr = GetComponent<Transform>();
-		//Scene* curScene = SceneManager::GetActiveScene();
-		////mBomb = new BaseBomb();
-		////mBomb->Initialize(); /*가독성을 위해서 basebomb 생성자쪽에 이니셜 라이즈 붙임*/
-		////mBomb->GetComponent<Transform>()->SetPos(tr->GetPos());
-		////curScene->AddGameObject(mBomb, eLayerType::Bomb);
-		//mState = eBazziState::Move;
+		mState = eBazziState::Bubble;
+		mAnimator->Play(L"Bazzidie", false);
+	}
+	void Bazzi::dieCompeleteEvent()
+	{
+		mState = eBazziState::Idle;
 	}
 }

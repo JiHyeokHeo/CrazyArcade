@@ -36,7 +36,7 @@ namespace ty
 			if (mActiveAnimation->isComplete())
 			{
 				Animator::Events* events
-					= FindEvents(mActiveAnimation->GetName());
+					= FindEvents(mActiveAnimation->GetAnimationName());
 				
 				if (events != nullptr)
 					events->mCompleteEvent();
@@ -150,8 +150,8 @@ namespace ty
 		}
 		mActiveAnimation = FindAnimation(name);
 		mActiveAnimation -> Reset();
-		
 		mbLoop = loop;
+		
 
 		Animator::Events* events
 			= FindEvents(mActiveAnimation->GetAnimationName());
