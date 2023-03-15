@@ -116,8 +116,12 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		mAnimator->Play(L"Bazzitrap", false);
-		mState = eBazziState::BubbleMove;
+		if (isColl == false)
+		{
+			mAnimator->Play(L"Bazzitrap", false);
+			mState = eBazziState::BubbleMove;
+			isColl = true;
+		}
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -191,7 +195,7 @@ namespace ty
 
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
-			mState = eBazziState::Move;
+			mState = eBazziState::Idle;
 			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2(-10.0f, -20.0f), eLayerType::Bomb);
 			
 			for (int i = 0; i < 5; i++)
@@ -208,9 +212,9 @@ namespace ty
 	{
 		if (isColl == true)
 		{
-			isColl = false;
 			mAnimator->Play(L"Bazzitrap", false);
 		}
+
 	}
 	void Bazzi::idle()
 	{
@@ -283,6 +287,14 @@ namespace ty
 	}
 	void Bazzi::revive()
 	{
+		mRandomPosx = rand() % 1000;
+		mRandomPosx = rand() % 900;
+		Transform* tr = GetComponent<Transform>();
+		tr->SetPos(Vector2(mRandomPosx, mRandomPosx));
+		mState = eBazziState::Idle;
+		mAnimator->Play(L"Bazziready", false);
+		mTime = 0;
+		isColl = false;
 	}
 	void Bazzi::nomove()
 	{
@@ -296,9 +308,7 @@ namespace ty
 	}
 	void Bazzi::dieCompeleteEvent()
 	{
-		mTime = 0;
-		mAnimator->Play(L"Bazziready", false);
-		mState = eBazziState::Idle;
+		mState = eBazziState::Revive;
 		
 	}
 }

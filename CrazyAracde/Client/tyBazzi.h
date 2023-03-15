@@ -60,5 +60,8 @@ namespace ty
 		bool isRPressed;
 		bool isUPressed;
 		bool isDPressed;
+		int mRandomPosx;
+		int mRandomPosy;
+
 	};
 }
