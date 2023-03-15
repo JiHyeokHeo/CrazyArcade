@@ -28,23 +28,34 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Downflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Upflow", Vector2(11.76f, 22.84f), 0.16f);
 
-		mAnimator->Play(L"BombDownflow", false);
-		mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
+		mState = eBombEffectState::Idle;
+		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
 
-		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(11.76f, 22.84f));
-		collider->SetSize(Vector2(56.0f, 61.6f));
+		//Collider* collider = AddComponent<Collider>();
+		//collider->SetCenter(Vector2(11.76f, 22.84f));
+		//collider->SetSize(Vector2(56.0f, 61.6f));
+
 
 	}
 	void BombEffect::Update()
 	{
-		GameObject::Update();
-		if (mAnimator->isComplete() == true)
+		mTime += Time::DeltaTime();
+
+		switch (mState)
 		{
-			object::Destroy(this);
+		case ty::BombEffect::eBombEffectState::Idle:
+			idle();
+			break;
+		case ty::BombEffect::eBombEffectState::Bombed:
+			bombed();
+			break;
+		default:
+			break;
 		}
+	
 			
+		GameObject::Update();
 	}
 	void BombEffect::Render(HDC hdc)
 	{
@@ -54,8 +65,23 @@ namespace ty
 	{
 		GameObject::Release();
 	}
-	void BombEffect::bombCompleteEvent()
+	void BombEffect::idle()
 	{
-		int a = 0;
+		if (mTime >= 3.0f)
+		{
+			mAnimator->Play(L"BombDownflow", false);
+			mState = eBombEffectState::Bombed;
+			Collider* collider = AddComponent<Collider>();
+			collider->SetCenter(Vector2(11.76f, 22.84f));
+			collider->SetSize(Vector2(56.0f, 61.6f));
+
+		}
+	}
+	void BombEffect::bombed()
+	{
+		if (mAnimator->isComplete() == true)
+		{
+			object::Destroy(this);
+		}
 	}
 }

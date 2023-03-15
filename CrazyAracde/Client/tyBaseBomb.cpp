@@ -31,16 +31,18 @@ namespace ty
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->Play(L"BombIdle", true);
 		////mAnimator->CreateAnimation(L"bomb", BombImage, Vector2::Zero, 2, 1, 2, Vector2(11.76f, 22.84f), 0.16);
 		////mAnimator->Play(L"bomb", true);
 		//mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
-		//mAnimator->Play(L"BombIdle", true);
+		mAnimator->Play(L"BombIdle", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(12.76f, 22.84f));
 		collider->SetSize(Vector2(56.0f, 61.6f));
-		
+		//Collider* collider = AddComponent<Collider>();
+		//collider->SetCenter(Vector2(12.76f, 22.84f));
+		//collider->SetSize(Vector2(56.0f, 61.6f));
+		mState = eBombState::Idle;
 
 		//GameObject::Initialize();
 	}
@@ -80,8 +82,8 @@ namespace ty
 		default:
 			break;
 		}
-
 		GameObject::Update();
+
     }
 	
 	void BaseBomb::Render(HDC hdc)
@@ -104,24 +106,16 @@ namespace ty
 
 	void BaseBomb::bombed()
 	{
-		
+		object::Destroy(this);
 	}
 
 	void BaseBomb::idle()
 	{
-		Transform* tr = GetComponent<Transform>();
-		if (mTime >= 3)
+		if (mTime >= 3.0f)
 		{
-			//for (int i = 1; i < 7; i++)
-			//{
-			//	object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 50), 0), eLayerType::Bomb);
-			//	object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 50)), eLayerType::Bomb);
-			//	object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::Bomb);
-			//	object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::Bomb);
-			//	mTime = 0;
-			//}
-		object::Destroy(this);
+			object::Destroy(this);
 		}
+			
 	}
 
 }

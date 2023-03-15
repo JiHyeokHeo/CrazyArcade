@@ -8,6 +8,11 @@ namespace ty
 	class BombEffect : public GameObject
 	{
 	public:
+		enum class eBombEffectState
+		{
+			Idle,
+			Bombed,
+		};
 		BombEffect();
 		~BombEffect();
 
@@ -17,11 +22,13 @@ namespace ty
 		virtual void Release() override;
 
 	private:
-		void bombCompleteEvent();
+		void idle();
+		void bombed();
 
 	private:
 		Animator* mAnimator;
 		float mTime;
+		eBombEffectState mState;
 	};
 }
 

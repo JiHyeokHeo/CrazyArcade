@@ -70,7 +70,7 @@ namespace ty
 		mTime += Time::DeltaTime();
 
 		//delete mBomb;
-		if (isReady)
+		if (true)
 		{
 			switch (mState)
 			{
