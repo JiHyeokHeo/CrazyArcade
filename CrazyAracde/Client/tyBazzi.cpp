@@ -51,9 +51,9 @@ namespace ty
 		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2::Zero,  0.1);
 		
 
-		mAnimator->GetCompleteEvent(L"Bazzitrap") = std::bind(&Bazzi::idleCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Bazzitrap") = std::bind(&Bazzi::trapCompleteEvent, this);
 		mAnimator->GetCompleteEvent(L"Bazzidie") = std::bind(&Bazzi::dieCompeleteEvent, this);
-		mAnimator->Play(L"Bazziready", true);
+		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(-23.0f, -55.0f));
@@ -71,7 +71,7 @@ namespace ty
 		mTime += Time::DeltaTime();
 
 		//delete mBomb;
-		if (true)
+		if (mTime >= 1.5f)
 		{
 			switch (mState)
 			{
@@ -90,6 +90,15 @@ namespace ty
 			case ty::Bazzi::eBazziState::Bubble:
 				bubble();
 				break;
+			case ty::Bazzi::eBazziState::BubbleMove:
+				bubblemove();
+				break;
+			case ty::Bazzi::eBazziState::Revive:
+				revive();
+				break;
+			case ty::Bazzi::eBazziState::NoMove:
+				nomove();
+				break;
 			default:
 				break;
 			}
@@ -107,8 +116,8 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		isColl = true;
-		mState = eBazziState::Death;
+		mAnimator->Play(L"Bazzitrap", false);
+		mState = eBazziState::BubbleMove;
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -244,13 +253,52 @@ namespace ty
 	{
 		//mAnimator->Play(L"Bazzidie", false);
 	}
-	void Bazzi::idleCompleteEvent(/*const Cuphead* this*/) // 애니메이션 동작이 끝나면 실행되도록 할 수 있다.
+	void Bazzi::bubblemove()
 	{
-		mState = eBazziState::Bubble;
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+
+		if (Input::GetKey(eKeyCode::LEFT))
+		{
+			//isLPressed = true;
+			pos.x -= 50.0f * Time::DeltaTime();
+		}
+		else if (Input::GetKey(eKeyCode::RIGHT))
+		{
+			//isRPressed = true;
+			pos.x += 50.0f * Time::DeltaTime();
+		}
+		else if (Input::GetKey(eKeyCode::UP))
+		{
+			//isUPressed = true;
+			pos.y -= 50.0f * Time::DeltaTime();
+		}
+		else if (Input::GetKey(eKeyCode::DOWN))
+		{
+			//isDPressed = true;
+			pos.y += 50.0f * Time::DeltaTime();
+		}
+
+		tr->SetPos(pos);
+	}
+	void Bazzi::revive()
+	{
+	}
+	void Bazzi::nomove()
+	{
+		
+	}
+	void Bazzi::trapCompleteEvent(/*const Cuphead* this*/) // 애니메이션 동작이 끝나면 실행되도록 할 수 있다.
+	{
+		mState = eBazziState::NoMove;
 		mAnimator->Play(L"Bazzidie", false);
+		
 	}
 	void Bazzi::dieCompeleteEvent()
 	{
+		mTime = 0;
+		mAnimator->Play(L"Bazziready", false);
 		mState = eBazziState::Idle;
+		
 	}
 }
