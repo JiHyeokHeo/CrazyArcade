@@ -14,6 +14,8 @@ namespace ty
 		void Update();
 		void Render();
 		
+		void SetMenuBar(bool power);
+
 		//void Release();
 
 		HWND GetHwnd() { return mHwnd; }
@@ -28,6 +30,7 @@ namespace ty
 	private:
 		HWND mHwnd;
 		HDC mHdc;
+		HMENU mMenubar;
 
 		// 백버퍼 캐릭터가 100개가 되면 DC도 100개가 필요!
 		HBITMAP mBackBuffer;

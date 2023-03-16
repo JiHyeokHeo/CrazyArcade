@@ -18,9 +18,11 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 ty::Application application;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
-ATOM                MyRegisterClass(HINSTANCE hInstance);
+ATOM                MyRegisterClass(HINSTANCE hInstance, LPCWSTR name, WNDPROC proc);
+
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK    AtlasWndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 
@@ -42,7 +44,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // CALLBACK으로 써도 된다.
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_CLIENT, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+
+    // main window
+    MyRegisterClass(hInstance, szWindowClass, WndProc);
+
+    // tile window
+    MyRegisterClass(hInstance, L"AtlasWindow", AtlasWndProc);
 
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
@@ -97,22 +104,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // CALLBACK으로 써도 된다.
 //
 //  용도: 창 클래스를 등록합니다.
 //
-ATOM MyRegisterClass(HINSTANCE hInstance)
+ATOM MyRegisterClass(HINSTANCE hInstance, LPCWSTR name, WNDPROC proc)
 {
     WNDCLASSEXW wcex; // 객체
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
     wcex.style          = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc    = WndProc;
+    wcex.lpfnWndProc    = proc;
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CLIENT));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = NULL;
-    wcex.lpszClassName  = szWindowClass;
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_CLIENT);
+    wcex.lpszClassName  = name;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
@@ -136,7 +143,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam)\
 
    HWND hWnd = CreateWindowW(szWindowClass, L"Crazy Arcade", WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+      0, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+
+   HWND hWnd2 = CreateWindowW(L"AtlasWindow", L"Tile Tool", WS_OVERLAPPEDWINDOW,
+       1600, 0, 500, 500, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -145,6 +155,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   ShowWindow(hWnd2, nCmdShow);
+   UpdateWindow(hWnd2);
 
    application.Initialize(hWnd);
    //SetTimer(hWnd, 0, 100, nullptr);
@@ -190,7 +203,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             HDC hdc = BeginPaint(hWnd, &ps);
 
 
-            
+            //Ellipse(hdc, 500, 500, 600, 700);
+            //RoundRect(hdc, 200, 200, 300, 300, 500, 500);
 
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);

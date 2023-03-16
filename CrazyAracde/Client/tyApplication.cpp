@@ -1,3 +1,4 @@
+#include "Resource.h"
 #include "tyApplication.h"
 #include "tySceneManager.h"
 #include "tyTime.h"
@@ -32,7 +33,7 @@ namespace ty
 		//GetClientRect(mHwnd, &rect);
 		// 윈도우 크기 변경및 출력 설정
 		SetWindowPos(mHwnd
-			, nullptr, 100, 50
+			, nullptr, 0, 0
 			, rect.right - rect.left
 			, rect.bottom - rect.top
 			, 0);
@@ -40,6 +41,8 @@ namespace ty
 
 		mBackBuffer = CreateCompatibleBitmap(mHdc, mWidth, mHeight);
 		mBackHDC = CreateCompatibleDC(mHdc);
+		mMenubar = LoadMenu(nullptr, MAKEINTRESOURCE(IDI_CLIENT));
+
 		HBITMAP defaultBitmap = (HBITMAP)SelectObject(mBackHDC, mBackBuffer);
 		DeleteObject(defaultBitmap);
 
@@ -47,6 +50,8 @@ namespace ty
 		Input::Initialize();
 6;		SceneManager::Initialize();
 		Camera::Initialize();
+
+		SetMenuBar(false);
 	}
 
 	void Application::Run()
@@ -79,6 +84,22 @@ namespace ty
 		// 백버퍼에 있는 그림을 원본 버퍼에 그려야 한다. // 원본을 가져다가 복사
 		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHDC, 0, 0, SRCCOPY);
 
+	}
+
+	void Application::SetMenuBar(bool power)
+	{
+		SetMenu(mHwnd, mMenubar);
+
+		RECT rect = { 0,0, mWidth, mHeight };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, power);
+
+		// 윈도우 크기 변경및 출력 설정
+		SetWindowPos(mHwnd
+			, nullptr, 0, 0
+			, rect.right - rect.left
+			, rect.bottom - rect.top
+			, 0);
+		ShowWindow(mHwnd, true);
 	}
 
 	void Application::clear()

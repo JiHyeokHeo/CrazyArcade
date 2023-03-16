@@ -5,6 +5,7 @@
 #include "tyLogoScene.h"
 #include "tyCollisionManager.h"
 #include "tyCamera.h"
+#include "tyToolScene.h"
 
 namespace ty
 {
@@ -19,7 +20,7 @@ namespace ty
 		mScenes[(UINT)eSceneType::Login] = new LoginScene();
 		mScenes[(UINT)eSceneType::Lobby] = new LobbyScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene(); 
-		
+		mScenes[(UINT)eSceneType::Tool] = new ToolScene();
 		
 		//mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
 		
@@ -32,7 +33,7 @@ namespace ty
 			
  			scene->Initialize();
 		}
-		mActiveScene = mScenes[(UINT)eSceneType::Lobby];
+		mActiveScene = mScenes[(UINT)eSceneType::Tool];
 	}
 
 	void SceneManager::Update()

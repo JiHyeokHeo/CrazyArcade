@@ -18,3 +18,6 @@
 
 #pragma comment(lib, "Msimg32.lib")
 
+
+#define TILE_SIZE_X 58
+#define TILE_SIZE_Y 58

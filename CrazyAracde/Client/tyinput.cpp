@@ -1,4 +1,7 @@
 #include "tyinput.h"
+#include "tyApplication.h"
+
+extern ty::Application application;
 
 namespace ty
 {
@@ -11,6 +14,7 @@ namespace ty
 	};
 
 	std::vector<Input::Key> Input::mKeys; //
+	Vector2 Input::mMousePos = Vector2::Zero;
 
 	void Input::Initialize()
 	{
@@ -27,26 +31,53 @@ namespace ty
 
 	void Input::Update()
 	{
-		for (size_t i = 0; i < (UINT)eKeyCode::END; i++)
+		if (GetFocus())  // 함수 내일 한번 검색해보기 // 3월 17일
 		{
-			if (GetAsyncKeyState(ASCII[i]) & 0x8000)
+			for (size_t i = 0; i < (UINT)eKeyCode::END; i++)
 			{
-				// 이전 프레임에도 눌려 있었다.
-				if (mKeys[i].bPressed)
-					mKeys[i].state = eKeyState::Pressed;
-				else
-					mKeys[i].state = eKeyState::Down;
-				
-				mKeys[i].bPressed = true;
+				if (GetAsyncKeyState(ASCII[i]) & 0x8000)
+				{
+					// 이전 프레임에도 눌려 있었다.
+					if (mKeys[i].bPressed)
+						mKeys[i].state = eKeyState::Pressed;
+					else
+						mKeys[i].state = eKeyState::Down;
+
+					mKeys[i].bPressed = true;
+				}
+				else // 현재 프레임에 키가 눌려있지 않다.
+				{
+					// 이전 프레임에 내 키가 눌려있었다.
+					if (mKeys[i].bPressed)
+						mKeys[i].state = eKeyState::Up;
+					else
+						mKeys[i].state = eKeyState::None;
+
+					mKeys[i].bPressed = false;
+				}
 			}
-			else // 현재 프레임에 키가 눌려있지 않다.
+
+			POINT mousePos = {};
+			GetCursorPos(&mousePos);
+
+			ScreenToClient(application.GetHwnd(), &mousePos);
+			mMousePos.x = mousePos.x;
+			mMousePos.y = mousePos.y;
+		}
+		else 
+		{
+			for (size_t i = 0; i < (UINT)eKeyCode::END; i++)
 			{
-				// 이전 프레임에 내 키가 눌려있었다.
-				if (mKeys[i].bPressed)
+				if (eKeyState::Down == mKeys[i].state
+					|| eKeyState::Pressed == mKeys[i].state)
+				{
 					mKeys[i].state = eKeyState::Up;
-				else
+				}		
+				else if (eKeyState::Up == mKeys[i].state)
+				{
 					mKeys[i].state = eKeyState::None;
-				
+				}
+
 				mKeys[i].bPressed = false;
 			}
 		}
