@@ -25,7 +25,7 @@ namespace ty
 		Vector2 GetPos() { return mPos; }
 		Vector2 GetSize() { return mSize; }
 		UINT GetID() { return mID; }
-
+		
 	private:
 		static UINT ColliderNumber;
 		UINT mCollisionCount;

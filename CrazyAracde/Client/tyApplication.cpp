@@ -45,7 +45,7 @@ namespace ty
 
 		Time::Initialize();
 		Input::Initialize();
-;		SceneManager::Initialize();
+6;		SceneManager::Initialize();
 		Camera::Initialize();
 	}
 

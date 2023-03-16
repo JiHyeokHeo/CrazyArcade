@@ -20,12 +20,13 @@ namespace ty
 	}
 	void Collider::Initialize()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		mPos = tr->GetPos() + mCenter;
 		
 	}
 	void Collider::Update()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		mCenter = Vector2(10.0f, 0.0f);
 		mPos = tr->GetPos() + mCenter;
 	}
 	void Collider::Render(HDC hdc)

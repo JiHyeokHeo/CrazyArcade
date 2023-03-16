@@ -140,6 +140,7 @@
     <ClInclude Include="tyBossMonster.h" />
     <ClInclude Include="tyCamera.h" />
     <ClInclude Include="tyCollider.h" />
+    <ClInclude Include="tyColliderPosControl.h" />
     <ClInclude Include="tyCollisionManager.h" />
     <ClInclude Include="tyLobby_BG.h" />
     <ClInclude Include="tyLogoScene.h" />

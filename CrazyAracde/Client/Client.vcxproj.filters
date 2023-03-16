@@ -86,6 +86,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Engine\Component\Collider\ColliderPosControl">
+      <UniqueIdentifier>{85f8875e-c529-4361-877a-43c27d476edd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -228,6 +231,9 @@
     </ClInclude>
     <ClInclude Include="tyRigidBody.h">
       <Filter>Engine\Component\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="tyColliderPosControl.h">
+      <Filter>Engine\Component\Collider\ColliderPosControl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
