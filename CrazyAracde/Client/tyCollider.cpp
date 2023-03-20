@@ -14,6 +14,7 @@ namespace ty
 		, mID(ColliderNumber++)
 		, mCollisionCount(0)
 	{
+		
 	}
 	Collider::~Collider()
 	{

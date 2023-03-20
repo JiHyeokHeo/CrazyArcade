@@ -33,7 +33,7 @@ namespace ty
 			
  			scene->Initialize();
 		}
-		mActiveScene = mScenes[(UINT)eSceneType::Tool];
+		mActiveScene = mScenes[(UINT)eSceneType::Logo];
 	}
 
 	void SceneManager::Update()

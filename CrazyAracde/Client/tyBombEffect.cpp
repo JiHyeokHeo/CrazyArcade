@@ -32,14 +32,10 @@ namespace ty
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
 
-		//Collider* collider = AddComponent<Collider>();
-		//collider->SetCenter(Vector2(11.76f, 22.84f));
-		//collider->SetSize(Vector2(56.0f, 61.6f));
-
-
 	}
 	void BombEffect::Update()
 	{
+		GameObject::Update();
 		mTime += Time::DeltaTime();
 
 		switch (mState)
@@ -55,7 +51,6 @@ namespace ty
 		}
 	
 			
-		GameObject::Update();
 	}
 	void BombEffect::Render(HDC hdc)
 	{
@@ -74,7 +69,7 @@ namespace ty
 			Collider* collider = AddComponent<Collider>();
 			collider->SetCenter(Vector2(11.76f, 22.84f));
 			collider->SetSize(Vector2(56.0f, 61.6f));
-
+			mTime = 0;
 		}
 	}
 	void BombEffect::bombed()

@@ -19,9 +19,10 @@ namespace ty
 		virtual void OnCollisionStay(Collider* other);
 		virtual void OnCollisionExit(Collider* other);
 
-		void SetCenter(Vector2 center) { mCenter = center; };
-		void SetSize(Vector2 size) { mSize = size; };
+		void SetCenter(Vector2 center) { mCenter = center; }
+		void SetSize(Vector2 size) { mSize = size; }
 		
+
 		Vector2 GetPos() { return mPos; }
 		Vector2 GetSize() { return mSize; }
 		UINT GetID() { return mID; }

@@ -62,11 +62,10 @@ namespace ty
 		mState = eBazziState::Idle;
 
 		//mAnimator->Play(L"downIlde", true);
-		GameObject::Initialize();
+		/*GameObject::Initialize();*/
 	}
 	void Bazzi::Update()
 	{
-		GameObject::Update();
 
 		mTime += Time::DeltaTime();
 
@@ -103,6 +102,7 @@ namespace ty
 				break;
 			}
 		}
+		GameObject::Update();
 
 	}
 	void Bazzi::Render(HDC hdc)
@@ -185,17 +185,15 @@ namespace ty
 			mState = eBazziState::Shoot;
 			//mAnimator->Play(L"downIdle", true);
 		}
-
 		tr->SetPos(pos);
 	}
 	void Bazzi::shoot()
  	{
 		Transform* tr = GetComponent<Transform>();
-		
 
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
-			mState = eBazziState::Idle;
+			mState = eBazziState::Move;
 			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2(-10.0f, -20.0f), eLayerType::Bomb);
 			
 			for (int i = 0; i < 5; i++)
@@ -205,7 +203,6 @@ namespace ty
 				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::BombEffect);
 				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::BombEffect);
 			}
-			
 		}
 	}
 	void Bazzi::death()

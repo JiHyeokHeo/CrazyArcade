@@ -21,27 +21,17 @@ namespace ty
 	}
 	void BaseBomb::Initialize()
 	{
-		//maxBomb++;
     	Transform* tr = GetComponent<Transform>();
-		//tr->SetPos(Vector2(400.0f, 400.0f));
 		tr->SetScale(Vector2(1.1f, 1.1f));
-		////
-		////Image* BombImage = Resources::Load<Image>(L"Bomb", L"..\\Resources\\Bomb\\bomb.bmp");
-		//mAnimator = AddComponent<Animator>();
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
-		////mAnimator->CreateAnimation(L"bomb", BombImage, Vector2::Zero, 2, 1, 2, Vector2(11.76f, 22.84f), 0.16);
-		////mAnimator->Play(L"bomb", true);
-		//mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->Play(L"BombIdle", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(12.76f, 22.84f));
 		collider->SetSize(Vector2(56.0f, 61.6f));
-		//Collider* collider = AddComponent<Collider>();
-		//collider->SetCenter(Vector2(12.76f, 22.84f));
-		//collider->SetSize(Vector2(56.0f, 61.6f));
+
 		mState = eBombState::Idle;
 
 		//GameObject::Initialize();
@@ -49,6 +39,7 @@ namespace ty
 
 	void BaseBomb::Update()
 	{
+		GameObject::Update();
 		Transform* tr = GetComponent<Transform>();
 		//Vector2 pos = tr->GetPos(); //+ Vector2::Vector2(6.0f, 10.0f); // 이쪽에서 뭔가 물풍선 밀거나 하는 조건을 걸 수 있을듯함
 		////pos.x += 100.0f * Time::DeltaTime();
@@ -82,7 +73,6 @@ namespace ty
 		default:
 			break;
 		}
-		GameObject::Update();
 
     }
 	
@@ -113,9 +103,9 @@ namespace ty
 	{
 		if (mTime >= 3.0f)
 		{
-			object::Destroy(this);
-		}
+			mState = eBombState::Bombed;
 			
+		}
 	}
 
 }
