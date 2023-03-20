@@ -185,6 +185,24 @@ namespace ty
 			mState = eBazziState::Shoot;
 			//mAnimator->Play(L"downIdle", true);
 		}
+
+		if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false)
+		{
+			mAnimator->Play(L"Bazzileft", true);
+		}
+		if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false)
+		{
+			mAnimator->Play(L"Bazziright", true);
+		}
+		if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false)
+		{
+			mAnimator->Play(L"Bazziup", true);
+		}
+		if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false)
+		{
+			mAnimator->Play(L"Bazzidown", true);
+		}
+
 		tr->SetPos(pos);
 	}
 	void Bazzi::shoot()
