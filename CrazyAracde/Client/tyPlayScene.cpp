@@ -7,8 +7,9 @@
 #include "tyTransform.h"
 #include "tyCamera.h"
 #include "tyObject.h"
-#include "tyBossMonster.h"
+#include "tySealBoss.h"
 #include "tyAlphaBlender.h"
+#include "tyPirateBoss.h"
 
 namespace ty
 {
@@ -24,7 +25,8 @@ namespace ty
 		mBazzi = object::Instantiate<Bazzi>(Vector2(400.0f, 400.0f), eLayerType::Player);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
-		object::Instantiate<BossMonster>(Vector2(110.0f, 300.0f), eLayerType::Monster);
+		object::Instantiate<PirateBoss>(Vector2(500.0f, 300.0f), eLayerType::Monster);
+		object::Instantiate<SealBoss>(Vector2(800.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(300.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
 

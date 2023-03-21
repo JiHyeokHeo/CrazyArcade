@@ -89,6 +89,9 @@
     <Filter Include="Engine\Component\Collider\ColliderPosControl">
       <UniqueIdentifier>{85f8875e-c529-4361-877a-43c27d476edd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Monster\Boss">
+      <UniqueIdentifier>{6233ef8d-8b7d-4993-b3cb-643261852678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -211,9 +214,6 @@
     <ClInclude Include="tyBlock.h">
       <Filter>Contents\Block</Filter>
     </ClInclude>
-    <ClInclude Include="tyBossMonster.h">
-      <Filter>Contents\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="tyBombEffect.h">
       <Filter>Contents\Bomb\BombEffect</Filter>
     </ClInclude>
@@ -239,6 +239,12 @@
     <ClInclude Include="tyToolScene.h" />
     <ClInclude Include="TileBomb.h">
       <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="tySealBoss.h">
+      <Filter>Contents\Monster\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateBoss.h">
+      <Filter>Contents\Monster\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -351,9 +357,6 @@
     <ClCompile Include="tyBlock.cpp">
       <Filter>Contents\Block</Filter>
     </ClCompile>
-    <ClCompile Include="tyBossMonster.cpp">
-      <Filter>Contents\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="tyBombEffect.cpp">
       <Filter>Contents\Bomb\BombEffect</Filter>
     </ClCompile>
@@ -377,5 +380,11 @@
     </ClCompile>
     <ClCompile Include="tyTile.cpp" />
     <ClCompile Include="tyToolScene.cpp" />
+    <ClCompile Include="tySealBoss.cpp">
+      <Filter>Contents\Monster\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateBoss.cpp">
+      <Filter>Contents\Monster\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

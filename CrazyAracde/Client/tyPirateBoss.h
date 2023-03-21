@@ -5,20 +5,22 @@
 namespace ty
 {
 	class Animator;
-	class Monster : public GameObject
+	class PirateBoss : public GameObject
 	{
 	public:
-		enum class eMonsterState
+		enum class ePirateMonsterState
 		{
 			Idle,
 			Left,
 			Right,
 			Up,
 			Down,
+			Attack,
+			Hit,
 			Die,
 		};
-		Monster();
-		~Monster();
+		PirateBoss();
+		~PirateBoss();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -35,14 +37,19 @@ namespace ty
 		void right();
 		void up();
 		void down();
+		void hit();
 		void die();
 		void animationCtr();
 
 	private:
 		Animator* mAnimator;
-		eMonsterState mState;
+		ePirateMonsterState mState;
 		float mTime;
 		Vector2 mPos;
 		bool isColl;
+		int Hp;
+		float mInvincibility;
 	};
 }
+
+

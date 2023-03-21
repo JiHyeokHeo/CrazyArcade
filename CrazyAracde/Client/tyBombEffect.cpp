@@ -26,11 +26,20 @@ namespace ty
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Downflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\DownIdleflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Upflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\UpIdleflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Rightflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\RightIdleflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Leftflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\LeftIdleflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
+
 
 		mState = eBombEffectState::Idle;
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
+		GameObject::Initialize();
 
 	}
 	void BombEffect::Update()

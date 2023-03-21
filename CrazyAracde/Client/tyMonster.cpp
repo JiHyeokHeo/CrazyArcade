@@ -72,7 +72,7 @@ namespace ty
 		
 		tr->SetPos(mPos);
 
-		if (mTime >= 1)
+		if (mTime >= 1 && mState != eMonsterState::Die)
 		{
 			mState = eMonsterState::Idle;
 			mTime = 0;
@@ -89,8 +89,13 @@ namespace ty
 	}
 	void Monster::OnCollisionEnter(Collider* other)
 	{
-		mAnimator->Play(L"PirateDie", false);
-		mState = eMonsterState::Die;
+		if (isColl == false)
+		{
+			mAnimator->Play(L"PirateDie", false);
+			mState = eMonsterState::Die;
+			isColl = true;
+		}
+
 	}
 	void Monster::OnCollisionStay(Collider* other)
 	{
@@ -126,7 +131,7 @@ namespace ty
 		mPos.y += 50.0f * Time::DeltaTime();
 	}
 	void Monster::die()
-	{
+ 	{
 		if (mAnimator->isComplete() == true)
 		{
 			object::Destroy(this);

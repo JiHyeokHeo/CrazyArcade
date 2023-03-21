@@ -139,7 +139,7 @@
     <ClInclude Include="tyBaseBomb.h" />
     <ClInclude Include="tyBlock.h" />
     <ClInclude Include="tyBombEffect.h" />
-    <ClInclude Include="tyBossMonster.h" />
+    <ClInclude Include="tySealBoss.h" />
     <ClInclude Include="tyCamera.h" />
     <ClInclude Include="tyCollider.h" />
     <ClInclude Include="tyColliderPosControl.h" />
@@ -149,6 +149,7 @@
     <ClInclude Include="tyLogo_BG.h" />
     <ClInclude Include="tyMonster.h" />
     <ClInclude Include="tyObject.h" />
+    <ClInclude Include="tyPirateBoss.h" />
     <ClInclude Include="tyPlag_BG.h" />
     <ClInclude Include="tyComponent.h" />
     <ClInclude Include="tyEntity.h" />
@@ -189,7 +190,7 @@
     <ClCompile Include="tyBaseBomb.cpp" />
     <ClCompile Include="tyBlock.cpp" />
     <ClCompile Include="tyBombEffect.cpp" />
-    <ClCompile Include="tyBossMonster.cpp" />
+    <ClCompile Include="tySealBoss.cpp" />
     <ClCompile Include="tyCamera.cpp" />
     <ClCompile Include="tyCollider.cpp" />
     <ClCompile Include="tyCollisionManager.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="tyLogoScene.cpp" />
     <ClCompile Include="tyLogo_BG.cpp" />
     <ClCompile Include="tyMonster.cpp" />
+    <ClCompile Include="tyPirateBoss.cpp" />
     <ClCompile Include="tyPlag_BG.cpp" />
     <ClCompile Include="tyComponent.cpp" />
     <ClCompile Include="tyEntity.cpp" />

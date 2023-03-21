@@ -5,16 +5,21 @@
 namespace ty
 {
 	class Animator;
-	class BossMonster : public GameObject
+	class SealBoss : public GameObject
 	{
 	public:
-		enum class eMonsterState
+		enum class eSealBossState
 		{
 			Idle,
-			Damaged,
+			Left,
+			Right,
+			Up,
+			Down,
+			Hit,
+			Die,
 		};
-		BossMonster();
-		~BossMonster();
+		SealBoss();
+		~SealBoss();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -26,8 +31,23 @@ namespace ty
 		virtual void OnCollisionExit(class Collider* other) override;
 
 	private:
-		Animator* mAnimator;
-		eMonsterState mState;
+		void idle();
+		void left();
+		void right();
+		void up();
+		void down();
+		void hit();
+		void die();
+		void animationCtr();
+
+	private:
+		Animator* mmAnimator;
+		eSealBossState mState;
+		float mTime;
+		Vector2 mPos;
+		bool isColl;
+		int Hp;
+		float mInvincibility;
 	};
 }
 

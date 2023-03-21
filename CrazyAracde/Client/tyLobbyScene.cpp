@@ -5,7 +5,7 @@
 #include "tyTransform.h"
 #include "tyCamera.h"
 #include "tyObject.h"
-#include "tyBossMonster.h"
+#include "tySealBoss.h"
 #include "tyAlphaBlender.h"
 
 namespace ty

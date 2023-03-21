@@ -34,7 +34,7 @@ namespace ty
 
 		mState = eBombState::Idle;
 
-		//GameObject::Initialize();
+		GameObject::Initialize();
 	}
 
 	void BaseBomb::Update()
