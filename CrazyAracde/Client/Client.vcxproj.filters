@@ -235,6 +235,11 @@
     <ClInclude Include="tyColliderPosControl.h">
       <Filter>Engine\Component\Collider\ColliderPosControl</Filter>
     </ClInclude>
+    <ClInclude Include="tyTile.h" />
+    <ClInclude Include="tyToolScene.h" />
+    <ClInclude Include="TileBomb.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -370,5 +375,7 @@
     <ClCompile Include="tyRigidBody.cpp">
       <Filter>Engine\Component\RigidBody</Filter>
     </ClCompile>
+    <ClCompile Include="tyTile.cpp" />
+    <ClCompile Include="tyToolScene.cpp" />
   </ItemGroup>
 </Project>

@@ -53,7 +53,7 @@ namespace ty
 		Vector2 renderPos = Camera::CalculatePos(tr->GetPos());
 
 		TransparentBlt(hdc
-			, renderPos.x, renderPos.y
+			, renderPos.x + 30, renderPos.y + 60           // x좌표 30, y좌표 60은 플레이 화면 위치
 			, TILE_SIZE_X, TILE_SIZE_Y
 			, mAtlas->GetHdc()
 			, TILE_SIZE_X * mX, TILE_SIZE_Y * mY

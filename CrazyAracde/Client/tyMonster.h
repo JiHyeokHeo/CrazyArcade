@@ -14,6 +14,7 @@ namespace ty
 			Left,
 			Right,
 			Up,
+			Die,
 			Down,
 		};
 		Monster();
@@ -34,7 +35,7 @@ namespace ty
 		void right();
 		void up();
 		void down();
-
+		void die();
 		void animationCtr();
 
 	private:

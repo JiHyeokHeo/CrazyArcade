@@ -86,7 +86,7 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 
         // 윈도우 크기 변경및 출력 설정
         SetWindowPos(hWnd
-            , nullptr, 1200, 0
+            , nullptr, 1300, 0
             , rect.right - rect.left
             , rect.bottom - rect.top
             , 0);

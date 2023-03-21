@@ -21,7 +21,8 @@ namespace ty
 	void LoginScene::Update()
 	{
 		Scene::Update();
-		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+		Vector2 temp = Input::GetMousePos();
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 78 && temp.y <= 302 && temp.x >= 480 && temp.x <= 700)
 		{
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}

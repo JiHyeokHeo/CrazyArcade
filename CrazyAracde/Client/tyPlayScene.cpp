@@ -24,9 +24,9 @@ namespace ty
 		mBazzi = object::Instantiate<Bazzi>(Vector2(400.0f, 400.0f), eLayerType::Player);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
-		object::Instantiate<BossMonster>(Vector2(110.0f, 300.0f), eLayerType::Player);
-		object::Instantiate<Monster>(Vector2(300.0f, 400.0f), eLayerType::Player);
-		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Player);
+		object::Instantiate<BossMonster>(Vector2(110.0f, 300.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(300.0f, 400.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
 
 
 		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
@@ -56,6 +56,7 @@ namespace ty
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::BombEffect, true);
 		
 	}
 	void PlayScene::OnExit()

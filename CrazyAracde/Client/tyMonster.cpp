@@ -30,13 +30,14 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Right", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Left", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Down", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Die", Vector2::Zero, 0.1f);
 		mAnimator->Play(L"PirateDown", true);
 		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2::Zero);
 		collider->SetSize(Vector2(44.0f, 44.0f));
 		mState = eMonsterState::Idle;
-		//GameObject::Initialize();
+		GameObject::Initialize();
 	}
 	void Monster::Update()
 	{
@@ -62,6 +63,9 @@ namespace ty
 		case ty::Monster::eMonsterState::Down:
 			down();
 			break;
+		case ty::Monster::eMonsterState::Die:
+			die();
+			break;
 		default:
 			break;
 		}
@@ -85,6 +89,8 @@ namespace ty
 	}
 	void Monster::OnCollisionEnter(Collider* other)
 	{
+		mAnimator->Play(L"PirateDie", false);
+		mState = eMonsterState::Die;
 	}
 	void Monster::OnCollisionStay(Collider* other)
 	{
@@ -118,6 +124,13 @@ namespace ty
 	{
 		
 		mPos.y += 50.0f * Time::DeltaTime();
+	}
+	void Monster::die()
+	{
+		if (mAnimator->isComplete() == true)
+		{
+			object::Destroy(this);
+		}
 	}
 	void Monster::animationCtr()
 	{

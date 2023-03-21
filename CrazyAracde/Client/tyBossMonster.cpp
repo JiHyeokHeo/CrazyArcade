@@ -42,6 +42,7 @@ namespace ty
 		collider->SetCenter(Vector2::Zero);
 		collider->SetSize(Vector2(44.0f, 44.0f));
 		mState = eMonsterState::Idle;
+		GameObject::Initialize();
 	}
 	void BossMonster::Update()
 	{

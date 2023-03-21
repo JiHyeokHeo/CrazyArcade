@@ -23,12 +23,12 @@ namespace ty
 	}
 	void LobbyScene::Update()
 	{
-
-		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+		Scene::Update();
+		Vector2 temp = Input::GetMousePos();
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 750 && temp.y <= 820 && temp.x >= 780 && temp.x <= 1050)
 		{
 			SceneManager::LoadScene(eSceneType::Play);
 		}
-		Scene::Update();
 	}
 	void LobbyScene::Render(HDC hdc)
 	{
@@ -40,7 +40,7 @@ namespace ty
 	}
 	void LobbyScene::OnEnter()
 	{
-		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
+		mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 	}
 	void LobbyScene::OnExit()
 	{

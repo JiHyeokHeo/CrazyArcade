@@ -62,7 +62,7 @@ namespace ty
 		mState = eBazziState::Idle;
 
 		//mAnimator->Play(L"downIlde", true);
-		/*GameObject::Initialize();*/
+		GameObject::Initialize();
 	}
 	void Bazzi::Update()
 	{
