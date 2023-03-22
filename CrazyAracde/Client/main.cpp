@@ -143,7 +143,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam)\
 
    HWND hWnd = CreateWindowW(szWindowClass, L"Crazy Arcade", WS_OVERLAPPEDWINDOW,
-      0, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+      0, 0, 1200, 900, nullptr, nullptr, hInstance, nullptr);
 
    HWND hWnd2 = CreateWindowW(L"AtlasWindow", L"Tile Tool", WS_OVERLAPPEDWINDOW,
        1200, 0, 500, 500, nullptr, nullptr, hInstance, nullptr);
@@ -161,6 +161,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    application.Initialize(hWnd);
    application.SetToolHwnd(hWnd2);
+  /* application.SetToolHwnd(hWnd2);*/
    //SetTimer(hWnd, 0, 100, nullptr);
 
    return TRUE;

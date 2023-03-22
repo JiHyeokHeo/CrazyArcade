@@ -38,7 +38,7 @@ namespace ty
 		int maxRow = mAtlas->GetHeight() / TILE_SIZE_Y;
 
 		mY = index / maxCol; // 이걸 활용해서 콜라이더 관련된걸 건드릴수 있다. 예를 들면 충돌쪽 또는 내 폭탄이랑도 관련되서 응용할수 있을꺼라고 유추해본다.
-		mX = index & maxCol;
+		mX = index % maxCol;
 	}
 	void Tile::Update()
 	{
@@ -53,13 +53,12 @@ namespace ty
 		Vector2 renderPos = Camera::CalculatePos(tr->GetPos());
 
 		TransparentBlt(hdc
-			, renderPos.x + 30, renderPos.y + 60           // x좌표 30, y좌표 60은 플레이 화면 위치
+			, renderPos.x, renderPos.y
 			, TILE_SIZE_X, TILE_SIZE_Y
 			, mAtlas->GetHdc()
 			, TILE_SIZE_X * mX, TILE_SIZE_Y * mY
-			, TILE_SIZE_X, TILE_SIZE_X                     // 이쪽 코드 한번 더 확인해보기
+			, TILE_SIZE_X, TILE_SIZE_X
 			, RGB(255, 0, 255));
-
 
 	}
 }
