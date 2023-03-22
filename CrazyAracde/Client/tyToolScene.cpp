@@ -7,6 +7,7 @@
 #include "tyInput.h"
 #include "tyPlag_BG.h"
 #include "tyTilePalatte.h"
+#include "tyCamera.h"
 extern ty::Application application;
 
 namespace ty
@@ -37,12 +38,22 @@ namespace ty
         if (Input::GetKey(eKeyCode::LBUTTON))
         {
             Vector2 pos = Input::GetMousePos();
-            pos = TilePalatte::GetTilePos(pos);
+            pos -= Camera::CalculatePos(Vector2::Zero);
 
+            pos = TilePalatte::GetTilePos(pos);
 
             UINT tileIndex = TilePalatte::GetIndex();
             TilePalatte::CreateTile(tileIndex, pos); // 타일 위치가 들어온다.
         }
+        if (Input::GetKeyDown(eKeyCode::S))
+        {
+            TilePalatte::Save();
+        }
+        if (Input::GetKeyDown(eKeyCode::L))
+        {
+            TilePalatte::Load();
+        }
+
 
 	}
 	void ToolScene::Render(HDC hdc)

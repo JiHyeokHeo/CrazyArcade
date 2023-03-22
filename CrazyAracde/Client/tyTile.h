@@ -18,12 +18,15 @@ namespace ty
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
+		UINT Y() { return mY; }
+		UINT X() { return mX; }
+		UINT Index() { return mIndex; }
 
 	private:
 		Image* mAtlas;
-		int mIndex;
-		int mX;
-		int mY;
+		UINT mIndex;
+		UINT mX;
+		UINT mY;
 
 	};
 }

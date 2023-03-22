@@ -5,6 +5,16 @@
 
 namespace ty
 {
+	union TileID
+	{
+		struct
+		{
+			UINT32 x;
+			UINT32 y;
+		};
+		UINT64 id;
+	};
+
 
 	class TilePalatte
 	{
@@ -23,8 +33,8 @@ namespace ty
 		static UINT GetIndex() { return mIndex; }
 
 	private:
-		static Image* mImage;
 		static std::unordered_map<UINT64, Tile*> mTiles;
+		static Image* mImage;
 		static UINT mIndex;
 	};
 

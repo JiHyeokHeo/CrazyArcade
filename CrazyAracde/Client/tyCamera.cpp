@@ -33,22 +33,22 @@ namespace ty
 
 	void Camera::Update()
 	{
-		if (Input::GetKey(eKeyCode::A))
-		{
-			mLookPosition.x -= 200.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::D))
-		{
-			mLookPosition.x += 200.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::S))
-		{
-			mLookPosition.y -= 200.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::W))
-		{
-			mLookPosition.y += 200.0f * Time::DeltaTime();
-		}
+		//if (Input::GetKey(eKeyCode::A))
+		//{
+		//	mLookPosition.x -= 200.0f * Time::DeltaTime();
+		//}
+		//if (Input::GetKey(eKeyCode::D))
+		//{
+		//	mLookPosition.x += 200.0f * Time::DeltaTime();
+		//}
+		//if (Input::GetKey(eKeyCode::S))
+		//{
+		//	mLookPosition.y -= 200.0f * Time::DeltaTime();
+		//}
+		//if (Input::GetKey(eKeyCode::W))
+		//{
+		//	mLookPosition.y += 200.0f * Time::DeltaTime();
+		//}
 
 		if (mTarget != nullptr)
 		{ 
