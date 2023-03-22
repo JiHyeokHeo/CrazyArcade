@@ -92,6 +92,12 @@
     <Filter Include="Contents\Monster\Boss">
       <UniqueIdentifier>{6233ef8d-8b7d-4993-b3cb-643261852678}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Tile">
+      <UniqueIdentifier>{cbcd5d36-8b25-4347-8666-323702799cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Objcet">
+      <UniqueIdentifier>{76506d3c-d246-40a3-85cf-64cae11a944f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -235,8 +241,6 @@
     <ClInclude Include="tyColliderPosControl.h">
       <Filter>Engine\Component\Collider\ColliderPosControl</Filter>
     </ClInclude>
-    <ClInclude Include="tyTile.h" />
-    <ClInclude Include="tyToolScene.h" />
     <ClInclude Include="TileBomb.h">
       <Filter>Contents</Filter>
     </ClInclude>
@@ -245,6 +249,18 @@
     </ClInclude>
     <ClInclude Include="tyPirateBoss.h">
       <Filter>Contents\Monster\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="tyToolScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="tyTile.h">
+      <Filter>Contents\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="tyGround.h">
+      <Filter>Contents\Objcet</Filter>
+    </ClInclude>
+    <ClInclude Include="tyTilePalatte.h">
+      <Filter>Contents\Tile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -378,13 +394,23 @@
     <ClCompile Include="tyRigidBody.cpp">
       <Filter>Engine\Component\RigidBody</Filter>
     </ClCompile>
-    <ClCompile Include="tyTile.cpp" />
-    <ClCompile Include="tyToolScene.cpp" />
     <ClCompile Include="tySealBoss.cpp">
       <Filter>Contents\Monster\Boss</Filter>
     </ClCompile>
     <ClCompile Include="tyPirateBoss.cpp">
       <Filter>Contents\Monster\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="tyToolScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="tyTile.cpp">
+      <Filter>Contents\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="tyGround.cpp">
+      <Filter>Contents\Objcet</Filter>
+    </ClCompile>
+    <ClCompile Include="tyTilePalatte.cpp">
+      <Filter>Contents\Tile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

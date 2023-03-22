@@ -8,13 +8,14 @@ namespace ty
 	class SealBoss : public GameObject
 	{
 	public:
-		enum class eSealBossState
+		enum class eSealMonsterState
 		{
 			Idle,
 			Left,
 			Right,
 			Up,
 			Down,
+			Attack,
 			Hit,
 			Die,
 		};
@@ -41,8 +42,8 @@ namespace ty
 		void animationCtr();
 
 	private:
-		Animator* mmAnimator;
-		eSealBossState mState;
+		Animator* mAnimator;
+		eSealMonsterState mState;
 		float mTime;
 		Vector2 mPos;
 		bool isColl;

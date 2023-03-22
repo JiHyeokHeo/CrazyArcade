@@ -78,4 +78,12 @@ namespace ty
 
 		return S_OK;
 	}
+	COLORREF Image::GetPixel(int x, int y)
+	{
+		return ::GetPixel(mHdc, x, y);
+	}
+	void Image::SetPixel(int x, int y, COLORREF color)
+	{
+		::SetPixel(mHdc, x, y, color);
+	}
 }

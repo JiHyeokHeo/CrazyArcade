@@ -14,6 +14,7 @@ namespace ty
 		, mTime(0.0f)
 		, mbComplete(false)
 		, mSpriteIndex(0)
+		, mAnimationName(L"")
 	{
 	}
 	Animation::~Animation()

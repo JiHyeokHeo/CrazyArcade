@@ -8,10 +8,12 @@
 #include "tyCollider.h"
 #include "tyBaseBomb.h"
 #include "tyScene.h"
+#include "tyObject.h"
 
 namespace ty
 {
 	SealBoss::SealBoss()
+		: Hp(2)
 	{
 	}
 	SealBoss::~SealBoss()
@@ -19,27 +21,23 @@ namespace ty
 	}
 	void SealBoss::Initialize()
 	{
-		
-		mmAnimator = AddComponent<Animator>();
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\Attack", Vector2::Zero, 0.1f);
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\Die", Vector2::Zero, 0.1f);
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\Down", Vector2::Zero, 0.1f);
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\Up", Vector2::Zero, 0.1f);
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\Hit", Vector2::Zero, 0.1f);
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\Left", Vector2::Zero, 0.1f);
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\LeftRoll", Vector2::Zero, 0.1f);
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\Right", Vector2::Zero, 0.1f);
-		mmAnimator->CreateAnimations(L"..\\Resources\\Monster\\Seal\\RightRoll", Vector2::Zero, 0.1f);
-		//Image* mDieImage = Resources::Load<Image>(L"BazziDie", L"..\\Resources\\Bazzi\\die.bmp");
-		//Image* mTrapeImage = Resources::Load<Image>(L"BazziTrap", L"..\\Resources\\Bazzi\\trap.bmp");
+		mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Up", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Down", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Left", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Right", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Die", Vector2::Zero, 0.2f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Hit", Vector2::Zero, 0.3f);
 
 
-		mmAnimator->Play(L"SealDown", true);
+
+
+		mAnimator->Play(L"SealBossDown", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2::Zero);
 		collider->SetSize(Vector2(44.0f, 44.0f));
-		mState = eSealBossState::Idle;
+		mState = eSealMonsterState::Idle;
 		GameObject::Initialize();
 	}
 	void SealBoss::Update()
@@ -51,25 +49,25 @@ namespace ty
 		mInvincibility += Time::DeltaTime();
 		switch (mState)
 		{
-		case ty::SealBoss::eSealBossState::Idle:
+		case ty::SealBoss::eSealMonsterState::Idle:
 			idle();
 			break;
-		case ty::SealBoss::eSealBossState::Left:
+		case ty::SealBoss::eSealMonsterState::Left:
 			left();
 			break;
-		case ty::SealBoss::eSealBossState::Right:
+		case ty::SealBoss::eSealMonsterState::Right:
 			right();
 			break;
-		case ty::SealBoss::eSealBossState::Up:
+		case ty::SealBoss::eSealMonsterState::Up:
 			up();
 			break;
-		case ty::SealBoss::eSealBossState::Down:
+		case ty::SealBoss::eSealMonsterState::Down:
 			down();
 			break;
-		case ty::SealBoss::eSealBossState::Hit:
+		case ty::SealBoss::eSealMonsterState::Hit:
 			hit();
 			break;
-		case ty::SealBoss::eSealBossState::Die:
+		case ty::SealBoss::eSealMonsterState::Die:
 			die();
 			break;
 		default:
@@ -78,12 +76,11 @@ namespace ty
 
 		tr->SetPos(mPos);
 
-		if (mTime >= 1 && mState != eSealBossState::Die && mState != eSealBossState::Hit)
+		if (mTime >= 1 && mState != eSealMonsterState::Die && mState != eSealMonsterState::Hit)
 		{
-			mState = eSealBossState::Idle;
+			mState = eSealMonsterState::Idle;
 			mTime = 0;
 		}
-
 		GameObject::Update();
 	}
 	void SealBoss::Render(HDC hdc)
@@ -92,10 +89,26 @@ namespace ty
 	}
 	void SealBoss::Release()
 	{
-		GameObject::Release();
+
 	}
 	void SealBoss::OnCollisionEnter(Collider* other)
 	{
+		if (isColl == false && Hp >= 1)
+		{
+			mAnimator->Play(L"SealBossHit", false);
+			mState = eSealMonsterState::Hit;
+			isColl = true;
+			Hp--;
+		}
+
+		if (isColl == false && Hp <= 0)
+		{
+			mAnimator->Play(L"SealBossDie", false);
+			mState = eSealMonsterState::Die;
+			isColl = true;
+		}
+
+
 	}
 	void SealBoss::OnCollisionStay(Collider* other)
 	{
@@ -105,13 +118,15 @@ namespace ty
 	}
 	void SealBoss::idle()
 	{
-		//mState = (eSealBossState)((rand() % 5));
-		//animationCtr();
+		mState = (eSealMonsterState)((rand() % 5));
+		animationCtr();
 	}
 	void SealBoss::left()
 	{
 		mPos.x -= 50.0f * Time::DeltaTime();
+
 	}
+
 	void SealBoss::right()
 	{
 		mPos.x += 50.0f * Time::DeltaTime();
@@ -126,27 +141,47 @@ namespace ty
 	}
 	void SealBoss::hit()
 	{
+		mInvincibility += Time::DeltaTime();
+		if (mAnimator->isComplete() == true)
+		{
+			if (mInvincibility >= 3)
+			{
+				mState = eSealMonsterState::Idle;
+				isColl = false;
+				mInvincibility = 0;
+			}
+		}
 	}
 	void SealBoss::die()
 	{
+		mInvincibility += Time::DeltaTime();
+		if (mAnimator->isComplete() == true)
+		{
+			object::Destroy(this);
+			if (mInvincibility >= 3)
+			{
+				isColl = false;
+				mInvincibility = 0;
+			}
+		}
 	}
 	void SealBoss::animationCtr()
 	{
 		switch (mState)
 		{
-		case ty::SealBoss::eSealBossState::Idle:
+		case ty::SealBoss::eSealMonsterState::Idle:
 			break;
-		case ty::SealBoss::eSealBossState::Left:
-			mmAnimator->Play(L"SealLeft", true);
+		case ty::SealBoss::eSealMonsterState::Left:
+			mAnimator->Play(L"SealBossLeft", true);
 			break;
-		case ty::SealBoss::eSealBossState::Right:
-			//mAnimator->Play(L"SealRight", true);
+		case ty::SealBoss::eSealMonsterState::Right:
+			mAnimator->Play(L"SealBossRight", true);
 			break;
-		case ty::SealBoss::eSealBossState::Up:
-			mmAnimator->Play(L"SealUp", true);
+		case ty::SealBoss::eSealMonsterState::Up:
+			mAnimator->Play(L"SealBossUp", true);
 			break;
-		case ty::SealBoss::eSealBossState::Down:
-			mmAnimator->Play(L"SealDown", true);
+		case ty::SealBoss::eSealMonsterState::Down:
+			mAnimator->Play(L"SealBossDown", true);
 			break;
 		default:
 			break;

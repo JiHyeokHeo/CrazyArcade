@@ -121,6 +121,12 @@ struct Vector2 // ¡°¿Ã¥Ÿ
 		return (x == other.x && y == other.y);
 	}
 
+	void operator-=(const float& value)
+	{
+		x -= value;
+		y -= value;
+	}
+
 
 	void Clear()
 	{

@@ -146,7 +146,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       0, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
 
    HWND hWnd2 = CreateWindowW(L"AtlasWindow", L"Tile Tool", WS_OVERLAPPEDWINDOW,
-       1600, 0, 500, 500, nullptr, nullptr, hInstance, nullptr);
+       1200, 0, 500, 500, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -160,6 +160,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    UpdateWindow(hWnd2);
 
    application.Initialize(hWnd);
+   application.SetToolHwnd(hWnd2);
    //SetTimer(hWnd, 0, 100, nullptr);
 
    return TRUE;
