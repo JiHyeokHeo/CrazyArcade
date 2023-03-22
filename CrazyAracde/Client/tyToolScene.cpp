@@ -27,6 +27,11 @@ namespace ty
 	{
         Scene::Update();
 
+        if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
+        {
+            SceneManager::LoadScene(eSceneType::Play);
+        }
+
         Vector2 temp = Input::GetMousePos();
 
         if (Input::GetKey(eKeyCode::LBUTTON))
@@ -45,17 +50,17 @@ namespace ty
         HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 255));
         HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
         
-        int maxRow = application.GetHeight() / TILE_SIZE_Y + 1;
+        int maxRow = 780 / TILE_SIZE_Y + 1; // 1.5배 한 친구 StrechBlt 사용해서 키운 상태
         for (size_t y = 0; y < maxRow; y++)
         {
-            MoveToEx(hdc, 0, TILE_SIZE_Y * y, NULL);
-            LineTo(hdc, application.GetWidth(), TILE_SIZE_Y * y);
+            MoveToEx(hdc, 30, 60 + TILE_SIZE_Y * y, NULL);
+            LineTo(hdc, 930, 60 + TILE_SIZE_Y * y);
         }
-        int maxColumn = application.GetWidth() / TILE_SIZE_X + 1;
+        int maxColumn = 900 / TILE_SIZE_X + 1;
         for (size_t x = 0; x < maxColumn; x++)
         {
-            MoveToEx(hdc, TILE_SIZE_X * x, 0, NULL);
-            LineTo(hdc, TILE_SIZE_X * x, application.GetHeight());
+            MoveToEx(hdc, 30 + TILE_SIZE_X * x, 60, NULL);
+            LineTo(hdc, 30 + TILE_SIZE_X * x, 840);
         }
         (HPEN)SelectObject(hdc, oldPen);
         DeleteObject(redPen);

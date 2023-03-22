@@ -45,6 +45,11 @@ namespace ty
 		{
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
+
+		if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
+		{
+			SceneManager::LoadScene(eSceneType::Tool);
+		}
 		Scene::Update();
 	}
 	void PlayScene::Render(HDC hdc)
