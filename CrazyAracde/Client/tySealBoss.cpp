@@ -26,7 +26,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Down", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Left", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Right", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Die", Vector2::Zero, 0.2f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Die", Vector2::Zero, 0.5f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Hit", Vector2::Zero, 0.3f);
 
 

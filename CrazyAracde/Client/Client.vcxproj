@@ -139,6 +139,7 @@
     <ClInclude Include="tyBaseBomb.h" />
     <ClInclude Include="tyBlock.h" />
     <ClInclude Include="tyBombEffect.h" />
+    <ClInclude Include="tyBossBombEffect.h" />
     <ClInclude Include="tyGround.h" />
     <ClInclude Include="tySealBoss.h" />
     <ClInclude Include="tyCamera.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="tyBaseBomb.cpp" />
     <ClCompile Include="tyBlock.cpp" />
     <ClCompile Include="tyBombEffect.cpp" />
+    <ClCompile Include="tyBossBombEffect.cpp" />
     <ClCompile Include="tyGround.cpp" />
     <ClCompile Include="tySealBoss.cpp" />
     <ClCompile Include="tyCamera.cpp" />

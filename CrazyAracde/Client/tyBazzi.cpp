@@ -212,14 +212,14 @@ namespace ty
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
 			mState = eBazziState::Move;
-			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2(-10.0f, -20.0f), eLayerType::Bomb);
+			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2::Zero, eLayerType::Bomb);
 			
 			for (int i = 0; i < 5; i++)
 			{
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 50), 0), eLayerType::BombEffect);
-				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 50)), eLayerType::BombEffect);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 50), 0), eLayerType::BombEffect);
-				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 50)), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((i * 60), 0), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0, (i * 60)), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((i * 60), 0), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0, (i * 60)), eLayerType::BombEffect);
 			}
 		}
 	}

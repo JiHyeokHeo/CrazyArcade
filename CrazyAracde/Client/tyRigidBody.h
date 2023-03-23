@@ -29,7 +29,7 @@ namespace ty
 		Vector2 mGravity;
 		float mFriction;
 		bool mbGround;
-
+		RigidBody* mRigidBody;
 		/*float mStaticFriction;
 		float mKineticFriction;*/
 		//float mCoefficientFriction;

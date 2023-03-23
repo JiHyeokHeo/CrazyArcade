@@ -21,7 +21,7 @@ namespace ty
 		
 		Transform* tr = GetComponent<Transform>();
 		//tr->SetPos(Vector2(400.0f, 400.0f));
-		tr->SetScale(Vector2(1.1f, 1.1f));
+		tr->SetScale(Vector2(1.5f, 1.5f));
 
 
 		mAnimator = AddComponent<Animator>();
@@ -34,6 +34,8 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Leftflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\LeftIdleflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
+
+
 
 
 		mState = eBombEffectState::Idle;

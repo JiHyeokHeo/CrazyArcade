@@ -11,11 +11,11 @@ namespace ty
 		enum class ePirateMonsterState
 		{
 			Idle,
+			Attack,
 			Left,
 			Right,
 			Up,
 			Down,
-			Attack,
 			Hit,
 			Die,
 		};
@@ -33,6 +33,7 @@ namespace ty
 
 	private:
 		void idle();
+		void attack();
 		void left();
 		void right();
 		void up();
@@ -49,6 +50,7 @@ namespace ty
 		bool isColl;
 		int Hp;
 		float mInvincibility;
+		bool isAttack;
 	};
 }
 

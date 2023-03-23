@@ -9,6 +9,7 @@
 #include "tyBaseBomb.h"
 #include "tyScene.h"
 #include "tyObject.h"
+#include "tyBossBombEffect.h"
 
 namespace ty
 {
@@ -21,6 +22,8 @@ namespace ty
 	}
 	void PirateBoss::Initialize()
 	{
+		Transform* tr = GetComponent<Transform>();
+		tr->SetScale(Vector2(2.0f, 2.0f));
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Up", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Right", Vector2::Zero, 0.1f);
@@ -52,6 +55,9 @@ namespace ty
 		case ty::PirateBoss::ePirateMonsterState::Idle:
 			idle();
 			break;
+		case ty::PirateBoss::ePirateMonsterState::Attack:
+			attack();
+			break;
 		case ty::PirateBoss::ePirateMonsterState::Left:
 			left();
 			break;
@@ -70,6 +76,7 @@ namespace ty
 		case ty::PirateBoss::ePirateMonsterState::Die:
 			die();
 			break;
+
 		default:
 			break;
 		}
@@ -118,8 +125,26 @@ namespace ty
 	}
 	void PirateBoss::idle()
 	{
-		mState = (ePirateMonsterState)((rand() % 5));
+		mState = (ePirateMonsterState)((rand() % 6));
 		animationCtr();
+	}
+	void PirateBoss::attack()
+	{
+		Transform* tr = GetComponent<Transform>();
+
+		if (isAttack == true)
+		{
+			for (int i = 0; i < 7; i++)
+			{
+				ePirateMonsterState::Idle;
+				object::Instantiate<BossBombEffect>(tr->GetPos() + Vector2(180 , 180 - (i * 60)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(tr->GetPos() + Vector2(180 - (i * 60), 180), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(tr->GetPos() + Vector2(-180 + (i * 60), -180), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(tr->GetPos() + Vector2(-180, 180 - (i * 60)), eLayerType::BombEffect);
+				isAttack = false;
+			}
+		}
+		
 	}
 	void PirateBoss::left()
 	{
@@ -170,6 +195,9 @@ namespace ty
 		switch (mState)
 		{
 		case ty::PirateBoss::ePirateMonsterState::Idle:
+			break;
+		case ty::PirateBoss::ePirateMonsterState::Attack:
+			isAttack = true;
 			break;
 		case ty::PirateBoss::ePirateMonsterState::Left:
 			mAnimator->Play(L"PirateBossLeft", true);

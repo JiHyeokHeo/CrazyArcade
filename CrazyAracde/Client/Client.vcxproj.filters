@@ -262,6 +262,9 @@
     <ClInclude Include="tyTilePalatte.h">
       <Filter>Contents\Tile</Filter>
     </ClInclude>
+    <ClInclude Include="tyBossBombEffect.h">
+      <Filter>Contents\Bomb\BombEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -411,6 +414,9 @@
     </ClCompile>
     <ClCompile Include="tyTilePalatte.cpp">
       <Filter>Contents\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBossBombEffect.cpp">
+      <Filter>Contents\Bomb\BombEffect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
