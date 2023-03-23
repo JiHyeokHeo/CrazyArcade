@@ -34,6 +34,7 @@ namespace ty
 
 	private:
 		static std::unordered_map<UINT64, Tile*> mTiles;
+		static std::unordered_map<UINT64, Tile*> mObjects;
 		static Image* mImage;
 		static UINT mIndex;
 	};

@@ -24,7 +24,7 @@ namespace ty
 	void Bazzi::Initialize()
 	{
 		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(400.0f, 400.0f));
+		tr->SetPos(Vector2(30.0f, 60.0f));
 		tr->SetScale(Vector2(1.18f, 1.18f));
 		
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
@@ -55,9 +55,9 @@ namespace ty
 		mAnimator->GetCompleteEvent(L"Bazzidie") = std::bind(&Bazzi::dieCompeleteEvent, this);
 		mAnimator->Play(L"Bazziready", false);
 		
-		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(-23.0f, -55.0f));
-		collider->SetSize(Vector2(50.0f, 43.6f));
+		//Collider* collider = AddComponent<Collider>();
+		//collider->SetCenter(Vector2(-23.0f, -55.0f));
+		//collider->SetSize(Vector2(50.0f, 43.6f));
 		
 		mState = eBazziState::Idle;
 

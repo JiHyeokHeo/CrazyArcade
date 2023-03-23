@@ -29,9 +29,6 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Die", Vector2::Zero, 0.5f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Hit", Vector2::Zero, 0.3f);
 
-
-
-
 		mAnimator->Play(L"SealBossDown", true);
 
 		Collider* collider = AddComponent<Collider>();

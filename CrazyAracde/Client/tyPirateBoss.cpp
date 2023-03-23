@@ -14,7 +14,7 @@
 namespace ty
 {
 	PirateBoss::PirateBoss()
-		: Hp(2)
+		: Hp(1)
 	{
 	}
 	PirateBoss::~PirateBoss()
@@ -29,10 +29,11 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Right", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Left", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Down", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Die", Vector2::Zero, 0.2f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Bubble", Vector2::Zero, 0.3f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Hit", Vector2::Zero, 0.3f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Die", Vector2::Zero, 0.6f);
 
-
+		mAnimator->GetCompleteEvent(L"PirateBossDie") = std::bind(&PirateBoss::bubbleCompleteEvent, this);
 
 
 		mAnimator->Play(L"PirateBossDown", true);
@@ -49,7 +50,6 @@ namespace ty
 		mPos = tr->GetPos();
 
 		mTime += Time::DeltaTime();
-		mInvincibility += Time::DeltaTime();
 		switch (mState)
 		{
 		case ty::PirateBoss::ePirateMonsterState::Idle:
@@ -73,6 +73,9 @@ namespace ty
 		case ty::PirateBoss::ePirateMonsterState::Hit:
 			hit();
 			break;
+		case ty::PirateBoss::ePirateMonsterState::Bubble:
+			bubble();
+			break;
 		case ty::PirateBoss::ePirateMonsterState::Die:
 			die();
 			break;
@@ -83,7 +86,7 @@ namespace ty
 
 		tr->SetPos(mPos);
 
-		if (mTime >= 1 && mState != ePirateMonsterState::Die && mState != ePirateMonsterState::Hit)
+		if (mTime >= 1 && mState != ePirateMonsterState::Die && mState != ePirateMonsterState::Hit && mState != ePirateMonsterState::Bubble)
 		{
 			mState = ePirateMonsterState::Idle;
 			mTime = 0;
@@ -105,13 +108,12 @@ namespace ty
 			mAnimator->Play(L"PirateBossHit", false);
 			mState = ePirateMonsterState::Hit;
 			isColl = true;
-			Hp--;
 		}
 
 		if (isColl == false && Hp <= 0)
 		{
-			mAnimator->Play(L"PirateBossDie", false);
-			mState = ePirateMonsterState::Die;
+			mAnimator->Play(L"PirateBossBubble", false);
+			mState = ePirateMonsterState::Bubble;
 			isColl = true;
 		}
 
@@ -166,29 +168,31 @@ namespace ty
 	}
 	void PirateBoss::hit()
 	{
-		mInvincibility += Time::DeltaTime();
+		
+		mInvincibility -= Time::DeltaTime();
 		if (mAnimator->isComplete() == true)
 		{
-			if (mInvincibility >= 3)
+			if (mInvincibility <=0)
 			{
+				Hp--;
 				mState = ePirateMonsterState::Idle;
 				isColl = false;
-				mInvincibility = 0;
+				mInvincibility = 3;
 			}
+		}
+	}
+	void PirateBoss::bubble()
+	{
+		mInvincibility -= Time::DeltaTime();
+		if (mAnimator->isComplete() == true)
+		{
+			mAnimator->Play(L"PirateBossDie", false);
+			ePirateMonsterState::Die;
+			mInvincibility = 3;
 		}
 	}
 	void PirateBoss::die()
 	{
-		mInvincibility += Time::DeltaTime();
-		if (mAnimator->isComplete() == true)
-		{
-			object::Destroy(this);
-			if (mInvincibility >= 3)
-			{
-				isColl = false;
-				mInvincibility = 0;
-			}
-		}
 	}
 	void PirateBoss::animationCtr()
 	{
@@ -213,6 +217,13 @@ namespace ty
 			break;
 		default:
 			break;
+		}
+	}
+	void PirateBoss::bubbleCompleteEvent()
+	{
+		if (mAnimator->isComplete() == true)
+		{
+			object::Destroy(this);
 		}
 	}
 }

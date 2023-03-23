@@ -17,6 +17,7 @@ namespace ty
 			Up,
 			Down,
 			Hit,
+			Bubble,
 			Die,
 		};
 		PirateBoss();
@@ -39,9 +40,10 @@ namespace ty
 		void up();
 		void down();
 		void hit();
+		void bubble();
 		void die();
 		void animationCtr();
-
+		void bubbleCompleteEvent();
 	private:
 		Animator* mAnimator;
 		ePirateMonsterState mState;

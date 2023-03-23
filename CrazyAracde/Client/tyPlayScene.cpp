@@ -10,6 +10,7 @@
 #include "tySealBoss.h"
 #include "tyAlphaBlender.h"
 #include "tyPirateBoss.h"
+#include "tyTilePalatte.h"
 
 namespace ty
 {
@@ -49,6 +50,11 @@ namespace ty
 		if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::Tool);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::L))
+		{
+			TilePalatte::Load();
 		}
 		Scene::Update();
 	}

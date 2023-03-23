@@ -22,7 +22,7 @@ namespace ty
 	void BaseBomb::Initialize()
 	{
     	Transform* tr = GetComponent<Transform>();
-		tr->SetScale(Vector2(1.1f, 1.1f));
+		tr->SetScale(Vector2(1.5f, 1.5f));
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
