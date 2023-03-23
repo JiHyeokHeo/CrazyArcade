@@ -131,7 +131,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
-    <ClInclude Include="TileBomb.h" />
+    <ClInclude Include="tyTileBomb.h" />
     <ClInclude Include="tyAlphaBlender.h" />
     <ClInclude Include="tyAnimation.h" />
     <ClInclude Include="tyAnimator.h" />
@@ -225,6 +225,7 @@
     <ClCompile Include="tySceneManager.cpp" />
     <ClCompile Include="tyStage2.cpp" />
     <ClCompile Include="tyTile.cpp" />
+    <ClCompile Include="tyTileBomb.cpp" />
     <ClCompile Include="tyTilePalatte.cpp" />
     <ClCompile Include="tyTime.cpp" />
     <ClCompile Include="tyLoginScene.cpp" />

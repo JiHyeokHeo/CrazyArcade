@@ -11,9 +11,11 @@
 #include "tyAlphaBlender.h"
 #include "tyPirateBoss.h"
 #include "tyTilePalatte.h"
+#include "tyBossBombEffect.h"
 
 namespace ty
 {
+	Bazzi* PlayScene::mBazzi;
 	PlayScene::PlayScene()
 	{
 	}
@@ -30,10 +32,14 @@ namespace ty
 		object::Instantiate<SealBoss>(Vector2(800.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(300.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
+		object::Instantiate<BossBombEffect>(Vector2(-100.0f, 400.0f), eLayerType::BombEffect);
 
-
-
-
+		
+		//mCuphead = object::Instantiate<Cuphead>(Vector2(500.0f, 400.0f), eLayerType::Player);
+	/*	Cuphead* player = object::Instantiate<Cuphead>(Vector2(500.0f, 400.0f), eLayerType::Player);
+		object::Instantiate<Monster>(Vector2(500.0f, 500.0f), eLayerType::Player);
+		Ground* ground = object::Instantiate<Ground>(Vector2(0.0f, 0.0f), eLayerType::Ground);
+		ground->SetPlayer(player)*/
 		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
 		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Bomb, true);
 		//CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Bomb, true);
@@ -42,6 +48,9 @@ namespace ty
 	}
 	void PlayScene::Update()
 	{
+		Vector2 Pos = mBazzi->GetComponent<Transform>()->GetPos();
+
+
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::Lobby);

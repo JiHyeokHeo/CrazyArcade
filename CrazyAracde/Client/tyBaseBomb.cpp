@@ -7,8 +7,10 @@
 #include "tyObject.h"
 #include "tyBombEffect.h"
 
+
 namespace ty
 {
+	
 	BaseBomb::BaseBomb()
 		: mTime(0.0f)
 		, maxWaterWave(7)

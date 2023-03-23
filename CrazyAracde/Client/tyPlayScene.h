@@ -22,8 +22,9 @@ namespace ty
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
 
+		static Bazzi* GetBazzi() { return mBazzi; }
 	private:
-		Bazzi* mBazzi;
+		static Bazzi* mBazzi;
 		Play_BG* mPlayBG;
 		AlphaBlender* mBlender;
 	};

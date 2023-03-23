@@ -12,6 +12,7 @@ namespace ty
 	void TilePalatte::Initialize()
 	{
 		 mImage = Resources::Find<Image>(L"TileAtlas");
+		 
 	}
 
 	void TilePalatte::Update()

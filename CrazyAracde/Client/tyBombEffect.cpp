@@ -7,6 +7,8 @@
 #include "tyAnimator.h"
 #include "tyCollider.h"
 #include "tyObject.h"
+#include "tyBazzi.h"
+#include "tyPlayScene.h"
 
 namespace ty
 {
@@ -18,11 +20,12 @@ namespace ty
 	}
 	void BombEffect::Initialize()
 	{
-		
+		BazziPos = PlayScene::GetBazzi()->GetComponent<Transform>()->GetPos();
+		BazziStartPos = BazziPos;
 		Transform* tr = GetComponent<Transform>();
+		EffectPos = tr->GetPos();
 		//tr->SetPos(Vector2(400.0f, 400.0f));
 		tr->SetScale(Vector2(1.5f, 1.5f));
-
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Downflow", Vector2(11.76f, 22.84f), 0.16f);
@@ -35,8 +38,24 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\LeftIdleflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
 
+	
 
-
+		//if (BazziPos.x >= EffectPos.x && BazziPos.y == EffectPos.y)
+		//{
+		//	mAnimator->Play(L"BombLeftflow", false);
+		//}
+		//if (BazziPos.x <= EffectPos.x && BazziPos.y == EffectPos.y)
+		//{
+		//	mAnimator->Play(L"BombRightflow", false);
+		//}
+		//if (BazziPos.x == EffectPos.x && BazziPos.y <= EffectPos.y)
+		//{
+		//	mAnimator->Play(L"BombDownflow", false);
+		//}
+		//if (BazziPos.x == EffectPos.x && BazziPos.y >= EffectPos.y)
+		//{
+		//	mAnimator->Play(L"BombUpflow", false);
+		//}
 
 		mState = eBombEffectState::Idle;
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
@@ -48,7 +67,7 @@ namespace ty
 	{
 		GameObject::Update();
 		mTime += Time::DeltaTime();
-
+		
 		switch (mState)
 		{
 		case ty::BombEffect::eBombEffectState::Idle:
@@ -60,8 +79,8 @@ namespace ty
 		default:
 			break;
 		}
-	
-			
+		
+		// 여기서 삭제시켜버려라
 	}
 	void BombEffect::Render(HDC hdc)
 	{
@@ -75,12 +94,27 @@ namespace ty
 	{
 		if (mTime >= 3.0f)
 		{
-			mAnimator->Play(L"BombDownflow", false);
-			mState = eBombEffectState::Bombed;
+
+			if (BazziStartPos.x >= EffectPos.x && BazziStartPos.y == EffectPos.y)
+			{
+				mAnimator->Play(L"BombLeftflow", false);
+			}
+			if (BazziStartPos.x <= EffectPos.x && BazziStartPos.y == EffectPos.y)
+			{
+				mAnimator->Play(L"BombRightflow", false);
+			}
+			if (BazziStartPos.x == EffectPos.x && BazziStartPos.y <= EffectPos.y)
+			{
+				mAnimator->Play(L"BombDownflow", false);
+			}
+			if (BazziStartPos.x == EffectPos.x && BazziStartPos.y >= EffectPos.y)
+			{
+				mAnimator->Play(L"BombUpflow", false);
+			}
 			Collider* collider = AddComponent<Collider>();
 			collider->SetCenter(Vector2(11.76f, 22.84f));
 			collider->SetSize(Vector2(56.0f, 61.6f));
-			mTime = 0;
+			mState = eBombEffectState::Bombed;
 		}
 	}
 	void BombEffect::bombed()

@@ -31,6 +31,7 @@ namespace ty
 		void idle();
 
 	private:
+		Vector2 mBombPos;
 		Animator* mAnimator;
 		float mTime;
 		int maxWaterWave;
