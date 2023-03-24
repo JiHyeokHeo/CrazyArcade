@@ -4,7 +4,6 @@
 
 namespace ty
 {
-	class Bazzi;
 	class Animator;
 	class BombEffect : public GameObject
 	{
@@ -28,7 +27,6 @@ namespace ty
 		void bombed();
 
 	private:
-		Bazzi* mPlayer;
 		Animator* mAnimator;
 		float mTime;
 		eBombEffectState mState;

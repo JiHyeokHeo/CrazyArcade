@@ -39,24 +39,6 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
 
 	
-
-		//if (BazziPos.x >= EffectPos.x && BazziPos.y == EffectPos.y)
-		//{
-		//	mAnimator->Play(L"BombLeftflow", false);
-		//}
-		//if (BazziPos.x <= EffectPos.x && BazziPos.y == EffectPos.y)
-		//{
-		//	mAnimator->Play(L"BombRightflow", false);
-		//}
-		//if (BazziPos.x == EffectPos.x && BazziPos.y <= EffectPos.y)
-		//{
-		//	mAnimator->Play(L"BombDownflow", false);
-		//}
-		//if (BazziPos.x == EffectPos.x && BazziPos.y >= EffectPos.y)
-		//{
-		//	mAnimator->Play(L"BombUpflow", false);
-		//}
-
 		mState = eBombEffectState::Idle;
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
@@ -79,7 +61,8 @@ namespace ty
 		default:
 			break;
 		}
-		
+
+	
 		// 여기서 삭제시켜버려라
 	}
 	void BombEffect::Render(HDC hdc)
@@ -95,25 +78,29 @@ namespace ty
 		if (mTime >= 3.0f)
 		{
 
-			if (BazziStartPos.x >= EffectPos.x && BazziStartPos.y == EffectPos.y)
+			if (BazziPos.x > EffectPos.x && BazziPos.y == EffectPos.y)
 			{
 				mAnimator->Play(L"BombLeftflow", false);
 			}
-			if (BazziStartPos.x <= EffectPos.x && BazziStartPos.y == EffectPos.y)
+			else if (BazziPos.x < EffectPos.x && BazziPos.y == EffectPos.y)
 			{
 				mAnimator->Play(L"BombRightflow", false);
 			}
-			if (BazziStartPos.x == EffectPos.x && BazziStartPos.y <= EffectPos.y)
+			else if (BazziPos.x == EffectPos.x && BazziPos.y < EffectPos.y)
 			{
 				mAnimator->Play(L"BombDownflow", false);
 			}
-			if (BazziStartPos.x == EffectPos.x && BazziStartPos.y >= EffectPos.y)
+			else if (BazziPos.x == EffectPos.x && BazziPos.y > EffectPos.y)
 			{
 				mAnimator->Play(L"BombUpflow", false);
 			}
-			Collider* collider = AddComponent<Collider>();
-			collider->SetCenter(Vector2(11.76f, 22.84f));
-			collider->SetSize(Vector2(56.0f, 61.6f));
+			else if (BazziPos.x == EffectPos.x && BazziPos.y == EffectPos.y)
+			{
+				mAnimator->Play(L"BombCenterflow", false);
+			}
+			//Collider* collider = AddComponent<Collider>();
+			//collider->SetCenter(Vector2(11.76f, 22.84f));
+			//collider->SetSize(Vector2(56.0f, 61.6f));
 			mState = eBombEffectState::Bombed;
 		}
 	}

@@ -28,6 +28,7 @@ namespace ty
 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->Play(L"BombIdle", true);
 
 		Collider* collider = AddComponent<Collider>();

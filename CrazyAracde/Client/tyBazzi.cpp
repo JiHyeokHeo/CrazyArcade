@@ -213,7 +213,7 @@ namespace ty
 		{
 			mState = eBazziState::Move;
 			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2::Zero, eLayerType::Bomb);
-			
+			object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect);
 			for (float i = 1; i < 5; i++)
 			{
 				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);

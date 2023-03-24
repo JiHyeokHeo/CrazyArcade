@@ -121,6 +121,7 @@ namespace ty
 	}
 	void PirateBoss::OnCollisionStay(Collider* other)
 	{
+		
 	}
 	void PirateBoss::OnCollisionExit(Collider* other)
 	{
