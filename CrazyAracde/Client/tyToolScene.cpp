@@ -38,7 +38,7 @@ namespace ty
         if (Input::GetKey(eKeyCode::LBUTTON))
         {
             Vector2 pos = Input::GetMousePos();
-            pos -= Camera::CalculatePos(Vector2::Zero);
+            //pos -= Camera::CalculatePos(Vector2::Zero);
 
             pos = TilePalatte::GetTilePos(pos);
 

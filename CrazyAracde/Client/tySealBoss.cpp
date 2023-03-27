@@ -120,21 +120,19 @@ namespace ty
 	}
 	void SealBoss::left()
 	{
-		mPos.x -= 50.0f * Time::DeltaTime();
-
+		mPos.x -= 60.0f * Time::DeltaTime();
 	}
-
 	void SealBoss::right()
 	{
-		mPos.x += 50.0f * Time::DeltaTime();
+		mPos.x += 60.0f * Time::DeltaTime();
 	}
 	void SealBoss::up()
 	{
-		mPos.y -= 50.0f * Time::DeltaTime();
+		mPos.y -= 60.0f * Time::DeltaTime();
 	}
 	void SealBoss::down()
 	{
-		mPos.y += 50.0f * Time::DeltaTime();
+		mPos.y += 60.0f * Time::DeltaTime();
 	}
 	void SealBoss::hit()
 	{

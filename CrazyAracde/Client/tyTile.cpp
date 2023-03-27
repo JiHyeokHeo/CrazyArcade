@@ -50,7 +50,7 @@ namespace ty
 
 		Transform* tr = GetComponent<Transform>();
 
-		Vector2 renderPos = Camera::CalculatePos(tr->GetPos());
+		Vector2 renderPos = tr->GetPos();
 
 		TransparentBlt(hdc
 			, renderPos.x, renderPos.y

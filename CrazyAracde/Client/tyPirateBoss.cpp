@@ -151,21 +151,20 @@ namespace ty
 	}
 	void PirateBoss::left()
 	{
-		mPos.x -= 50.0f * Time::DeltaTime();
-
+		mPos.x -= 60.0f * Time::DeltaTime();
 	}
 
 	void PirateBoss::right()
 	{
-		mPos.x += 50.0f * Time::DeltaTime();
+		mPos.x += 60.0f * Time::DeltaTime();
 	}
 	void PirateBoss::up()
 	{
-		mPos.y -= 50.0f * Time::DeltaTime();
+		mPos.y -= 60.0f * Time::DeltaTime();
 	}
 	void PirateBoss::down()
 	{
-		mPos.y += 50.0f * Time::DeltaTime();
+		mPos.y += 60.0f * Time::DeltaTime();
 	}
 	void PirateBoss::hit()
 	{
