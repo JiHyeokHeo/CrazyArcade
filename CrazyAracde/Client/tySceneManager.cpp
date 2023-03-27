@@ -33,7 +33,7 @@ namespace ty
 			
  			scene->Initialize();
 		}
-		mActiveScene = mScenes[(UINT)eSceneType::Login];
+		mActiveScene = mScenes[(UINT)eSceneType::Tool];
 	}
 
 	void SceneManager::Update()
@@ -64,7 +64,7 @@ namespace ty
 	}
 	void SceneManager::LoadScene(eSceneType type)
 	{
-		/*Camera::Clear();*/
+		Camera::Clear();
 		// ÇöÀç¾À
 		mActiveScene->OnExit();
 

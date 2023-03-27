@@ -62,6 +62,6 @@ namespace ty
 		bool isDPressed;
 		int mRandomPosx;
 		int mRandomPosy;
-		std::vector<std::vector<int>> mapIndex;
+
 	};
 }

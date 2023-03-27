@@ -20,13 +20,13 @@ namespace ty
 	}
 	void BombEffect::Initialize()
 	{
-		SetName(L"BombEffect");
 		BazziPos = PlayScene::GetBazzi()->GetComponent<Transform>()->GetPos();
 		BazziStartPos = BazziPos;
 		Transform* tr = GetComponent<Transform>();
 		EffectPos = tr->GetPos();
 		//tr->SetPos(Vector2(400.0f, 400.0f));
 		tr->SetScale(Vector2(1.5f, 1.5f));
+		SetName(L"BombEffect");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Downflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\DownIdleflow", Vector2(11.76f, 22.84f), 0.16f);
@@ -113,8 +113,8 @@ namespace ty
 			}
 
 			Collider* collider = AddComponent<Collider>();
-			collider->SetCenter(Vector2(11.76f, 21.84f));
-			collider->SetSize(Vector2(60.0f, 60.0f));
+			collider->SetCenter(Vector2(11.76f, 22.84f));
+			collider->SetSize(Vector2(56.0f, 61.6f));
 			mState = eBombEffectState::Bombed;
 		}
 	}

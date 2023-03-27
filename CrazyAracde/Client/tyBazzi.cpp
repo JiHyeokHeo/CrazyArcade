@@ -10,8 +10,6 @@
 #include "tyScene.h"
 #include "tyObject.h"
 #include "tyBombEffect.h"
-#include "tyTile.h"
-#include "tyTileBomb.h"
 
 namespace ty
 {
@@ -19,9 +17,6 @@ namespace ty
 		: maxHP(1)
 		
 	{
-		int row = 15;
-		int col = 13;
-		mapIndex.assign(row, std::vector<int>(col, 0));
 	}
 	Bazzi::~Bazzi()
 	{
@@ -29,6 +24,7 @@ namespace ty
 	void Bazzi::Initialize()
 	{
 		Transform* tr = GetComponent<Transform>();
+		tr->SetPos(Vector2(30.0f, 60.0f));
 		tr->SetScale(Vector2(1.18f, 1.18f));
 		SetName(L"Bazzi");
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
@@ -60,8 +56,8 @@ namespace ty
 		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		//collider->SetCenter(Vector2(10.0f, 20.0f));
-		collider->SetSize(Vector2(80.0f, 100.0f));
+		collider->SetCenter(Vector2(10.0f, 20.0f));
+		collider->SetSize(Vector2(60.0f, 60.0f));
 		
 		mState = eBazziState::Idle;
 
@@ -120,18 +116,12 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		if (isColl == false && other->GetOwner()->GetName() ==L"BossBombEffect" )
-		{
-			mAnimator->Play(L"Bazzitrap", false);
-			mState = eBazziState::BubbleMove;
-			isColl = true;
-		}
-		else if (isColl == false && other->GetOwner()->GetName() == L"BombEffect")
-		{
-			mAnimator->Play(L"Bazzitrap", false);
-			mState = eBazziState::BubbleMove;
-			isColl = true;
-		}
+		//if (isColl == false)
+		//{
+		//	mAnimator->Play(L"Bazzitrap", false);
+		//	mState = eBazziState::BubbleMove;
+		//	isColl = true;
+		//}
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -148,6 +138,27 @@ namespace ty
 
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
+
+
+		//if (pos.x <= 30.0f)
+		//{
+		//	pos.x = 30.0f;
+		//}
+
+		//if (pos.x >= 900.0f)
+		//{
+		//	pos.x = 900.0f;
+		//}
+
+		//if (pos.y <= 60.0f)
+		//{
+		//	pos.y = 60.0f;
+		//}
+
+		//if (pos.y >= 780.0f)
+		//{
+		//	pos.y = 780.0f;
+		//}
 
 
 		if (Input::GetKeyUp(eKeyCode::LEFT))
@@ -229,9 +240,15 @@ namespace ty
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
 			mState = eBazziState::Move;
-			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
+			object::Instantiate<BaseBomb>(tr->GetPos() +Vector2::Zero, eLayerType::Bomb);
 			object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect);
-		
+			for (float i = 1; i < 5; i++)
+			{
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);
+				object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect);
+			}
 		}
 	}
 	void Bazzi::death()
