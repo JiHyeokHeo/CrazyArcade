@@ -26,7 +26,7 @@ namespace ty
 		EffectPos = tr->GetPos();
 		//tr->SetPos(Vector2(400.0f, 400.0f));
 		tr->SetScale(Vector2(1.5f, 1.5f));
-
+		SetName(L"BombEffect");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Downflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\DownIdleflow", Vector2(11.76f, 22.84f), 0.16f);
@@ -37,7 +37,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Leftflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\LeftIdleflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
-
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2(11.76f, 22.84f), 0.16f);
 		mState = eBombEffectState::Idle;
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
@@ -72,10 +72,24 @@ namespace ty
 	{
 		GameObject::Release();
 	}
+	void BombEffect::OnCollisionEnter(Collider* other)
+	{
+		if (other->GetOwner()->GetName() == L"Ground")
+			object::Destroy(this);
+	}
+	void BombEffect::OnCollisionStay(Collider* other)
+	{
+		if (other->GetOwner()->GetName() == L"Ground")
+			object::Destroy(this);
+	}
+	void BombEffect::OnCollisionExit(Collider* other)
+	{
+	}
 	void BombEffect::idle()
 	{
 		if (mTime >= 3.0f)
 		{
+
 
 			if (BazziPos.x > EffectPos.x && BazziPos.y == EffectPos.y)
 			{
@@ -97,6 +111,7 @@ namespace ty
 			{
 				mAnimator->Play(L"BombCenterflow", false);
 			}
+
 			Collider* collider = AddComponent<Collider>();
 			collider->SetCenter(Vector2(11.76f, 22.84f));
 			collider->SetSize(Vector2(56.0f, 61.6f));

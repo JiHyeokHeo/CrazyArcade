@@ -26,7 +26,7 @@ namespace ty
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(30.0f, 60.0f));
 		tr->SetScale(Vector2(1.18f, 1.18f));
-		
+		SetName(L"Bazzi");
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
 		Image* mLeftImage = Resources::Load<Image>(L"BazziL", L"..\\Resources\\Bazzi\\left.bmp");
 		Image* mRightImage = Resources::Load<Image>(L"BazziR", L"..\\Resources\\Bazzi\\right.bmp");
@@ -56,7 +56,7 @@ namespace ty
 		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(20.0f, 40.0f));
+		collider->SetCenter(Vector2(10.0f, 20.0f));
 		collider->SetSize(Vector2(60.0f, 60.0f));
 		
 		mState = eBazziState::Idle;

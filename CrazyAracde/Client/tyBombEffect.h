@@ -21,6 +21,9 @@ namespace ty
 		virtual void Render(HDC hdc) override;
 		virtual void Release() override;
 
+		virtual void OnCollisionEnter(class Collider* other) override;
+		virtual void OnCollisionStay(class Collider* other) override;
+		virtual void OnCollisionExit(class Collider* other) override;
 		//void SetPlayer(class Bazzi* player) { mPlayer = player; }
 	private:
 		void idle();
@@ -33,6 +36,7 @@ namespace ty
 		Vector2 BazziPos;
 		Vector2 EffectPos;
 		Vector2 BazziStartPos;
+		bool isBlown;
 	};
 }
 

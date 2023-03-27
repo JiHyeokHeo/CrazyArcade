@@ -19,6 +19,7 @@ namespace ty
 	}
 	void BossBombEffect::Initialize()
 	{
+		SetName(L"BossBombEffect");
 		Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		mAnimator = AddComponent<Animator>();
@@ -43,6 +44,19 @@ namespace ty
 	void BossBombEffect::Release()
 	{
 	
+	}
+	void BossBombEffect::OnCollisionEnter(Collider* other)
+	{
+		if (other->GetOwner()->GetName() == L"Ground")
+			object::Destroy(this);
+	}
+	void BossBombEffect::OnCollisionStay(Collider* other)
+	{
+		if (other->GetOwner()->GetName() == L"Ground")
+			object::Destroy(this);
+	}
+	void BossBombEffect::OnCollisionExit(Collider* other)
+	{
 	}
 	void BossBombEffect::idle()
 	{

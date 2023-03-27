@@ -1,4 +1,4 @@
-#include "tyGround.h"
+#include "tyLRGround.h"
 #include "tyCollider.h"
 #include "tyBazzi.h"
 #include "tyRigidbody.h"
@@ -11,30 +11,30 @@
 
 namespace ty
 {
-	Ground::Ground()
+	LRGround::LRGround()
 	{
 	}
 
-	Ground::~Ground()
+	LRGround::~LRGround()
 	{
 	}
 
-	void Ground::Initialize()
+	void LRGround::Initialize()
 	{
 		SetName(L"Ground");
 		mCollider = AddComponent<Collider>();
 		mCollider->SetSize(Vector2(900.0f, 780.0f));
 
-	
+
 		//mImage = Resources::Load<Image>(L"Ground", L"..\\Resources\\Ground\\Ground.bmp"); 
 		mPlayer = PlayScene::GetBazzi();
 		GameObject::Initialize();
 	}
 
-	void Ground::Update()
+	void LRGround::Update()
 	{
 		GameObject::Update();
-		
+
 
 		//COLORREF color = mImage->GetPixel(playerTr.x, playerTr.y);
 
@@ -48,44 +48,45 @@ namespace ty
 
 		//}
 
-			
+
 	}
-	void Ground::Render(HDC hdc)
+	void LRGround::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 
 	}
 
-	void Ground::Release()
+	void LRGround::Release()
 	{
 	}
 
-	void Ground::OnCollisionEnter(Collider* other)
+	void LRGround::OnCollisionEnter(Collider* other)
 	{
 		isGround = true;
 	}
 
-	void Ground::OnCollisionStay(Collider* other)
+	void LRGround::OnCollisionStay(Collider* other)
 	{
 		Transform* mPlayerPos = mPlayer->GetComponent<Transform>();
 		Vector2 mGameobjPos = mPlayerPos->GetPos();
 		Vector2 mGameobjColPos = mPlayer->GetComponent<Collider>()->GetPos();
 		Vector2 mColPos = mCollider->GetPos();
-		if (mGameobjColPos.y > mColPos.y && other->GetOwner()->GetName() == L"Bazzi")
+		if (mGameobjColPos.x > mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
 		{
-			mGameobjPos.y +=250.0f * Time::DeltaTime();
+			mGameobjPos.x += 250.0f * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
-		if(mGameobjColPos.y < mColPos.y && other->GetOwner()->GetName() == L"Bazzi")
+		if (mGameobjColPos.x < mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
 		{
-			mGameobjPos.y -= 250.0f * Time::DeltaTime();
+			mGameobjPos.x -= 250.0f * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
-		
+
+
 		//colposctr::ColPosControl(other, this);
 	}
 
-	void Ground::OnCollisionExit(Collider* other)
+	void LRGround::OnCollisionExit(Collider* other)
 	{
 		isGround = false;
 	}
