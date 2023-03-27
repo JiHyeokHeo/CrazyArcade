@@ -49,7 +49,7 @@ namespace ty
 		Time::Initialize();
 		Input::Initialize();
 6;		SceneManager::Initialize();
-		Camera::Initialize();
+		/*Camera::Initialize();*/
 
 		SetMenuBar(false);
 	}
@@ -65,7 +65,7 @@ namespace ty
 	{
 		Time::Update();
 		Input::Update();
-		Camera::Update();
+		/*Camera::Update();*/
 
 		SceneManager::Update();
 		CollisionManager::Update();

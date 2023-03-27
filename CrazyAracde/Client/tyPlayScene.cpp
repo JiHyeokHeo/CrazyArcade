@@ -27,14 +27,14 @@ namespace ty
 	void PlayScene::Initialize()
 	{
 		Scene::Initialize();
-		mBazzi = object::Instantiate<Bazzi>(Vector2(400.0f, 400.0f), eLayerType::Player);
+
+		mBazzi = object::Instantiate<Bazzi>(Vector2(30.0f, 60.0f), eLayerType::Player);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
-		object::Instantiate<PirateBoss>(Vector2(500.0f, 300.0f), eLayerType::Monster);
-		object::Instantiate<SealBoss>(Vector2(800.0f, 400.0f), eLayerType::Monster);
+		object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
+		object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(300.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
-		object::Instantiate<BossBombEffect>(Vector2(-100.0f, 400.0f), eLayerType::BombEffect);
 		object::Instantiate<Ground>(Vector2(30.0f, -720.0f), eLayerType::Ground);
 		object::Instantiate<Ground>(Vector2(30.0f, 840.0f), eLayerType::Ground);
 		object::Instantiate<LRGround>(Vector2(-870.0f, 60.0f), eLayerType::Ground);
@@ -54,7 +54,7 @@ namespace ty
 	void PlayScene::Update()
 	{
 		Vector2 Pos = mBazzi->GetComponent<Transform>()->GetPos();
-
+		
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{

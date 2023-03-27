@@ -262,9 +262,11 @@
     <ClInclude Include="tyBossBombEffect.h">
       <Filter>Contents\Bomb\BombEffect</Filter>
     </ClInclude>
-    <ClInclude Include="tyTileBomb.h" />
     <ClInclude Include="tyLRGround.h">
       <Filter>Contents\Objcet</Filter>
+    </ClInclude>
+    <ClInclude Include="tyTileBomb.h">
+      <Filter>Contents\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -419,7 +421,6 @@
     <ClCompile Include="tyBossBombEffect.cpp">
       <Filter>Contents\Bomb\BombEffect</Filter>
     </ClCompile>
-    <ClCompile Include="tyTileBomb.cpp" />
     <ClCompile Include="tyLRGround.cpp">
       <Filter>Contents\Objcet</Filter>
     </ClCompile>
