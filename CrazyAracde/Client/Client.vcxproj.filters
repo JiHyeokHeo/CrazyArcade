@@ -241,9 +241,6 @@
     <ClInclude Include="tyColliderPosControl.h">
       <Filter>Engine\Component\Collider\ColliderPosControl</Filter>
     </ClInclude>
-    <ClInclude Include="TileBomb.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
     <ClInclude Include="tySealBoss.h">
       <Filter>Contents\Monster\Boss</Filter>
     </ClInclude>
@@ -265,6 +262,7 @@
     <ClInclude Include="tyBossBombEffect.h">
       <Filter>Contents\Bomb\BombEffect</Filter>
     </ClInclude>
+    <ClInclude Include="tyTileBomb.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -418,5 +416,6 @@
     <ClCompile Include="tyBossBombEffect.cpp">
       <Filter>Contents\Bomb\BombEffect</Filter>
     </ClCompile>
+    <ClCompile Include="tyTileBomb.cpp" />
   </ItemGroup>
 </Project>

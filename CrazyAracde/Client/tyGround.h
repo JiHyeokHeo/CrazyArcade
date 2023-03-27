@@ -24,6 +24,8 @@ namespace ty
 		class Collider* mCollider;
 		class Image* mImage;
 		class Bazzi* mPlayer;
+		bool isGround;
+		Vector2 mPlayerPos;
 	};
 }
 

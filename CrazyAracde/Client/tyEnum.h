@@ -14,8 +14,9 @@ enum class eSceneType
 enum class eLayerType
 {
 	BG, // 배경
-	Tile, // 타일
+	Ground,
 	AlphaBlender, // 알파블렌드
+	Tile, // 타일
 	BombEffect, // 이펙트
 	Bomb, // 폭탄
 	Monster, // 몬스터

@@ -38,7 +38,6 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\LeftIdleflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
 
-	
 		mState = eBombEffectState::Idle;
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
@@ -47,7 +46,6 @@ namespace ty
 	}
 	void BombEffect::Update()
 	{
-		GameObject::Update();
 		mTime += Time::DeltaTime();
 		
 		switch (mState)
@@ -62,6 +60,7 @@ namespace ty
 			break;
 		}
 
+		GameObject::Update();
 	
 		// 여기서 삭제시켜버려라
 	}
@@ -98,9 +97,9 @@ namespace ty
 			{
 				mAnimator->Play(L"BombCenterflow", false);
 			}
-			//Collider* collider = AddComponent<Collider>();
-			//collider->SetCenter(Vector2(11.76f, 22.84f));
-			//collider->SetSize(Vector2(56.0f, 61.6f));
+			Collider* collider = AddComponent<Collider>();
+			collider->SetCenter(Vector2(11.76f, 22.84f));
+			collider->SetSize(Vector2(56.0f, 61.6f));
 			mState = eBombEffectState::Bombed;
 		}
 	}
@@ -108,7 +107,7 @@ namespace ty
 	{
 		if (mAnimator->isComplete() == true)
 		{
-			object::Destroy(this);
+ 			object::Destroy(this);
 		}
 	}
 }

@@ -47,17 +47,17 @@ namespace ty
 		mAnimator->CreateAnimation(L"BazzirightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"Bazziready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2::Zero, 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
 
-		mAnimator->CreateAnimation(L"Bazzidie", mDieImage, Vector2(352.0f,0.0f), 13, 1, 13, Vector2::Zero,  0.15);
-		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2::Zero,  0.18);
+		mAnimator->CreateAnimation(L"Bazzidie", mDieImage, Vector2(352.0f,0.0f), 13, 1, 13, Vector2(-17.0f, -50.0f),  0.15);
+		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2(-17.0f,-50.0f), 0.18);
 		
 
 		mAnimator->GetCompleteEvent(L"Bazzitrap") = std::bind(&Bazzi::trapCompleteEvent, this);
 		mAnimator->GetCompleteEvent(L"Bazzidie") = std::bind(&Bazzi::dieCompeleteEvent, this);
 		mAnimator->Play(L"Bazziready", false);
 		
-		//Collider* collider = AddComponent<Collider>();
-		//collider->SetCenter(Vector2(-23.0f, -55.0f));
-		//collider->SetSize(Vector2(50.0f, 43.6f));
+		Collider* collider = AddComponent<Collider>();
+		collider->SetCenter(Vector2(20.0f, 40.0f));
+		collider->SetSize(Vector2(60.0f, 60.0f));
 		
 		mState = eBazziState::Idle;
 
@@ -116,12 +116,12 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{ 
-		if (isColl == false)
-		{
-			mAnimator->Play(L"Bazzitrap", false);
-			mState = eBazziState::BubbleMove;
-			isColl = true;
-		}
+		//if (isColl == false)
+		//{
+		//	mAnimator->Play(L"Bazzitrap", false);
+		//	mState = eBazziState::BubbleMove;
+		//	isColl = true;
+		//}
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -135,6 +135,32 @@ namespace ty
 	}
 	void Bazzi::move()
 	{
+
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+
+
+		//if (pos.x <= 30.0f)
+		//{
+		//	pos.x = 30.0f;
+		//}
+
+		//if (pos.x >= 900.0f)
+		//{
+		//	pos.x = 900.0f;
+		//}
+
+		//if (pos.y <= 60.0f)
+		//{
+		//	pos.y = 60.0f;
+		//}
+
+		//if (pos.y >= 780.0f)
+		//{
+		//	pos.y = 780.0f;
+		//}
+
+
 		if (Input::GetKeyUp(eKeyCode::LEFT))
 		{
 			mAnimator->Play(L"BazzileftIdle", false);
@@ -155,26 +181,28 @@ namespace ty
 			mAnimator->Play(L"BazzidownIdle", false);
 			mState = eBazziState::Idle;
 		}
+	
 		
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-		
-		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false)
+		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
+			/*&& pos.x >= 30.0f && pos.x<=900.0f && pos.y >=60.0f && pos.y<=780.0f*/)
 		{
 			//isLPressed = true;
 			pos.x -= 250.0f  * Time::DeltaTime();
 		}
-		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false)
+		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
+			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isRPressed = true;
 			pos.x += 250.0f * Time::DeltaTime();
 		}
-		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false)
+		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
+			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isUPressed = true;
 			pos.y -= 250.0f  * Time::DeltaTime();
 		}
-		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false)
+		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
+			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isDPressed = true;
 			pos.y += 250.0f  * Time::DeltaTime();
@@ -277,22 +305,47 @@ namespace ty
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 
-		if (Input::GetKey(eKeyCode::LEFT))
+		if (pos.x <= 30.0f)
+		{
+			pos.x == 30.0f;
+		}
+
+		if (pos.x >= 900.0f)
+		{
+			pos.x == 900.0f;
+		}
+
+		if (pos.y <= 60.0f)
+		{
+			pos.y == 60.0f;
+		}
+
+		if (pos.y >= 780.0f)
+		{
+			pos.y == 780.0f;
+		}
+
+
+		if (Input::GetKey(eKeyCode::LEFT)
+			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isLPressed = true;
 			pos.x -= 50.0f * Time::DeltaTime();
 		}
-		else if (Input::GetKey(eKeyCode::RIGHT))
+		else if (Input::GetKey(eKeyCode::RIGHT)
+			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isRPressed = true;
 			pos.x += 50.0f * Time::DeltaTime();
 		}
-		else if (Input::GetKey(eKeyCode::UP))
+		else if (Input::GetKey(eKeyCode::UP)
+			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isUPressed = true;
 			pos.y -= 50.0f * Time::DeltaTime();
 		}
-		else if (Input::GetKey(eKeyCode::DOWN))
+		else if (Input::GetKey(eKeyCode::DOWN)
+			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isDPressed = true;
 			pos.y += 50.0f * Time::DeltaTime();
