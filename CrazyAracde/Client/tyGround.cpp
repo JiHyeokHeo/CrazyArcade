@@ -7,6 +7,7 @@
 #include "tyImage.h"
 #include "tyPlayScene.h"
 #include "tyColliderPosControl.h"
+#include "tyTime.h"
 
 namespace ty
 {
@@ -70,7 +71,7 @@ namespace ty
 		Vector2 mColPos = mCollider->GetPos();
 		if (mGamObjPos.y < mColPos.y )
 		{
-			mGamObjPos.y = 40.0f;
+			mGamObjPos.y +=250.0f * Time::DeltaTime();
 			mPlayerPos->SetPos(mGamObjPos);
 		}
 		

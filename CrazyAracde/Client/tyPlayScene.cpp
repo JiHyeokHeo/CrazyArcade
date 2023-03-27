@@ -34,7 +34,7 @@ namespace ty
 		object::Instantiate<Monster>(Vector2(300.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<BossBombEffect>(Vector2(-100.0f, 400.0f), eLayerType::BombEffect);
-		object::Instantiate<Ground>(Vector2(30.0f, 60.0f), eLayerType::Ground);
+		object::Instantiate<Ground>(Vector2(30.0f, 50.0f), eLayerType::Ground);
 		
 		//mCuphead = object::Instantiate<Cuphead>(Vector2(500.0f, 400.0f), eLayerType::Player);
 	/*	Cuphead* player = object::Instantiate<Cuphead>(Vector2(500.0f, 400.0f), eLayerType::Player);
