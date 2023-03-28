@@ -121,7 +121,7 @@ namespace ty
 		if (mTime >= 3.0f)
 		{
 			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
-			Bazzi::GetMapIndex()[mPos.y][mPos.x] --;
+			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
 			object::Destroy(this);
 		}
 	}

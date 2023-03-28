@@ -52,8 +52,8 @@ namespace ty
 		mAnimator->CreateAnimation(L"BazzirightIdle", mRightImage, Vector2::Zero, 6, 1, 1, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"Bazziready", mReadyImage, Vector2::Zero, 18, 1, 17, Vector2::Zero, 0.07); // 오프셋 조절해서 ready 모션 바꿈 x,y축 잘 확인하기
 
-		mAnimator->CreateAnimation(L"Bazzidie", mDieImage, Vector2(352.0f,0.0f), 13, 1, 13, Vector2(-17.0f, -50.0f),  0.15);
-		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2(-17.0f,-50.0f), 0.18);
+		mAnimator->CreateAnimation(L"Bazzidie", mDieImage, Vector2(352.0f,0.0f), 13, 1, 13, Vector2::Zero,  0.15);
+		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2::Zero, 0.18);
 		
 
 		mAnimator->GetCompleteEvent(L"Bazzitrap") = std::bind(&Bazzi::trapCompleteEvent, this);
@@ -61,7 +61,7 @@ namespace ty
 		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(22.0f, 35.0f));
+		collider->SetCenter(Vector2(30.0f, 30.0f));
 		collider->SetSize(Vector2(30.0f, 30.0f));
 	
 		mState = eBazziState::Idle;
@@ -149,7 +149,7 @@ namespace ty
 
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-
+		Vector2 idxpos = TileBomb::SetIndex(tr->GetPos());
 
 		if (Input::GetKeyUp(eKeyCode::LEFT))
 		{
@@ -172,27 +172,27 @@ namespace ty
 			mState = eBazziState::Idle;
 		}
 	
-		
+
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
-			/*&& pos.x >= 30.0f && pos.x<=900.0f && pos.y >=60.0f && pos.y<=780.0f*/)
+			 )
 		{
 			//isLPressed = true;
 			pos.x -= 250.0f  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			)
 		{
 			//isRPressed = true;
 			pos.x += 250.0f * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			 )
 		{
 			//isUPressed = true;
 			pos.y -= 250.0f  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			)
 		{
 			//isDPressed = true;
 			pos.y += 250.0f  * Time::DeltaTime();
@@ -339,8 +339,8 @@ namespace ty
 	}
 	void Bazzi::revive()
 	{
-		mRandomPosx = rand() % 1000;
-		mRandomPosx = rand() % 900;
+		mRandomPosx = rand() % 700;
+		mRandomPosx = rand() % 700;
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(mRandomPosx, mRandomPosx));
 		mState = eBazziState::Idle;
