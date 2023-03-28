@@ -33,7 +33,7 @@ namespace ty
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 		
-		
+		static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
 		
 	private:
 		void move();
@@ -62,6 +62,8 @@ namespace ty
 		bool isDPressed;
 		int mRandomPosx;
 		int mRandomPosy;
-		std::vector<std::vector<int>> mapIndex;
+		static std::vector<std::vector<int>> mapIndex;
+		Vector2 IdxPos;
+		
 	};
 }

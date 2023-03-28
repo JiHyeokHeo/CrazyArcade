@@ -40,6 +40,7 @@ namespace ty
 		int maxWaterWave;
 		eBombState mState;
 		bool isBomb;
+		
 	};
 	
 }

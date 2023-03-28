@@ -15,14 +15,14 @@
 
 namespace ty
 {
-	static std::vector<std::vector<int>> mapIndex = {};
+	std::vector<std::vector<int>> Bazzi:: mapIndex;
 	Bazzi::Bazzi()
 		: maxHP(1)
 		
 	{
 		int row = 15;
 		int col = 13;
-		mapIndex.assign(row, std::vector<int>(col, 0));
+		mapIndex.assign(col, std::vector<int>(row, 0));
 	}
 	Bazzi::~Bazzi()
 	{
@@ -226,13 +226,14 @@ namespace ty
 	void Bazzi::shoot()
  	{
 		Transform* tr = GetComponent<Transform>();
-		
-		if (Input::GetKey(eKeyCode::SPACEBAR))
+		IdxPos = TileBomb::SetIndex(tr->GetPos());
+		if (Input::GetKey(eKeyCode::SPACEBAR) && mapIndex[IdxPos.y][IdxPos.x] == 0)
 		{
-			mState = eBazziState::Move;
 			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
-			TileBomb::SetIndex(tr->GetPos());
+			IdxPos = TileBomb::SetIndex(tr->GetPos());
+			mapIndex[IdxPos.y][IdxPos.x]++; // 13 15
 		}
+			mState = eBazziState::Move;
 	}
 	void Bazzi::death()
 	{

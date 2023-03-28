@@ -9,6 +9,7 @@
 #include "tyinput.h"
 #include "tyPlayScene.h"
 #include "tyBazzi.h"
+#include "tyTileBomb.h"
 
 namespace ty
 {
@@ -27,14 +28,14 @@ namespace ty
 	{
 		SetName(L"BaseBomb");
 		
-
+		
     	Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->Play(L"BombIdle", true);
-
+		Bazzi::GetMapIndex();
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(12.76f, 22.84f));
 		collider->SetSize(Vector2(58.0f, 58.0f));
@@ -65,7 +66,7 @@ namespace ty
 		GameObject::Update();
 		Transform* tr = GetComponent<Transform>();
 
-		BazziPos = PlayScene::GetBazzi()->GetComponent<Transform>()->GetPos();
+		
 
 		mTime += Time::DeltaTime();
 
@@ -97,7 +98,7 @@ namespace ty
 		{
 			for (int i = 0; i < mBombEffect.size(); i++)
 			{
-				mBombEffect[i]->SetTime(3.5f);
+				mBombEffect[i]->SetTime(3.0f);
 			}
 			mAnimator->Play(L"BombNone", true);
 		}
@@ -111,14 +112,17 @@ namespace ty
 
 	void BaseBomb::bombed()
 	{
-		object::Destroy(this);
+		
 	}
 
 	void BaseBomb::idle()
 	{
+		Transform* tr = GetComponent<Transform>();
 		if (mTime >= 3.0f)
 		{
-			mState = eBombState::Bombed;
+			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+			Bazzi::GetMapIndex()[mPos.y][mPos.x] --;
+			object::Destroy(this);
 		}
 	}
 
