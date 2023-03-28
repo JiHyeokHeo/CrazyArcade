@@ -14,6 +14,7 @@
 #include "tyBossBombEffect.h"
 #include "tyGround.h"
 #include "tyLRGround.h"
+#include "tyBaseBomb.h"
 
 namespace ty
 {
@@ -28,10 +29,11 @@ namespace ty
 	{
 		Scene::Initialize();
 
-		mBazzi = object::Instantiate<Bazzi>(Vector2(30.0f, 60.0f), eLayerType::Player);
+		mBazzi = object::Instantiate<Bazzi>(Vector2(20.0f, 40.0f), eLayerType::Player);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
 		object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
+		object::Instantiate<BaseBomb>(Vector2(20.0f, 40.0f), eLayerType::Bomb);
 		object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(300.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);

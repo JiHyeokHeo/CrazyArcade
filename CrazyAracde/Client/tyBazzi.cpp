@@ -61,8 +61,8 @@ namespace ty
 		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(30.0f, 30.0f));
-		collider->SetSize(Vector2(30.0f, 30.0f));
+		collider->SetCenter(Vector2(8.0f, 30.0f));
+		collider->SetSize(Vector2(59.0f, 59.0f));
 	
 		mState = eBazziState::Idle;
 
