@@ -119,7 +119,7 @@ namespace ty
 
 			Collider* collider = AddComponent<Collider>();
 			collider->SetCenter(Vector2(11.76f, 21.84f));
-			collider->SetSize(Vector2(60.0f, 60.0f));
+			collider->SetSize(Vector2(58.0f, 58.0f));
 			mState = eBombEffectState::Bombed;
 		}
 	}

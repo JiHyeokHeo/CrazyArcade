@@ -33,8 +33,8 @@ namespace ty
 		void idle();
 
 	private:
-		Vector2 BazziPos;;
 		std::vector<BombEffect*> mBombEffect;
+		Vector2 BazziPos;;
 		Animator* mAnimator;
 		float mTime;
 		int maxWaterWave;

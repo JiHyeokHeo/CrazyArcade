@@ -15,6 +15,7 @@
 
 namespace ty
 {
+	static std::vector<std::vector<int>> mapIndex = {};
 	Bazzi::Bazzi()
 		: maxHP(1)
 		
@@ -60,8 +61,8 @@ namespace ty
 		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(10.0f, 20.0f));
-		collider->SetSize(Vector2(55.0f, 70.0f));
+		collider->SetCenter(Vector2(22.0f, 35.0f));
+		collider->SetSize(Vector2(30.0f, 30.0f));
 	
 		mState = eBazziState::Idle;
 
@@ -225,11 +226,12 @@ namespace ty
 	void Bazzi::shoot()
  	{
 		Transform* tr = GetComponent<Transform>();
-
+		
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
 			mState = eBazziState::Move;
 			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
+			TileBomb::SetIndex(tr->GetPos());
 		}
 	}
 	void Bazzi::death()

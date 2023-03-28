@@ -32,19 +32,22 @@ namespace ty
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->Play(L"BombIdle", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(12.76f, 22.84f));
-		collider->SetSize(Vector2(60.0f, 60.0f));
+		collider->SetSize(Vector2(58.0f, 58.0f));
+
 		for (int i = 1; i < 5; i++)
 		{
 			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect));
 			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect));
 			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect));
 			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect));
-			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect));
+			
 		}
+		mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect));
 
 		for (int i = 0; i < mBombEffect.size(); i++)
 		{
@@ -96,6 +99,7 @@ namespace ty
 			{
 				mBombEffect[i]->SetTime(3.5f);
 			}
+			mAnimator->Play(L"BombNone", true);
 		}
 	}
 	void BaseBomb::OnCollisionStay(Collider* other)
