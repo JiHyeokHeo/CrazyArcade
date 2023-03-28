@@ -76,7 +76,11 @@ namespace ty
 	void BombEffect::OnCollisionEnter(Collider* other)
 	{
 		if (other->GetOwner()->GetName() == L"Ground")
+		{
 			object::Destroy(this);
+		}
+
+	
 	}
 	void BombEffect::OnCollisionStay(Collider* other)
 	{

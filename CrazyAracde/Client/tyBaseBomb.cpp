@@ -39,19 +39,18 @@ namespace ty
 		collider->SetSize(Vector2(60.0f, 60.0f));
 		for (int i = 1; i < 5; i++)
 		{
-			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos() + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);
-			mBombEffect->SetBomb(this);
-			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect);
-			mBombEffect->SetBomb(this);
-			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos() - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);
-			mBombEffect->SetBomb(this);
-			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect);
-			mBombEffect->SetBomb(this);
-			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect);
-			mBombEffect->SetBomb(this);
+			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect));
+			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect));
+			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect));
+			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect));
+			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect));
 		}
 
-		
+		for (int i = 0; i < mBombEffect.size(); i++)
+		{
+			mBombEffect[i]->SetBomb(this);
+		}
+
 		mState = eBombState::Idle;
 		
 		GameObject::Initialize();
@@ -91,6 +90,13 @@ namespace ty
 	}
 	void BaseBomb::OnCollisionEnter(Collider* other)
 	{
+		if (other->GetOwner()->GetName() == L"BombEffect")
+		{
+			for (int i = 0; i < mBombEffect.size(); i++)
+			{
+				mBombEffect[i]->SetTime(3.5f);
+			}
+		}
 	}
 	void BaseBomb::OnCollisionStay(Collider* other)
 	{
@@ -106,10 +112,8 @@ namespace ty
 
 	void BaseBomb::idle()
 	{
-	
 		if (mTime >= 3.0f)
 		{
-			
 			mState = eBombState::Bombed;
 		}
 	}

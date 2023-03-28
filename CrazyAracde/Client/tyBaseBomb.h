@@ -4,6 +4,7 @@
 
 namespace ty
 {
+	class BombEffect;
 	class Animator;
 	class BaseBomb : public GameObject
 	{
@@ -33,7 +34,7 @@ namespace ty
 
 	private:
 		Vector2 BazziPos;;
-		class BombEffect* mBombEffect;
+		std::vector<BombEffect*> mBombEffect;
 		Animator* mAnimator;
 		float mTime;
 		int maxWaterWave;

@@ -27,6 +27,7 @@ namespace ty
 
 		
 		void SetBomb(class BaseBomb* bomb) { mBaseBomb = bomb; }
+		void SetTime(float time) { mTime = time; }
 	private:
 		void idle();
 		void bombed();
