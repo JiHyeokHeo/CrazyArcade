@@ -33,6 +33,7 @@ namespace ty
 		Animator* mAnimator;
 		float mTime;
 		eBossBombEffectState mState;
+		
 	};
 }
 

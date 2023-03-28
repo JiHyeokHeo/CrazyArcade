@@ -60,9 +60,9 @@ namespace ty
 		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		//collider->SetCenter(Vector2(10.0f, 20.0f));
-		collider->SetSize(Vector2(80.0f, 100.0f));
-		
+		collider->SetCenter(Vector2(10.0f, 20.0f));
+		collider->SetSize(Vector2(55.0f, 70.0f));
+	
 		mState = eBazziState::Idle;
 
 		//mAnimator->Play(L"downIlde", true);
@@ -230,8 +230,6 @@ namespace ty
 		{
 			mState = eBazziState::Move;
 			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
-			object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect);
-		
 		}
 	}
 	void Bazzi::death()

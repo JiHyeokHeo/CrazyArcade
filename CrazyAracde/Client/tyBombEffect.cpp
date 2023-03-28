@@ -9,6 +9,7 @@
 #include "tyObject.h"
 #include "tyBazzi.h"
 #include "tyPlayScene.h"
+#include "tyBaseBomb.h"
 
 namespace ty
 {
@@ -21,8 +22,7 @@ namespace ty
 	void BombEffect::Initialize()
 	{
 		SetName(L"BombEffect");
-		BazziPos = PlayScene::GetBazzi()->GetComponent<Transform>()->GetPos();
-		BazziStartPos = BazziPos;
+		
 		Transform* tr = GetComponent<Transform>();
 		EffectPos = tr->GetPos();
 		//tr->SetPos(Vector2(400.0f, 400.0f));
@@ -39,6 +39,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2(11.76f, 22.84f), 0.16f);
 		mState = eBombEffectState::Idle;
+		
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
 		GameObject::Initialize();
@@ -89,25 +90,25 @@ namespace ty
 	{
 		if (mTime >= 3.0f)
 		{
+			mBaseBombPos = mBaseBomb->GetComponent<Transform>()->GetPos();
 
-
-			if (BazziPos.x > EffectPos.x && BazziPos.y == EffectPos.y)
+			if (mBaseBombPos.x > EffectPos.x && mBaseBombPos.y == EffectPos.y)
 			{
 				mAnimator->Play(L"BombLeftflow", false);
 			}
-			else if (BazziPos.x < EffectPos.x && BazziPos.y == EffectPos.y)
+			else if (mBaseBombPos.x < EffectPos.x && mBaseBombPos.y == EffectPos.y)
 			{
 				mAnimator->Play(L"BombRightflow", false);
 			}
-			else if (BazziPos.x == EffectPos.x && BazziPos.y < EffectPos.y)
+			else if (mBaseBombPos.x == EffectPos.x && mBaseBombPos.y < EffectPos.y)
 			{
 				mAnimator->Play(L"BombDownflow", false);
 			}
-			else if (BazziPos.x == EffectPos.x && BazziPos.y > EffectPos.y)
+			else if (mBaseBombPos.x == EffectPos.x && mBaseBombPos.y > EffectPos.y)
 			{
 				mAnimator->Play(L"BombUpflow", false);
 			}
-			else if (BazziPos.x == EffectPos.x && BazziPos.y == EffectPos.y)
+			else if (mBaseBombPos.x == EffectPos.x && mBaseBombPos.y == EffectPos.y)
 			{
 				mAnimator->Play(L"BombCenterflow", false);
 			}
@@ -120,9 +121,7 @@ namespace ty
 	}
 	void BombEffect::bombed()
 	{
-		if (mAnimator->isComplete() == true)
-		{
- 			object::Destroy(this);
-		}
+		if(mAnimator->isComplete() == true)
+ 		object::Destroy(this);
 	}
 }

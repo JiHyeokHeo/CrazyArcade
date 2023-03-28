@@ -26,12 +26,14 @@ namespace ty
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
+		
 	private:
 		void bombed();
 		void idle();
 
 	private:
 		Vector2 BazziPos;;
+		class BombEffect* mBombEffect;
 		Animator* mAnimator;
 		float mTime;
 		int maxWaterWave;

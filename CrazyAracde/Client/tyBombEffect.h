@@ -24,7 +24,9 @@ namespace ty
 		virtual void OnCollisionEnter(class Collider* other) override;
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
-		//void SetPlayer(class Bazzi* player) { mPlayer = player; }
+
+		
+		void SetBomb(class BaseBomb* bomb) { mBaseBomb = bomb; }
 	private:
 		void idle();
 		void bombed();
@@ -33,9 +35,9 @@ namespace ty
 		Animator* mAnimator;
 		float mTime;
 		eBombEffectState mState;
-		Vector2 BazziPos;
+		Vector2 mBaseBombPos;
 		Vector2 EffectPos;
-		Vector2 BazziStartPos;
+		class BaseBomb* mBaseBomb;
 		bool isBlown;
 	};
 }

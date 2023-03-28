@@ -26,9 +26,10 @@ namespace ty
 	void BaseBomb::Initialize()
 	{
 		SetName(L"BaseBomb");
+		
+
     	Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.5f, 1.5f));
-		
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->Play(L"BombIdle", true);
@@ -38,13 +39,21 @@ namespace ty
 		collider->SetSize(Vector2(60.0f, 60.0f));
 		for (int i = 1; i < 5; i++)
 		{
-			object::Instantiate<BombEffect>(BazziPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);
-			object::Instantiate<BombEffect>(BazziPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect);
-			object::Instantiate<BombEffect>(BazziPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);
-			object::Instantiate<BombEffect>(BazziPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect);
+			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos() + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);
+			mBombEffect->SetBomb(this);
+			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect);
+			mBombEffect->SetBomb(this);
+			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos() - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect);
+			mBombEffect->SetBomb(this);
+			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect);
+			mBombEffect->SetBomb(this);
+			mBombEffect = object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect);
+			mBombEffect->SetBomb(this);
 		}
-		mState = eBombState::Idle;
 
+		
+		mState = eBombState::Idle;
+		
 		GameObject::Initialize();
 	}
 
