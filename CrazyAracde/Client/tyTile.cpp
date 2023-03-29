@@ -59,6 +59,6 @@ namespace ty
 			, TILE_SIZE_X * mX, TILE_SIZE_Y * mY
 			, TILE_SIZE_X, TILE_SIZE_X
 			, RGB(255, 0, 255));
-
+		GameObject::Render(hdc);
 	}
 }
