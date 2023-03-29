@@ -15,11 +15,12 @@ enum class eLayerType
 {
 	BG, // 배경
 	Ground,
-	AlphaBlender, // 알파블렌드
 	Tile, // 타일
+	AlphaBlender, // 알파블렌드
 	BombEffect, // 이펙트
 	Bomb, // 폭탄
 	Monster, // 몬스터
+	Shadow, // 
 	Player, // 플레이어
 	UI, // UI
 	End, // 최대 16까지 이건 콜리전 매니저에 최대 수용치를 16바이트로 해놨기 때문이다.

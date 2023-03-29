@@ -132,6 +132,8 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="tyLRGround.h" />
+    <ClInclude Include="tyPlayerNum.h" />
+    <ClInclude Include="tyShadow.h" />
     <ClInclude Include="tyTileBomb.h" />
     <ClInclude Include="tyAlphaBlender.h" />
     <ClInclude Include="tyAnimation.h" />
@@ -197,6 +199,7 @@
     <ClCompile Include="tyBossBombEffect.cpp" />
     <ClCompile Include="tyGround.cpp" />
     <ClCompile Include="tyLRGround.cpp" />
+    <ClCompile Include="tyPlayerNum.cpp" />
     <ClCompile Include="tySealBoss.cpp" />
     <ClCompile Include="tyCamera.cpp" />
     <ClCompile Include="tyCollider.cpp" />
@@ -225,6 +228,7 @@
     <ClCompile Include="tyRigidBody.cpp" />
     <ClCompile Include="tyScene.cpp" />
     <ClCompile Include="tySceneManager.cpp" />
+    <ClCompile Include="tyShadow.cpp" />
     <ClCompile Include="tyStage2.cpp" />
     <ClCompile Include="tyTile.cpp" />
     <ClCompile Include="tyTilePalatte.cpp" />

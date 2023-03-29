@@ -15,6 +15,8 @@
 #include "tyGround.h"
 #include "tyLRGround.h"
 #include "tyBaseBomb.h"
+#include "tyShadow.h"
+#include "tyPlayerNum.h"
 
 namespace ty
 {
@@ -29,7 +31,9 @@ namespace ty
 	{
 		Scene::Initialize();
 
-		mBazzi = object::Instantiate<Bazzi>(Vector2(20.0f, 40.0f), eLayerType::Player);
+		mBazzi = object::Instantiate<Bazzi>(Vector2(60.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
+		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
+		object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
 		object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
@@ -92,6 +96,7 @@ namespace ty
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Bomb, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Tile, true);
 		
 	}
 	void PlayScene::OnExit()

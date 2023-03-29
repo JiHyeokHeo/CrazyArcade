@@ -268,6 +268,12 @@
     <ClInclude Include="tyTileBomb.h">
       <Filter>Contents\Player</Filter>
     </ClInclude>
+    <ClInclude Include="tyShadow.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPlayerNum.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -423,6 +429,12 @@
     </ClCompile>
     <ClCompile Include="tyLRGround.cpp">
       <Filter>Contents\Objcet</Filter>
+    </ClCompile>
+    <ClCompile Include="tyShadow.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPlayerNum.cpp">
+      <Filter>Contents\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
