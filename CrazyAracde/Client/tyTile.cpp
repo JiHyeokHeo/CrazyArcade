@@ -4,6 +4,7 @@
 #include "tyObject.h"
 #include "tyCollider.h"
 #include "tyBazzi.h"
+#include "tyTileBomb.h"
 
 namespace ty
 {
@@ -70,8 +71,11 @@ namespace ty
 	}
 	void Tile::OnCollisionEnter(Collider* other)
 	{
+		Transform* tr = GetComponent<Transform>();
+		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
+			Bazzi::GetMapIndex()[mPos.y - 1][mPos.x] = 0;
 			object::Destroy(this);
 		}
 	}

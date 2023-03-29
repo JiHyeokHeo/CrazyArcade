@@ -40,15 +40,46 @@ namespace ty
 		collider->SetCenter(Vector2(12.76f, 22.84f));
 		collider->SetSize(Vector2(58.0f, 58.0f));
 
-		for (int i = 1; i < 5; i++)
+		Vector2 BombPos = TileBomb::SetPos(tr->GetPos());
+		Vector2 BombIdx = TileBomb::SetIndex(BombPos);
+
+		if (BombIdx.x < 14)
 		{
-			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect));
-			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect));
-			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect));
-			mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos() - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect));
-			
+			for (int i = 1; i < 5; i++)
+			{
+				if (BombIdx.x + i >= 15)
+					break;
+				mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()) + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
+				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] == 2)
+					break;
+			}
+			for (int i = 1; i < 5; i++)
+			{
+				if (BombIdx.y + i >= 13)
+					break;
+				mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()) + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
+				if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] == 2)
+					break;
+			}
+			for (int i = 1; i < 5; i++)
+			{
+				if (BombIdx.x - i <= -1)
+					break;
+				mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()) - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
+				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] == 2)
+					break;
+			}
+			for (int i = 1; i < 5; i++)
+			{
+				if (BombIdx.y - i <= -1)
+					break;
+				mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()) - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
+				if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] == 2)
+					break;
+			}
+			mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()), eLayerType::BombEffect));
 		}
-		mBombEffect.push_back(object::Instantiate<BombEffect>(tr->GetPos(), eLayerType::BombEffect));
+
 
 		for (int i = 0; i < mBombEffect.size(); i++)
 		{
