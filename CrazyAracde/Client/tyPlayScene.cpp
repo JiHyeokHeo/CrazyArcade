@@ -96,7 +96,7 @@ namespace ty
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Bomb, true);
-		/*CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Tile, true);*/
+		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
 		
 	}
 	void PlayScene::OnExit()

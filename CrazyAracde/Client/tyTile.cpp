@@ -1,6 +1,9 @@
 #include "tyTile.h"
 #include "tyTransform.h"
 #include "tyCamera.h"
+#include "tyObject.h"
+#include "tyCollider.h"
+#include "tyBazzi.h"
 
 namespace ty
 {
@@ -17,17 +20,19 @@ namespace ty
 		, mX(-1)
 		, mY(-1)
 	{
+		
 		GetComponent<Transform>()->SetPos(pos);
 	}
 	Tile::~Tile()
 	{
 	}
-	void Tile::InitializeTile(Image* atlas, int index)
+	void Tile::InitializeTile(Image* atlas, int index, Vector2 pos)
 	{
 		mIndex = index;
 		if (atlas == nullptr || index < 0)
 			return;
-
+		SetName(L"Tile");
+		Bazzi::GetMapIndex()[pos.y][pos.x] = 2;
 		mAtlas = atlas;
 		SetIndex(index);
 
@@ -42,6 +47,8 @@ namespace ty
 	}
 	void Tile::Update()
 	{
+		
+		GameObject::Update();
 	}
 	void Tile::Render(HDC hdc)
 	{
@@ -60,5 +67,18 @@ namespace ty
 			, TILE_SIZE_X, TILE_SIZE_X
 			, RGB(255, 0, 255));
 		GameObject::Render(hdc);
+	}
+	void Tile::OnCollisionEnter(Collider* other)
+	{
+		if (other->GetOwner()->GetName() == L"BombEffect")
+		{
+			object::Destroy(this);
+		}
+	}
+	void Tile::OnCollisionStay(Collider* other)
+	{
+	}
+	void Tile::OnCollisionExit(Collider* other)
+	{
 	}
 }

@@ -79,7 +79,10 @@ namespace ty
 		{
 			object::Destroy(this);
 		}
-
+		if (other->GetOwner()->GetName() == L"Tile")
+		{
+			object::Destroy(this);
+		}
 	
 	}
 	void BombEffect::OnCollisionStay(Collider* other)
