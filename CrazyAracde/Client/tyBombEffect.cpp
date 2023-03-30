@@ -36,7 +36,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\RightIdleflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Leftflow", Vector2(11.76f, 22.84f), 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\LeftIdleflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2(11.76f, 22.84f), 0.16f);
 		mState = eBombEffectState::Idle;
 		

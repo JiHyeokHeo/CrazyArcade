@@ -4,6 +4,7 @@
 #include <commdlg.h>
 #include "tyCollider.h"
 
+
 namespace ty
 {
 	Image* TilePalatte::mImage = nullptr;
@@ -122,6 +123,13 @@ namespace ty
 		FILE* file = nullptr;
 		_wfopen_s(&file, szFilePath, L"rb");
 
+		//int idx = 81; // 처음으로 번호가 나오는 경우긴 한데..
+		//int Num;
+		//int MapNum;
+		//
+		//std::wistringstream(std::wstring(&szFilePath[idx], 3)) >> MapNum;
+		//
+		
 		if (file == nullptr)
 			return;
 

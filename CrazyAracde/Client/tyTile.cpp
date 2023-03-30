@@ -5,6 +5,7 @@
 #include "tyCollider.h"
 #include "tyBazzi.h"
 #include "tyTileBomb.h"
+#include "tyItem.h"
 
 namespace ty
 {
@@ -33,6 +34,8 @@ namespace ty
 		if (atlas == nullptr || index < 0)
 			return;
 		SetName(L"Tile");
+		if (pos.y > 12 || pos.x > 14 || pos.y < 0 || pos.x < 0)
+			return;
 		Bazzi::GetMapIndex()[pos.y][pos.x] = 2;
 		mAtlas = atlas;
 		SetIndex(index);
@@ -75,6 +78,7 @@ namespace ty
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
+			object::Instantiate<Item>(tr->GetPos(), eLayerType::Item);
 			Bazzi::GetMapIndex()[mPos.y - 1][mPos.x] = 0;
 			object::Destroy(this);
 		}

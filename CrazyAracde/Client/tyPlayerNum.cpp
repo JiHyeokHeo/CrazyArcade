@@ -14,7 +14,7 @@
 #include "tyTile.h"
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
-#include"tyinput.h"
+#include "tyinput.h"
 
 namespace ty
 {

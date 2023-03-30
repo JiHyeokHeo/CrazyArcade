@@ -34,7 +34,9 @@ namespace ty
 		virtual void OnCollisionExit(class Collider* other) override;
 		
 		static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
-		
+		int& GetmClick() { return mClick; }
+		int& GetmSpeed() { return mSpeed; }
+		int& GetmWaterCourse() { return mWaterCourse; }
 	private:
 		void move();
 		void shoot();
@@ -48,14 +50,21 @@ namespace ty
 		void dieCompeleteEvent();
 		
 	private:
+		int mBomb;
+		int mHP;
+		int mWaterCourse;
+		int mSpeed;
+		int maxHP;
+		int maxSpeed;
+		int maxBomb;
+		int maxWaterCourse;
+		int mClick;
 		eBazziState mState;
 		Animator* mAnimator;
 		float mTime;
-		int maxBomb;
 		int BombCnt;
 		bool isColl;
 		bool isReady;
-		int maxHP;
 		bool isLPressed;
 		bool isRPressed;
 		bool isUPressed;

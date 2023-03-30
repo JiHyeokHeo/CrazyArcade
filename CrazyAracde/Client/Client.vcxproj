@@ -131,6 +131,8 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
+    <ClInclude Include="tyBallon.h" />
+    <ClInclude Include="tyItem.h" />
     <ClInclude Include="tyLRGround.h" />
     <ClInclude Include="tyPlayerNum.h" />
     <ClInclude Include="tyShadow.h" />
@@ -192,12 +194,14 @@
     <ClCompile Include="tyAlphaBlender.cpp" />
     <ClCompile Include="tyAnimation.cpp" />
     <ClCompile Include="tyAnimator.cpp" />
+    <ClCompile Include="tyBallon.cpp" />
     <ClCompile Include="tyBazzi.cpp" />
     <ClCompile Include="tyBaseBomb.cpp" />
     <ClCompile Include="tyBlock.cpp" />
     <ClCompile Include="tyBombEffect.cpp" />
     <ClCompile Include="tyBossBombEffect.cpp" />
     <ClCompile Include="tyGround.cpp" />
+    <ClCompile Include="tyItem.cpp" />
     <ClCompile Include="tyLRGround.cpp" />
     <ClCompile Include="tyPlayerNum.cpp" />
     <ClCompile Include="tySealBoss.cpp" />

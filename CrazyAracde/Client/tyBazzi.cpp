@@ -17,7 +17,13 @@ namespace ty
 {
 	std::vector<std::vector<int>> Bazzi:: mapIndex;
 	Bazzi::Bazzi()
-		: maxHP(1)
+		: mHP(1) // Ã¼·Â
+		, mBomb(1) // ÆøÅº
+		, mWaterCourse(1) // ¹°ÁÙ±â
+		, mSpeed(5) // ¼Óµµ
+		, maxSpeed(9)
+		, maxBomb(6)
+		, maxWaterCourse(7)
 		
 	{
 		int row = 15;
@@ -176,31 +182,29 @@ namespace ty
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
 			 )
 		{
-			//isLPressed = true;
-			pos.x -= 250.0f  * Time::DeltaTime();
+			pos.x -= 50.0f * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
 			)
 		{
-			//isRPressed = true;
-			pos.x += 250.0f * Time::DeltaTime();
+			pos.x += 50.0f * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
 			 )
 		{
-			//isUPressed = true;
-			pos.y -= 250.0f  * Time::DeltaTime();
+			pos.y -= 50.0f * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
 			)
 		{
-			//isDPressed = true;
-			pos.y += 250.0f  * Time::DeltaTime();
+			pos.y += 50.0f * mSpeed * Time::DeltaTime();
 		}
 
 		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
 		{
 			mState = eBazziState::Shoot;
+ 			
+
 			//mAnimator->Play(L"downIdle", true);
 		}
 
@@ -227,8 +231,9 @@ namespace ty
  	{
 		Transform* tr = GetComponent<Transform>();
 		IdxPos = TileBomb::SetIndex(tr->GetPos());
-		if (Input::GetKey(eKeyCode::SPACEBAR) && mapIndex[IdxPos.y][IdxPos.x] == 0)
+		if (Input::GetKey(eKeyCode::SPACEBAR) && mapIndex[IdxPos.y][IdxPos.x] == 0 && mBomb < maxBomb && mClick < mBomb)
 		{
+			mClick++;
 			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
 			IdxPos = TileBomb::SetIndex(tr->GetPos());
 			mapIndex[IdxPos.y][IdxPos.x]++; // 13 15

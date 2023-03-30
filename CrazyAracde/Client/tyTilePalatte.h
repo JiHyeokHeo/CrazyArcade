@@ -34,7 +34,7 @@ namespace ty
 
 	private:
 		static std::unordered_map<UINT64, Tile*> mTiles;
-		static std::unordered_map<UINT64, Tile*> mObjects;
+		static std::unordered_map<int, int> mStage;   // 키는 몇번인지 , 스테이지 번호는 몇번인지 정하도록
 		static Image* mImage;
 		static UINT mIndex;
 	};

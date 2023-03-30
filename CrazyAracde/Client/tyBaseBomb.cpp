@@ -43,9 +43,10 @@ namespace ty
 		Vector2 BombPos = TileBomb::SetPos(tr->GetPos());
 		Vector2 BombIdx = TileBomb::SetIndex(BombPos);
 
-		if (BombIdx.x < 14)
+		int WaterStatus = PlayScene::GetBazzi()->GetmWaterCourse();
+		if (BombIdx.x < 15)
 		{
-			for (int i = 1; i < 5; i++)
+			for (int i = 1; i <= WaterStatus; i++)
 			{
 				if (BombIdx.x + i >= 15)
 					break;
@@ -53,7 +54,7 @@ namespace ty
 				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] == 2)
 					break;
 			}
-			for (int i = 1; i < 5; i++)
+			for (int i = 1; i <= WaterStatus; i++)
 			{
 				if (BombIdx.y + i >= 13)
 					break;
@@ -61,7 +62,7 @@ namespace ty
 				if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] == 2)
 					break;
 			}
-			for (int i = 1; i < 5; i++)
+			for (int i = 1; i <= WaterStatus; i++)
 			{
 				if (BombIdx.x - i <= -1)
 					break;
@@ -69,7 +70,7 @@ namespace ty
 				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] == 2)
 					break;
 			}
-			for (int i = 1; i < 5; i++)
+			for (int i = 1; i <= WaterStatus; i++)
 			{
 				if (BombIdx.y - i <= -1)
 					break;
@@ -96,8 +97,6 @@ namespace ty
 		
 		GameObject::Update();
 		Transform* tr = GetComponent<Transform>();
-
-		
 
 		mTime += Time::DeltaTime();
 
@@ -153,6 +152,7 @@ namespace ty
 		{
 			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
+			int Click = PlayScene::GetBazzi()->GetmClick()--;
 			object::Destroy(this);
 		}
 	}

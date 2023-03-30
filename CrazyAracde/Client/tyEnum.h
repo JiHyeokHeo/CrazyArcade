@@ -17,6 +17,7 @@ enum class eLayerType
 	Ground,
 	Tile, // 타일
 	AlphaBlender, // 알파블렌드
+	Item,
 	BombEffect, // 이펙트
 	Bomb, // 폭탄
 	Monster, // 몬스터
