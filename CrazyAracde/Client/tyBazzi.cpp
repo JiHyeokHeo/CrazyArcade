@@ -231,7 +231,11 @@ namespace ty
  	{
 		Transform* tr = GetComponent<Transform>();
 		IdxPos = TileBomb::SetIndex(tr->GetPos());
-		if (Input::GetKey(eKeyCode::SPACEBAR) && mapIndex[IdxPos.y][IdxPos.x] == 0 && mBomb < maxBomb && mClick < mBomb)
+		if (mBomb > maxBomb)
+		{
+			mBomb = maxBomb;
+		}
+		if (Input::GetKey(eKeyCode::SPACEBAR) && mapIndex[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
 		{
 			mClick++;
 			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);

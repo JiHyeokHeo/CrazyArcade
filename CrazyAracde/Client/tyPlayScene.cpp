@@ -17,6 +17,8 @@
 #include "tyBaseBomb.h"
 #include "tyShadow.h"
 #include "tyPlayerNum.h"
+#include "tyResources.h"
+#include "tyIceTile.h"
 
 namespace ty
 {
@@ -30,12 +32,14 @@ namespace ty
 	void PlayScene::Initialize()
 	{
 		Scene::Initialize();
-
+		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
+		
 		mBazzi = object::Instantiate<Bazzi>(Vector2(60.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 		object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
+		object::Instantiate<IceTile>(eLayerType::BG);
 		object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<BaseBomb>(Vector2(20.0f, 40.0f), eLayerType::Bomb);
 		object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
@@ -72,14 +76,12 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Tool);
 		}
 
-		if (Input::GetKeyDown(eKeyCode::L))
-		{
-			TilePalatte::Load(001);
-		}
+		
 		Scene::Update();
 	}
 	void PlayScene::Render(HDC hdc)
 	{
+
 		Scene::Render(hdc);
 	}
 	void PlayScene::Release()
@@ -88,6 +90,7 @@ namespace ty
 	}
 	void PlayScene::OnEnter()
 	{
+		TilePalatte::Load(001);
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
@@ -97,6 +100,8 @@ namespace ty
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Bomb, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
+		//CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
 		
 	}
 	void PlayScene::OnExit()

@@ -27,6 +27,7 @@ namespace ty
 		static Bazzi* mBazzi;
 		Play_BG* mPlayBG;
 		AlphaBlender* mBlender;
+		Image* mImage;
 
 	};
 };

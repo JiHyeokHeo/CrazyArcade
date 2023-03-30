@@ -15,10 +15,14 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
+#include "tyBallon.h"
 
 namespace ty
 {
 	Item::Item()
+	{
+	}
+	Item::Item(ItemType type)
 	{
 	}
 	Item::~Item()
@@ -28,7 +32,6 @@ namespace ty
 	{
 		SetName(L"BaseBomb");
 
-		Image* mBallon = Resources::Load<Image>(L"mBallon", L"..\\Resources\\Items\\ballon.bmp");
 		Image* mPotion = Resources::Load<Image>(L"mPotion", L"..\\Resources\\Items\\potion.bmp");
 		Image* mPotionMax = Resources::Load<Image>(L"mPotionMax", L"..\\Resources\\Items\\potionmax.bmp");
 		Image* mSkate = Resources::Load<Image>(L"mSkate", L"..\\Resources\\Items\\skate.bmp");
@@ -36,7 +39,7 @@ namespace ty
 		tr->SetScale(Vector2::One);
 		mAnimator = AddComponent<Animator>();
 		//mAnimator->CreateAnimation(L"Bazziup", mUpImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Ballon", mBallon, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
+		//mAnimator->CreateAnimation(L"Ballon", mBallon, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
 		mAnimator->CreateAnimation(L"Potion", mPotion, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
 		mAnimator->CreateAnimation(L"PotionMax", mPotionMax, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
 		mAnimator->CreateAnimation(L"Skate", mSkate, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
@@ -61,6 +64,11 @@ namespace ty
 	}
 	void Item::OnCollisionEnter(Collider* other)
 	{
+		int a = 0;
+		if (other->GetOwner()->GetName() == L"Bazzi")
+		{
+			object::Destroy(this);
+		}
 	}
 	void Item::OnCollisionStay(Collider* other)
 	{

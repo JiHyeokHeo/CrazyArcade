@@ -132,6 +132,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="tyBallon.h" />
+    <ClInclude Include="tyIceTile.h" />
     <ClInclude Include="tyItem.h" />
     <ClInclude Include="tyLRGround.h" />
     <ClInclude Include="tyPlayerNum.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="tySceneManager.h" />
     <ClInclude Include="tyStage2.h" />
     <ClInclude Include="tyTile.h" />
+    <ClInclude Include="tyTileMove.h" />
     <ClInclude Include="tyTilePalatte.h" />
     <ClInclude Include="tyTime.h" />
     <ClInclude Include="tyLoginScene.h" />
@@ -201,6 +203,7 @@
     <ClCompile Include="tyBombEffect.cpp" />
     <ClCompile Include="tyBossBombEffect.cpp" />
     <ClCompile Include="tyGround.cpp" />
+    <ClCompile Include="tyIceTile.cpp" />
     <ClCompile Include="tyItem.cpp" />
     <ClCompile Include="tyLRGround.cpp" />
     <ClCompile Include="tyPlayerNum.cpp" />
@@ -235,6 +238,7 @@
     <ClCompile Include="tyShadow.cpp" />
     <ClCompile Include="tyStage2.cpp" />
     <ClCompile Include="tyTile.cpp" />
+    <ClCompile Include="tyTileMove.cpp" />
     <ClCompile Include="tyTilePalatte.cpp" />
     <ClCompile Include="tyTime.cpp" />
     <ClCompile Include="tyLoginScene.cpp" />

@@ -8,6 +8,7 @@
 #include "tyPlayScene.h"
 #include "tyColliderPosControl.h"
 #include "tyTime.h"
+#include "tyPlayScene.h"
 
 namespace ty
 {
@@ -67,18 +68,20 @@ namespace ty
 
 	void Ground::OnCollisionStay(Collider* other)
 	{
+		int mSpeed = PlayScene::GetBazzi()->GetmSpeed();
+
 		Transform* mPlayerPos = mPlayer->GetComponent<Transform>();
 		Vector2 mGameobjPos = mPlayerPos->GetPos();
 		Vector2 mGameobjColPos = mPlayer->GetComponent<Collider>()->GetPos();
 		Vector2 mColPos = mCollider->GetPos();
 		if (mGameobjColPos.y > mColPos.y && other->GetOwner()->GetName() == L"Bazzi")
 		{
-			mGameobjPos.y +=250.0f * Time::DeltaTime();
+			mGameobjPos.y +=50 * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
 		if(mGameobjColPos.y < mColPos.y && other->GetOwner()->GetName() == L"Bazzi")
 		{
-			mGameobjPos.y -= 250.0f * Time::DeltaTime();
+			mGameobjPos.y -= 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
 		

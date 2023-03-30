@@ -7,6 +7,7 @@ namespace ty
 	{
 	public:
 		Ballon();
+		Ballon(ItemType type);
 		~Ballon();
 
 		virtual void Initialize() override;

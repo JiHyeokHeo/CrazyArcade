@@ -67,18 +67,19 @@ namespace ty
 
 	void LRGround::OnCollisionStay(Collider* other)
 	{
+		int mSpeed = PlayScene::GetBazzi()->GetmSpeed();
 		Transform* mPlayerPos = mPlayer->GetComponent<Transform>();
 		Vector2 mGameobjPos = mPlayerPos->GetPos();
 		Vector2 mGameobjColPos = mPlayer->GetComponent<Collider>()->GetPos();
 		Vector2 mColPos = mCollider->GetPos();
 		if (mGameobjColPos.x > mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
 		{
-			mGameobjPos.x += 250.0f * Time::DeltaTime();
+			mGameobjPos.x += 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
 		if (mGameobjColPos.x < mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
 		{
-			mGameobjPos.x -= 250.0f * Time::DeltaTime();
+			mGameobjPos.x -= 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
 

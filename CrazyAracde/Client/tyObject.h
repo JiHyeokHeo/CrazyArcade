@@ -27,6 +27,8 @@ namespace ty::object
 		return gameObj;
 	}
 
+
+
 	static void Destroy(GameObject* obj)
 	{
 		obj->SetState(GameObject::eState::Death);

@@ -4,7 +4,7 @@
 
 namespace ty
 {
-	class Collider : public Component
+	class Collider : public Component // 자식 // 부모
 	{
 	public:
 		Collider();

@@ -37,11 +37,12 @@ namespace ty
 		
 		Vector2 tilePos(30.0f + pos.x * TILE_SIZE_X, 60.0f + pos.y * TILE_SIZE_Y);
 		tile->GetComponent<Transform>()->SetPos(tilePos);
-		if (index >= 4)
+		if (index == 4)
 		{
 			tile->AddComponent<Collider>();
 			tile->GetComponent<Collider>()->SetPos(tilePos);
 			tile->GetComponent<Collider>()->SetSize(Vector2(TILE_SIZE_X, TILE_SIZE_Y));
+			
 		}
 		TileID id;
 		id.x = (UINT32)pos.x; // 좌표값이 즉 id가 된다

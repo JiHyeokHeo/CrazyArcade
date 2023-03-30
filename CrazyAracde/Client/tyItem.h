@@ -16,6 +16,7 @@ namespace ty
 			Skate
 		};
 		Item();
+		Item(ItemType type);
 		~Item();
 
 		virtual void Initialize() override;

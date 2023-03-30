@@ -16,10 +16,18 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
+#include "tyItem.h"
 
 namespace ty
 {
+	/*Component::Component(eComponentType type)
+		: mType(type)*/
+	
 	Ballon::Ballon()
+	{
+	}
+	Ballon::Ballon(ItemType type)
+		:Item(ItemType::Ballon)
 	{
 	}
 	Ballon::~Ballon()
@@ -27,6 +35,14 @@ namespace ty
 	}
 	void Ballon::Initialize()
 	{
+		Image* mBallon = Resources::Load<Image>(L"mBallon", L"..\\Resources\\Items\\ballon.bmp");
+		mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimation(L"Ballon", mBallon, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
+		mAnimator->Play(L"Ballon", true);
+
+		Collider* Col = AddComponent<Collider>();
+		Col->SetCenter(Vector2(20.0f, 20.0f));
+		Col->SetSize(Vector2(20.0f, 20.0f));
 		GameObject::Initialize();
 	}
 	void Ballon::Update()
@@ -44,7 +60,8 @@ namespace ty
 	{
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			
+			PlayScene::GetBazzi()->GetmBomb()++;
+			object::Destroy(this);
 		}
 	}
 	void Ballon::OnCollisionStay(Collider* other)

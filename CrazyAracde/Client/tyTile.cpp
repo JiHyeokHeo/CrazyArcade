@@ -6,6 +6,8 @@
 #include "tyBazzi.h"
 #include "tyTileBomb.h"
 #include "tyItem.h"
+#include "tyPlayScene.h"
+#include "tyBallon.h"
 
 namespace ty
 {
@@ -51,7 +53,6 @@ namespace ty
 	}
 	void Tile::Update()
 	{
-		
 		GameObject::Update();
 	}
 	void Tile::Render(HDC hdc)
@@ -78,13 +79,21 @@ namespace ty
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
-			object::Instantiate<Item>(tr->GetPos(), eLayerType::Item);
+			object::Instantiate<Ballon>(tr->GetPos(), eLayerType::Item);
 			Bazzi::GetMapIndex()[mPos.y - 1][mPos.x] = 0;
 			object::Destroy(this);
 		}
 	}
 	void Tile::OnCollisionStay(Collider* other)
 	{
+		Vector2 BazziPos = PlayScene::GetBazzi()->GetComponent<Transform>()->GetPos();
+		Transform* tr = GetComponent<Transform>();
+		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+		if (other->GetOwner()->GetName() == L"Bazzi" )
+		{
+			Bazzi::GetMapIndex()[mPos.y - 1][mPos.x] = 0;
+			object::Destroy(this);
+		}
 	}
 	void Tile::OnCollisionExit(Collider* other)
 	{

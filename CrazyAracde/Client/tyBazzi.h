@@ -37,6 +37,7 @@ namespace ty
 		int& GetmClick() { return mClick; }
 		int& GetmSpeed() { return mSpeed; }
 		int& GetmWaterCourse() { return mWaterCourse; }
+		INT& GetmBomb() { return mBomb; }
 	private:
 		void move();
 		void shoot();
