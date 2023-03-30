@@ -14,7 +14,6 @@ namespace ty
 	void TilePalatte::Initialize()
 	{
 		 mImage = Resources::Find<Image>(L"TileAtlas");
-		 
 	}
 
 	void TilePalatte::Update()
@@ -31,6 +30,7 @@ namespace ty
 		if (mousPos.y >= 900.0f || mousPos.y <= 0.0f)
 			return;
 
+		
 		Tile* tile = object::Instantiate<Tile>(eLayerType::Tile);
 		tile->InitializeTile(mImage, index, pos);
 
@@ -48,12 +48,13 @@ namespace ty
 		id.y = (UINT32)pos.y;
 
 		mTiles.insert(std::make_pair(id.id, tile)); // 신기방구 Union 관련
+		
 
 	}
 	void TilePalatte::CreateTiles(int index, UINT width, UINT height)
 	{
 	}
-	void TilePalatte::Save()
+	void TilePalatte::Save(int stagenum)
 	{
 		// open a file name
 		OPENFILENAME ofn = {};
@@ -84,41 +85,30 @@ namespace ty
 
 		if (nullptr == file)
 			return;
-
+		
 		std::unordered_map<UINT64, Tile*>::iterator iter = mTiles.begin();
 		for (; iter != mTiles.end(); iter++)
 		{
+			int stage = stagenum;
+			fwrite(&stage, sizeof(int), 1, file);
+		
 			int index = iter->second->Index();
 			fwrite(&index, sizeof(int), 1, file);
 
 			TileID id;
 			id.id = iter->first;
 			fwrite(&id.id, sizeof(TileID), 1, file);
+
 		}
 
 		fclose(file);
 	}
-	void TilePalatte::Load()
+	void TilePalatte::Load(int stagenum)
 	{
 		OPENFILENAME ofn = {};
 
-		wchar_t szFilePath[256] = {};
+		wchar_t szFilePath[256] = {L"..\\MapSave\\Map_001"};
 
-		ZeroMemory(&ofn, sizeof(ofn));
-		ofn.lStructSize = sizeof(ofn);
-		ofn.hwndOwner = NULL;
-		ofn.lpstrFile = szFilePath;
-		ofn.lpstrFile[0] = '\0';
-		ofn.nMaxFile = 256;
-		ofn.lpstrFilter = L"All\0*.*\0Text\0*.TXT\0";
-		ofn.nFilterIndex = 1;
-		ofn.lpstrFileTitle = NULL;
-		ofn.nMaxFileTitle = 0;
-		ofn.lpstrInitialDir = NULL;
-		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
-
-		if (false == GetOpenFileName(&ofn))
-			return;
 
 		FILE* file = nullptr;
 		_wfopen_s(&file, szFilePath, L"rb");
@@ -132,18 +122,23 @@ namespace ty
 		
 		if (file == nullptr)
 			return;
-
+		
+		
 		while (true)
 		{
+			int stage = -1;
 			int index = -1;
 			TileID id;
-
+			if (fread(&stage, sizeof(int), 1, file) == NULL)
+				break;	
 			if (fread(&index, sizeof(int), 1, file) == NULL)
 				break;
-
 			if (fread(&id.id, sizeof(TileID), 1, file) == NULL)
 				break;
 
+			if (stage != stagenum)
+				continue;
+			// 여기에다가 조건 추가
 			CreateTile(index, Vector2(id.x, id.y));
 		}
 

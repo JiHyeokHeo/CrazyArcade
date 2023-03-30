@@ -74,7 +74,7 @@ namespace ty
 
 		if (Input::GetKeyDown(eKeyCode::L))
 		{
-			TilePalatte::Load();
+			TilePalatte::Load(001);
 		}
 		Scene::Update();
 	}

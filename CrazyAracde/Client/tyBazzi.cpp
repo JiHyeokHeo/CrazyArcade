@@ -17,7 +17,7 @@ namespace ty
 {
 	std::vector<std::vector<int>> Bazzi:: mapIndex;
 	Bazzi::Bazzi()
-		: mHP(1) // 체력
+		: mHP(1) // 체력 
 		, mBomb(1) // 폭탄
 		, mWaterCourse(1) // 물줄기
 		, mSpeed(5) // 속도

@@ -25,8 +25,8 @@ namespace ty
 
 		static void CreateTile(int index, Vector2 pos);
 		static void CreateTiles(int index, UINT width, UINT height);
-		static void Save();
-		static void Load();
+		static void Save(int num);
+		static void Load(int num);
 
 		static Vector2 GetTilePos(Vector2 mousePos);
 		static void SetIndex(UINT index) { mIndex = index; }
@@ -34,7 +34,7 @@ namespace ty
 
 	private:
 		static std::unordered_map<UINT64, Tile*> mTiles;
-		static std::unordered_map<int, int> mStage;   // 키는 몇번인지 , 스테이지 번호는 몇번인지 정하도록
+	
 		static Image* mImage;
 		static UINT mIndex;
 	};

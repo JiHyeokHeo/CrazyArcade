@@ -47,11 +47,11 @@ namespace ty
         }
         if (Input::GetKeyDown(eKeyCode::S))
         {
-            TilePalatte::Save();
+            TilePalatte::Save(001);
         }
         if (Input::GetKeyDown(eKeyCode::L))
         {
-            TilePalatte::Load();
+            TilePalatte::Load(001);
         }
 
 
