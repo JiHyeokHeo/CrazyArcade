@@ -27,6 +27,7 @@ namespace ty
 			, 0, 0
 			, mImage->GetWidth(), mImage->GetHeight()
 			, RGB(255, 0, 255));
+
 	}
 	void IceTile::Release()
 	{
