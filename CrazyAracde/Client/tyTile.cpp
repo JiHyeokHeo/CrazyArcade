@@ -9,6 +9,7 @@
 #include "tyPlayScene.h"
 #include "tyBallon.h"
 #include "tyTime.h"
+#include "tyinput.h"
 
 namespace ty
 {
@@ -92,6 +93,22 @@ namespace ty
 			object::Destroy(this);
 		}
 
+		if (Input::GetKey(eKeyCode::RIGHT))
+		{
+			isRCol =true;
+		}
+		if (Input::GetKey(eKeyCode::LEFT))
+		{
+			isLCol = true;
+		}
+		if (Input::GetKey(eKeyCode::UP))
+		{
+			isUCol = true;
+		}
+		if (Input::GetKey(eKeyCode::DOWN))
+		{
+			isDCol = true;
+		}
 	}
 	void Tile::OnCollisionStay(Collider* other)
 	{
@@ -103,22 +120,25 @@ namespace ty
 		Vector2 mColPos = mCollider->GetPos();
 		Vector2 mPos = TileBomb::SetIndex(mGameobjPos);
 		if (mGameobjColPos.y > mColPos.y && other->GetOwner()->GetName() == L"Bazzi" /*&& Bazzi::GetMapIndex()[mPos.y - 1][mPos.x] == 2 */
-			&& isRCol == false && isLCol == false && isUCol == false && isDCol == true)
+			&& isRCol == false && isLCol == false && isUCol == true && isDCol == false)
 		{
 			mGameobjPos.y += 50 * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
-		if (mGameobjColPos.y < mColPos.y && other->GetOwner()->GetName() == L"Bazzi" /*&& Bazzi::GetMapIndex()[mPos.y + 1][mPos.x] == 2*/)
+		if (mGameobjColPos.y < mColPos.y && other->GetOwner()->GetName() == L"Bazzi"
+			&& isRCol == false && isLCol == false && isUCol == false && isDCol == true/*&& Bazzi::GetMapIndex()[mPos.y + 1][mPos.x] == 2*/)
 		{
 			mGameobjPos.y -= 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
-		if (mGameobjColPos.x > mColPos.x && other->GetOwner()->GetName() == L"Bazzi" /*&& Bazzi::GetMapIndex()[mPos.y][mPos.x - 1] == 2*/)
+		if (mGameobjColPos.x > mColPos.x && other->GetOwner()->GetName() == L"Bazzi"
+			&& isRCol == false && isLCol == true && isUCol == false && isDCol == false/*&& Bazzi::GetMapIndex()[mPos.y][mPos.x - 1] == 2*/)
 		{
 			mGameobjPos.x += 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
-		if (mGameobjColPos.x < mColPos.x && other->GetOwner()->GetName() == L"Bazzi" /*&& Bazzi::GetMapIndex()[mPos.y][mPos.x + 1] == 2*/)
+		if (mGameobjColPos.x < mColPos.x && other->GetOwner()->GetName() == L"Bazzi" 
+			&& isRCol == true && isLCol == false && isUCol == false && isDCol == false/*&& Bazzi::GetMapIndex()[mPos.y][mPos.x + 1] == 2*/)
 		{
 			mGameobjPos.x -= 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
@@ -132,5 +152,9 @@ namespace ty
 	}
 	void Tile::OnCollisionExit(Collider* other)
 	{
+		isRCol = false;
+		isLCol = false;
+		isUCol = false;
+		isDCol = false;
 	}
 }
