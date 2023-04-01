@@ -18,6 +18,8 @@ namespace ty
 		, mIndex(-1)
 		, mX(-1)
 		, mY(-1)
+		, mTime(0.0f)
+		, movePos(30.0f)
 	{
 	}
 	Tile::Tile(Vector2 pos)
@@ -34,12 +36,11 @@ namespace ty
 	}
 	void Tile::InitializeTile(Image* atlas, int index, Vector2 pos)
 	{
-		if (index == 4)
+		if (index >= 4)
 		{
 			mCollider = AddComponent<Collider>();
 			mCollider -> SetPos(Vector2(30.0f + pos.x * TILE_SIZE_X, 60.0f + pos.y * TILE_SIZE_Y));
 			mCollider ->SetSize(Vector2(58.0f, 58.0f));
-
 		}
 		mIndex = index;
 		if (atlas == nullptr || index < 0)
@@ -69,7 +70,7 @@ namespace ty
 		if (mAtlas == nullptr || mIndex < 0)
 			return;
 
-		Transform* tr = GetComponent<Transform>();
+		tr = GetComponent<Transform>();
 
 		Vector2 renderPos = tr->GetPos();
 
@@ -84,7 +85,7 @@ namespace ty
 	}
 	void Tile::OnCollisionEnter(Collider* other)
 	{
-		Transform* tr = GetComponent<Transform>();
+		tr = GetComponent<Transform>();
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
@@ -112,6 +113,8 @@ namespace ty
 	}
 	void Tile::OnCollisionStay(Collider* other)
 	{
+		tr = GetComponent<Transform>();
+		mTime += Time::DeltaTime();
 		mPlayer = PlayScene::GetBazzi();
 		int mSpeed = mPlayer->GetmSpeed();
 		Transform* mPlayerPos = mPlayer->GetComponent<Transform>();
@@ -122,33 +125,47 @@ namespace ty
 		if (mGameobjColPos.y > mColPos.y && other->GetOwner()->GetName() == L"Bazzi" /*&& Bazzi::GetMapIndex()[mPos.y - 1][mPos.x] == 2 */
 			&& isRCol == false && isLCol == false && isUCol == true && isDCol == false)
 		{
+			resultPos = Vector2(tr->GetPos().x + TILE_SIZE_X, tr->GetPos().y + 0);
 			mGameobjPos.y += 50 * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
+			if (mTime >= 1.5f && mIndex == 4)
+			{
+				isRMove = true;
+			}
 		}
-		if (mGameobjColPos.y < mColPos.y && other->GetOwner()->GetName() == L"Bazzi"
+		else if (mGameobjColPos.y < mColPos.y && other->GetOwner()->GetName() == L"Bazzi"
 			&& isRCol == false && isLCol == false && isUCol == false && isDCol == true/*&& Bazzi::GetMapIndex()[mPos.y + 1][mPos.x] == 2*/)
 		{
 			mGameobjPos.y -= 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
+			if (mTime >= 1.5f && mIndex == 4)
+			{
+				tr->SetPos(Vector2(tr->GetPos().x + TILE_SIZE_X, tr->GetPos().y + 0));
+			}
 		}
-		if (mGameobjColPos.x > mColPos.x && other->GetOwner()->GetName() == L"Bazzi"
+		else if (mGameobjColPos.x > mColPos.x && other->GetOwner()->GetName() == L"Bazzi"
 			&& isRCol == false && isLCol == true && isUCol == false && isDCol == false/*&& Bazzi::GetMapIndex()[mPos.y][mPos.x - 1] == 2*/)
 		{
 			mGameobjPos.x += 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
+			if (mTime >= 1.5f && mIndex == 4)
+			{
+				tr->SetPos(Vector2(tr->GetPos().x + TILE_SIZE_X, tr->GetPos().y + 0));
+			}
 		}
-		if (mGameobjColPos.x < mColPos.x && other->GetOwner()->GetName() == L"Bazzi" 
+		else if (mGameobjColPos.x < mColPos.x && other->GetOwner()->GetName() == L"Bazzi" 
 			&& isRCol == true && isLCol == false && isUCol == false && isDCol == false/*&& Bazzi::GetMapIndex()[mPos.y][mPos.x + 1] == 2*/)
 		{
 			mGameobjPos.x -= 50.0f * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
+			if (mTime >= 1.5f && mIndex == 4)
+			{
+				tr->SetPos(Vector2(tr->GetPos().x + TILE_SIZE_X, tr->GetPos().y + 0));
+			}
 		}
 
-		//if (other->GetOwner()->GetName() == L"Bazzi" )
-		//{
-		//	Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
-		//	object::Destroy(this);
-		//}
+		
+		
 	}
 	void Tile::OnCollisionExit(Collider* other)
 	{

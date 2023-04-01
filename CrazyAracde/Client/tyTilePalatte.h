@@ -31,6 +31,7 @@ namespace ty
 		static Vector2 GetTilePos(Vector2 mousePos);
 		static void SetIndex(UINT index) { mIndex = index; }
 		static UINT GetIndex() { return mIndex; }
+		static std::unordered_map<UINT64, Tile*> GetMapTile() {	return mTiles; }
 
 	private:
 		static std::unordered_map<UINT64, Tile*> mTiles;

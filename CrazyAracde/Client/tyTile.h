@@ -24,7 +24,7 @@ namespace ty
 		UINT Y() { return mY; }
 		UINT X() { return mX; }
 		UINT Index() { return mIndex; }
-
+		
 	private:
 		Image* mAtlas;
 		UINT mIndex;
@@ -37,6 +37,11 @@ namespace ty
 		bool isLCol;
 		bool isUCol;
 		bool isDCol;
+		float mTime;
+		float movePos;
+		bool isRMove;
+		Transform* tr;
+		Vector2 resultPos;
 	};
 }
 
