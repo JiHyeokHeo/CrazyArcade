@@ -30,7 +30,13 @@ namespace ty
 		UINT mIndex;
 		UINT mX;
 		UINT mY;
-
+		class Bazzi* mPlayer;
+		Collider* mCollider;
+		int colcnt = 0;
+		bool isRCol;
+		bool isLCol;
+		bool isUCol;
+		bool isDCol;
 	};
 }
 

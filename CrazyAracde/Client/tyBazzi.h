@@ -74,6 +74,6 @@ namespace ty
 		int mRandomPosy;
 		static std::vector<std::vector<int>> mapIndex;
 		Vector2 IdxPos;
-		
+
 	};
 }

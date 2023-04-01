@@ -274,6 +274,12 @@
     <ClInclude Include="tyPlayerNum.h">
       <Filter>Contents\Player</Filter>
     </ClInclude>
+    <ClInclude Include="tyBallon.h" />
+    <ClInclude Include="tyIceTile.h" />
+    <ClInclude Include="tyItem.h" />
+    <ClInclude Include="tydir.h">
+      <Filter>Contents\Tile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -436,5 +442,8 @@
     <ClCompile Include="tyPlayerNum.cpp">
       <Filter>Contents\Player</Filter>
     </ClCompile>
+    <ClCompile Include="tyBallon.cpp" />
+    <ClCompile Include="tyIceTile.cpp" />
+    <ClCompile Include="tyItem.cpp" />
   </ItemGroup>
 </Project>

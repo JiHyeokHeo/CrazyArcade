@@ -67,8 +67,8 @@ namespace ty
 		mAnimator->Play(L"Bazziready", false);
 		
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(8.0f, 30.0f));
-		collider->SetSize(Vector2(59.0f, 59.0f));
+		collider->SetCenter(Vector2(13.0f, 25.0f));
+		collider->SetSize(Vector2(49.0f, 49.0f));
 	
 		mState = eBazziState::Idle;
 
@@ -178,30 +178,25 @@ namespace ty
 			mState = eBazziState::Idle;
 		}
 	
-		if (mapIndex[idxpos.y][idxpos.x] == 2)
-		{
-
-		}
 		
 
-
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
-			/*&& mapIndex[idxpos.y][idxpos.x - 1] != 2*/)
+			)
 		{
 			pos.x -= 50.0f * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			/*&& mapIndex[idxpos.y][idxpos.x + 1] != 2*/)
+			)
 		{
 			pos.x += 50.0f * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			/*&& mapIndex[idxpos.y][idxpos.x] != 2*/)
+			)
 		{
 			pos.y -= 50.0f * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			/*&& mapIndex[idxpos.y][idxpos.x] != 2*/)
+			)
 		{
 			pos.y += 50.0f * mSpeed * Time::DeltaTime();
 		}
@@ -354,10 +349,10 @@ namespace ty
 	}
 	void Bazzi::revive()
 	{
-		mRandomPosx = rand() % 700;
-		mRandomPosx = rand() % 700;
+		mRandomPosx = 40.0f;
+		mRandomPosy = 60.0f;
 		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(mRandomPosx, mRandomPosx));
+		tr->SetPos(Vector2(mRandomPosx, mRandomPosy));
 		mState = eBazziState::Idle;
 		mAnimator->Play(L"Bazziready", false);
 		mTime = 0;
