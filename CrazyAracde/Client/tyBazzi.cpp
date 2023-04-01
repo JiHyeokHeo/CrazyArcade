@@ -19,7 +19,7 @@ namespace ty
 	Bazzi::Bazzi()
 		: mHP(1) // 체력 
 		, mBomb(1) // 폭탄
-		, mWaterCourse(1) // 물줄기
+		, mWaterCourse(5) // 물줄기
 		, mSpeed(5) // 속도
 		, maxSpeed(9)
 		, maxBomb(6)
@@ -178,24 +178,30 @@ namespace ty
 			mState = eBazziState::Idle;
 		}
 	
+		if (mapIndex[idxpos.y][idxpos.x] == 2)
+		{
 
-		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
-			 )
+		}
+		
+
+
+		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
+			/*&& mapIndex[idxpos.y][idxpos.x - 1] != 2*/)
 		{
 			pos.x -= 50.0f * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			)
+			/*&& mapIndex[idxpos.y][idxpos.x + 1] != 2*/)
 		{
 			pos.x += 50.0f * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			 )
+			/*&& mapIndex[idxpos.y][idxpos.x] != 2*/)
 		{
 			pos.y -= 50.0f * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			)
+			/*&& mapIndex[idxpos.y][idxpos.x] != 2*/)
 		{
 			pos.y += 50.0f * mSpeed * Time::DeltaTime();
 		}
@@ -240,7 +246,7 @@ namespace ty
 			mClick++;
 			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
 			IdxPos = TileBomb::SetIndex(tr->GetPos());
-			mapIndex[IdxPos.y][IdxPos.x]++; // 13 15
+			mapIndex[IdxPos.y][IdxPos.x] = 1; // 13 15
 		}
 			mState = eBazziState::Move;
 	}

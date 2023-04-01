@@ -32,25 +32,25 @@ namespace ty
     	Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2::Zero, 0.16f);
 		mAnimator->Play(L"BombIdle", true);
 		Bazzi::GetMapIndex();
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(12.76f, 22.84f));
+		collider->SetCenter(Vector2::Zero);
 		collider->SetSize(Vector2(58.0f, 58.0f));
 
-		Vector2 BombPos = TileBomb::SetPos(tr->GetPos());
+		Vector2 BombPos = tr->GetPos();
 		Vector2 BombIdx = TileBomb::SetIndex(BombPos);
 
 		int WaterStatus = PlayScene::GetBazzi()->GetmWaterCourse();
-		if (BombIdx.x < 15)
+		if (BombIdx.x < 15 || BombIdx.y < 13)
 		{
 			for (int i = 1; i <= WaterStatus; i++)
 			{
 				if (BombIdx.x + i >= 15)
 					break;
-				mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()) + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
+				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
 				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] == 2)
 					break;
 			}
@@ -58,7 +58,7 @@ namespace ty
 			{
 				if (BombIdx.y + i >= 13)
 					break;
-				mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()) + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
+				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
 				if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] == 2)
 					break;
 			}
@@ -66,7 +66,7 @@ namespace ty
 			{
 				if (BombIdx.x - i <= -1)
 					break;
-				mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()) - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
+				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
 				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] == 2)
 					break;
 			}
@@ -74,11 +74,11 @@ namespace ty
 			{
 				if (BombIdx.y - i <= -1)
 					break;
-				mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()) - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
+				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
 				if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] == 2)
 					break;
 			}
-			mBombEffect.push_back(object::Instantiate<BombEffect>(TileBomb::SetPos(tr->GetPos()), eLayerType::BombEffect));
+			mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));
 		}
 
 

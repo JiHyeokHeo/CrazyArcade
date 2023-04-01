@@ -28,16 +28,16 @@ namespace ty
 		//tr->SetPos(Vector2(400.0f, 400.0f));
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Downflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\DownIdleflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Upflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\UpIdleflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Rightflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\RightIdleflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Leftflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\LeftIdleflow", Vector2(11.76f, 22.84f), 0.16f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2(11.76f, 22.84f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2(11.76f, 22.84f), 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Downflow", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\DownIdleflow", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Upflow", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\UpIdleflow", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Rightflow", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\RightIdleflow", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Leftflow", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\LeftIdleflow", Vector2::Zero, 0.16f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2::Zero, 0.16f);
 		mState = eBombEffectState::Idle;
 		
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
@@ -121,7 +121,7 @@ namespace ty
 			}
 
 			Collider* collider = AddComponent<Collider>();
-			collider->SetCenter(Vector2(31.76f, 50.84f));
+			collider->SetCenter(Vector2(25.00f, 25.00f));
 			collider->SetSize(Vector2(10.0f, 10.0f));
 			mState = eBombEffectState::Bombed;
 		}

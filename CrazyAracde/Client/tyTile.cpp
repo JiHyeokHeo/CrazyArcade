@@ -80,7 +80,7 @@ namespace ty
 		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
 			object::Instantiate<Ballon>(tr->GetPos(), eLayerType::Item);
-			Bazzi::GetMapIndex()[mPos.y - 1][mPos.x] = 0;
+			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
 			object::Destroy(this);
 		}
 	}
@@ -91,7 +91,7 @@ namespace ty
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		if (other->GetOwner()->GetName() == L"Bazzi" )
 		{
-			Bazzi::GetMapIndex()[mPos.y - 1][mPos.x] = 0;
+			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
 			object::Destroy(this);
 		}
 	}
