@@ -90,7 +90,7 @@ namespace ty
 	}
 	void PlayScene::OnEnter()
 	{
-		TilePalatte::Load(001);
+		TilePalatte::Load(L"001");
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);

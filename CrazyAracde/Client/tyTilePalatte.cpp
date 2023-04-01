@@ -55,7 +55,7 @@ namespace ty
 	void TilePalatte::CreateTiles(int index, UINT width, UINT height)
 	{
 	}
-	void TilePalatte::Save(int stagenum)
+	void TilePalatte::Save()
 	{
 		// open a file name
 		OPENFILENAME ofn = {};
@@ -90,9 +90,6 @@ namespace ty
 		std::unordered_map<UINT64, Tile*>::iterator iter = mTiles.begin();
 		for (; iter != mTiles.end(); iter++)
 		{
-			int stage = stagenum;
-			fwrite(&stage, sizeof(int), 1, file);
-		
 			int index = iter->second->Index();
 			fwrite(&index, sizeof(int), 1, file);
 
@@ -104,41 +101,37 @@ namespace ty
 
 		fclose(file);
 	}
-	void TilePalatte::Load(int stagenum)
+	void TilePalatte::Load(const wchar_t* stagenum)
 	{
 		OPENFILENAME ofn = {};
+		wchar_t szFilePath[256] = L"..\\MapSave\\Map_";
 
-		wchar_t szFilePath[256] = {L"..\\MapSave\\Map_001"};
+		size_t filePathLen = wcslen(szFilePath);
+		size_t stageNumLen = wcslen(stagenum);
 
-
-		FILE* file = nullptr;
-		_wfopen_s(&file, szFilePath, L"rb");
-
-		//int idx = 81; // 처음으로 번호가 나오는 경우긴 한데..
-		//int Num;
-		//int MapNum;
-		//
-		//std::wistringstream(std::wstring(&szFilePath[idx], 3)) >> MapNum;
-		//
-		
-		if (file == nullptr)
+		if (filePathLen + stageNumLen + 1 > 256)
 			return;
 		
 		
+		wcscat_s(szFilePath, 256 - filePathLen, stagenum);
+		FILE* file = nullptr;
+		_wfopen_s(&file, szFilePath, L"rb");
+		if (file == nullptr)
+			return;
+		
+	
+		
 		while (true)
 		{
-			int stage = -1;
+			
 			int index = -1;
 			TileID id;
-			if (fread(&stage, sizeof(int), 1, file) == NULL)
-				break;	
+
 			if (fread(&index, sizeof(int), 1, file) == NULL)
 				break;
 			if (fread(&id.id, sizeof(TileID), 1, file) == NULL)
 				break;
-
-			if (stage != stagenum)
-				continue;
+		
 			// 여기에다가 조건 추가
 			CreateTile(index, Vector2(id.x, id.y));
 		}

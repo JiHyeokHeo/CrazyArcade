@@ -25,8 +25,8 @@ namespace ty
 
 		static void CreateTile(int index, Vector2 pos);
 		static void CreateTiles(int index, UINT width, UINT height);
-		static void Save(int num);
-		static void Load(int num);
+		static void Save();
+		static void Load(const wchar_t* num);
 
 		static Vector2 GetTilePos(Vector2 mousePos);
 		static void SetIndex(UINT index) { mIndex = index; }
@@ -34,7 +34,6 @@ namespace ty
 
 	private:
 		static std::unordered_map<UINT64, Tile*> mTiles;
-	
 		static Image* mImage;
 		static UINT mIndex;
 	};
