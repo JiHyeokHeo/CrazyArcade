@@ -24,6 +24,7 @@ namespace ty
 {
 	Bazzi* PlayScene::mBazzi;
 	PlayScene::PlayScene()
+		:monstercnt(0)
 	{
 	}
 	PlayScene::~PlayScene()
@@ -42,8 +43,11 @@ namespace ty
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 	//	object::Instantiate<BaseBomb>(Vector2(30.0f, 60.0f), eLayerType::Ground);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(30.0f, 60.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
 		object::Instantiate<Ground>(Vector2(30.0f, -720.0f), eLayerType::Ground);
 		object::Instantiate<Ground>(Vector2(30.0f, 840.0f), eLayerType::Ground);
 		object::Instantiate<LRGround>(Vector2(-870.0f, 60.0f), eLayerType::Ground);
@@ -95,6 +99,7 @@ namespace ty
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::BombEffect, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Bomb, true);
@@ -108,8 +113,9 @@ namespace ty
 	}
 	void PlayScene::OnExit()
 	{
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(300.0f, 300.0f)); // 화면 전환시 기능 추가
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(120.0f, 60.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
+		mBazzi->Reset();
 		//object::Destroy(mBlender);
 	}
 }

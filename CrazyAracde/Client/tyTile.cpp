@@ -39,7 +39,8 @@ namespace ty
 	}
 	void Tile::InitializeTile(Image* atlas, int index, Vector2 pos)
 	{
-		if (index >= 4)
+		SetName(L"Tile");
+		if (index >= 0)
 		{
 			mCollider = AddComponent<Collider>();
 			mCollider -> SetPos(Vector2(30.0f + pos.x * TILE_SIZE_X, 60.0f + pos.y * TILE_SIZE_Y));
@@ -48,7 +49,6 @@ namespace ty
 		mIndex = index;
 		if (atlas == nullptr || index < 0)
 			return;
-		SetName(L"Tile");
 		if (pos.y > 12 || pos.x > 14 || pos.y < 0 || pos.x < 0)
 			return;
 		Bazzi::GetMapIndex()[pos.y][pos.x] = 2;
@@ -89,23 +89,23 @@ namespace ty
 	{
 		tr = GetComponent<Transform>();
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
-		if (other->GetOwner()->GetName() == L"BombEffect")
+		if (other->GetOwner()->GetName() == L"BombEffect" && mIndex >= 24)
 		{
 			if (rand_num < 0.15f)
 			{
-				object::Instantiate<Ballon>(tr->GetPos(), eLayerType::Item);
+				object::Instantiate<Ballon>(tr->GetPos() + Vector2(0.0f, -10.0f), eLayerType::Item);
 			}
 			else if (rand_num < 0.3f)
 			{
-				object::Instantiate<Potion>(tr->GetPos(), eLayerType::Item);
+				object::Instantiate<Potion>(tr->GetPos() + Vector2(0.0f, -10.0f), eLayerType::Item);
 			}
 			else if (rand_num < 0.5f)
 			{
-				object::Instantiate<Skate>(tr->GetPos(), eLayerType::Item);
+				object::Instantiate<Skate>(tr->GetPos() + Vector2(0.0f, -10.0f), eLayerType::Item);
 			}
 			else if (rand_num < 0.55f)
 			{
-				object::Instantiate<PotionMax>(tr->GetPos(), eLayerType::Item);
+				object::Instantiate<PotionMax>(tr->GetPos() + Vector2(0.0f, -10.0f), eLayerType::Item);
 			}
 			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
 			object::Destroy(this);

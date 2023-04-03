@@ -94,30 +94,27 @@ namespace ty
 			mAnimator->Play(L"PirateDie", false);
 			mState = eMonsterState::Die;
 		}
-
-		if (other->GetOwner()->GetName() == L"Tile" || other->GetOwner()->GetName() == L"Ground")
+		mTime = 0;
+		// change the monster's state to the opposite direction
+		switch (mState)
 		{
-			mTime = 0;
-			// change the monster's state to the opposite direction
-			switch (mState)
-			{
-			case eMonsterState::Left:
-				mState = eMonsterState::Right;
-				break;
-			case eMonsterState::Right:
-				mState = eMonsterState::Left;
-				break;
-			case eMonsterState::Up:
-				mState = eMonsterState::Down;
-				break;
-			case eMonsterState::Down:
-				mState = eMonsterState::Up;
-				break;
-			default:
-				break;
-			}
-			animationCtr();
+		case eMonsterState::Left:
+			mState = eMonsterState::Right;
+			break;
+		case eMonsterState::Right:
+			mState = eMonsterState::Left;
+			break;
+		case eMonsterState::Up:
+			mState = eMonsterState::Down;
+			break;
+		case eMonsterState::Down:
+			mState = eMonsterState::Up;
+			break;
+		default:
+			break;
 		}
+		animationCtr();
+		
 	}
 	
 	void Monster::OnCollisionStay(Collider* other)

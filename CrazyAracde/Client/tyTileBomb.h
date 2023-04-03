@@ -16,5 +16,10 @@ namespace ty::TileBomb
 		return Vector2((int)x, (int)y);
 	}
 
-
+	Vector2 SetColIndex(Vector2 mPos)
+	{
+		int x = (((int)mPos.x - 30) / (TILE_SIZE_X + 0.01));
+		int y = (((int)mPos.y - 60) / (TILE_SIZE_Y + 0.01));
+		return Vector2((int)x, (int)y);
+	}
 }

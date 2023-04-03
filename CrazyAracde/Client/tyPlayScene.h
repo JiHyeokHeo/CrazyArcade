@@ -28,7 +28,7 @@ namespace ty
 		Play_BG* mPlayBG;
 		AlphaBlender* mBlender;
 		Image* mImage;
-
+		int monstercnt;
 	};
 };
 

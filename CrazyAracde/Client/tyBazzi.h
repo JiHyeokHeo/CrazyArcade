@@ -19,6 +19,7 @@ namespace ty
 			Revive,
 			Idle,
 			NoMove,
+			Reset,
 		};
 
 		Bazzi();
@@ -40,6 +41,7 @@ namespace ty
 		INT& GetmBomb() { return mBomb; }
 		int GetMaxWaterCourse() { return maxWaterCourse; }
 		int GetPlayerSpeed() { return mPlayerSpeed; }
+		void Reset();
 	private:
 		void move();
 		void shoot();
@@ -51,7 +53,6 @@ namespace ty
 		void nomove();
 		void trapCompleteEvent();
 		void dieCompeleteEvent();
-		
 	private:
 		int mBomb;
 		int mHP;
@@ -77,5 +78,6 @@ namespace ty
 		static std::vector<std::vector<int>> mapIndex;
 		Vector2 IdxPos;
 		int mPlayerSpeed;
+		Collider* collider;
 	};
 }

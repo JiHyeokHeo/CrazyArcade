@@ -37,6 +37,7 @@ namespace ty
 	void Bazzi::Initialize()
 	{
 		Transform* tr = GetComponent<Transform>();
+		//tr->SetPos(Vector2(20,40));
 		tr->SetScale(Vector2(1.18f, 1.18f));
 		SetName(L"Bazzi");
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
@@ -67,9 +68,9 @@ namespace ty
 		mAnimator->GetCompleteEvent(L"Bazzidie") = std::bind(&Bazzi::dieCompeleteEvent, this);
 		mAnimator->Play(L"Bazziready", false);
 		
-		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(13.0f, 25.0f));
-		collider->SetSize(Vector2(49.0f, 49.0f));
+		collider = AddComponent<Collider>();
+		collider->SetCenter(Vector2(12.0f, 25.0f));
+		collider->SetSize(Vector2(55.0f, 55.0f));
 	
 		mState = eBazziState::Idle;
 
@@ -184,25 +185,48 @@ namespace ty
 			mState = eBazziState::Idle;
 		}
 	
-		
+		Vector2 ColPos = collider->GetPos();
+		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(30.0f,0.0f));
+		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-30.0f, 0.0f));
+		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -30.0f));
+		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +30.0f));
+	
+		if (ColRIdx.x > 14)
+			ColRIdx.x = 14;
+		if (ColLIdx.x > 14)
+			ColLIdx.x = 14;
+		if (ColUIdx.x > 14)
+			ColUIdx.x = 14;
+		if (ColDIdx.x > 14)
+			ColDIdx.x = 14;
+
+		if (ColRIdx.y > 12)
+			ColRIdx.y = 12;
+		if (ColLIdx.y > 12)
+			ColLIdx.y = 12;
+		if (ColUIdx.y > 12)
+			ColUIdx.y = 12;
+		if (ColDIdx.y > 12)
+			ColDIdx.y = 12;
 
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
-			)
+			&& mapIndex[ColLIdx.y][ColLIdx.x] != 2)
 		{
 			pos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			)
+			&& mapIndex[ColRIdx.y][ColRIdx.x] != 2)
 		{
 			pos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			)
+			&& mapIndex[ColUIdx.y][ColUIdx.x] != 2)
 		{
 			pos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			)
+			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2)
 		{
 			pos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
@@ -378,5 +402,16 @@ namespace ty
 	{
 		mState = eBazziState::Revive;
 		
+	}
+	void Bazzi::Reset()
+	{
+		mHP = 1; // Ã¼·Â 
+		mBomb = 3; // ÆøÅº
+		mWaterCourse = 3; // ¹°ÁÙ±â
+		mSpeed = 5.0f; // ¼Óµµ
+		maxSpeed = 9.0f;
+		maxBomb = 6;
+		maxWaterCourse = 7;
+		mPlayerSpeed = 50;
 	}
 }
