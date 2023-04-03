@@ -74,15 +74,14 @@ namespace ty
 		Vector2 mColPos = mCollider->GetPos();
 		if (mGameobjColPos.x > mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
 		{
-			mGameobjPos.x += 50.0f * mSpeed * Time::DeltaTime();
+			mGameobjPos.x += mPlayer->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
 		if (mGameobjColPos.x < mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
 		{
-			mGameobjPos.x -= 50.0f * mSpeed * Time::DeltaTime();
+			mGameobjPos.x -= mPlayer->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
 			mPlayerPos->SetPos(mGameobjPos);
 		}
-
 
 		//colposctr::ColPosControl(other, this);
 	}

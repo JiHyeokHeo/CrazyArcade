@@ -1,24 +1,14 @@
 #pragma once
-#include "tyGameObject.h"
-#include "tyImage.h"
+#include "tyItem.h"
 
 namespace ty
 {
-	class Animator;
-	class Monster : public GameObject
+	class Skate : public Item
 	{
 	public:
-		enum class eMonsterState
-		{
-			Idle,
-			Left,
-			Right,
-			Up,
-			Down,
-			Die,
-		};
-		Monster();
-		~Monster();
+		Skate();
+		Skate(ItemType type);
+		~Skate();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -30,18 +20,9 @@ namespace ty
 		virtual void OnCollisionExit(class Collider* other) override;
 
 	private:
-		void idle();
-		void left();
-		void right();
-		void up();
-		void down();
-		void die();
-		void animationCtr();
-
-	private:
 		Animator* mAnimator;
-		eMonsterState mState;
-		float mTime;
-		Vector2 mPos;
+		int isHit;
 	};
+
 }
+

@@ -1,4 +1,4 @@
-#include "tyBallon.h"
+#include "tyPotionMax.h"
 #include "tyItem.h"
 #include "tyBazzi.h"
 #include "tyTime.h"
@@ -19,48 +19,45 @@
 
 namespace ty
 {
-	/*Component::Component(eComponentType type)
-		: mType(type)*/
-	
-	Ballon::Ballon()
+	PotionMax::PotionMax()
 	{
 	}
-	Ballon::Ballon(ItemType type)
-		:Item(ItemType::Ballon)
+	PotionMax::PotionMax(ItemType type)
 	{
 	}
-	Ballon::~Ballon()
+	PotionMax::~PotionMax()
 	{
 	}
-	void Ballon::Initialize()
+	void PotionMax::Initialize()
 	{
-		Image* mBallon = Resources::Load<Image>(L"mBallon", L"..\\Resources\\Items\\ballon.bmp");
+		Image* mPotionMax = Resources::Load<Image>(L"mPotionMax", L"..\\Resources\\Items\\potionmax.bmp");
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"Ballon", mBallon, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
-		mAnimator->Play(L"Ballon", true);
+		mAnimator->CreateAnimation(L"PotionMax", mPotionMax, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
+		mAnimator->Play(L"PotionMax", true);
 
 		Collider* Col = AddComponent<Collider>();
 		Col->SetCenter(Vector2(20.0f, 20.0f));
 		Col->SetSize(Vector2(20.0f, 20.0f));
 		GameObject::Initialize();
 	}
-	void Ballon::Update()
+	void PotionMax::Update()
 	{
 		GameObject::Update();
 	}
-	void Ballon::Render(HDC hdc)
+	void PotionMax::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
-	void Ballon::Release()
+	void PotionMax::Release()
 	{
 	}
-	void Ballon::OnCollisionEnter(Collider* other)
+	void PotionMax::OnCollisionEnter(Collider* other)
 	{
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			PlayScene::GetBazzi()->GetmBomb()++;
+			int& WaterCourse = PlayScene::GetBazzi()->GetmWaterCourse();
+			WaterCourse = PlayScene::GetBazzi()->GetMaxWaterCourse();
 			object::Destroy(this);
 		}
 
@@ -69,10 +66,10 @@ namespace ty
 			object::Destroy(this);
 		}
 	}
-	void Ballon::OnCollisionStay(Collider* other)
+	void PotionMax::OnCollisionStay(Collider* other)
 	{
 	}
-	void Ballon::OnCollisionExit(Collider* other)
+	void PotionMax::OnCollisionExit(Collider* other)
 	{
 	}
 }

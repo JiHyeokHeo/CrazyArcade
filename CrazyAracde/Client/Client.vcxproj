@@ -137,7 +137,10 @@
     <ClInclude Include="tyItem.h" />
     <ClInclude Include="tyLRGround.h" />
     <ClInclude Include="tyPlayerNum.h" />
+    <ClInclude Include="tyPotion.h" />
+    <ClInclude Include="tyPotionMax.h" />
     <ClInclude Include="tyShadow.h" />
+    <ClInclude Include="tySkate.h" />
     <ClInclude Include="tyTileBomb.h" />
     <ClInclude Include="tyAlphaBlender.h" />
     <ClInclude Include="tyAnimation.h" />
@@ -207,6 +210,8 @@
     <ClCompile Include="tyItem.cpp" />
     <ClCompile Include="tyLRGround.cpp" />
     <ClCompile Include="tyPlayerNum.cpp" />
+    <ClCompile Include="tyPotion.cpp" />
+    <ClCompile Include="tyPotionMax.cpp" />
     <ClCompile Include="tySealBoss.cpp" />
     <ClCompile Include="tyCamera.cpp" />
     <ClCompile Include="tyCollider.cpp" />
@@ -236,6 +241,7 @@
     <ClCompile Include="tyScene.cpp" />
     <ClCompile Include="tySceneManager.cpp" />
     <ClCompile Include="tyShadow.cpp" />
+    <ClCompile Include="tySkate.cpp" />
     <ClCompile Include="tyStage2.cpp" />
     <ClCompile Include="tyTile.cpp" />
     <ClCompile Include="tyTilePalatte.cpp" />

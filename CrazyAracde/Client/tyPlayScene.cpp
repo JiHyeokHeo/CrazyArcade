@@ -39,10 +39,10 @@ namespace ty
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
 		object::Instantiate<IceTile>(eLayerType::BG);
-		object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
+		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 	//	object::Instantiate<BaseBomb>(Vector2(30.0f, 60.0f), eLayerType::Ground);
-		object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(300.0f, 400.0f), eLayerType::Monster);
+		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(30.0f, 60.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(600.0f, 400.0f), eLayerType::Monster);
 		object::Instantiate<Ground>(Vector2(30.0f, -720.0f), eLayerType::Ground);
 		object::Instantiate<Ground>(Vector2(30.0f, 840.0f), eLayerType::Ground);
@@ -99,8 +99,10 @@ namespace ty
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Bomb, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Item, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Tile, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Tile, true);
 		//CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
 		
 	}

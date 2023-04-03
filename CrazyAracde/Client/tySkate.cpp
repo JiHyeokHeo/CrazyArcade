@@ -1,4 +1,4 @@
-#include "tyBallon.h"
+#include "tySkate.h"
 #include "tyItem.h"
 #include "tyBazzi.h"
 #include "tyTime.h"
@@ -19,48 +19,45 @@
 
 namespace ty
 {
-	/*Component::Component(eComponentType type)
-		: mType(type)*/
-	
-	Ballon::Ballon()
+	Skate::Skate()
 	{
 	}
-	Ballon::Ballon(ItemType type)
-		:Item(ItemType::Ballon)
+	Skate::Skate(ItemType type)
 	{
 	}
-	Ballon::~Ballon()
+	Skate::~Skate()
 	{
 	}
-	void Ballon::Initialize()
+	void Skate::Initialize()
 	{
-		Image* mBallon = Resources::Load<Image>(L"mBallon", L"..\\Resources\\Items\\ballon.bmp");
+		Image* mSkate = Resources::Load<Image>(L"mSkate", L"..\\Resources\\Items\\skate.bmp");
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"Ballon", mBallon, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
-		mAnimator->Play(L"Ballon", true);
+		mAnimator->CreateAnimation(L"Skate", mSkate, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
+		mAnimator->Play(L"Skate", true);
 
 		Collider* Col = AddComponent<Collider>();
 		Col->SetCenter(Vector2(20.0f, 20.0f));
 		Col->SetSize(Vector2(20.0f, 20.0f));
 		GameObject::Initialize();
 	}
-	void Ballon::Update()
+	void Skate::Update()
 	{
 		GameObject::Update();
 	}
-	void Ballon::Render(HDC hdc)
+	void Skate::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
-	void Ballon::Release()
+	void Skate::Release()
 	{
 	}
-	void Ballon::OnCollisionEnter(Collider* other)
+	void Skate::OnCollisionEnter(Collider* other)
 	{
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			PlayScene::GetBazzi()->GetmBomb()++;
+			float& Stat = PlayScene::GetBazzi()->GetmSpeed();
+			Stat += 1.0f;
 			object::Destroy(this);
 		}
 
@@ -69,10 +66,10 @@ namespace ty
 			object::Destroy(this);
 		}
 	}
-	void Ballon::OnCollisionStay(Collider* other)
+	void Skate::OnCollisionStay(Collider* other)
 	{
 	}
-	void Ballon::OnCollisionExit(Collider* other)
+	void Skate::OnCollisionExit(Collider* other)
 	{
 	}
 }

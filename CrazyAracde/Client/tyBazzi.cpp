@@ -18,12 +18,13 @@ namespace ty
 	std::vector<std::vector<int>> Bazzi:: mapIndex;
 	Bazzi::Bazzi()
 		: mHP(1) // Ã¼·Â 
-		, mBomb(1) // ÆøÅº
-		, mWaterCourse(5) // ¹°ÁÙ±â
-		, mSpeed(5) // ¼Óµµ
-		, maxSpeed(9)
+		, mBomb(3) // ÆøÅº
+		, mWaterCourse(3) // ¹°ÁÙ±â
+		, mSpeed(5.0f) // ¼Óµµ
+		, maxSpeed(9.0f)
 		, maxBomb(6)
 		, maxWaterCourse(7)
+		, mPlayerSpeed(50)
 		
 	{
 		int row = 15;
@@ -157,6 +158,11 @@ namespace ty
 		Vector2 pos = tr->GetPos();
 		Vector2 idxpos = TileBomb::SetIndex(tr->GetPos());
 
+		if (mSpeed >= maxSpeed)
+		{
+			mSpeed = maxSpeed;
+		}
+
 		if (Input::GetKeyUp(eKeyCode::LEFT))
 		{
 			mAnimator->Play(L"BazzileftIdle", false);
@@ -183,22 +189,22 @@ namespace ty
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
 			)
 		{
-			pos.x -= 50.0f * mSpeed  * Time::DeltaTime();
+			pos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
 			)
 		{
-			pos.x += 50.0f * mSpeed * Time::DeltaTime();
+			pos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
 			)
 		{
-			pos.y -= 50.0f * mSpeed * Time::DeltaTime();
+			pos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
 			)
 		{
-			pos.y += 50.0f * mSpeed * Time::DeltaTime();
+			pos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 
 		if (Input::GetKeyDown(eKeyCode::SPACEBAR))

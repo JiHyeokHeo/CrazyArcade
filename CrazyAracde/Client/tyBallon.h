@@ -21,6 +21,7 @@ namespace ty
 
 	private:
 		Animator* mAnimator;
+		int isHit;
 	};
 
 }

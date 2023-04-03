@@ -46,7 +46,7 @@ namespace ty
 		int WaterStatus = PlayScene::GetBazzi()->GetmWaterCourse();
 		if (BombIdx.x < 15 || BombIdx.y < 13)
 		{
-			for (int i = 1; i <= WaterStatus; i++)
+			for (int i = 1; i < WaterStatus; i++)
 			{
 				if (BombIdx.x + i >= 15)
 					break;
@@ -54,7 +54,7 @@ namespace ty
 				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] == 2)
 					break;
 			}
-			for (int i = 1; i <= WaterStatus; i++)
+			for (int i = 1; i < WaterStatus; i++)
 			{
 				if (BombIdx.y + i >= 13)
 					break;
@@ -62,7 +62,7 @@ namespace ty
 				if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] == 2)
 					break;
 			}
-			for (int i = 1; i <= WaterStatus; i++)
+			for (int i = 1; i < WaterStatus; i++)
 			{
 				if (BombIdx.x - i <= -1)
 					break;
@@ -70,7 +70,7 @@ namespace ty
 				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] == 2)
 					break;
 			}
-			for (int i = 1; i <= WaterStatus; i++)
+			for (int i = 1; i < WaterStatus; i++)
 			{
 				if (BombIdx.y - i <= -1)
 					break;
@@ -130,7 +130,7 @@ namespace ty
 			{
 				mBombEffect[i]->SetTime(3.0f);
 			}
-			mAnimator->Play(L"BombNone", true);
+			mTime = 3.0f;
 		}
 	}
 	void BaseBomb::OnCollisionStay(Collider* other)

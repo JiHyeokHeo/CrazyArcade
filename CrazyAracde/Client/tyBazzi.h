@@ -35,9 +35,11 @@ namespace ty
 		
 		static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
 		int& GetmClick() { return mClick; }
-		int& GetmSpeed() { return mSpeed; }
+		float& GetmSpeed() { return mSpeed; }
 		int& GetmWaterCourse() { return mWaterCourse; }
 		INT& GetmBomb() { return mBomb; }
+		int GetMaxWaterCourse() { return maxWaterCourse; }
+		int GetPlayerSpeed() { return mPlayerSpeed; }
 	private:
 		void move();
 		void shoot();
@@ -54,9 +56,9 @@ namespace ty
 		int mBomb;
 		int mHP;
 		int mWaterCourse;
-		int mSpeed;
+		float mSpeed;
 		int maxHP;
-		int maxSpeed;
+		float maxSpeed;
 		int maxBomb;
 		int maxWaterCourse;
 		int mClick;
@@ -74,6 +76,6 @@ namespace ty
 		int mRandomPosy;
 		static std::vector<std::vector<int>> mapIndex;
 		Vector2 IdxPos;
-
+		int mPlayerSpeed;
 	};
 }

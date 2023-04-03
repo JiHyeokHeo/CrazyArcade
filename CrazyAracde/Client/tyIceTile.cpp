@@ -20,13 +20,13 @@ namespace ty
 	}
 	void IceTile::Render(HDC hdc)
 	{
-		TransparentBlt(hdc, 30, 60
+		BitBlt(hdc, 30, 60
 			, mImage->GetWidth()
 			, mImage->GetHeight()
 			, mImage->GetHdc()
 			, 0, 0
-			, mImage->GetWidth(), mImage->GetHeight()
-			, RGB(255, 0, 255));
+			, SRCCOPY
+			);
 
 	}
 	void IceTile::Release()

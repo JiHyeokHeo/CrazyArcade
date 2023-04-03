@@ -23,19 +23,19 @@ namespace ty
 		Transform* tr = GetComponent<Transform>();
 		mPos = tr->GetPos();
 		//tr->SetPos(Vector2(400.0f, 500.0f));
-		//tr->SetScale(Vector2(1.18f, 1.18f));
+		tr->SetScale(Vector2(1.1f, 1.1f));
 
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Up", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Right", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Left", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Down", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Die", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Up", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Right", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Left", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Down", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Die", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
 		mAnimator->Play(L"PirateDown", true);
 		
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2::Zero);
-		collider->SetSize(Vector2(44.0f, 44.0f));
+		collider->SetSize(Vector2(58.0f, 58.0f));
 		mState = eMonsterState::Idle;
 		GameObject::Initialize();
 	}
@@ -89,21 +89,43 @@ namespace ty
 	}
 	void Monster::OnCollisionEnter(Collider* other)
 	{
-		if (isColl == false)
+		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
 			mAnimator->Play(L"PirateDie", false);
 			mState = eMonsterState::Die;
-			isColl = true;
 		}
 
+		if (other->GetOwner()->GetName() == L"Tile" || other->GetOwner()->GetName() == L"Ground")
+		{
+			mTime = 0;
+			// change the monster's state to the opposite direction
+			switch (mState)
+			{
+			case eMonsterState::Left:
+				mState = eMonsterState::Right;
+				break;
+			case eMonsterState::Right:
+				mState = eMonsterState::Left;
+				break;
+			case eMonsterState::Up:
+				mState = eMonsterState::Down;
+				break;
+			case eMonsterState::Down:
+				mState = eMonsterState::Up;
+				break;
+			default:
+				break;
+			}
+			animationCtr();
+		}
 	}
+	
 	void Monster::OnCollisionStay(Collider* other)
 	{
 	}
 	void Monster::OnCollisionExit(Collider* other)
 	{
 	}
-
 
 	void Monster::idle()
 	{
@@ -113,22 +135,22 @@ namespace ty
 	void Monster::left()
 	{
 		
-		mPos.x -= 50.0f * Time::DeltaTime();
+		mPos.x -= 60.0f * Time::DeltaTime();
 	}
 	void Monster::right()
 	{
 		
-		mPos.x += 50.0f * Time::DeltaTime();
+		mPos.x += 60.0f * Time::DeltaTime();
 	}
 	void Monster::up()
 	{
 		
-		mPos.y -= 50.0f * Time::DeltaTime();
+		mPos.y -= 60.0f * Time::DeltaTime();
 	}
 	void Monster::down()
 	{
 		
-		mPos.y += 50.0f * Time::DeltaTime();
+		mPos.y += 60.0f * Time::DeltaTime();
 	}
 	void Monster::die()
  	{

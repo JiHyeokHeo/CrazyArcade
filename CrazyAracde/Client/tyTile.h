@@ -42,6 +42,8 @@ namespace ty
 		bool isRMove;
 		Transform* tr;
 		Vector2 resultPos;
+		bool tilesAreMoving;
+		float rand_num;
 	};
 }
 

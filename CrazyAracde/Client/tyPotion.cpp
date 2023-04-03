@@ -1,4 +1,4 @@
-#include "tyBallon.h"
+#include "tyPotion.h"
 #include "tyItem.h"
 #include "tyBazzi.h"
 #include "tyTime.h"
@@ -19,48 +19,44 @@
 
 namespace ty
 {
-	/*Component::Component(eComponentType type)
-		: mType(type)*/
-	
-	Ballon::Ballon()
+	Potion::Potion()
 	{
 	}
-	Ballon::Ballon(ItemType type)
-		:Item(ItemType::Ballon)
+	Potion::Potion(ItemType type)
 	{
 	}
-	Ballon::~Ballon()
+	Potion::~Potion()
 	{
 	}
-	void Ballon::Initialize()
+	void Potion::Initialize()
 	{
-		Image* mBallon = Resources::Load<Image>(L"mBallon", L"..\\Resources\\Items\\ballon.bmp");
+		Image* mPotion = Resources::Load<Image>(L"mPotion", L"..\\Resources\\Items\\potion.bmp");
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"Ballon", mBallon, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
-		mAnimator->Play(L"Ballon", true);
+		mAnimator->CreateAnimation(L"Potion", mPotion, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
+		mAnimator->Play(L"Potion", true);
 
 		Collider* Col = AddComponent<Collider>();
 		Col->SetCenter(Vector2(20.0f, 20.0f));
 		Col->SetSize(Vector2(20.0f, 20.0f));
 		GameObject::Initialize();
 	}
-	void Ballon::Update()
+	void Potion::Update()
 	{
 		GameObject::Update();
 	}
-	void Ballon::Render(HDC hdc)
+	void Potion::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
-	void Ballon::Release()
+	void Potion::Release()
 	{
 	}
-	void Ballon::OnCollisionEnter(Collider* other)
+	void Potion::OnCollisionEnter(Collider* other)
 	{
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			PlayScene::GetBazzi()->GetmBomb()++;
+			PlayScene::GetBazzi()->GetmWaterCourse()++;
 			object::Destroy(this);
 		}
 
@@ -69,10 +65,10 @@ namespace ty
 			object::Destroy(this);
 		}
 	}
-	void Ballon::OnCollisionStay(Collider* other)
+	void Potion::OnCollisionStay(Collider* other)
 	{
 	}
-	void Ballon::OnCollisionExit(Collider* other)
+	void Potion::OnCollisionExit(Collider* other)
 	{
 	}
 }

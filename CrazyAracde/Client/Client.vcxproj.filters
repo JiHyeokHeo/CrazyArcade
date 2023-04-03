@@ -98,6 +98,12 @@
     <Filter Include="Contents\Objcet">
       <UniqueIdentifier>{76506d3c-d246-40a3-85cf-64cae11a944f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Item">
+      <UniqueIdentifier>{3e17f0e3-49d6-419e-b4c2-40eda0f36adb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Tile\TileImage">
+      <UniqueIdentifier>{ec5505c5-be5a-4f1d-aba8-6ab32d270e42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -274,11 +280,26 @@
     <ClInclude Include="tyPlayerNum.h">
       <Filter>Contents\Player</Filter>
     </ClInclude>
-    <ClInclude Include="tyBallon.h" />
-    <ClInclude Include="tyIceTile.h" />
-    <ClInclude Include="tyItem.h" />
     <ClInclude Include="tydir.h">
       <Filter>Contents\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="tyIceTile.h">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClInclude>
+    <ClInclude Include="tyBallon.h">
+      <Filter>Contents\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="tyItem.h">
+      <Filter>Contents\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="tySkate.h">
+      <Filter>Contents\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPotionMax.h">
+      <Filter>Contents\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPotion.h">
+      <Filter>Contents\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -442,8 +463,23 @@
     <ClCompile Include="tyPlayerNum.cpp">
       <Filter>Contents\Player</Filter>
     </ClCompile>
-    <ClCompile Include="tyBallon.cpp" />
-    <ClCompile Include="tyIceTile.cpp" />
-    <ClCompile Include="tyItem.cpp" />
+    <ClCompile Include="tyIceTile.cpp">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBallon.cpp">
+      <Filter>Contents\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyItem.cpp">
+      <Filter>Contents\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tySkate.cpp">
+      <Filter>Contents\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPotionMax.cpp">
+      <Filter>Contents\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPotion.cpp">
+      <Filter>Contents\Item</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
