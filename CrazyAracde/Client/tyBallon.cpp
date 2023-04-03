@@ -40,9 +40,6 @@ namespace ty
 		mAnimator->CreateAnimation(L"Ballon", mBallon, Vector2::Zero, 2, 1, 2, Vector2::Zero, 0.2);
 		mAnimator->Play(L"Ballon", true);
 
-		Collider* Col = AddComponent<Collider>();
-		Col->SetCenter(Vector2(20.0f, 20.0f));
-		Col->SetSize(Vector2(20.0f, 20.0f));
 		GameObject::Initialize();
 	}
 	void Ballon::Update()
