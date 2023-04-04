@@ -35,7 +35,7 @@ namespace ty
 		Scene::Initialize();
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 		
-		mBazzi = object::Instantiate<Bazzi>(Vector2(80.0f, 40.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
+		mBazzi = object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);

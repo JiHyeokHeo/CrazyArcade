@@ -8,6 +8,8 @@
 #include "tyCollider.h"
 #include "tyBaseBomb.h"
 #include "tyObject.h"
+#include "tyTileBomb.h"
+#include "tyPlayScene.h"
 
 namespace ty
 {
@@ -19,7 +21,7 @@ namespace ty
 	}
 	void Monster::Initialize()
 	{
-
+		SetName(L"Monster");
 		Transform* tr = GetComponent<Transform>();
 		mPos = tr->GetPos();
 		//tr->SetPos(Vector2(400.0f, 500.0f));
@@ -33,18 +35,47 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Die", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
 		mAnimator->Play(L"PirateDown", true);
 		
-		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2::Zero);
-		collider->SetSize(Vector2(58.0f, 58.0f));
+		collider = AddComponent<Collider>();
+		collider->SetCenter(Vector2(10.0f, 20.0f));
+		collider->SetSize(Vector2(30.0f, 30.0f));
 		mState = eMonsterState::Idle;
 		GameObject::Initialize();
 	}
 	void Monster::Update()
 	{
-		Transform* tr = GetComponent<Transform>();
+		tr = GetComponent<Transform>();
 		mPos = tr->GetPos();
-		
+		Vector2 midmPos = mPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		Vector2 ColRIdx = TileBomb::SetColIndex(midmPos + Vector2(30.0f, 0.0f));
+		Vector2 ColLIdx = TileBomb::SetColIndex(midmPos + Vector2(-30.0f, 0.0f));
+		Vector2 ColUIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, -30.0f));
+		Vector2 ColDIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, +30.0f));
+
 		mTime += Time::DeltaTime();
+
+		if (PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 30.0f)
+		{
+			mState = eMonsterState::Right;
+			animationCtr();
+		}
+		if (
+			PlayScene::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x >= 900.0f)
+		{
+			mState = eMonsterState::Left;
+			animationCtr();
+		}
+		if (
+			PlayScene::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.y <= 60.0f)
+		{
+			mState = eMonsterState::Down;
+			animationCtr();
+		}
+		if (
+			PlayScene::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.y >= 840.0f)
+		{
+			mState = eMonsterState::Up;
+			animationCtr();
+		}
 
 		switch (mState)
 		{
@@ -71,12 +102,12 @@ namespace ty
 		}
 		
 		tr->SetPos(mPos);
-
-		if (mTime >= 1 && mState != eMonsterState::Die)
+		if (mTime >= 2.0f)
 		{
-			mState = eMonsterState::Idle;
+			mState = eMonsterState::Idle();
 			mTime = 0;
 		}
+		
 		GameObject::Update();
 	}
 	void Monster::Render(HDC hdc)
@@ -89,30 +120,35 @@ namespace ty
 	}
 	void Monster::OnCollisionEnter(Collider* other)
 	{
+		if (other->GetOwner()->GetName() == L"Ground" || other->GetOwner()->GetName() == L"Monster")
+		{
+			switch (mState)
+			{
+			case eMonsterState::Left:
+				mState = eMonsterState::Right;
+				break;
+			case eMonsterState::Right:
+				mState = eMonsterState::Left;
+				break;
+			case eMonsterState::Up:
+				mState = eMonsterState::Down;
+				break;
+			case eMonsterState::Down:
+				mState = eMonsterState::Up;
+				break;
+			default:
+				break;
+			}
+		}
+
+			
 		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
 			mAnimator->Play(L"PirateDie", false);
 			mState = eMonsterState::Die;
 		}
 		mTime = 0;
-		// change the monster's state to the opposite direction
-		switch (mState)
-		{
-		case eMonsterState::Left:
-			mState = eMonsterState::Right;
-			break;
-		case eMonsterState::Right:
-			mState = eMonsterState::Left;
-			break;
-		case eMonsterState::Up:
-			mState = eMonsterState::Down;
-			break;
-		case eMonsterState::Down:
-			mState = eMonsterState::Up;
-			break;
-		default:
-			break;
-		}
+			
 		animationCtr();
 		
 	}
@@ -131,17 +167,14 @@ namespace ty
 	}
 	void Monster::left()
 	{
-		
 		mPos.x -= 60.0f * Time::DeltaTime();
 	}
 	void Monster::right()
 	{
-		
 		mPos.x += 60.0f * Time::DeltaTime();
 	}
 	void Monster::up()
 	{
-		
 		mPos.y -= 60.0f * Time::DeltaTime();
 	}
 	void Monster::down()

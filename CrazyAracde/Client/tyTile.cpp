@@ -44,7 +44,7 @@ namespace ty
 		{
 			mCollider = AddComponent<Collider>();
 			mCollider -> SetPos(Vector2(30.0f + pos.x * TILE_SIZE_X, 60.0f + pos.y * TILE_SIZE_Y));
-			mCollider ->SetSize(Vector2(58.0f, 58.0f));
+			mCollider ->SetSize(Vector2(60.0f, 60.0f));
 		}
 		mIndex = index;
 		if (atlas == nullptr || index < 0)

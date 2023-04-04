@@ -379,8 +379,8 @@ namespace ty
 	}
 	void Bazzi::revive()
 	{
-		mRandomPosx = 40.0f;
-		mRandomPosy = 60.0f;
+		mRandomPosx = 80.0f;
+		mRandomPosy = 100.0f;
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(mRandomPosx, mRandomPosy));
 		mState = eBazziState::Idle;

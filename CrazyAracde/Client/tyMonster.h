@@ -43,5 +43,9 @@ namespace ty
 		eMonsterState mState;
 		float mTime;
 		Vector2 mPos;
+		Collider* collider;
+		int colcnt;
+		bool isStateChosen;
+		Transform* tr;
 	};
 }
