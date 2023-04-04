@@ -122,4 +122,5 @@ namespace ty
 		isUCol = false;
 		isDCol = false;
 	}
+	
 }

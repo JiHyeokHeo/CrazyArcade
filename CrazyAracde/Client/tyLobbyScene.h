@@ -21,5 +21,7 @@ namespace ty
 	private:
 		Lobby_BG* mLobbyBG;
 		AlphaBlender* mBlender;
+		IceMapSelect* mMapSelect;
+		eSceneType mSceneType;
 	};
 }

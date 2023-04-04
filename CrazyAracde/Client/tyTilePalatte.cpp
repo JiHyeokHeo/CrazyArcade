@@ -145,4 +145,9 @@ namespace ty
 
 		return Vector2(indexX, indexY);
 	}
+
+	void TilePalatte::Clear()
+	{
+		mTiles.clear();
+	}
 }

@@ -52,6 +52,23 @@ namespace ty
 		Vector2 ColDIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, +30.0f));
 
 		mTime += Time::DeltaTime();
+		if (ColRIdx.x > 14)
+			ColRIdx.x = 14;
+		if (ColLIdx.x > 14)
+			ColLIdx.x = 14;
+		if (ColUIdx.x > 14)
+			ColUIdx.x = 14;
+		if (ColDIdx.x > 14)
+			ColDIdx.x = 14;
+
+		if (ColRIdx.y > 12)
+			ColRIdx.y = 12;
+		if (ColLIdx.y > 12)
+			ColLIdx.y = 12;
+		if (ColUIdx.y > 12)
+			ColUIdx.y = 12;
+		if (ColDIdx.y > 12)
+			ColDIdx.y = 12;
 
 		if (PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 30.0f)
 		{
@@ -148,9 +165,10 @@ namespace ty
 			mState = eMonsterState::Die;
 		}
 		mTime = 0;
-			
-		animationCtr();
-		
+		if (other->GetOwner()->GetName() == L"Ground" || other->GetOwner()->GetName() == L"Monster")
+		{
+			animationCtr();
+		}
 	}
 	
 	void Monster::OnCollisionStay(Collider* other)

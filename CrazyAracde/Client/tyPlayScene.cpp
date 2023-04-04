@@ -19,6 +19,7 @@
 #include "tyPlayerNum.h"
 #include "tyResources.h"
 #include "tyIceTile.h"
+#include "tyTile.h"
 
 namespace ty
 {
@@ -41,7 +42,6 @@ namespace ty
 		object::Instantiate<Play_BG>(eLayerType::BG);
 		object::Instantiate<IceTile>(eLayerType::BG);
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
-	//	object::Instantiate<BaseBomb>(Vector2(30.0f, 60.0f), eLayerType::Ground);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
 		object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
@@ -52,39 +52,26 @@ namespace ty
 		object::Instantiate<Ground>(Vector2(30.0f, 840.0f), eLayerType::Ground);
 		object::Instantiate<LRGround>(Vector2(-870.0f, 60.0f), eLayerType::Ground);
 		object::Instantiate<LRGround>(Vector2(930.0f, 60.0f), eLayerType::Ground);
-		
-		//mCuphead = object::Instantiate<Cuphead>(Vector2(500.0f, 400.0f), eLayerType::Player);
-	/*	Cuphead* player = object::Instantiate<Cuphead>(Vector2(500.0f, 400.0f), eLayerType::Player);
-		object::Instantiate<Monster>(Vector2(500.0f, 500.0f), eLayerType::Player);
-		Ground* ground = object::Instantiate<Ground>(Vector2(0.0f, 0.0f), eLayerType::Ground);
-		ground->SetPlayer(player)*/
-		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true); // 이것이 콜라이더 설정하는 값이다.
-		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Bomb, true);
-		//CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Bomb, true);
-		//CollisionManager::SetLayer(eLayerType::Bomb, eLayerType::Bomb, true);
-
 	}
 	void PlayScene::Update()
 	{
 		Vector2 Pos = mBazzi->GetComponent<Transform>()->GetPos();
 		
-
-		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
-		{
-			SceneManager::LoadScene(eSceneType::Lobby);
-		}
-
 		if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::Tool);
 		}
-
 		
+		Vector2 temp = Input::GetMousePos();
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
+		{
+			SceneManager::LoadScene(eSceneType::Lobby);
+		}
+
 		Scene::Update();
 	}
 	void PlayScene::Render(HDC hdc)
 	{
-
 		Scene::Render(hdc);
 	}
 	void PlayScene::Release()
@@ -93,7 +80,12 @@ namespace ty
 	}
 	void PlayScene::OnEnter()
 	{
-		TilePalatte::Load(L"001");
+		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
+		if (isLoad == false)
+		{
+			TilePalatte::Load(L"001");
+			isLoad = true;
+		}
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
@@ -113,7 +105,9 @@ namespace ty
 	}
 	void PlayScene::OnExit()
 	{
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(120.0f, 60.0f)); // 화면 전환시 기능 추가
+		TilePalatte::Clear();
+		CollisionManager::Clear();
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();
 		//object::Destroy(mBlender);

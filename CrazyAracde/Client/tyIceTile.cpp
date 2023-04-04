@@ -27,7 +27,6 @@ namespace ty
 			, 0, 0
 			, SRCCOPY
 			);
-
 	}
 	void IceTile::Release()
 	{

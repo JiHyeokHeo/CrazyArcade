@@ -29,6 +29,7 @@ namespace ty
 		AlphaBlender* mBlender;
 		Image* mImage;
 		int monstercnt;
+		bool isLoad;
 	};
 };
 

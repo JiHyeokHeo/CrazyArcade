@@ -104,6 +104,9 @@
     <Filter Include="Contents\Tile\TileImage">
       <UniqueIdentifier>{ec5505c5-be5a-4f1d-aba8-6ab32d270e42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\UI\Ice">
+      <UniqueIdentifier>{24f0e5c9-ca31-4276-a72a-dfd1ad2507f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -301,6 +304,18 @@
     <ClInclude Include="tyPotion.h">
       <Filter>Contents\Item</Filter>
     </ClInclude>
+    <ClInclude Include="tyMapSelect.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="tyIceSelect.h">
+      <Filter>Contents\UI\Ice</Filter>
+    </ClInclude>
+    <ClInclude Include="tyIceMapSelect.h">
+      <Filter>Contents\UI\Ice</Filter>
+    </ClInclude>
+    <ClInclude Include="tyBazziImage.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -480,6 +495,18 @@
     </ClCompile>
     <ClCompile Include="tyPotion.cpp">
       <Filter>Contents\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyMapSelect.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="tyIceSelect.cpp">
+      <Filter>Contents\UI\Ice</Filter>
+    </ClCompile>
+    <ClCompile Include="tyIceMapSelect.cpp">
+      <Filter>Contents\UI\Ice</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBazziImage.cpp">
+      <Filter>Contents\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

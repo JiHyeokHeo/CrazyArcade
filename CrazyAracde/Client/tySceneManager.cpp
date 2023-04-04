@@ -6,6 +6,7 @@
 #include "tyCollisionManager.h"
 #include "tyCamera.h"
 #include "tyToolScene.h"
+#include "tyStage2.h"
 
 namespace ty
 {
@@ -20,6 +21,7 @@ namespace ty
 		mScenes[(UINT)eSceneType::Login] = new LoginScene();
 		mScenes[(UINT)eSceneType::Lobby] = new LobbyScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene(); 
+		mScenes[(UINT)eSceneType::Stage2] = new Stage2();
 		mScenes[(UINT)eSceneType::Tool] = new ToolScene();
 		
 		//mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
@@ -33,7 +35,7 @@ namespace ty
 			
  			scene->Initialize();
 		}
-		mActiveScene = mScenes[(UINT)eSceneType::Tool];
+		mActiveScene = mScenes[(UINT)eSceneType::Login];
 	}
 
 	void SceneManager::Update()

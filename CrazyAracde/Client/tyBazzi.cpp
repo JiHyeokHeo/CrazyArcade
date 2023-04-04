@@ -12,6 +12,10 @@
 #include "tyBombEffect.h"
 #include "tyTile.h"
 #include "tyTileBomb.h"
+#include "tyBallon.h"
+#include "tyPotion.h"
+#include "tyPotionMax.h"
+#include "tySkate.h"
 
 namespace ty
 {
@@ -79,7 +83,8 @@ namespace ty
 	}
 	void Bazzi::Update()
 	{
-
+		Transform* tr = GetComponent<Transform>();
+		IdxPos = TileBomb::SetIndex(tr->GetPos());
 		mTime += Time::DeltaTime();
 
 		//delete mBomb;
@@ -115,6 +120,20 @@ namespace ty
 				break;
 			}
 		}
+
+		if (Input::GetKeyDown(eKeyCode::Z))
+		{
+			object::Instantiate<Ballon>(TileBomb::SetPos(Vector2(tr->GetPos().x + TILE_SIZE_X, tr->GetPos().y)), eLayerType::Item);
+			object::Instantiate<Skate>(TileBomb::SetPos(Vector2(tr->GetPos().x - TILE_SIZE_X, tr->GetPos().y)), eLayerType::Item);
+			object::Instantiate<Potion>(TileBomb::SetPos(Vector2(tr->GetPos().x , tr->GetPos().y + TILE_SIZE_Y)), eLayerType::Item);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::X))
+		{
+			mBomb = 1; // ÆøÅº
+			mWaterCourse = 2; // ¹°ÁÙ±â
+			mSpeed = 5.0f; // ¼Óµµ
+		}
 		GameObject::Update();
 
 	}
@@ -141,6 +160,7 @@ namespace ty
 			mState = eBazziState::BubbleMove;
 			isColl = true;
 		}
+
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{

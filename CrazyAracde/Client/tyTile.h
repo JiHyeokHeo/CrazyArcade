@@ -14,6 +14,7 @@ namespace ty
 
 		void InitializeTile(Image* atlas, int index, Vector2 pos);
 		void SetIndex(int index);
+		void Clear();
 
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
