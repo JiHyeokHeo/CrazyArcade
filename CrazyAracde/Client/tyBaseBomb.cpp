@@ -94,11 +94,24 @@ namespace ty
 
 	void BaseBomb::Update()
 	{
+		Transform* mPlayer = PlayScene::GetBazzi()->GetComponent<Transform>();
+		Vector2 mPlayerPos = mPlayer->GetPos();
+		Vector2 IDX = TileBomb::SetIndex(mPlayerPos);
+
+		Transform* tr = GetComponent<Transform>();
+		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+
+		if (Bazzi::GetMapIndex()[IDX.y][IDX.x] != Bazzi::GetMapIndex()[mPos.y][mPos.x])
+		{
+			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
+		}
+
 		
 		GameObject::Update();
-		Transform* tr = GetComponent<Transform>();
+		
 
 		mTime += Time::DeltaTime();
+
 
 		switch (mState)
 		{
@@ -147,9 +160,10 @@ namespace ty
 
 	void BaseBomb::idle()
 	{
-		Transform* tr = GetComponent<Transform>();
+
 		if (mTime >= 3.0f)
 		{
+			Transform* tr = GetComponent<Transform>();
 			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
 			int Click = PlayScene::GetBazzi()->GetmClick()--;

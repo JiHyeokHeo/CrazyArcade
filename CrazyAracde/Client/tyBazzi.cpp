@@ -211,22 +211,22 @@ namespace ty
 			ColDIdx.y = 12;
 
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
-			&& mapIndex[ColLIdx.y][ColLIdx.x] != 2)
+			&& mapIndex[ColLIdx.y][ColLIdx.x] != 2 && mapIndex[ColLIdx.y][ColLIdx.x] != 1)
 		{
 			pos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			&& mapIndex[ColRIdx.y][ColRIdx.x] != 2)
+			&& mapIndex[ColRIdx.y][ColRIdx.x] != 2 && mapIndex[ColRIdx.y][ColRIdx.x] != 1)
 		{
 			pos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			&& mapIndex[ColUIdx.y][ColUIdx.x] != 2)
+			&& mapIndex[ColUIdx.y][ColUIdx.x] != 2 && mapIndex[ColUIdx.y][ColUIdx.x] != 1)
 		{
 			pos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2)
+			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1)
 		{
 			pos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
@@ -271,7 +271,7 @@ namespace ty
 			mClick++;
 			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
 			IdxPos = TileBomb::SetIndex(tr->GetPos());
-			mapIndex[IdxPos.y][IdxPos.x] = 1; // 13 15
+			mapIndex[IdxPos.y][IdxPos.x] = 3; // 13 15
 		}
 			mState = eBazziState::Move;
 	}
