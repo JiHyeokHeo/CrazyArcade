@@ -108,6 +108,13 @@ namespace ty
 	{
 		TilePalatte::Clear();
 		CollisionManager::Clear();
+		for (int i = 0; i < 13; i++)
+		{
+			for (int j = 0; j < 15; j++)
+			{
+				mBazzi->GetMapIndex()[i][j] = 0;
+			}
+		}
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();

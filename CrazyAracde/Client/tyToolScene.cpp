@@ -8,6 +8,7 @@
 #include "tyPlag_BG.h"
 #include "tyTilePalatte.h"
 #include "tyCamera.h"
+#include "tyBazzi.h"
 extern ty::Application application;
 
 namespace ty
@@ -89,6 +90,7 @@ namespace ty
 	}
 	void ToolScene::OnExit()
 	{
+        TilePalatte::Clear();
 	}
 }
 

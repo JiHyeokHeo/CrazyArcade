@@ -3,7 +3,7 @@
 #include "tyinput.h"
 #include <commdlg.h>
 #include "tyCollider.h"
-
+#include "tyBazzi.h"
 
 namespace ty
 {
