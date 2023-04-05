@@ -24,7 +24,7 @@
 
 namespace ty
 {
-	Bazzi* PlayScene::mBazzi;
+	//Bazzi* PlayScene::mBazzi;
 	PlayScene::PlayScene()
 		:monstercnt(0)
 	{
@@ -35,9 +35,13 @@ namespace ty
 	void PlayScene::Initialize()
 	{
 		Scene::Initialize();
+		
+		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
+		SceneManager::SetBazzi(mBazzi);
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 		
-		mBazzi = object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
+		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		//Camera::SetTarget(mBazzi);
 		object::Instantiate<Play_BG>(eLayerType::BG);
@@ -56,7 +60,6 @@ namespace ty
 	}
 	void PlayScene::Update()
 	{
-		Vector2 Pos = mBazzi->GetComponent<Transform>()->GetPos();
 		
 		//if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
 		//{

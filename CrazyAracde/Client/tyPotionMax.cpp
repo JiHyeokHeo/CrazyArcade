@@ -56,8 +56,8 @@ namespace ty
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			int& WaterCourse = PlayScene::GetBazzi()->GetmWaterCourse();
-			WaterCourse = PlayScene::GetBazzi()->GetMaxWaterCourse();
+			int& WaterCourse = SceneManager::GetBazzi()->GetmWaterCourse();
+			WaterCourse = SceneManager::GetBazzi()->GetMaxWaterCourse();
 			object::Destroy(this);
 		}
 

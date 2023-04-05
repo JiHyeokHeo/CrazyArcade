@@ -3,6 +3,7 @@
 
 namespace ty
 {
+	class Bazzi;
 	class SceneManager
 	{
 	public:
@@ -16,8 +17,11 @@ namespace ty
 		static Scene* GetActiveScene() { return mActiveScene; }
 		static void SetActiveScene(Scene* scene) { mActiveScene = scene; }
 
+		static void SetBazzi(Bazzi* bazzi) { mBazzi = bazzi; }
+		static Bazzi* GetBazzi() { return mBazzi; }
 	private:
 		static std::vector<Scene*> mScenes;
 		static Scene* mActiveScene;
+		static Bazzi* mBazzi;
 	};
 }

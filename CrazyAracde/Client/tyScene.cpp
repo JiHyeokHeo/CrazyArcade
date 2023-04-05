@@ -1,5 +1,7 @@
 #include "tyScene.h"
 #include "tySceneManager.h"
+#include "tyObject.h"
+#include "tyBazzi.h"
 
 namespace ty
 {

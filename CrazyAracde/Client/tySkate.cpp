@@ -56,7 +56,7 @@ namespace ty
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			float& Stat = PlayScene::GetBazzi()->GetmSpeed();
+			float& Stat = SceneManager::GetBazzi()->GetmSpeed();
 			Stat += 1.0f;
 			object::Destroy(this);
 		}

@@ -41,7 +41,7 @@ namespace ty
 	void Bazzi::Initialize()
 	{
 		Transform* tr = GetComponent<Transform>();
-		//tr->SetPos(Vector2(20,40));
+		tr->SetPos(Vector2(20,40));
 		tr->SetScale(Vector2(1.18f, 1.18f));
 		SetName(L"Bazzi");
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");

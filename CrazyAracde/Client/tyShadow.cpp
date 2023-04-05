@@ -33,7 +33,7 @@ namespace ty
 	}
 	void Shadow::Update()
 	{
-		Bazzi* mPlayer = PlayScene::GetBazzi();
+		Bazzi* mPlayer = SceneManager::GetBazzi();
 		GetComponent<Transform>()->SetPos(mPlayer->GetComponent<Transform>()->GetPos());
 ;		GameObject::Update();
 	}

@@ -43,7 +43,7 @@ namespace ty
 		Vector2 BombPos = tr->GetPos();
 		Vector2 BombIdx = TileBomb::SetIndex(BombPos);
 
-		int WaterStatus = PlayScene::GetBazzi()->GetmWaterCourse();
+		int WaterStatus = SceneManager::GetBazzi()->GetmWaterCourse();
 		if (BombIdx.x < 15 || BombIdx.y < 13)
 		{
 			for (int i = 1; i < WaterStatus; i++)
@@ -94,7 +94,7 @@ namespace ty
 
 	void BaseBomb::Update()
 	{
-		Transform* mPlayer = PlayScene::GetBazzi()->GetComponent<Transform>();
+		Transform* mPlayer = SceneManager::GetBazzi()->GetComponent<Transform>();
 		Vector2 mPlayerPos = mPlayer->GetPos();
 		Vector2 IDX = TileBomb::SetIndex(mPlayerPos);
 
@@ -166,7 +166,7 @@ namespace ty
 			Transform* tr = GetComponent<Transform>();
 			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
-			int Click = PlayScene::GetBazzi()->GetmClick()--;
+			int Click = SceneManager::GetBazzi()->GetmClick()--;
 			object::Destroy(this);
 		}
 	}

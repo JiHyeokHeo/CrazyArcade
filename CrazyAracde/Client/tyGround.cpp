@@ -28,7 +28,7 @@ namespace ty
 
 	
 		//mImage = Resources::Load<Image>(L"Ground", L"..\\Resources\\Ground\\Ground.bmp"); 
-		mPlayer = PlayScene::GetBazzi();
+		mPlayer = SceneManager::GetBazzi();
 		GameObject::Initialize();
 	}
 
@@ -68,7 +68,7 @@ namespace ty
 
 	void Ground::OnCollisionStay(Collider* other)
 	{
-		int mSpeed = PlayScene::GetBazzi()->GetmSpeed();
+		int mSpeed = SceneManager::GetBazzi()->GetmSpeed();
 
 		Transform* mPlayerPos = mPlayer->GetComponent<Transform>();
 		Vector2 mGameobjPos = mPlayerPos->GetPos();

@@ -7,11 +7,14 @@
 #include "tyCamera.h"
 #include "tyToolScene.h"
 #include "tyStage2.h"
+#include "tyBazzi.h"
+
 
 namespace ty
 {
 	std::vector<Scene*> SceneManager::mScenes = {};
 	Scene* SceneManager::mActiveScene = nullptr;
+	Bazzi* SceneManager::mBazzi;
 
 	void SceneManager::Initialize()
 	{
@@ -25,8 +28,6 @@ namespace ty
 		mScenes[(UINT)eSceneType::Tool] = new ToolScene();
 		
 		//mScenes[(UINT)eSceneType::PLAY]->SetName(L"PLAYER");
-		
-		
 
 		for (Scene* scene : mScenes)
 		{

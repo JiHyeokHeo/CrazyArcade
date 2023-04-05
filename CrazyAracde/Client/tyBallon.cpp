@@ -60,7 +60,7 @@ namespace ty
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			PlayScene::GetBazzi()->GetmBomb()++;
+			SceneManager::GetBazzi()->GetmBomb()++;
 			object::Destroy(this);
 		}
 
