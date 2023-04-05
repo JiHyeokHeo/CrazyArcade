@@ -19,6 +19,7 @@ enum class eLayerType
 	Tile, // 타일
 	AlphaBlender, // 알파블렌드
 	Item,
+	Effect, // 일반 이펙트
 	BombEffect, // 이펙트
 	Bomb, // 폭탄
 	Monster, // 몬스터

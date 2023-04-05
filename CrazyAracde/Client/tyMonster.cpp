@@ -70,29 +70,39 @@ namespace ty
 		if (ColDIdx.y > 12)
 			ColDIdx.y = 12;
 
+	
 		if (PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 30.0f)
 		{
 			mState = eMonsterState::Right;
+			colcnt++;
 			animationCtr();
 		}
 		if (
 			PlayScene::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x >= 900.0f)
 		{
 			mState = eMonsterState::Left;
+			colcnt++;
 			animationCtr();
 		}
 		if (
 			PlayScene::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.y <= 60.0f)
 		{
 			mState = eMonsterState::Down;
+			colcnt++;
 			animationCtr();
 		}
 		if (
 			PlayScene::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 2 || PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.y >= 840.0f)
 		{
 			mState = eMonsterState::Up;
+			colcnt++;
 			animationCtr();
 		}
+	/*	if (PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 2 && PlayScene::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 2)
+		{
+			mState = eMonsterState::Up;
+			animationCtr();
+		}*/
 
 		switch (mState)
 		{
@@ -181,6 +191,7 @@ namespace ty
 	void Monster::idle()
 	{
 		mState = (eMonsterState)((rand()% 5));
+		colcnt = 0;
 		animationCtr();
 	}
 	void Monster::left()

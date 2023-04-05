@@ -13,6 +13,7 @@
 #include "tySkate.h"
 #include "tyPotionMax.h"
 #include "tyPotion.h"
+#include "tySteam.h"
 
 namespace ty
 {
@@ -66,6 +67,7 @@ namespace ty
 	}
 	void Tile::Update()
 	{
+		
 		rand_num = (float)rand() / RAND_MAX; // 0 ¶Ç´Â 1
 		GameObject::Update();
 	}
@@ -87,6 +89,7 @@ namespace ty
 	}
 	void Tile::OnCollisionEnter(Collider* other)
 	{
+		mTime += Time::DeltaTime();
 		tr = GetComponent<Transform>();
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		if (other->GetOwner()->GetName() == L"BombEffect" && mIndex >= 24)
@@ -107,7 +110,9 @@ namespace ty
 			{
 				object::Instantiate<PotionMax>(tr->GetPos() + Vector2(0.0f, -10.0f), eLayerType::Item);
 			}
+		
 			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
+			object::Instantiate<Steam>(tr->GetPos(), eLayerType::Effect);
 			object::Destroy(this);
 		}
 	}

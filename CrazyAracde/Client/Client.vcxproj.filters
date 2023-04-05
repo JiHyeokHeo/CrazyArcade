@@ -107,6 +107,9 @@
     <Filter Include="Contents\UI\Ice">
       <UniqueIdentifier>{24f0e5c9-ca31-4276-a72a-dfd1ad2507f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Effect">
+      <UniqueIdentifier>{ae143bbc-62af-4cee-8b54-9d7320f8b415}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -316,6 +319,9 @@
     <ClInclude Include="tyBazziImage.h">
       <Filter>Contents\UI</Filter>
     </ClInclude>
+    <ClInclude Include="tySteam.h">
+      <Filter>Contents\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -507,6 +513,9 @@
     </ClCompile>
     <ClCompile Include="tyBazziImage.cpp">
       <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="tySteam.cpp">
+      <Filter>Contents\Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

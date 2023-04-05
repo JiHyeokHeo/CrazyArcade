@@ -20,6 +20,7 @@
 #include "tyResources.h"
 #include "tyIceTile.h"
 #include "tyTile.h"
+#include "tyStage2.h"
 
 namespace ty
 {
@@ -57,10 +58,10 @@ namespace ty
 	{
 		Vector2 Pos = mBazzi->GetComponent<Transform>()->GetPos();
 		
-		if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
-		{
-			SceneManager::LoadScene(eSceneType::Tool);
-		}
+		//if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
+		//{
+		//	SceneManager::LoadScene(eSceneType::Tool);
+		//}
 		
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)

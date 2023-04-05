@@ -26,7 +26,7 @@ namespace ty
 	}
 	void IceMapSelect::Render(HDC hdc)
 	{
-		StretchBlt(hdc, 723, 513, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc()
+		StretchBlt(hdc, 725, 517, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc()
 			, 0, 0, mImage->GetWidth(), mImage->GetHeight(), SRCCOPY);
 	}
 	void IceMapSelect::Release()

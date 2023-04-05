@@ -26,6 +26,12 @@ namespace ty
 		{
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
+		if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
+		{
+			SceneManager::LoadScene(eSceneType::Tool);
+		}
+
+
 	}
 	void LoginScene::Render(HDC hdc)
 	{

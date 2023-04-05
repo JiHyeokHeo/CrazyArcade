@@ -30,7 +30,7 @@ namespace ty
 
         if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
         {
-            SceneManager::LoadScene(eSceneType::Play);
+            SceneManager::LoadScene(eSceneType::Login);
         }
 
         Vector2 temp = Input::GetMousePos();
