@@ -249,7 +249,7 @@ namespace ty
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
 			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1 )
 		{
-			mDownIdx = Vector2(ColDIdx.y, ColDIdx.x);
+			mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x , ColMidPos.y  +TILE_SIZE_Y));
 			mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 

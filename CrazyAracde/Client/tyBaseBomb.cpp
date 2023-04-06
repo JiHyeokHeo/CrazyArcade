@@ -52,23 +52,24 @@ namespace ty
 
 		Transform* tr = GetComponent<Transform>();
 		mBasePos = tr->GetPos();
-		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+		Vector2 ColPos = collider->GetPos();
+		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
+		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(32.0f, 0.0f));
+		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-32.0f, 0.0f));
+		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -32.0f));
+		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +32.0f));
+		//Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 
-		if (Bazzi::GetMapIndex()[IDX.y][IDX.x] != Bazzi::GetMapIndex()[mPos.y][mPos.x])
+		if (Bazzi::GetMapIndex()[IDX.y][IDX.x] != Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x])
 		{
-			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
+			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 		}
 
 		mBazzi = SceneManager::GetBazzi();
 		Vector2 mDownIdx = mBazzi->GetDownIdx();
 		
 
-		Vector2 ColPos = collider->GetPos();
-		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(32.0f, 0.0f));
-		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-32.0f, 0.0f));
-		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -32.0f));
-		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +32.0f));
 		if (ColRIdx.x > 14)
 			ColRIdx.x = 14;
 		if (ColLIdx.x > 14)
@@ -94,10 +95,10 @@ namespace ty
 		}
 	
 
-		if (mBazzi->GetMapIndex()[mDownIdx.y][mDownIdx.x] == 1 && mBazzi->GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2
+		if (mBazzi->GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2
 			&& mBazzi->GetIsPushPossible() == true &&  mPushTime >= 0.1f)
 		{
-			mBazzi->GetMapIndex()[mPos.y][mPos.x] = 0;
+			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			down();
 		}
 			
@@ -249,8 +250,8 @@ namespace ty
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		Vector2 ColPos = collider->GetPos();
 		mTime = 0;
-		realPos.y += 240.0f * Time::DeltaTime();
-		//ColPos.y += 40.0f * Time::DeltaTime();
+		realPos.y += 340.0f * Time::DeltaTime();
+		/*ColPos.y += 40.0f * Time::DeltaTime();*/
 		
 		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
 		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(32.0f, 0.0f));
