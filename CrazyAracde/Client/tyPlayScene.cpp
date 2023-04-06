@@ -38,7 +38,7 @@ namespace ty
 		
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		SceneManager::SetBazzi(mBazzi);
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f));
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 		
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지

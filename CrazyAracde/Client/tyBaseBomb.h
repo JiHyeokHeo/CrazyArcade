@@ -39,6 +39,7 @@ namespace ty
 	private:
 		std::vector<BombEffect*> mBombEffect;
 		Collider* collider;
+		Transform* tr;
 		class Bazzi* mBazzi;
 		Vector2 BazziPos;;
 		Vector2 mBasePos;
@@ -52,6 +53,12 @@ namespace ty
 		bool isPush;
 		float mPushTime;
 		
+		bool mleft;
+		bool mright;
+		bool mup;
+		bool mdown;
+		int pushcnt;
 	};
+	
 	
 }
