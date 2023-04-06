@@ -40,6 +40,7 @@ namespace ty
 	}
 	void Bazzi::Initialize()
 	{
+		isPushPossible = true;
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(20,40));
 		tr->SetScale(Vector2(1.18f, 1.18f));
@@ -83,7 +84,8 @@ namespace ty
 	}
 	void Bazzi::Update()
 	{
-		Transform* tr = GetComponent<Transform>();
+		tr = GetComponent<Transform>();
+		mPos = tr->GetPos();
 		IdxPos = TileBomb::SetIndex(tr->GetPos());
 		mTime += Time::DeltaTime();
 
@@ -160,7 +162,6 @@ namespace ty
 			mState = eBazziState::BubbleMove;
 			isColl = true;
 		}
-
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -175,9 +176,8 @@ namespace ty
 	void Bazzi::move()
 	{
 
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-		Vector2 idxpos = TileBomb::SetIndex(tr->GetPos());
+		
+		Vector2 idxpos = TileBomb::SetIndex(mPos);
 
 		if (mSpeed >= maxSpeed)
 		{
@@ -230,32 +230,32 @@ namespace ty
 		if (ColDIdx.y > 12)
 			ColDIdx.y = 12;
 
+
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
-			&& mapIndex[ColLIdx.y][ColLIdx.x] != 2 && mapIndex[ColLIdx.y][ColLIdx.x] != 1)
+			&& mapIndex[ColLIdx.y][ColLIdx.x] != 2 && mapIndex[ColLIdx.y][ColLIdx.x] != 1 )
 		{
-			pos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
+			mPos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
 			&& mapIndex[ColRIdx.y][ColRIdx.x] != 2 && mapIndex[ColRIdx.y][ColRIdx.x] != 1)
 		{
-			pos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
 			&& mapIndex[ColUIdx.y][ColUIdx.x] != 2 && mapIndex[ColUIdx.y][ColUIdx.x] != 1)
 		{
-			pos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1)
+			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1 )
 		{
-			pos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			mDownIdx = Vector2(ColDIdx.y, ColDIdx.x);
+			mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 
 		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
 		{
 			mState = eBazziState::Shoot;
- 			
-
 			//mAnimator->Play(L"downIdle", true);
 		}
 
@@ -276,11 +276,10 @@ namespace ty
 			mAnimator->Play(L"Bazzidown", true);
 		}
 
-		tr->SetPos(pos);
+		tr->SetPos(mPos);
 	}
 	void Bazzi::shoot()
  	{
-		Transform* tr = GetComponent<Transform>();
 		IdxPos = TileBomb::SetIndex(tr->GetPos());
 		if (mBomb > maxBomb)
 		{
@@ -346,27 +345,27 @@ namespace ty
 	}
 	void Bazzi::bubblemove()
 	{
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
+		
+		mPos = tr->GetPos();
 
-		if (pos.x <= 30.0f)
+		if (mPos.x <= 30.0f)
 		{
-			pos.x == 30.0f;
+			mPos.x == 30.0f;
 		}
 
-		if (pos.x >= 900.0f)
+		if (mPos.x >= 900.0f)
 		{
-			pos.x == 900.0f;
+			mPos.x == 900.0f;
 		}
 
-		if (pos.y <= 60.0f)
+		if (mPos.y <= 60.0f)
 		{
-			pos.y == 60.0f;
+			mPos.y == 60.0f;
 		}
 
-		if (pos.y >= 780.0f)
+		if (mPos.y >= 780.0f)
 		{
-			pos.y == 780.0f;
+			mPos.y == 780.0f;
 		}
 
 
@@ -374,34 +373,33 @@ namespace ty
 			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isLPressed = true;
-			pos.x -= 50.0f * Time::DeltaTime();
+			mPos.x -= 50.0f * Time::DeltaTime();
 		}
 		else if (Input::GetKey(eKeyCode::RIGHT)
 			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isRPressed = true;
-			pos.x += 50.0f * Time::DeltaTime();
+			mPos.x += 50.0f * Time::DeltaTime();
 		}
 		else if (Input::GetKey(eKeyCode::UP)
 			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isUPressed = true;
-			pos.y -= 50.0f * Time::DeltaTime();
+			mPos.y -= 50.0f * Time::DeltaTime();
 		}
 		else if (Input::GetKey(eKeyCode::DOWN)
 			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			//isDPressed = true;
-			pos.y += 50.0f * Time::DeltaTime();
+			mPos.y += 50.0f * Time::DeltaTime();
 		}
 
-		tr->SetPos(pos);
+		tr->SetPos(mPos);
 	}
 	void Bazzi::revive()
 	{
 		mRandomPosx = 80.0f;
 		mRandomPosy = 100.0f;
-		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(mRandomPosx, mRandomPosy));
 		mState = eBazziState::Idle;
 		mAnimator->Play(L"Bazziready", false);

@@ -18,6 +18,7 @@ namespace ty
 		static void SetActiveScene(Scene* scene) { mActiveScene = scene; }
 
 		static void SetBazzi(Bazzi* bazzi) { mBazzi = bazzi; }
+		static void DeleteBazzi() { mBazzi = nullptr; }
 		static Bazzi* GetBazzi() { return mBazzi; }
 	private:
 		static std::vector<Scene*> mScenes;

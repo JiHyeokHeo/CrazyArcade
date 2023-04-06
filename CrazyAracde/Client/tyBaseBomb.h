@@ -31,15 +31,26 @@ namespace ty
 	private:
 		void bombed();
 		void idle();
-
+		void checked();
+		void up();
+		void right();
+		void down();
+		void left();
 	private:
 		std::vector<BombEffect*> mBombEffect;
+		Collider* collider;
+		class Bazzi* mBazzi;
 		Vector2 BazziPos;;
+		Vector2 mBasePos;
+		Vector2 realPos;
 		Animator* mAnimator;
-		float mTime;
 		int maxWaterWave;
+		float mTime;
 		eBombState mState;
 		bool isBomb;
+		bool isShot;
+		bool isPush;
+		float mPushTime;
 		
 	};
 	

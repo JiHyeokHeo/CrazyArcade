@@ -34,6 +34,9 @@ namespace ty::object
 		obj->SetState(GameObject::eState::Death);
 	}
 
-
+	static void Pause(GameObject* obj)
+	{
+		obj->SetState(GameObject::eState::Pause);
+	}
 
 }

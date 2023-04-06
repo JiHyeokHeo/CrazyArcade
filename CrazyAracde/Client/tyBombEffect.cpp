@@ -39,7 +39,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2::Zero, 0.16f);
 		mState = eBombEffectState::Idle;
-		
+		/*mAnimator->Play(L"BombUpflow", true);*/
 		//mAnimator->GetEndEvent(L"BombDownflow") = std::bind(&BombEffect::bombCompleteEvent, this);
 		//mAnimator->Play(L"BombUpflow", false);
 		GameObject::Initialize();
@@ -95,8 +95,7 @@ namespace ty
 	}
 	void BombEffect::idle()
 	{
-		if (mTime >= 3.0f)
-		{
+		
 			mBaseBombPos = mBaseBomb->GetComponent<Transform>()->GetPos();
 
 			if (mBaseBombPos.x > EffectPos.x && mBaseBombPos.y == EffectPos.y)
@@ -124,7 +123,8 @@ namespace ty
 			collider->SetCenter(Vector2(15.00f, 15.00f));
 			collider->SetSize(Vector2(30.0f, 30.0f));
 			mState = eBombEffectState::Bombed;
-		}
+			mTime = 0;
+		
 	}
 	void BombEffect::bombed()
 	{

@@ -41,7 +41,7 @@ namespace ty
 	void Tile::InitializeTile(Image* atlas, int index, Vector2 pos)
 	{
 		SetName(L"Tile");
-		if (index >= 0)
+		if (index >= 5)
 		{
 			mCollider = AddComponent<Collider>();
 			mCollider -> SetPos(Vector2(30.0f + pos.x * TILE_SIZE_X, 60.0f + pos.y * TILE_SIZE_Y));
@@ -52,7 +52,7 @@ namespace ty
 			return;
 		if (pos.y > 12 || pos.x > 14 || pos.y < 0 || pos.x < 0)
 			return;
-		Bazzi::GetMapIndex()[pos.y][pos.x] = 2;
+		SceneManager::GetBazzi()->GetMapIndex()[pos.y][pos.x] = 2; 
 		mAtlas = atlas;
 		SetIndex(index);
 
@@ -111,7 +111,7 @@ namespace ty
 				object::Instantiate<PotionMax>(tr->GetPos() + Vector2(0.0f, -10.0f), eLayerType::Item);
 			}
 		
-			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
+			SceneManager::GetBazzi()->GetMapIndex()[mPos.y][mPos.x] = 0;
 			object::Instantiate<Steam>(tr->GetPos(), eLayerType::Effect);
 			object::Destroy(this);
 		}
@@ -127,5 +127,5 @@ namespace ty
 		isUCol = false;
 		isDCol = false;
 	}
-	
+
 }

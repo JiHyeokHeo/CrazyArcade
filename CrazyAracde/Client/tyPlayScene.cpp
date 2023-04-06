@@ -48,11 +48,11 @@ namespace ty
 		object::Instantiate<IceTile>(eLayerType::BG);
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
 		object::Instantiate<Ground>(Vector2(30.0f, -720.0f), eLayerType::Ground);
 		object::Instantiate<Ground>(Vector2(30.0f, 840.0f), eLayerType::Ground);
 		object::Instantiate<LRGround>(Vector2(-870.0f, 60.0f), eLayerType::Ground);
@@ -85,11 +85,11 @@ namespace ty
 	void PlayScene::OnEnter()
 	{
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
-		if (isLoad == false)
-		{
+		mBazzi->GetMapIndex();
+		
 			TilePalatte::Load(L"001");
 			isLoad = true;
-		}
+		
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
@@ -109,6 +109,7 @@ namespace ty
 	}
 	void PlayScene::OnExit()
 	{
+		
 		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int i = 0; i < 13; i++)

@@ -28,67 +28,19 @@ namespace ty
 	{
 		SetName(L"BaseBomb");
 		
-		
     	Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Idle", Vector2::Zero, 0.16f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\None", Vector2::Zero, 0.16f);
 		mAnimator->Play(L"BombIdle", true);
-		Bazzi::GetMapIndex();
-		Collider* collider = AddComponent<Collider>();
+		collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2::Zero);
 		collider->SetSize(Vector2(58.0f, 58.0f));
 
-		Vector2 BombPos = tr->GetPos();
-		Vector2 BombIdx = TileBomb::SetIndex(BombPos);
-
-		int WaterStatus = SceneManager::GetBazzi()->GetmWaterCourse();
-		if (BombIdx.x < 15 || BombIdx.y < 13)
-		{
-			for (int i = 1; i < WaterStatus; i++)
-			{
-				if (BombIdx.x + i >= 15)
-					break;
-				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
-				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] == 2)
-					break;
-			}
-			for (int i = 1; i < WaterStatus; i++)
-			{
-				if (BombIdx.y + i >= 13)
-					break;
-				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
-				if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] == 2)
-					break;
-			}
-			for (int i = 1; i < WaterStatus; i++)
-			{
-				if (BombIdx.x - i <= -1)
-					break;
-				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
-				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] == 2)
-					break;
-			}
-			for (int i = 1; i < WaterStatus; i++)
-			{
-				if (BombIdx.y - i <= -1)
-					break;
-				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
-				if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] == 2)
-					break;
-			}
-			mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));
-		}
-
-
-		for (int i = 0; i < mBombEffect.size(); i++)
-		{
-			mBombEffect[i]->SetBomb(this);
-		}
+		mBazzi = SceneManager::GetBazzi();
 
 		mState = eBombState::Idle;
-		
 		GameObject::Initialize();
 	}
 
@@ -99,6 +51,7 @@ namespace ty
 		Vector2 IDX = TileBomb::SetIndex(mPlayerPos);
 
 		Transform* tr = GetComponent<Transform>();
+		mBasePos = tr->GetPos();
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 
 		if (Bazzi::GetMapIndex()[IDX.y][IDX.x] != Bazzi::GetMapIndex()[mPos.y][mPos.x])
@@ -106,13 +59,54 @@ namespace ty
 			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
 		}
 
-		
-		GameObject::Update();
+		mBazzi = SceneManager::GetBazzi();
+		Vector2 mDownIdx = mBazzi->GetDownIdx();
 		
 
+		Vector2 ColPos = collider->GetPos();
+		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(32.0f, 0.0f));
+		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-32.0f, 0.0f));
+		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -32.0f));
+		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +32.0f));
+		if (ColRIdx.x > 14)
+			ColRIdx.x = 14;
+		if (ColLIdx.x > 14)
+			ColLIdx.x = 14;
+		if (ColUIdx.x > 14)
+			ColUIdx.x = 14;
+		if (ColDIdx.x > 14)
+			ColDIdx.x = 14;
+
+		if (ColRIdx.y > 12)
+			ColRIdx.y = 12;
+		if (ColLIdx.y > 12)
+			ColLIdx.y = 12;
+		if (ColUIdx.y > 12)
+			ColUIdx.y = 12;
+		if (ColDIdx.y > 12)
+			ColDIdx.y = 12;
+
+		if (mBazzi->GetMapIndex()[mDownIdx.y][mDownIdx.x] == 1 
+			&& mBazzi->GetIsPushPossible() == true && Input::GetKey(eKeyCode::DOWN))
+		{
+			mPushTime += Time::DeltaTime();
+		}
+	
+
+		if (mBazzi->GetMapIndex()[mDownIdx.y][mDownIdx.x] == 1 && mBazzi->GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2
+			&& mBazzi->GetIsPushPossible() == true &&  mPushTime >= 0.1f)
+		{
+			mBazzi->GetMapIndex()[mPos.y][mPos.x] = 0;
+			down();
+		}
+			
+	
+
+
+		
 		mTime += Time::DeltaTime();
-
-
+			
 		switch (mState)
 		{
 		case ty::BaseBomb::eBombState::Idle:
@@ -125,6 +119,7 @@ namespace ty
 			break;
 		}
 	
+		GameObject::Update();
     }
 	
 	void BaseBomb::Render(HDC hdc)
@@ -155,7 +150,7 @@ namespace ty
 
 	void BaseBomb::bombed()
 	{
-		
+		object::Destroy(this);
 	}
 
 	void BaseBomb::idle()
@@ -163,12 +158,133 @@ namespace ty
 
 		if (mTime >= 3.0f)
 		{
+			if (isShot == false)
+			{
+				isShot = true;
+				Transform* tr = GetComponent<Transform>();
+				Vector2 realPos = tr->GetPos();
+				Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+				Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
+
+				Vector2 BombPos = tr->GetPos();
+				Vector2 BombIdx = TileBomb::SetIndex(BombPos);
+
+				int WaterStatus = SceneManager::GetBazzi()->GetmWaterCourse();
+				if (BombIdx.x < 15 || BombIdx.y < 13)
+				{
+					for (int i = 1; i < WaterStatus; i++)
+					{
+						if (BombIdx.x + i >= 15)
+							break;
+						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
+						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] == 2)
+							break;
+					}
+					for (int i = 1; i < WaterStatus; i++)
+					{
+						if (BombIdx.y + i >= 13)
+							break;
+						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
+						if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] == 2)
+							break;
+					}
+					for (int i = 1; i < WaterStatus; i++)
+					{
+						if (BombIdx.x - i <= -1)
+							break;
+						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
+						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] == 2)
+							break;
+					}
+					for (int i = 1; i < WaterStatus; i++)
+					{
+						if (BombIdx.y - i <= -1)
+							break;
+						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
+						if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] == 2)
+							break;
+					}
+					mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));
+				}
+				for (int i = 0; i < mBombEffect.size(); i++)
+				{
+					mBombEffect[i]->SetBomb(this);
+				}
+			}
+		
+			mTime = 0;
 			Transform* tr = GetComponent<Transform>();
 			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 0;
 			int Click = SceneManager::GetBazzi()->GetmClick()--;
-			object::Destroy(this);
+			mState = eBombState::Bombed;
 		}
+	}
+
+	void BaseBomb::checked()
+	{
+		Transform* tr = GetComponent<Transform>();
+		Vector2 realPos = tr->GetPos();
+		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+	}
+
+	void BaseBomb::up()
+	{
+		Transform* tr = GetComponent<Transform>();
+		Vector2 realPos = tr->GetPos();
+		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+	}
+
+	void BaseBomb::right()
+	{
+		Transform* tr = GetComponent<Transform>();
+		Vector2 realPos = tr->GetPos();
+		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+	}
+
+	void BaseBomb::down()
+	{
+		Transform* tr = GetComponent<Transform>();
+		Vector2 realPos = tr->GetPos();
+		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+		Vector2 ColPos = collider->GetPos();
+		mTime = 0;
+		realPos.y += 240.0f * Time::DeltaTime();
+		//ColPos.y += 40.0f * Time::DeltaTime();
+		
+		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(32.0f, 0.0f));
+		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-32.0f, 0.0f));
+		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -32.0f));
+		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +32.0f));
+		if (ColRIdx.x > 14)
+			ColRIdx.x = 14;
+		if (ColLIdx.x > 14)
+			ColLIdx.x = 14;
+		if (ColUIdx.x > 14)
+			ColUIdx.x = 14;
+		if (ColDIdx.x > 14)
+			ColDIdx.x = 14;
+
+		if (ColRIdx.y > 12)
+			ColRIdx.y = 12;
+		if (ColLIdx.y > 12)
+			ColLIdx.y = 12;
+		if (ColUIdx.y > 12)
+			ColUIdx.y = 12;
+		if (ColDIdx.y > 12)
+			ColDIdx.y = 12;
+
+
+		tr->SetPos(realPos);
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 2)
+		{
+			Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
+		}
+	}
+
+	void BaseBomb::left()
+	{
 	}
 
 }

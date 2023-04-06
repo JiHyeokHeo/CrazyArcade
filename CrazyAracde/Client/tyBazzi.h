@@ -33,7 +33,7 @@ namespace ty
 		virtual void OnCollisionEnter(class Collider* other) override;
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
-		
+
 		static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
 		int& GetmClick() { return mClick; }
 		float& GetmSpeed() { return mSpeed; }
@@ -41,6 +41,11 @@ namespace ty
 		INT& GetmBomb() { return mBomb; }
 		int GetMaxWaterCourse() { return maxWaterCourse; }
 		int GetPlayerSpeed() { return mPlayerSpeed; }
+		Vector2 GetUpIdx() { return mUpIdx; }
+		Vector2 GetRightIdx() { return mRightIdx; }
+		Vector2 GetDownIdx() { return mDownIdx; }
+		Vector2 GetLeftIdx() { return mLeftIdx; }
+		bool& GetIsPushPossible() { return isPushPossible; }
 		void Reset();
 	private:
 		void move();
@@ -62,22 +67,39 @@ namespace ty
 		float maxSpeed;
 		int maxBomb;
 		int maxWaterCourse;
+		int BombCnt;
+
+
 		int mClick;
 		eBazziState mState;
 		Animator* mAnimator;
 		float mTime;
-		int BombCnt;
+
+
 		bool isColl;
 		bool isReady;
 		bool isLPressed;
 		bool isRPressed;
 		bool isUPressed;
 		bool isDPressed;
+		bool isPushPossible;
+
+
 		int mRandomPosx;
 		int mRandomPosy;
+
+
 		static std::vector<std::vector<int>> mapIndex;
 		Vector2 IdxPos;
 		int mPlayerSpeed;
 		Collider* collider;
+		Transform* tr;
+		Vector2 mPos;
+
+		Vector2 mUpIdx;
+		Vector2 mRightIdx;
+		Vector2 mDownIdx;
+		Vector2 mLeftIdx;
+		
 	};
 }
