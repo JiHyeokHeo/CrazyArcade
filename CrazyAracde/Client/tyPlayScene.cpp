@@ -23,6 +23,8 @@
 #include "tyStage2.h"
 #include "tyDevil.h"
 #include "tyBird.h"
+#include "tyNeedle.h"
+#include "tyShield.h"
 
 namespace ty
 {
@@ -44,6 +46,8 @@ namespace ty
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
 		object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
+		object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
+		object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		//Camera::SetTarget(mBazzi);

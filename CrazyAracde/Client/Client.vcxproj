@@ -143,10 +143,14 @@
     <ClInclude Include="tyLRGround.h" />
     <ClInclude Include="tyMapSelect.h" />
     <ClInclude Include="tyNeedle.h" />
+    <ClInclude Include="tyNeedleUI.h" />
     <ClInclude Include="tyPlayerNum.h" />
     <ClInclude Include="tyPotion.h" />
     <ClInclude Include="tyPotionMax.h" />
     <ClInclude Include="tyShadow.h" />
+    <ClInclude Include="tyShield.h" />
+    <ClInclude Include="tyShieldEffect.h" />
+    <ClInclude Include="tyShiledUI.h" />
     <ClInclude Include="tySkate.h" />
     <ClInclude Include="tySteam.h" />
     <ClInclude Include="tyTileBomb.h" />
@@ -224,6 +228,7 @@
     <ClCompile Include="tyLRGround.cpp" />
     <ClCompile Include="tyMapSelect.cpp" />
     <ClCompile Include="tyNeedle.cpp" />
+    <ClCompile Include="tyNeedleUI.cpp" />
     <ClCompile Include="tyPlayerNum.cpp" />
     <ClCompile Include="tyPotion.cpp" />
     <ClCompile Include="tyPotionMax.cpp" />
@@ -256,6 +261,9 @@
     <ClCompile Include="tyScene.cpp" />
     <ClCompile Include="tySceneManager.cpp" />
     <ClCompile Include="tyShadow.cpp" />
+    <ClCompile Include="tyShield.cpp" />
+    <ClCompile Include="tyShieldEffect.cpp" />
+    <ClCompile Include="tyShiledUI.cpp" />
     <ClCompile Include="tySkate.cpp" />
     <ClCompile Include="tyStage2.cpp" />
     <ClCompile Include="tySteam.cpp" />

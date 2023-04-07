@@ -110,6 +110,9 @@
     <Filter Include="Contents\Effect">
       <UniqueIdentifier>{ae143bbc-62af-4cee-8b54-9d7320f8b415}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\UI\Item">
+      <UniqueIdentifier>{fcea24fc-6a1c-4df0-b477-d94098ad65aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -331,6 +334,18 @@
     <ClInclude Include="tyNeedle.h">
       <Filter>Contents\Item</Filter>
     </ClInclude>
+    <ClInclude Include="tyShield.h">
+      <Filter>Contents\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="tyShieldEffect.h">
+      <Filter>Contents\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="tyNeedleUI.h">
+      <Filter>Contents\UI\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="tyShiledUI.h">
+      <Filter>Contents\UI\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -534,6 +549,18 @@
     </ClCompile>
     <ClCompile Include="tyNeedle.cpp">
       <Filter>Contents\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyShield.cpp">
+      <Filter>Contents\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyShieldEffect.cpp">
+      <Filter>Contents\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="tyNeedleUI.cpp">
+      <Filter>Contents\UI\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyShiledUI.cpp">
+      <Filter>Contents\UI\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -20,7 +20,7 @@ namespace ty
 			Idle,
 			NoMove,
 			Reset,
-			BirdOn
+			BirdOn,
 		};
 
 		Bazzi();
@@ -49,9 +49,12 @@ namespace ty
 		Vector2 GetLeftIdx() { return mLeftIdx; }
 		bool GetIsPushPossible() { return isPushPossible; }
 		void SetIsPushPossible(bool isPossible) { isPushPossible = isPossible; }
-		void SetIsNeedleOn(bool isOn) { isNeedleOn = isOn; }
 		bool& GetIsBirdOn() { return isBirdOn; }
 		void Reset();
+
+
+		eItemType GetItemState() { return mItemState; }
+		void SetItemState(eItemType type) { mItemState = type; }
 	private:
 		void move();
 		void shoot();
@@ -82,6 +85,7 @@ namespace ty
 
 		int mClick;
 		eBazziState mState;
+		eItemType mItemState;
 		Animator* mAnimator;
 		float mTime;
 
@@ -94,7 +98,7 @@ namespace ty
 		bool isDPressed;
 		bool isPushPossible;
 		bool isBirdOn;
-		bool isNeedleOn;
+		bool isShieldOn;
 
 		int mRandomPosx;
 		int mRandomPosy;

@@ -1,4 +1,4 @@
-#include "tyNeedle.h"
+#include "tyShield.h"
 #include "tyItem.h"
 #include "tyBazzi.h"
 #include "tyTime.h"
@@ -16,49 +16,49 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
-#include "tyNeedleUI.h"
+#include "tyShiledUI.h"
 
 namespace ty
 {
-	Needle::Needle()
+	Shield::Shield()
 	{
 	}
-	Needle::Needle(ItemType type)
+	Shield::Shield(ItemType type)
 	{
 	}
-	Needle::~Needle()
+	Shield::~Shield()
 	{
 	}
-	void Needle::Initialize()
+	void Shield::Initialize()
 	{
-		Image* mNeedle = Resources::Load<Image>(L"mNeedle", L"..\\Resources\\Items\\needle.bmp");
+		Image* mShield = Resources::Load<Image>(L"mShield", L"..\\Resources\\Items\\shield.bmp");
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"Needle", mNeedle, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
-		mAnimator->Play(L"Needle", true);
+		mAnimator->CreateAnimation(L"mShield", mShield, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
+		mAnimator->Play(L"mShield", true);
 
 		Collider* Col = AddComponent<Collider>();
 		Col->SetCenter(Vector2(20.0f, 20.0f));
 		Col->SetSize(Vector2(20.0f, 20.0f));
 		GameObject::Initialize();
 	}
-	void Needle::Update()
+	void Shield::Update()
 	{
 		GameObject::Update();
 	}
-	void Needle::Render(HDC hdc)
+	void Shield::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
-	void Needle::Release()
+	void Shield::Release()
 	{
 	}
-	void Needle::OnCollisionEnter(Collider* other)
+	void Shield::OnCollisionEnter(Collider* other)
 	{
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			SceneManager::GetBazzi()->SetItemState(eItemType::Needle);
-			object::Instantiate<NeedleUI>(eLayerType::UI);
+			SceneManager::GetBazzi()->SetItemState(eItemType::Shield);
+			object::Instantiate<ShieldUI>(eLayerType::UI);
 			object::Destroy(this);
 		}
 
@@ -66,11 +66,12 @@ namespace ty
 		{
 			object::Destroy(this);
 		}
+
 	}
-	void Needle::OnCollisionStay(Collider* other)
+	void Shield::OnCollisionStay(Collider* other)
 	{
 	}
-	void Needle::OnCollisionExit(Collider* other)
+	void Shield::OnCollisionExit(Collider* other)
 	{
 	}
 }

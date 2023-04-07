@@ -5,11 +5,11 @@
 namespace ty
 {
 	class Image;
-	class Steam : public GameObject
+	class ShieldEffect : public GameObject
 	{
 	public:
-		Steam();
-		~Steam();
+		ShieldEffect();
+		~ShieldEffect();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -20,5 +20,7 @@ namespace ty
 	private:
 		Image* mImage;
 		class Animator* mAnimator;
+		float mTime;
+		Transform* tr;
 	};
 };

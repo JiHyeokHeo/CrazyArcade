@@ -17,12 +17,14 @@
 #include "tyPotionMax.h"
 #include "tySkate.h"
 #include  "tySteam.h"
+#include "tyShieldEffect.h"
 
 namespace ty
 {
 	std::vector<std::vector<int>> Bazzi:: mapIndex;
 	Bazzi::Bazzi()
 		: mHP(1) // 체력 
+		, mItemState(eItemType::None)
 		, mBomb(3) // 폭탄
 		, mWaterCourse(3) // 물줄기
 		, mSpeed(5.0f) // 속도
@@ -315,6 +317,14 @@ namespace ty
 			//mAnimator->Play(L"downIdle", true);
 		}
 
+		if (Input::GetKeyDown(eKeyCode::CTRL) && mItemState == eItemType::Shield)
+		{
+			isShieldOn = true;
+			mInvincibility = 2;
+			object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+			mItemState = eItemType::None;
+		}
+
 		if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
 		{
 			mAnimator->Play(L"Bazzileft", true);
@@ -421,6 +431,14 @@ namespace ty
 			mState = eBazziState::BirdOn;
 		}
 
+		if (Input::GetKeyDown(eKeyCode::CTRL) && mItemState == eItemType::Shield)
+		{
+			isShieldOn = true;
+			mInvincibility = 2;
+			mItemState = eItemType::None;
+			object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+		}
+
 		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
 			mState = eBazziState::Shoot;
@@ -483,9 +501,10 @@ namespace ty
 			mPos.y += 50.0f * Time::DeltaTime();
 		}
 
-		if (Input::GetKey(eKeyCode::CTRL) && isNeedleOn == true
+		if (Input::GetKey(eKeyCode::CTRL) && mItemState == eItemType::Needle
 			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
+			mItemState = eItemType::None;
 			mAnimator->Play(L"Bazzilive", false);
 		}
 
@@ -506,6 +525,7 @@ namespace ty
 	{
 		
 	}
+	
 	void Bazzi::trapCompleteEvent(/*const Cuphead* this*/) // 애니메이션 동작이 끝나면 실행되도록 할 수 있다.
 	{
 		mState = eBazziState::NoMove;
@@ -645,6 +665,17 @@ namespace ty
 			if (mInvincibility < 0.0f)
 			{
 				isColl = false;
+			}
+		}
+
+		if (isShieldOn == true)
+		{
+			mInvincibility -= Time::DeltaTime();
+
+
+			if (mInvincibility < 0.0f)
+			{
+				isShieldOn = false;
 			}
 		}
 	}
