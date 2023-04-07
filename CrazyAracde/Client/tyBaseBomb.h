@@ -52,7 +52,9 @@ namespace ty
 		bool isShot;
 		bool isPush;
 		float mPushTime;
-		
+		bool hasBeenPushed;
+
+
 		bool mleft;
 		bool mright;
 		bool mup;

@@ -20,6 +20,7 @@ namespace ty
 			Idle,
 			NoMove,
 			Reset,
+			BirdOn
 		};
 
 		Bazzi();
@@ -46,6 +47,7 @@ namespace ty
 		Vector2 GetDownIdx() { return mDownIdx; }
 		Vector2 GetLeftIdx() { return mLeftIdx; }
 		bool& GetIsPushPossible() { return isPushPossible; }
+		bool& GetIsBirdOn() { return isBirdOn; }
 		void Reset();
 	private:
 		void move();
@@ -57,7 +59,11 @@ namespace ty
 		void revive();
 		void nomove();
 		void trapCompleteEvent();
-		void dieCompeleteEvent();
+		void dieCompleteEvent();
+		void liveCompleteEvent();
+		void hitComPleteEvent();
+		void birdmove();
+		void checkInVTime();
 	private:
 		int mBomb;
 		int mHP;
@@ -83,11 +89,11 @@ namespace ty
 		bool isUPressed;
 		bool isDPressed;
 		bool isPushPossible;
-
+		bool isBirdOn;
 
 		int mRandomPosx;
 		int mRandomPosy;
-
+		float mInvincibility;
 
 		static std::vector<std::vector<int>> mapIndex;
 		Vector2 IdxPos;

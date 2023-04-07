@@ -29,6 +29,7 @@ namespace ty
 		, maxBomb(6)
 		, maxWaterCourse(7)
 		, mPlayerSpeed(50)
+		, mInvincibility(0)
 		
 	{
 		int row = 15;
@@ -40,6 +41,7 @@ namespace ty
 	}
 	void Bazzi::Initialize()
 	{
+	/*	isBirdOn = true;*/
 		isPushPossible = true;
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(20,40));
@@ -52,6 +54,8 @@ namespace ty
 		Image* mReadyImage = Resources::Load<Image>(L"BazziReady", L"..\\Resources\\Bazzi\\ready.bmp");
 		Image* mDieImage = Resources::Load<Image>(L"BazziDie", L"..\\Resources\\Bazzi\\die.bmp");
 		Image* mTrapeImage = Resources::Load<Image>(L"BazziTrap", L"..\\Resources\\Bazzi\\trap.bmp");
+		Image* mLiveImage = Resources::Load<Image>(L"BazziLive", L"..\\Resources\\Bazzi\\live.bmp");
+		Image* mFlashImage = Resources::Load<Image>(L"BazziFlash", L"..\\Resources\\Bazzi\\flash.bmp");
 		mAnimator = AddComponent<Animator>();
 		
 		mAnimator->CreateAnimation(L"Bazziup", mUpImage, Vector2::Zero, 8, 1, 8, Vector2::Zero, 0.1);
@@ -67,10 +71,23 @@ namespace ty
 
 		mAnimator->CreateAnimation(L"Bazzidie", mDieImage, Vector2::Zero, 13, 1, 13, Vector2(-15.0f, -30.0f), 0.15);
 		mAnimator->CreateAnimation(L"Bazzitrap", mTrapeImage, Vector2::Zero, 13, 1, 13, Vector2(-15.0f, - 30.0f), 0.18);
-		
+		mAnimator->CreateAnimation(L"Bazzilive", mLiveImage, Vector2::Zero, 5, 1, 5, Vector2(-15.0f, -30.0f), 0.1);
+		mAnimator->CreateAnimation(L"Bazziflash", mFlashImage, Vector2::Zero, 4, 1, 1, Vector2::Zero, 0.1);
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Down", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\DownIdle", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Right", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\RightIdle", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Left", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\LeftIdle", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Up", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\UpIdle", Vector2::Zero, 0.1f);
+
 
 		mAnimator->GetCompleteEvent(L"Bazzitrap") = std::bind(&Bazzi::trapCompleteEvent, this);
-		mAnimator->GetCompleteEvent(L"Bazzidie") = std::bind(&Bazzi::dieCompeleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Bazzidie") = std::bind(&Bazzi::dieCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Bazzilive") = std::bind(&Bazzi::liveCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Bazziflash") = std::bind(&Bazzi::hitComPleteEvent, this);
 		mAnimator->Play(L"Bazziready", false);
 		
 		collider = AddComponent<Collider>();
@@ -79,7 +96,7 @@ namespace ty
 	
 		mState = eBazziState::Idle;
 
-		//mAnimator->Play(L"downIlde", true);
+		//mAnimator->Play(L"downIlde", true);^
 		GameObject::Initialize();
 	}
 	void Bazzi::Update()
@@ -89,7 +106,9 @@ namespace ty
 		IdxPos = TileBomb::SetIndex(tr->GetPos());
 		mTime += Time::DeltaTime();
 
-		//delete mBomb;
+
+		checkInVTime(); // 무적시간 체크
+
 		if (mTime >= 1.5f)
 		{
 			switch (mState)
@@ -117,6 +136,9 @@ namespace ty
 				break;
 			case ty::Bazzi::eBazziState::NoMove:
 				nomove();
+				break;
+			case ty::Bazzi::eBazziState::BirdOn:
+				birdmove();
 				break;
 			default:
 				break;
@@ -149,18 +171,44 @@ namespace ty
 		GameObject::Release();
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
-	{ 
-		if (isColl == false && other->GetOwner()->GetName() ==L"BossBombEffect" )
+	{
+		if (isColl == false && other->GetOwner()->GetName() ==L"BossBombEffect" && isBirdOn == false && mInvincibility <= 0.0f)
 		{
+			mHP--;
 			mAnimator->Play(L"Bazzitrap", false);
 			mState = eBazziState::BubbleMove;
 			isColl = true;
 		}
-		else if (isColl == false && other->GetOwner()->GetName() == L"BombEffect")
+		if (isColl == false && other->GetOwner()->GetName() == L"BombEffect" && isBirdOn == false && mInvincibility <= 0.0f)
 		{
+			mHP--;
 			mAnimator->Play(L"Bazzitrap", false);
 			mState = eBazziState::BubbleMove;
 			isColl = true;
+		}
+		if (other->GetOwner()->GetName() == L"BirdItem")
+		{
+			mHP--;
+			isBirdOn = true;
+			mAnimator->Play(L"BirdDown", true);
+		}
+		if(other->GetOwner()->GetName() == L"BossBombEffect" && isBirdOn == true)
+		{
+			mHP--;
+			mAnimator->Play(L"BazzidownIdle", false);
+			mState = eBazziState::Idle;
+			isColl = true;
+			isBirdOn = false;
+			mInvincibility = 1.0f;
+		}
+		if (other->GetOwner()->GetName() == L"BombEffect" && isBirdOn == true)
+		{
+			mHP--;
+			mAnimator->Play(L"Bazziflash", false);
+			mState = eBazziState::Idle;
+			isColl = true;
+			isBirdOn = false;
+			mInvincibility = 1.0f;
 		}
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
@@ -184,22 +232,22 @@ namespace ty
 			mSpeed = maxSpeed;
 		}
 
-		if (Input::GetKeyUp(eKeyCode::LEFT))
+		if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == false)
 		{
 			mAnimator->Play(L"BazzileftIdle", false);
 			mState = eBazziState::Idle;
 		}
-		if (Input::GetKeyUp(eKeyCode::RIGHT))
+		if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == false)
 		{
 			mAnimator->Play(L"BazzirightIdle", false);
 			mState = eBazziState::Idle;
 		}
-		if (Input::GetKeyUp(eKeyCode::UP))
+		if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == false)
 		{
 			mAnimator->Play(L"BazziupIdle", false);
 			mState = eBazziState::Idle;
 		}
-		if (Input::GetKeyUp(eKeyCode::DOWN))
+		if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == false)
 		{	
 			mAnimator->Play(L"BazzidownIdle", false);
 			mState = eBazziState::Idle;
@@ -262,19 +310,19 @@ namespace ty
 			//mAnimator->Play(L"downIdle", true);
 		}
 
-		if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false)
+		if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
 		{
 			mAnimator->Play(L"Bazzileft", true);
 		}
-		if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false)
+		if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
 		{
 			mAnimator->Play(L"Bazziright", true);
 		}
-		if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false)
+		if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
 		{
 			mAnimator->Play(L"Bazziup", true);
 		}
-		if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false)
+		if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
 		{
 			mAnimator->Play(L"Bazzidown", true);
 		}
@@ -295,7 +343,14 @@ namespace ty
 			IdxPos = TileBomb::SetIndex(tr->GetPos());
 			mapIndex[IdxPos.y][IdxPos.x] = 3; // 13 15
 		}
+		if (isBirdOn == false)
+		{
 			mState = eBazziState::Move;
+		}
+		else if (isBirdOn == true)
+		{
+			mState = eBazziState::BirdOn;
+		}
 	}
 	void Bazzi::death()
 	{
@@ -311,31 +366,57 @@ namespace ty
 		isRPressed = false;
 		isUPressed = false;
 		isDPressed = false;
-		if (Input::GetKey(eKeyCode::LEFT))
+		if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == false)
 		{
 			isLPressed = true;
 			mAnimator->Play(L"Bazzileft", true);
 			mState = eBazziState::Move;
 		}
-		if (Input::GetKey(eKeyCode::RIGHT))
+		if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == false)
 		{
 			isRPressed = true;
 			mAnimator->Play(L"Bazziright", true);
 			mState = eBazziState::Move;
 		}
-		if (Input::GetKey(eKeyCode::UP))
+		if (Input::GetKey(eKeyCode::UP) && isBirdOn == false)
 		{
 			isUPressed = true;
 			mAnimator->Play(L"Bazziup", true);
 			mState = eBazziState::Move;
 		}
-		if(Input::GetKey(eKeyCode::DOWN))
+		if(Input::GetKey(eKeyCode::DOWN) && isBirdOn == false)
 		{
 			isDPressed = true;
 			mAnimator->Play(L"Bazzidown", true);
 			mState = eBazziState::Move;
 		}
-		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
+
+		if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == true)
+		{
+			isLPressed = true;
+			mAnimator->Play(L"BirdLeft", true);
+			mState = eBazziState::BirdOn;
+		}
+		if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == true)
+		{
+			isRPressed = true;
+			mAnimator->Play(L"BirdRight", true);
+			mState = eBazziState::BirdOn;
+		}
+		if (Input::GetKey(eKeyCode::UP) && isBirdOn == true)
+		{
+			isUPressed = true;
+			mAnimator->Play(L"BirdUp", true);
+			mState = eBazziState::BirdOn;
+		}
+		if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == true)
+		{
+			isDPressed = true;
+			mAnimator->Play(L"BirdDown", true);
+			mState = eBazziState::BirdOn;
+		}
+
+		if (Input::GetKey(eKeyCode::SPACEBAR))
 		{
 			mState = eBazziState::Shoot;
 			//mAnimator->Play(L"downIdle", true);
@@ -397,17 +478,24 @@ namespace ty
 			mPos.y += 50.0f * Time::DeltaTime();
 		}
 
+		if (Input::GetKey(eKeyCode::CTRL)
+			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+		{
+			mAnimator->Play(L"Bazzilive", false);
+		}
+
 		tr->SetPos(mPos);
 	}
 	void Bazzi::revive()
 	{
 		mRandomPosx = 80.0f;
+		mHP = 1;
 		mRandomPosy = 100.0f;
 		tr->SetPos(Vector2(mRandomPosx, mRandomPosy));
 		mState = eBazziState::Idle;
 		mAnimator->Play(L"Bazziready", false);
 		mTime = 0;
-		isColl = false;
+		
 	}
 	void Bazzi::nomove()
 	{
@@ -419,11 +507,143 @@ namespace ty
 		mAnimator->Play(L"Bazzidie", false);
 		
 	}
-	void Bazzi::dieCompeleteEvent()
+	void Bazzi::dieCompleteEvent()
 	{
 		mState = eBazziState::Revive;
 		
 	}
+	void Bazzi::liveCompleteEvent()
+	{
+		mHP++;
+		
+		mState = eBazziState::Move;
+		mAnimator->Play(L"BazzidownIdle", false);
+	}
+	void Bazzi::hitComPleteEvent()
+	{
+		
+		mAnimator->Play(L"BazzidownIdle", false);
+	}
+	void Bazzi::birdmove()
+	{
+		Vector2 idxpos = TileBomb::SetIndex(mPos);
+
+		if (mSpeed >= maxSpeed)
+		{
+			mSpeed = maxSpeed;
+		}
+
+		if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == true)
+		{
+			mAnimator->Play(L"BirdLeftIdle", false);
+			mState = eBazziState::Idle;
+		}
+		if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == true)
+		{
+			mAnimator->Play(L"BirdRightIdle", false);
+			mState = eBazziState::Idle;
+		}
+		if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == true)
+		{
+			mAnimator->Play(L"BirdUpIdle", false);
+			mState = eBazziState::Idle;
+		}
+		if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == true)
+		{
+			mAnimator->Play(L"BirdDownIdle", false);
+			mState = eBazziState::Idle;
+		}
+
+		Vector2 ColPos = collider->GetPos();
+		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
+		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
+
+		if (ColRIdx.x > 14)
+			ColRIdx.x = 14;
+		if (ColLIdx.x > 14)
+			ColLIdx.x = 14;
+		if (ColUIdx.x > 14)
+			ColUIdx.x = 14;
+		if (ColDIdx.x > 14)
+			ColDIdx.x = 14;
+
+		if (ColRIdx.y > 12)
+			ColRIdx.y = 12;
+		if (ColLIdx.y > 12)
+			ColLIdx.y = 12;
+		if (ColUIdx.y > 12)
+			ColUIdx.y = 12;
+		if (ColDIdx.y > 12)
+			ColDIdx.y = 12;
+
+
+		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
+			&& mapIndex[ColLIdx.y][ColLIdx.x] != 2 && mapIndex[ColLIdx.y][ColLIdx.x] != 1)
+		{
+			mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
+			mPos.x -= 250.0f * Time::DeltaTime();
+		}
+		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
+			&& mapIndex[ColRIdx.y][ColRIdx.x] != 2 && mapIndex[ColRIdx.y][ColRIdx.x] != 1)
+		{
+			mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
+			mPos.x += 250.0f * Time::DeltaTime();
+		}
+		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
+			&& mapIndex[ColUIdx.y][ColUIdx.x] != 2 && mapIndex[ColUIdx.y][ColUIdx.x] != 1)
+		{
+			mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
+			mPos.y -= 250.0f * Time::DeltaTime();
+		}
+		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
+			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1)
+		{
+			mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
+			mPos.y += 250.0f * Time::DeltaTime();
+		}
+
+		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
+		{
+			mState = eBazziState::Shoot;
+			//mAnimator->Play(L"downIdle", true);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+		{
+			mAnimator->Play(L"BirdLeft", true);
+		}
+		if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+		{
+			mAnimator->Play(L"BirdRight", true);
+		}
+		if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+		{
+			mAnimator->Play(L"BirdUp", true);
+		}
+		if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
+		{
+			mAnimator->Play(L"BirdDown", true);
+		}
+
+		tr->SetPos(mPos);
+	}
+
+	void Bazzi::checkInVTime()
+	{
+		if (isColl == true)
+		{
+			mInvincibility -= Time::DeltaTime();
+
+			if (mInvincibility < 0.0f)
+			{
+				isColl = false;
+			}
+		}
+	}
+	
 	void Bazzi::Reset()
 	{
 		mHP = 1; // 체력 
