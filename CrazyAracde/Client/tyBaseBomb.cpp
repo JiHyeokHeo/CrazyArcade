@@ -165,25 +165,34 @@ namespace ty
 			}
 		}
 
-		if (mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] == 1 &&
-			mBazzi->GetIsPushPossible() == true && mleft == true && pushcnt == 1 && hasBeenPushed == false)
+		if (
+			mBazzi->GetIsPushPossible() == true 
+			&& mleft == true && mright == false && mup == false && mdown == false
+			&& pushcnt == 1 && hasBeenPushed == false)
 		{
+			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			left();
 		}
 		if (
-			 mBazzi->GetIsPushPossible() == true  && mright == true && pushcnt == 1 && hasBeenPushed == false)
+			 mBazzi->GetIsPushPossible() == true  
+			&& mright == true && mleft == false && mup == false && mdown == false
+			&& pushcnt == 1 && hasBeenPushed == false)
 		{
 			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			right();
 		}
 		if (
-			 mBazzi->GetIsPushPossible() == true && mup == true && pushcnt == 1 && hasBeenPushed == false)
+			 mBazzi->GetIsPushPossible() == true 
+			&& mup == true && mright == false && mleft == false && mdown == false
+			&& pushcnt == 1 && hasBeenPushed == false)
 		{
 			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			up();
 		}
 		if (
-			 mBazzi->GetIsPushPossible() == true  && mdown == true && pushcnt == 1 && hasBeenPushed == false)
+			 mBazzi->GetIsPushPossible() == true  
+			&& mup == true && mright == false && mleft == false && mdown == true
+			&& pushcnt == 1 && hasBeenPushed == false)
 		{
 			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			down();
@@ -284,6 +293,15 @@ namespace ty
 	void BaseBomb::OnCollisionEnter(Collider* other)
 	{
 		if (other->GetOwner()->GetName() == L"BombEffect")
+		{
+			for (int i = 0; i < mBombEffect.size(); i++)
+			{
+				mBombEffect[i]->SetTime(3.5f);
+			}
+			mTime = 3.5f;
+		}
+
+		if (other->GetOwner()->GetName() == L"PirateBoss")
 		{
 			for (int i = 0; i < mBombEffect.size(); i++)
 			{

@@ -1,4 +1,4 @@
-#include "tyPotion.h"
+#include "tyDevil.h"
 #include "tyItem.h"
 #include "tyBazzi.h"
 #include "tyTime.h"
@@ -19,44 +19,48 @@
 
 namespace ty
 {
-	Potion::Potion()
+	Devil::Devil()
 	{
 	}
-	Potion::Potion(ItemType type)
+	Devil::Devil(ItemType type)
 	{
 	}
-	Potion::~Potion()
+	Devil::~Devil()
 	{
 	}
-	void Potion::Initialize()
+	void Devil::Initialize()
 	{
-		Image* mPotion = Resources::Load<Image>(L"mPotion", L"..\\Resources\\Items\\potion.bmp");
+		SetName(L"Devil");
+
+		Image* mDevil = Resources::Load<Image>(L"mDevil", L"..\\Resources\\Items\\Devil.bmp");
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"Potion", mPotion, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
-		mAnimator->Play(L"Potion", true);
+		mAnimator->CreateAnimation(L"Devil", mDevil, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
+		mAnimator->Play(L"Devil", true);
 
 		Collider* Col = AddComponent<Collider>();
 		Col->SetCenter(Vector2(20.0f, 20.0f));
 		Col->SetSize(Vector2(20.0f, 20.0f));
 		GameObject::Initialize();
 	}
-	void Potion::Update()
+	void Devil::Update()
 	{
 		GameObject::Update();
 	}
-	void Potion::Render(HDC hdc)
+	void Devil::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
-	void Potion::Release()
+	void Devil::Release()
 	{
 	}
-	void Potion::OnCollisionEnter(Collider* other)
+	void Devil::OnCollisionEnter(Collider* other)
 	{
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			SceneManager::GetBazzi()->GetmWaterCourse()++;
+			SceneManager::GetBazzi()->GetmWaterCourse() = SceneManager::GetBazzi()->GetMaxWaterCourse();
+			SceneManager::GetBazzi()->GetmSpeed() = SceneManager::GetBazzi()->GetMaxSpeed();
+			SceneManager::GetBazzi()->SetIsPushPossible(true);
 			object::Destroy(this);
 		}
 
@@ -65,10 +69,10 @@ namespace ty
 			object::Destroy(this);
 		}
 	}
-	void Potion::OnCollisionStay(Collider* other)
+	void Devil::OnCollisionStay(Collider* other)
 	{
 	}
-	void Potion::OnCollisionExit(Collider* other)
+	void Devil::OnCollisionExit(Collider* other)
 	{
 	}
 }

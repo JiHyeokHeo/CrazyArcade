@@ -1,4 +1,4 @@
-#include "tyPotion.h"
+#include "tyBird.h"
 #include "tyItem.h"
 #include "tyBazzi.h"
 #include "tyTime.h"
@@ -17,46 +17,48 @@
 #include "tyPlayScene.h"
 #include "tyinput.h"
 
+
 namespace ty
 {
-	Potion::Potion()
+	Bird::Bird()
 	{
 	}
-	Potion::Potion(ItemType type)
+	Bird::Bird(ItemType type)
 	{
 	}
-	Potion::~Potion()
+	Bird::~Bird()
 	{
 	}
-	void Potion::Initialize()
+	void Bird::Initialize()
 	{
-		Image* mPotion = Resources::Load<Image>(L"mPotion", L"..\\Resources\\Items\\potion.bmp");
+		SetName(L"Bird");
+
+		Image* mDevil = Resources::Load<Image>(L"mBird", L"..\\Resources\\Items\\Bird.bmp");
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"Potion", mPotion, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
-		mAnimator->Play(L"Potion", true);
+		mAnimator->CreateAnimation(L"Bird", mDevil, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
+		mAnimator->Play(L"Bird", true);
 
 		Collider* Col = AddComponent<Collider>();
 		Col->SetCenter(Vector2(20.0f, 20.0f));
 		Col->SetSize(Vector2(20.0f, 20.0f));
 		GameObject::Initialize();
 	}
-	void Potion::Update()
+	void Bird::Update()
 	{
 		GameObject::Update();
 	}
-	void Potion::Render(HDC hdc)
+	void Bird::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
-	void Potion::Release()
+	void Bird::Release()
 	{
 	}
-	void Potion::OnCollisionEnter(Collider* other)
+	void Bird::OnCollisionEnter(Collider* other)
 	{
 		isHit++;
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
-			SceneManager::GetBazzi()->GetmWaterCourse()++;
 			object::Destroy(this);
 		}
 
@@ -65,10 +67,10 @@ namespace ty
 			object::Destroy(this);
 		}
 	}
-	void Potion::OnCollisionStay(Collider* other)
+	void Bird::OnCollisionStay(Collider* other)
 	{
 	}
-	void Potion::OnCollisionExit(Collider* other)
+	void Bird::OnCollisionExit(Collider* other)
 	{
 	}
 }

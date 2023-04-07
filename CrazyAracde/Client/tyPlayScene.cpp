@@ -21,6 +21,8 @@
 #include "tyIceTile.h"
 #include "tyTile.h"
 #include "tyStage2.h"
+#include "tyDevil.h"
+#include "tyBird.h"
 
 namespace ty
 {
@@ -40,7 +42,8 @@ namespace ty
 		SceneManager::SetBazzi(mBazzi);
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
-		
+		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
+		object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		//Camera::SetTarget(mBazzi);
@@ -87,8 +90,8 @@ namespace ty
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		mBazzi->GetMapIndex();
 		
-			TilePalatte::Load(L"001");
-			isLoad = true;
+		TilePalatte::Load(L"001");
+		isLoad = true;
 		
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);

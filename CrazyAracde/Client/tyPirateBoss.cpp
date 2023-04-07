@@ -22,6 +22,7 @@ namespace ty
 	}
 	void PirateBoss::Initialize()
 	{
+		SetName(L"PirateBoss");
 		Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(2.0f, 2.0f));
 		mAnimator = AddComponent<Animator>();

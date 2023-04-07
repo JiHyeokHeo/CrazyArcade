@@ -133,6 +133,8 @@
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="tyBallon.h" />
     <ClInclude Include="tyBazziImage.h" />
+    <ClInclude Include="tyBird.h" />
+    <ClInclude Include="tyDevil.h" />
     <ClInclude Include="tydir.h" />
     <ClInclude Include="tyIceMapSelect.h" />
     <ClInclude Include="tyIceSelect.h" />
@@ -208,9 +210,11 @@
     <ClCompile Include="tyBazzi.cpp" />
     <ClCompile Include="tyBaseBomb.cpp" />
     <ClCompile Include="tyBazziImage.cpp" />
+    <ClCompile Include="tyBird.cpp" />
     <ClCompile Include="tyBlock.cpp" />
     <ClCompile Include="tyBombEffect.cpp" />
     <ClCompile Include="tyBossBombEffect.cpp" />
+    <ClCompile Include="tyDevil.cpp" />
     <ClCompile Include="tyGround.cpp" />
     <ClCompile Include="tyIceMapSelect.cpp" />
     <ClCompile Include="tyIceSelect.cpp" />

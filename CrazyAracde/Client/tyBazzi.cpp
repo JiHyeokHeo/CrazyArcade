@@ -16,6 +16,7 @@
 #include "tyPotion.h"
 #include "tyPotionMax.h"
 #include "tySkate.h"
+#include  "tySteam.h"
 
 namespace ty
 {
@@ -42,7 +43,7 @@ namespace ty
 	void Bazzi::Initialize()
 	{
 	/*	isBirdOn = true;*/
-		isPushPossible = true;
+		//isPushPossible = true;
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(20,40));
 		tr->SetScale(Vector2(1.18f, 1.18f));
@@ -74,14 +75,14 @@ namespace ty
 		mAnimator->CreateAnimation(L"Bazzilive", mLiveImage, Vector2::Zero, 5, 1, 5, Vector2(-15.0f, -30.0f), 0.1);
 		mAnimator->CreateAnimation(L"Bazziflash", mFlashImage, Vector2::Zero, 4, 1, 1, Vector2::Zero, 0.1);
 
-		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Down", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\DownIdle", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Right", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\RightIdle", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Left", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\LeftIdle", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Up", Vector2::Zero, 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\UpIdle", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Down", Vector2(0.0f, -30.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\DownIdle", Vector2(0.0f, -30.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Right", Vector2(0.0f, -30.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\RightIdle", Vector2(0.0f, -30.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Left", Vector2(0.0f, -30.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\LeftIdle", Vector2(0.0f, -30.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\Up", Vector2(0.0f, -30.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Bazzi\\Bird\\UpIdle", Vector2(0.0f, -30.0f), 0.1f);
 
 
 		mAnimator->GetCompleteEvent(L"Bazzitrap") = std::bind(&Bazzi::trapCompleteEvent, this);
@@ -157,6 +158,7 @@ namespace ty
 			mBomb = 1; // ÆøÅº
 			mWaterCourse = 2; // ¹°ÁÙ±â
 			mSpeed = 5.0f; // ¼Óµµ
+			isPushPossible = false;
 		}
 		GameObject::Update();
 
@@ -186,10 +188,11 @@ namespace ty
 			mState = eBazziState::BubbleMove;
 			isColl = true;
 		}
-		if (other->GetOwner()->GetName() == L"BirdItem")
+		if (other->GetOwner()->GetName() == L"Bird")
 		{
-			mHP--;
+			mHP++;
 			isBirdOn = true;
+			mState = eBazziState::Idle;
 			mAnimator->Play(L"BirdDown", true);
 		}
 		if(other->GetOwner()->GetName() == L"BossBombEffect" && isBirdOn == true)
@@ -204,12 +207,16 @@ namespace ty
 		if (other->GetOwner()->GetName() == L"BombEffect" && isBirdOn == true)
 		{
 			mHP--;
+			object::Instantiate<Steam>((Vector2 (mPos.x -10, mPos.y + 10) , eLayerType::Effect));
+			object::Instantiate<Steam>(Vector2(mPos.x + 10, mPos.y + 10), eLayerType::Effect);
+			object::Instantiate<Steam>(mPos, eLayerType::Effect);
 			mAnimator->Play(L"Bazziflash", false);
 			mState = eBazziState::Idle;
 			isColl = true;
 			isBirdOn = false;
 			mInvincibility = 1.0f;
 		}
+	
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{

@@ -41,12 +41,14 @@ namespace ty
 		int& GetmWaterCourse() { return mWaterCourse; }
 		INT& GetmBomb() { return mBomb; }
 		int GetMaxWaterCourse() { return maxWaterCourse; }
+		float GetMaxSpeed() { return maxSpeed; }
 		int GetPlayerSpeed() { return mPlayerSpeed; }
 		Vector2 GetUpIdx() { return mUpIdx; }
 		Vector2 GetRightIdx() { return mRightIdx; }
 		Vector2 GetDownIdx() { return mDownIdx; }
 		Vector2 GetLeftIdx() { return mLeftIdx; }
-		bool& GetIsPushPossible() { return isPushPossible; }
+		bool GetIsPushPossible() { return isPushPossible; }
+		void SetIsPushPossible(bool isPossible) { isPushPossible = isPossible; }
 		bool& GetIsBirdOn() { return isBirdOn; }
 		void Reset();
 	private:
