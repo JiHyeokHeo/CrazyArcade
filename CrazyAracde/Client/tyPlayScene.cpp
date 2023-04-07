@@ -39,7 +39,7 @@ namespace ty
 		Scene::Initialize();
 		
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
-		SceneManager::SetBazzi(mBazzi);
+		//SceneManager::SetBazzi(mBazzi);
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
@@ -88,8 +88,8 @@ namespace ty
 	void PlayScene::OnEnter()
 	{
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
-		mBazzi->GetMapIndex();
-		
+		//mBazzi->GetMapIndex();
+		SceneManager::SetBazzi(mBazzi);
 		TilePalatte::Load(L"001");
 		isLoad = true;
 		

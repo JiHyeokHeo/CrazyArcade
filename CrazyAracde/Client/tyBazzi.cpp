@@ -31,6 +31,8 @@ namespace ty
 		, maxWaterCourse(7)
 		, mPlayerSpeed(50)
 		, mInvincibility(0)
+		, mItemCnt(0)
+		, maxItemCnt(1) // 최대 아이템 보유 갯수
 		
 	{
 		int row = 15;
@@ -107,7 +109,7 @@ namespace ty
 		IdxPos = TileBomb::SetIndex(tr->GetPos());
 		mTime += Time::DeltaTime();
 
-
+		Vector2 temp = Input::GetMousePos();
 		checkInVTime(); // 무적시간 체크
 
 		if (mTime >= 1.5f)
@@ -198,6 +200,7 @@ namespace ty
 		if(other->GetOwner()->GetName() == L"BossBombEffect" && isBirdOn == true)
 		{
 			mHP--;
+			object::Instantiate<Steam>(mPos, eLayerType::Effect);
 			mAnimator->Play(L"BazzidownIdle", false);
 			mState = eBazziState::Idle;
 			isColl = true;
@@ -207,8 +210,6 @@ namespace ty
 		if (other->GetOwner()->GetName() == L"BombEffect" && isBirdOn == true)
 		{
 			mHP--;
-			object::Instantiate<Steam>((Vector2 (mPos.x -10, mPos.y + 10) , eLayerType::Effect));
-			object::Instantiate<Steam>(Vector2(mPos.x + 10, mPos.y + 10), eLayerType::Effect);
 			object::Instantiate<Steam>(mPos, eLayerType::Effect);
 			mAnimator->Play(L"Bazziflash", false);
 			mState = eBazziState::Idle;
@@ -216,7 +217,6 @@ namespace ty
 			isBirdOn = false;
 			mInvincibility = 1.0f;
 		}
-	
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{
@@ -230,8 +230,6 @@ namespace ty
 	}
 	void Bazzi::move()
 	{
-
-		
 		Vector2 idxpos = TileBomb::SetIndex(mPos);
 
 		if (mSpeed >= maxSpeed)
@@ -485,7 +483,7 @@ namespace ty
 			mPos.y += 50.0f * Time::DeltaTime();
 		}
 
-		if (Input::GetKey(eKeyCode::CTRL)
+		if (Input::GetKey(eKeyCode::CTRL) && isNeedleOn == true
 			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
 			mAnimator->Play(L"Bazzilive", false);

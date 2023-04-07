@@ -69,7 +69,7 @@ namespace ty
 	void Ground::OnCollisionStay(Collider* other)
 	{
 		int mSpeed = SceneManager::GetBazzi()->GetmSpeed();
-
+		mPlayer = SceneManager::GetBazzi();
 		Transform* mPlayerPos = mPlayer->GetComponent<Transform>();
 		Vector2 mGameobjPos = mPlayerPos->GetPos();
 		Vector2 mGameobjColPos = mPlayer->GetComponent<Collider>()->GetPos();

@@ -142,6 +142,7 @@
     <ClInclude Include="tyItem.h" />
     <ClInclude Include="tyLRGround.h" />
     <ClInclude Include="tyMapSelect.h" />
+    <ClInclude Include="tyNeedle.h" />
     <ClInclude Include="tyPlayerNum.h" />
     <ClInclude Include="tyPotion.h" />
     <ClInclude Include="tyPotionMax.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="tyItem.cpp" />
     <ClCompile Include="tyLRGround.cpp" />
     <ClCompile Include="tyMapSelect.cpp" />
+    <ClCompile Include="tyNeedle.cpp" />
     <ClCompile Include="tyPlayerNum.cpp" />
     <ClCompile Include="tyPotion.cpp" />
     <ClCompile Include="tyPotionMax.cpp" />

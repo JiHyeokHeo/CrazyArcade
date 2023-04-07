@@ -32,6 +32,7 @@ namespace ty
 	void Stage2::Initialize()
 	{
 		Scene::Initialize();
+		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
 		object::Instantiate<Play_BG>(eLayerType::BG);
@@ -54,6 +55,20 @@ namespace ty
 	}
 	void Stage2::OnEnter()
 	{
+		SceneManager::SetBazzi(mBazzi);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::BombEffect, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Monster, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Bomb, true);
+		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Item, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Tile, true);
 	}
 	void Stage2::OnExit()
 	{

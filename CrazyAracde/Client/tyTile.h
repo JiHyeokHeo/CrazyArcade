@@ -22,10 +22,13 @@ namespace ty
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
+		
 		UINT Y() { return mY; }
 		UINT X() { return mX; }
 		UINT Index() { return mIndex; }
 		
+	
+
 	private:
 		Image* mAtlas;
 		UINT mIndex;
@@ -45,6 +48,9 @@ namespace ty
 		Vector2 resultPos;
 		bool tilesAreMoving;
 		float rand_num;
+
+		
+		
 	};
 }
 

@@ -191,7 +191,7 @@ namespace ty
 		}
 		if (
 			 mBazzi->GetIsPushPossible() == true  
-			&& mup == true && mright == false && mleft == false && mdown == true
+			&& mup == false && mright == false && mleft == false && mdown == true
 			&& pushcnt == 1 && hasBeenPushed == false)
 		{
 			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;

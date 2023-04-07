@@ -328,6 +328,9 @@
     <ClInclude Include="tyBird.h">
       <Filter>Contents\Item</Filter>
     </ClInclude>
+    <ClInclude Include="tyNeedle.h">
+      <Filter>Contents\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -527,6 +530,9 @@
       <Filter>Contents\Item</Filter>
     </ClCompile>
     <ClCompile Include="tyBird.cpp">
+      <Filter>Contents\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyNeedle.cpp">
       <Filter>Contents\Item</Filter>
     </ClCompile>
   </ItemGroup>

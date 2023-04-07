@@ -49,6 +49,7 @@ namespace ty
 		Vector2 GetLeftIdx() { return mLeftIdx; }
 		bool GetIsPushPossible() { return isPushPossible; }
 		void SetIsPushPossible(bool isPossible) { isPushPossible = isPossible; }
+		void SetIsNeedleOn(bool isOn) { isNeedleOn = isOn; }
 		bool& GetIsBirdOn() { return isBirdOn; }
 		void Reset();
 	private:
@@ -76,7 +77,8 @@ namespace ty
 		int maxBomb;
 		int maxWaterCourse;
 		int BombCnt;
-
+		int maxItemCnt;
+		int mItemCnt;
 
 		int mClick;
 		eBazziState mState;
@@ -92,6 +94,7 @@ namespace ty
 		bool isDPressed;
 		bool isPushPossible;
 		bool isBirdOn;
+		bool isNeedleOn;
 
 		int mRandomPosx;
 		int mRandomPosy;
