@@ -346,6 +346,9 @@
     <ClInclude Include="tyShiledUI.h">
       <Filter>Contents\UI\Item</Filter>
     </ClInclude>
+    <ClInclude Include="tyBaseBossBomb.h">
+      <Filter>Contents\Bomb</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -561,6 +564,9 @@
     </ClCompile>
     <ClCompile Include="tyShiledUI.cpp">
       <Filter>Contents\UI\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBaseBossBomb.cpp">
+      <Filter>Contents\Bomb</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

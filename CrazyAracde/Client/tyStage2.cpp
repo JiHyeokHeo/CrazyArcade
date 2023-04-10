@@ -83,5 +83,14 @@ namespace ty
 	}
 	void Stage2::OnExit()
 	{
+		TilePalatte::Clear();
+		CollisionManager::Clear();
+		for (int j = 0; j < 13; j++)
+		{
+			for (int i = 0; i < 15; i++)
+			{
+				SceneManager::GetBazzi()->GetMapIndex()[j][i] = 0;
+			}
+		}
 	}
 }

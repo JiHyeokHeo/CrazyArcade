@@ -139,7 +139,13 @@ namespace ty
 		
 		TilePalatte::Clear();
 		CollisionManager::Clear();
-
+		for (int j = 0; j < 13; j++)
+		{
+			for (int i = 0; i < 15; i++)
+			{
+				SceneManager::GetBazzi()->GetMapIndex()[j][i] = 0;
+			}
+		}
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();

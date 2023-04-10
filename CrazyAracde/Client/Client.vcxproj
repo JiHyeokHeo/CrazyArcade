@@ -132,6 +132,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="tyBallon.h" />
+    <ClInclude Include="tyBaseBossBomb.h" />
     <ClInclude Include="tyBazziImage.h" />
     <ClInclude Include="tyBird.h" />
     <ClInclude Include="tyDevil.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="tyAnimation.cpp" />
     <ClCompile Include="tyAnimator.cpp" />
     <ClCompile Include="tyBallon.cpp" />
+    <ClCompile Include="tyBaseBossBomb.cpp" />
     <ClCompile Include="tyBazzi.cpp" />
     <ClCompile Include="tyBaseBomb.cpp" />
     <ClCompile Include="tyBazziImage.cpp" />

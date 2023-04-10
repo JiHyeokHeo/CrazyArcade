@@ -24,19 +24,20 @@ namespace ty
 	void ShieldEffect::Initialize()
 	{
 		tr = GetComponent<Transform>();
+		tr->SetScale(Vector2(1.1f, 1.1f));
 		Image* mShieldEffect = Resources::Load<Image>(L"ShieldEffect", L"..\\Resources\\Effect\\ShieldEffects.bmp");
 		mAnimator = AddComponent<Animator>();
 
-		mAnimator->CreateAnimation(L"mShiledEffect", mShieldEffect, Vector2::Zero, 4, 1, 4, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"mShiledEffect", mShieldEffect, Vector2::Zero, 4, 1, 4, Vector2::Zero, 0.025);
 		mAnimator->Play(L"mShiledEffect", true);
 	}
 	void ShieldEffect::Update()
 	{
 		Vector2 mPlayerPos = SceneManager::GetBazzi()->GetComponent<Transform>()->GetPos();
+		mPlayerPos -= Vector2(5.0f, 0.0f);
 		tr->SetPos(mPlayerPos);
-
-		mTime += Time::DeltaTime();
-		if (mTime>=1.9f)
+		
+		if (SceneManager::GetBazzi()->GetIsShieldOn() == false)
 		{
 			object::Destroy(this);
 		}

@@ -28,6 +28,11 @@ namespace ty
 		UINT Index() { return mIndex; }
 		
 	
+	public:
+		void up();
+		void right();
+		void down();
+		void left();
 
 	private:
 		Image* mAtlas;
@@ -48,9 +53,14 @@ namespace ty
 		Vector2 resultPos;
 		bool tilesAreMoving;
 		float rand_num;
-
 		
-		
+		float mPushTime;
+		bool mright;
+		bool mup;
+		bool mdown;
+		bool mleft;
+		bool hasBeenPushed;
+		int pushcnt;
 	};
 }
 

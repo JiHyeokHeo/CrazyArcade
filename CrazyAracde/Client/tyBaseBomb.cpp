@@ -235,7 +235,7 @@ namespace ty
 						if (BombIdx.x + i >= 15)
 							break;
 						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
-						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] >= 4)
+						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] >= 2)
 							break;
 					}
 					for (int i = 1; i < WaterStatus; i++)
@@ -243,7 +243,7 @@ namespace ty
 						if (BombIdx.y + i >= 13)
 							break;
 						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
-						if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] >= 4)
+						if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] >= 2)
 							break;
 					}
 					for (int i = 1; i < WaterStatus; i++)
@@ -251,7 +251,7 @@ namespace ty
 						if (BombIdx.x - i <= -1)
 							break;
 						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
-						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] >= 4)
+						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] >= 2)
 							break;
 					}
 					for (int i = 1; i < WaterStatus; i++)
@@ -259,7 +259,7 @@ namespace ty
 						if (BombIdx.y - i <= -1)
 							break;
 						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
-						if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] >= 4)
+						if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] >= 2)
 							break;
 					}
 					mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));

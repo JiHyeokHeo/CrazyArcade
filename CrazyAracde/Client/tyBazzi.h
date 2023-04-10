@@ -52,7 +52,7 @@ namespace ty
 		bool& GetIsBirdOn() { return isBirdOn; }
 		void Reset();
 
-
+		bool GetIsShieldOn() { return isShieldOn; }
 		eItemType GetItemState() { return mItemState; }
 		void SetItemState(eItemType type) { mItemState = type; }
 	private:
