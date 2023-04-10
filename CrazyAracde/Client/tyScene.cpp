@@ -2,6 +2,7 @@
 #include "tySceneManager.h"
 #include "tyObject.h"
 #include "tyBazzi.h"
+#include "tyTileBomb.h"
 
 namespace ty
 {
@@ -61,6 +62,7 @@ namespace ty
 			deathObj = nullptr;
 		}
 	}
+	
 	void Scene::Release()
 	{
 	
@@ -76,6 +78,29 @@ namespace ty
 	{
 		mLayers[(UINT)layer].AddGameObject(obj);
 	}
+
+	void Scene::ChangeGameObjectState()
+	{
+		for (Layer& layer : mLayers)
+		{
+			std::vector<GameObject*>& gameObjects
+				= layer.GetGameObject();
+
+			for (std::vector<GameObject*>::iterator iter = gameObjects.begin();
+				iter != gameObjects.end(); iter++)
+			{
+				if ((*iter)->GetState() == GameObject::eState::Pause)
+				{
+					(*iter)->SetState(GameObject::eState::Active);
+					Vector2 mPos = (*iter)->GetComponent<Transform>()->GetPos();
+					Vector2 mIdx = TileBomb::SetIndex(mPos);
+					SceneManager::GetBazzi()->GetMapIndex()[mIdx.y][mIdx.x] = 2;
+				}
+				
+			}
+		}
+	}
+
 	std::vector<GameObject*>& Scene::GetGameObjects(eLayerType layer)
 	{
 		return mLayers[(UINT)layer].GetGameObject();

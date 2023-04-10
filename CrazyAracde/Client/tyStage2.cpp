@@ -43,6 +43,11 @@ namespace ty
 	}
 	void Stage2::Update()
 	{
+		Vector2 temp = Input::GetMousePos();
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
+		{
+			SceneManager::LoadScene(eSceneType::Lobby);
+		}
 		Scene::Update();
 	}
 	void Stage2::Render(HDC hdc)

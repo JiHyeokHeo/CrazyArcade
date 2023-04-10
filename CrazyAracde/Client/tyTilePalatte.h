@@ -32,12 +32,14 @@ namespace ty
 		static void SetIndex(UINT index) { mIndex = index; }
 		static UINT GetIndex() { return mIndex; }
 		static std::unordered_map<UINT64, Tile*> GetMapTile() {	return mTiles; }
-		
+
+		static std::vector<std::vector<int>>& GetMapData() { return mapData; }
 
 	private:
 		static std::unordered_map<UINT64, Tile*> mTiles;
 		static Image* mImage;
 		static UINT mIndex;
+		static std::vector<std::vector<int>> mapData;
 	};
 
 }

@@ -113,7 +113,7 @@ namespace ty
 		
 			SceneManager::GetBazzi()->GetMapIndex()[mPos.y][mPos.x] = 0;
 			object::Instantiate<Steam>(tr->GetPos(), eLayerType::Effect);
-			object::Destroy(this);
+			object::Pause(this);
 		}
 	}
 	void Tile::OnCollisionStay(Collider* other)
