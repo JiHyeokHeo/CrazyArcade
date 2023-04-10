@@ -93,11 +93,28 @@ namespace ty
 	{
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		//mBazzi->GetMapIndex();
-		Scene::ChangeGameObjectState();
 		SceneManager::SetBazzi(mBazzi);
+		if (isLoad == true)
+		{
+			Scene::ChangeGameObjectState();
+			for (int i = 0; i < 13; i++)
+			{
+				for (int j = 0; j < 15; j++)
+				{
+					SceneManager::GetBazzi()->GetMapIndex()[i][j] = PlayIndex[i][j];
+				}
+			}
+		}
 		if (isLoad == false)
 		{
 			TilePalatte::Load(L"001");
+			for (int i = 0; i < 13; i++)
+			{
+				for (int j = 0; j < 15; j++)
+				{
+					PlayIndex[i][j] = SceneManager::GetBazzi()->GetMapIndex()[i][j];
+				}
+			}
 			isLoad = true;
 		}
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);

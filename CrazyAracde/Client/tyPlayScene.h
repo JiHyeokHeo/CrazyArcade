@@ -30,7 +30,7 @@ namespace ty
 		Image* mImage;
 		int monstercnt;
 		bool isLoad;
-		int mapData[13][15];
+		int PlayIndex[13][15];
 	};
 };
 

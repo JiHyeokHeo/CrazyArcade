@@ -24,6 +24,7 @@ namespace ty
 	private:
 		Bazzi* mBazzi;
 		Play_BG* mPlayBG;
+		bool isLoad;
 	};
 }; 
 

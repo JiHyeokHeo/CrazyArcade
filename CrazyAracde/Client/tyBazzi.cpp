@@ -287,25 +287,25 @@ namespace ty
 
 
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
-			&& mapIndex[ColLIdx.y][ColLIdx.x] != 2 && mapIndex[ColLIdx.y][ColLIdx.x] != 1 )
+			&& mapIndex[ColLIdx.y][ColLIdx.x] != 4 && mapIndex[ColLIdx.y][ColLIdx.x] != 2 && mapIndex[ColLIdx.y][ColLIdx.x] != 1 )
 		{
 			mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
 			mPos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			&& mapIndex[ColRIdx.y][ColRIdx.x] != 2 && mapIndex[ColRIdx.y][ColRIdx.x] != 1)
+			&& mapIndex[ColRIdx.y][ColRIdx.x] != 4 && mapIndex[ColRIdx.y][ColRIdx.x] != 2 && mapIndex[ColRIdx.y][ColRIdx.x] != 1)
 		{
 			mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
 			mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			&& mapIndex[ColUIdx.y][ColUIdx.x] != 2 && mapIndex[ColUIdx.y][ColUIdx.x] != 1)
+			&& mapIndex[ColUIdx.y][ColUIdx.x] != 4 && mapIndex[ColUIdx.y][ColUIdx.x] != 2 && mapIndex[ColUIdx.y][ColUIdx.x] != 1)
 		{
 			mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
 			mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1 )
+			&& mapIndex[ColDIdx.y][ColDIdx.x] != 4 && mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1 )
 		{
 			mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x , ColMidPos.y  +TILE_SIZE_Y));
 			mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();

@@ -3,6 +3,7 @@
 #include "tyObject.h"
 #include "tyBazzi.h"
 #include "tyTileBomb.h"
+#include "tyTile.h"
 
 namespace ty
 {
@@ -91,10 +92,15 @@ namespace ty
 			{
 				if ((*iter)->GetState() == GameObject::eState::Pause)
 				{
+					Tile* tile = dynamic_cast<Tile*>(*iter);
 					(*iter)->SetState(GameObject::eState::Active);
 					Vector2 mPos = (*iter)->GetComponent<Transform>()->GetPos();
 					Vector2 mIdx = TileBomb::SetIndex(mPos);
 					SceneManager::GetBazzi()->GetMapIndex()[mIdx.y][mIdx.x] = 2;
+					if ((*iter)->GetName() == L"Tile" && tile->Index() == 4)
+					{
+						SceneManager::GetBazzi()->GetMapIndex()[mIdx.y][mIdx.x] = 4;
+					}
 				}
 				
 			}

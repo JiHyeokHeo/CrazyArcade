@@ -235,7 +235,7 @@ namespace ty
 						if (BombIdx.x + i >= 15)
 							break;
 						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
-						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] == 2)
+						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] >= 4)
 							break;
 					}
 					for (int i = 1; i < WaterStatus; i++)
@@ -243,7 +243,7 @@ namespace ty
 						if (BombIdx.y + i >= 13)
 							break;
 						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
-						if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] == 2)
+						if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] >= 4)
 							break;
 					}
 					for (int i = 1; i < WaterStatus; i++)
@@ -251,7 +251,7 @@ namespace ty
 						if (BombIdx.x - i <= -1)
 							break;
 						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
-						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] == 2)
+						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] >= 4)
 							break;
 					}
 					for (int i = 1; i < WaterStatus; i++)
@@ -259,7 +259,7 @@ namespace ty
 						if (BombIdx.y - i <= -1)
 							break;
 						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
-						if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] == 2)
+						if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] >= 4)
 							break;
 					}
 					mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));
@@ -463,7 +463,7 @@ namespace ty
 
 		tr->SetPos(realPos);
 
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 2 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1)
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >=4 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1)
 		{
 			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y / 2)));;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
@@ -534,7 +534,7 @@ namespace ty
 
 		tr->SetPos(realPos);
 
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 2 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1)
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 4 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1)
 		{
 			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x- TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y)));
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
@@ -607,7 +607,7 @@ namespace ty
 
 		tr->SetPos(realPos);
 
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1)
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 4 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1)
 		{
 			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y * 1.5 )));;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
@@ -678,7 +678,7 @@ namespace ty
 		}
 		tr->SetPos(realPos);
 
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1)
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 4 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1)
 		{
 			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X / 2, ColMidPos.y - TILE_SIZE_Y)));
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;

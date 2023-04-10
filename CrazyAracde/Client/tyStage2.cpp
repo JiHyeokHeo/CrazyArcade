@@ -61,6 +61,12 @@ namespace ty
 	void Stage2::OnEnter()
 	{
 		SceneManager::SetBazzi(mBazzi);
+
+		if (isLoad == false)
+		{
+			TilePalatte::Load(L"002");
+			isLoad = true;
+		}
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::BombEffect, true);
