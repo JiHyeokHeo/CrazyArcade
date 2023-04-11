@@ -53,7 +53,7 @@ namespace ty
 	}
 	void PotionMax::OnCollisionEnter(Collider* other)
 	{
-		isHit++;
+		
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
 			int& WaterCourse = SceneManager::GetBazzi()->GetmWaterCourse();
@@ -61,7 +61,7 @@ namespace ty
 			object::Destroy(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"BombEffect" && isHit == 2)
+		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
 			object::Destroy(this);
 		}

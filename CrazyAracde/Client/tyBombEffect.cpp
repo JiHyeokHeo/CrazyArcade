@@ -79,7 +79,7 @@ namespace ty
 		{
 			object::Destroy(this);
 		}
-		if (other->GetOwner()->GetName() == L"Tile")
+		if (other->GetOwner()->GetName() == L"Tile" && other->GetOwner()->GetState() == eState::Active)
 		{
 			object::Destroy(this);
 		}

@@ -53,14 +53,14 @@ namespace ty
 	}
 	void Potion::OnCollisionEnter(Collider* other)
 	{
-		isHit++;
+		
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
 			SceneManager::GetBazzi()->GetmWaterCourse()++;
 			object::Destroy(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"BombEffect" && isHit == 2)
+		if (other->GetOwner()->GetName() == L"BombEffect" )
 		{
 			object::Destroy(this);
 		}

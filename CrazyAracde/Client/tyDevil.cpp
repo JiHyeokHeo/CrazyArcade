@@ -55,7 +55,7 @@ namespace ty
 	}
 	void Devil::OnCollisionEnter(Collider* other)
 	{
-		isHit++;
+		
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
 			SceneManager::GetBazzi()->GetmWaterCourse() = SceneManager::GetBazzi()->GetMaxWaterCourse();
@@ -64,7 +64,7 @@ namespace ty
 			object::Destroy(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"BombEffect" && isHit == 2)
+		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
 			object::Destroy(this);
 		}

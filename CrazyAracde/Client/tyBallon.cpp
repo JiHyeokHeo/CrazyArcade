@@ -57,14 +57,14 @@ namespace ty
 	}
 	void Ballon::OnCollisionEnter(Collider* other)
 	{
-		isHit++;
+		
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
 			SceneManager::GetBazzi()->GetmBomb()++;
 			object::Destroy(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"BombEffect" && isHit == 2)
+		if (other->GetOwner()->GetName() == L"BombEffect" )
 		{
 			object::Destroy(this);
 		}

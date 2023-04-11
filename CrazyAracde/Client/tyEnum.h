@@ -16,11 +16,11 @@ enum class eLayerType
 {
 	BG, // 배경
 	Ground,
-	Tile, // 타일
 	AlphaBlender, // 알파블렌드
-	Item,
 	BombEffect, // 이펙트
 	Bomb, // 폭탄
+	Item,
+	Tile, // 타일
 	Monster, // 몬스터
 	Shadow, // 
 	Player, // 플레이어

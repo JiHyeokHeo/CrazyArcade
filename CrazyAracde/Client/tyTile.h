@@ -33,7 +33,7 @@ namespace ty
 		void right();
 		void down();
 		void left();
-
+		void checkTime();
 	private:
 		Image* mAtlas;
 		UINT mIndex;
