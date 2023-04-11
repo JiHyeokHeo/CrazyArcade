@@ -20,9 +20,14 @@ namespace ty
 		static void SetBazzi(Bazzi* bazzi) { mBazzi = bazzi; }
 		static void DeleteBazzi() { mBazzi = nullptr; }
 		static Bazzi* GetBazzi() { return mBazzi; }
+		static void SetmTime(int time) { mTime = time; }
+		static int GetTime() { return mTime; }
+		
 	private:
 		static std::vector<Scene*> mScenes;
 		static Scene* mActiveScene;
 		static Bazzi* mBazzi;
+		static int mTime;
+
 	};
 }

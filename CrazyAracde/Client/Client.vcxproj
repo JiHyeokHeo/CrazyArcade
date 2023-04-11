@@ -204,6 +204,7 @@
     <ClInclude Include="tyTime.h" />
     <ClInclude Include="tyLoginScene.h" />
     <ClInclude Include="tyLogin_BG.h" />
+    <ClInclude Include="tyTimer.h" />
     <ClInclude Include="tyToolScene.h" />
     <ClInclude Include="tyTransform.h" />
     <ClInclude Include="tyTitleUI.h" />
@@ -274,6 +275,7 @@
     <ClCompile Include="tyTime.cpp" />
     <ClCompile Include="tyLoginScene.cpp" />
     <ClCompile Include="tyLogin_BG.cpp" />
+    <ClCompile Include="tyTimer.cpp" />
     <ClCompile Include="tyToolScene.cpp" />
     <ClCompile Include="tyTransform.cpp" />
     <ClCompile Include="tyTitleUI.cpp" />
