@@ -113,6 +113,9 @@
     <Filter Include="Contents\UI\Item">
       <UniqueIdentifier>{fcea24fc-6a1c-4df0-b477-d94098ad65aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Timer">
+      <UniqueIdentifier>{8664e356-d90c-469f-a532-185687745ae6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -349,6 +352,12 @@
     <ClInclude Include="tyBaseBossBomb.h">
       <Filter>Contents\Bomb</Filter>
     </ClInclude>
+    <ClInclude Include="tyPlaySceneStage2.h">
+      <Filter>Contents\Scene\PlayStage</Filter>
+    </ClInclude>
+    <ClInclude Include="tyTimer.h">
+      <Filter>Contents\Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -567,6 +576,12 @@
     </ClCompile>
     <ClCompile Include="tyBaseBossBomb.cpp">
       <Filter>Contents\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPlaySceneStage2.cpp">
+      <Filter>Contents\Scene\PlayStage</Filter>
+    </ClCompile>
+    <ClCompile Include="tyTimer.cpp">
+      <Filter>Contents\Timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

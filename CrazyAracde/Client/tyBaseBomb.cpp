@@ -47,6 +47,7 @@ namespace ty
 
 	void BaseBomb::Update()
 	{
+		BaseBomb* bomb = this;
 
 		if (isBomb == true)
 		{
@@ -56,7 +57,7 @@ namespace ty
 		Vector2 mPlayerPos = mPlayer->GetPos();
 		Vector2 IDX = TileBomb::SetIndex(mPlayerPos);
 
-		tr = GetComponent<Transform>();
+		tr = bomb->GetComponent<Transform>();
 		mBasePos = tr->GetPos();
 		Vector2 ColPos = collider->GetPos();
 		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
@@ -129,6 +130,7 @@ namespace ty
 				pushcnt++;
 				mPushTime = 0;
 				mdown = true;
+				this->SetTarget();
 			}
 		}
 		if (mBazzi->GetMapIndex()[mUpdx.y][mUpdx.x] == 1
@@ -140,6 +142,7 @@ namespace ty
 				pushcnt++;
 				mPushTime = 0;
 				mup = true;
+				this->SetTarget();
 			}
 		}
 		if (mBazzi->GetMapIndex()[mRightdx.y][mRightdx.x] == 1
@@ -151,6 +154,7 @@ namespace ty
 				pushcnt++;
 				mPushTime = 0;
 				mright = true;
+				this->SetTarget();
 			}
 		}
 		if (mBazzi->GetMapIndex()[mLeftIdx.y][mLeftIdx.x] == 1
@@ -162,35 +166,36 @@ namespace ty
 				pushcnt++;
 				mPushTime = 0;
 				mleft = true;
+				this->SetTarget();
 			}
 		}
 
-		if (
-			mBazzi->GetIsPushPossible() == true 
+		if (isTarget == true /*&& mBazzi->GetMapIndex()[mLeftIdx.y][mLeftIdx.x] == 1*/
+			&& mBazzi->GetIsPushPossible() == true 
 			&& mleft == true && mright == false && mup == false && mdown == false
 			&& pushcnt == 1 && hasBeenPushed == false)
 		{
 			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			left();
 		}
-		if (
-			 mBazzi->GetIsPushPossible() == true  
+		else if (isTarget == true /*&& mBazzi->GetMapIndex()[mRightdx.y][mRightdx.x] == 1*/
+			&& mBazzi->GetIsPushPossible() == true  
 			&& mright == true && mleft == false && mup == false && mdown == false
 			&& pushcnt == 1 && hasBeenPushed == false)
 		{
 			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			right();
 		}
-		if (
-			 mBazzi->GetIsPushPossible() == true 
+		else if (isTarget == true /*&& mBazzi->GetMapIndex()[mUpdx.y][mUpdx.x] == 1*/
+			&& mBazzi->GetIsPushPossible() == true 
 			&& mup == true && mright == false && mleft == false && mdown == false
 			&& pushcnt == 1 && hasBeenPushed == false)
 		{
 			mBazzi->GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			up();
 		}
-		if (
-			 mBazzi->GetIsPushPossible() == true  
+		else if (isTarget == true /*&& mBazzi->GetMapIndex()[mDownIdx.y][mDownIdx.x] == 1*/
+			&& mBazzi->GetIsPushPossible() == true  
 			&& mup == false && mright == false && mleft == false && mdown == true
 			&& pushcnt == 1 && hasBeenPushed == false)
 		{
@@ -200,17 +205,134 @@ namespace ty
 		
 		
 
-	/*	switch (mState)
+		switch (mState)
 		{
 		case ty::BaseBomb::eBombState::Idle:
 			idle();
 			break;
-		}*/
+		}
 
-		mTime += Time::DeltaTime();
+		//mTime += Time::DeltaTime();
 		//Vector2 ColPos = collider->GetPos();
 		//Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
 		//Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
+		//if (mTime >= 3.0f)
+		//{
+		//	if (isShot == false)
+		//	{
+		//		isShot = true;
+		//		Transform* tr = GetComponent<Transform>();
+		//		Vector2 realPos = tr->GetPos();
+		//		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+		//		Vector2 ColPos = collider->GetPos();
+		//		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		//		Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
+		//		Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
+
+		//		Vector2 BombPos = tr->GetPos();
+		//		Vector2 BombIdx = TileBomb::SetIndex(BombPos);
+
+		//		int WaterStatus = SceneManager::GetBazzi()->GetmWaterCourse();
+		//		if (BombIdx.x < 15 || BombIdx.y < 13)
+		//		{
+		//			for (int i = 1; i < WaterStatus; i++)
+		//			{
+		//				if (BombIdx.x + i >= 15)
+		//					break;
+		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
+		//				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] >= 2)
+		//					break;
+		//			}
+		//			for (int i = 1; i < WaterStatus; i++)
+		//			{
+		//				if (BombIdx.y + i >= 13)
+		//					break;
+		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
+		//				if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] >= 2)
+		//					break;
+		//			}
+		//			for (int i = 1; i < WaterStatus; i++)
+		//			{
+		//				if (BombIdx.x - i <= -1)
+		//					break;
+		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
+		//				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] >= 2)
+		//					break;
+		//			}
+		//			for (int i = 1; i < WaterStatus; i++)
+		//			{
+		//				if (BombIdx.y - i <= -1)
+		//					break;
+		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
+		//				if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] >= 2)
+		//					break;
+		//			}
+		//			mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));
+		//		}
+		//		for (int i = 0; i < mBombEffect.size(); i++)
+		//		{
+		//			mBombEffect[i]->SetBomb(this);
+		//		}
+		//	}
+
+		//	mTime = 0;
+		//	Transform* tr = GetComponent<Transform>();
+		//	Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+		//	Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
+		//	int Click = SceneManager::GetBazzi()->GetmClick()--;
+		//	isBomb = true;
+		//}
+
+
+		GameObject::Update();
+    }
+	
+	void BaseBomb::Render(HDC hdc)
+	{
+		GameObject::Render(hdc);
+	}
+	void BaseBomb::Release()
+	{
+		GameObject::Release();
+	}
+	void BaseBomb::OnCollisionEnter(Collider* other)
+	{
+		if (other->GetOwner()->GetName() == L"BombEffect")
+		{
+			for (int i = 0; i < mBombEffect.size(); i++)
+			{
+				mBombEffect[i]->SetTime(3.5f);
+			}
+			mTime = 3.5f;
+		}
+
+		if (other->GetOwner()->GetName() == L"PirateBoss")
+		{
+			for (int i = 0; i < mBombEffect.size(); i++)
+			{
+				mBombEffect[i]->SetTime(3.5f);
+			}
+			mTime = 3.5f;
+		}
+	}
+	void BaseBomb::OnCollisionStay(Collider* other)
+	{
+	}
+	void BaseBomb::OnCollisionExit(Collider* other)
+	{
+	}
+
+	void BaseBomb::bombed()
+	{
+		object::Destroy(this);
+	}
+
+	void BaseBomb::idle()
+	{
+		mTime += Time::DeltaTime();
+		Vector2 ColPos = collider->GetPos();
+		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
 		if (mTime >= 3.0f)
 		{
 			if (isShot == false)
@@ -269,7 +391,7 @@ namespace ty
 					mBombEffect[i]->SetBomb(this);
 				}
 			}
-
+		
 			mTime = 0;
 			Transform* tr = GetComponent<Transform>();
 			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
@@ -277,123 +399,6 @@ namespace ty
 			int Click = SceneManager::GetBazzi()->GetmClick()--;
 			isBomb = true;
 		}
-
-
-		GameObject::Update();
-    }
-	
-	void BaseBomb::Render(HDC hdc)
-	{
-		GameObject::Render(hdc);
-	}
-	void BaseBomb::Release()
-	{
-		GameObject::Release();
-	}
-	void BaseBomb::OnCollisionEnter(Collider* other)
-	{
-		if (other->GetOwner()->GetName() == L"BombEffect")
-		{
-			for (int i = 0; i < mBombEffect.size(); i++)
-			{
-				mBombEffect[i]->SetTime(3.5f);
-			}
-			mTime = 3.5f;
-		}
-
-		if (other->GetOwner()->GetName() == L"PirateBoss")
-		{
-			for (int i = 0; i < mBombEffect.size(); i++)
-			{
-				mBombEffect[i]->SetTime(3.5f);
-			}
-			mTime = 3.5f;
-		}
-	}
-	void BaseBomb::OnCollisionStay(Collider* other)
-	{
-	}
-	void BaseBomb::OnCollisionExit(Collider* other)
-	{
-	}
-
-	void BaseBomb::bombed()
-	{
-		//object::Destroy(this);
-	}
-
-	void BaseBomb::idle()
-	{
-		//mTime += Time::DeltaTime();
-		//Vector2 ColPos = collider->GetPos();
-		//Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		//Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
-		//if (mTime >= 3.0f)
-		//{
-		//	if (isShot == false)
-		//	{
-		//		isShot = true;
-		//		Transform* tr = GetComponent<Transform>();
-		//		Vector2 realPos = tr->GetPos();
-		//		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
-		//		Vector2 ColPos = collider->GetPos();
-		//		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		//		Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
-		//		Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
-
-		//		Vector2 BombPos = tr->GetPos();
-		//		Vector2 BombIdx = TileBomb::SetIndex(BombPos);
-
-		//		int WaterStatus = SceneManager::GetBazzi()->GetmWaterCourse();
-		//		if (BombIdx.x < 15 || BombIdx.y < 13)
-		//		{
-		//			for (int i = 1; i < WaterStatus; i++)
-		//			{
-		//				if (BombIdx.x + i >= 15)
-		//					break;
-		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
-		//				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] == 2)
-		//					break;
-		//			}
-		//			for (int i = 1; i < WaterStatus; i++)
-		//			{
-		//				if (BombIdx.y + i >= 13)
-		//					break;
-		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
-		//				if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] == 2)
-		//					break;
-		//			}
-		//			for (int i = 1; i < WaterStatus; i++)
-		//			{
-		//				if (BombIdx.x - i <= -1)
-		//					break;
-		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
-		//				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] == 2)
-		//					break;
-		//			}
-		//			for (int i = 1; i < WaterStatus; i++)
-		//			{
-		//				if (BombIdx.y - i <= -1)
-		//					break;
-		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
-		//				if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] == 2)
-		//					break;
-		//			}
-		//			mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));
-		//		}
-		//		for (int i = 0; i < mBombEffect.size(); i++)
-		//		{
-		//			mBombEffect[i]->SetBomb(this);
-		//		}
-		//	}
-		//
-		//	mTime = 0;
-		//	Transform* tr = GetComponent<Transform>();
-		//	Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
-		//	Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
-		//	int Click = SceneManager::GetBazzi()->GetmClick()--;
-		//	isBomb = true;
-		//}
 	}
 
 	void BaseBomb::checked()
@@ -438,6 +443,7 @@ namespace ty
 			realPos.x = 30.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mleft = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.x >= 840.0f)
@@ -445,6 +451,7 @@ namespace ty
 			realPos.x = 840.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mright = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.y <= 60.0f)
@@ -452,6 +459,7 @@ namespace ty
 			realPos.y = 60.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mup = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.y >= 780.0f)
@@ -459,16 +467,17 @@ namespace ty
 			realPos.y = 780.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mdown = false;
+			hasBeenPushed = true;
 		}
 
 		tr->SetPos(realPos);
 
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >=4 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1)
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >=2 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1)
 		{
 			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y / 2)));;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			pushcnt = 0;
-			hasBeenPushed == true;
+			hasBeenPushed = true;
 		}
 	}
 
@@ -509,6 +518,7 @@ namespace ty
 			realPos.x = 30.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mleft = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.x >= 870.0f)
@@ -516,6 +526,7 @@ namespace ty
 			realPos.x = 890.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mright = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.y <= 60.0f)
@@ -523,6 +534,7 @@ namespace ty
 			realPos.y = 60.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mup = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.y >= 780.0f)
@@ -530,17 +542,18 @@ namespace ty
 			realPos.y = 780.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mdown = false;
+			hasBeenPushed = true;
 		}
 
 		tr->SetPos(realPos);
 
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 4 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1)
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1)
 		{
 			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x- TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y)));
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			pushcnt = 0;
 			mTime = 0;
-			hasBeenPushed == true;
+			hasBeenPushed = true;
 		}
 	}
 
@@ -582,6 +595,7 @@ namespace ty
 			realPos.x = 30.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mdown = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.x >= 840.0f)
@@ -589,6 +603,7 @@ namespace ty
 			realPos.x = 840.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mright = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.y <= 60.0f)
@@ -596,6 +611,7 @@ namespace ty
 			realPos.y = 60.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mup = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.y >= 780.0f)
@@ -603,17 +619,18 @@ namespace ty
 			realPos.y = 780.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mdown = false;
+			hasBeenPushed = true;
 		}
 
 		tr->SetPos(realPos);
 
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 4 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1)
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1)
 		{
 			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y * 1.5 )));;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			pushcnt = 0;
 			mTime = 0;
-			hasBeenPushed == true;
+			hasBeenPushed = true;
 		}
 	}
 
@@ -654,6 +671,7 @@ namespace ty
 			realPos.x = 30.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mleft = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.x >= 840.0f)
@@ -661,6 +679,7 @@ namespace ty
 			realPos.x = 840.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mright = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.y <= 60.0f)
@@ -668,6 +687,7 @@ namespace ty
 			realPos.y = 60.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mup = false;
+			hasBeenPushed = true;
 		}
 
 		if (realPos.y >= 780.0f)
@@ -675,16 +695,17 @@ namespace ty
 			realPos.y = 780.0f;
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			mdown = false;
+			hasBeenPushed = true;
 		}
 		tr->SetPos(realPos);
 
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 4 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1)
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1)
 		{
 			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X / 2, ColMidPos.y - TILE_SIZE_Y)));
 			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			pushcnt = 0;
 			mTime = 0;
-			hasBeenPushed == true;
+			hasBeenPushed = true;
 		}
 	}
 

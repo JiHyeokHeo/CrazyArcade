@@ -31,7 +31,7 @@ namespace ty
 {
 	//Bazzi* PlayScene::mBazzi;
 	PlayScene::PlayScene()
-		:monstercnt(0)
+		:monstercnt(4) // 몬스터 수 정하기
 	{
 	}
 	PlayScene::~PlayScene()
@@ -79,20 +79,20 @@ namespace ty
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		//object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
+		object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
 		//object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
 		//object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
 		//object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
 		//object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+
 	}
 	void PlayScene::Update()
 	{
-		
-		//if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
-		//{
-		//	SceneManager::LoadScene(eSceneType::Tool);
-		//}
-		
+		if (monstercnt == 0)
+		{
+			SceneManager::LoadScene(eSceneType::PlayStage2);
+		}
+
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
 		{
@@ -131,6 +131,7 @@ namespace ty
 				}
 			}
 		}
+		
 		if (isLoad == false)
 		{
 			TilePalatte::Load(L"001");

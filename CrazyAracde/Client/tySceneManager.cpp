@@ -8,7 +8,7 @@
 #include "tyToolScene.h"
 #include "tyStage2.h"
 #include "tyBazzi.h"
-
+#include "tyPlaySceneStage2.h"
 
 namespace ty
 {
@@ -24,6 +24,7 @@ namespace ty
 		mScenes[(UINT)eSceneType::Login] = new LoginScene();
 		mScenes[(UINT)eSceneType::Lobby] = new LobbyScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene(); 
+		mScenes[(UINT)eSceneType::PlayStage2 ] = new PlaySceneStage2();
 		mScenes[(UINT)eSceneType::Stage2] = new Stage2();
 		mScenes[(UINT)eSceneType::Tool] = new ToolScene();
 		

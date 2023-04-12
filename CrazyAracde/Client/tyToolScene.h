@@ -17,6 +17,6 @@ namespace ty
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
 	private:
-
+		bool isLoad;
 	};
 }

@@ -6,6 +6,7 @@ enum class eSceneType
 	Login, // 로그인
 	Lobby, // 그냥 로비
 	Play, // 플레이
+	PlayStage2, //
 	Stage2, //
 	Reward, // 결과창
 	Tool,

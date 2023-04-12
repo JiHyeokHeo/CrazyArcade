@@ -26,7 +26,7 @@ namespace ty
 		virtual void OnCollisionEnter(class Collider* other) override;
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
-
+		
 		
 	private:
 		void bombed();
@@ -36,6 +36,7 @@ namespace ty
 		void right();
 		void down();
 		void left();
+		void SetTarget() { isTarget = true; }
 	private:
 		std::vector<BombEffect*> mBombEffect;
 		Collider* collider;
@@ -53,7 +54,7 @@ namespace ty
 		bool isPush;
 		float mPushTime;
 		bool hasBeenPushed;
-
+		bool isTarget;
 
 		bool mleft;
 		bool mright;
