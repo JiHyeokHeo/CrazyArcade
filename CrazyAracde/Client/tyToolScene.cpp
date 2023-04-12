@@ -98,7 +98,7 @@ namespace ty
 #include "Resource.h"
 
 LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
+{static bool isInitialized = false;
     switch (message)
     {
     case WM_CREATE:

@@ -41,6 +41,8 @@ namespace ty
 	}
 	void Tile::InitializeTile(Image* atlas, int index, Vector2 pos)
 	{
+		if (pos.y > 12 || pos.x > 14 || pos.y < 0 || pos.x < 0)
+			return;
 		SetName(L"Tile");
 		SceneManager::GetBazzi()->GetMapIndex()[pos.y][pos.x] = 2;
 		if (index >= 5)
@@ -56,8 +58,7 @@ namespace ty
 		mIndex = index;
 		if (atlas == nullptr || index < 0)
 			return;
-		if (pos.y > 12 || pos.x > 14 || pos.y < 0 || pos.x < 0)
-			return;
+		
 		mAtlas = atlas;
 		SetIndex(index);
 
