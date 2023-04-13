@@ -1,4 +1,4 @@
-#include "tyIceSelect.h"
+#include "tyCookieSelect.h"
 #include "tyMapSelect.h"
 #include "tySceneManager.h"
 #include "tyResources.h"
@@ -7,19 +7,20 @@
 #include "tyinput.h"
 #include "tyObject.h"
 
+
 namespace ty
 {
-	IceSelect::IceSelect()
+	CookieSelect::CookieSelect()
 	{
 	}
-	IceSelect::~IceSelect()
+	CookieSelect::~CookieSelect()
 	{
 	}
-	void IceSelect::Initialize()
+	void CookieSelect::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"IceRandom", L"..\\Resources\\UI\\IceRandom.bmp");
+		mImage = Resources::Load<Image>(L"CookieRandom", L"..\\Resources\\UI\\CookieRandom.bmp");
 	}
-	void IceSelect::Update()
+	void CookieSelect::Update()
 	{
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 680 && temp.y <= 715 && temp.x >= 460 && temp.x <= 590)
@@ -32,13 +33,13 @@ namespace ty
 		}
 		GameObject::Update();
 	}
-	void IceSelect::Render(HDC hdc)
+	void CookieSelect::Render(HDC hdc)
 	{
-		StretchBlt(hdc, 280, 214, mImage->GetWidth(), mImage->GetHeight() ,  mImage->GetHdc()
+		StretchBlt(hdc, 280, 214, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc()
 			, 0, 0, mImage->GetWidth(), mImage->GetHeight(), SRCCOPY);
 		GameObject::Render(hdc);
 	}
-	void IceSelect::Release()
+	void CookieSelect::Release()
 	{
 	}
 }

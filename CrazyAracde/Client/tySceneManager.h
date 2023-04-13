@@ -22,12 +22,15 @@ namespace ty
 		static Bazzi* GetBazzi() { return mBazzi; }
 		static void SetmTime(int time) { mTime = time; }
 		static int GetTime() { return mTime; }
-		
+		static void SetMonsterCnt(int cnt) { monstercnt = cnt; }
+		static int GetMonsterCnt() { return monstercnt; }
+
 	private:
 		static std::vector<Scene*> mScenes;
 		static Scene* mActiveScene;
 		static Bazzi* mBazzi;
 		static int mTime;
+		static int monstercnt;
 
 	};
 }

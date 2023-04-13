@@ -10,6 +10,12 @@
 #include "tyMapSelect.h"
 #include "tyIceSelect.h"
 #include "tyIceMapSelect.h"
+#include "tyPirateMapSelect.h"
+#include "tyPirateSelect.h"
+#include "tyCookieSelect.h"
+#include "tyCookieMapSelect.h"
+#include "tyForestSelect.h"
+#include "tyForestMapSelect.h"
 
 namespace ty
 {
@@ -34,26 +40,56 @@ namespace ty
 			object::Instantiate<MapSelect>(eLayerType::UI);
 		}
 
-		if (temp.y >= 290 && temp.y <= 350 && temp.x >= 950 && temp.x <= 1042)
-		{
-			object::Instantiate<MapSelect>(eLayerType::UI);
-		}
+		//if (temp.y >= 290 && temp.y <= 350 && temp.x >= 950 && temp.x <= 1042)
+		//{
+		//	object::Instantiate<MapSelect>(eLayerType::UI);
+		//}
 
-		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 368 && temp.y <= 384 && temp.x >= 525 && temp.x <= 906)
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 298 && temp.y <= 318 && temp.x >= 525 && temp.x <= 906)
 		{
-			object::Instantiate<IceSelect>(eLayerType::UI);
-			mMapSelect = object::Instantiate<IceMapSelect>(eLayerType::MapSelectUI);
+			object::Instantiate<CookieSelect>(eLayerType::UI);
+			object::Instantiate<CookieMapSelect>(eLayerType::MapSelectUI);
 			mSceneType = eSceneType::Play;
 		}
-		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 442 && temp.y <= 458 && temp.x >= 525 && temp.x <= 906)
+
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 358 && temp.y <= 378 && temp.x >= 525 && temp.x <= 906)
 		{
-			mSceneType = eSceneType::Stage2;
+			object::Instantiate<ForestSelect>(eLayerType::UI);
+			object::Instantiate<ForestMapSelect>(eLayerType::MapSelectUI);
+			mSceneType = eSceneType::Play;
 		}
+
+
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 378 && temp.y <= 398 && temp.x >= 525 && temp.x <= 906)
+		{
+			object::Instantiate<IceSelect>(eLayerType::UI);
+			object::Instantiate<IceMapSelect>(eLayerType::MapSelectUI);
+			mSceneType = eSceneType::Play;
+		}
+
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 458 && temp.y <= 478 && temp.x >= 525 && temp.x <= 906)
+		{
+			object::Instantiate<PirateSelect>(eLayerType::UI);
+			object::Instantiate<PirateMapSelect>(eLayerType::MapSelectUI);
+			mSceneType = eSceneType::Play;
+		}
+		
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 458 && temp.y <= 478 && temp.x >= 525 && temp.x <= 906)
+		{
+			object::Instantiate<PirateSelect>(eLayerType::UI);
+			object::Instantiate<PirateMapSelect>(eLayerType::MapSelectUI);
+			mSceneType = eSceneType::Play;
+		}
+
+
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 750 && temp.y <= 820 && temp.x >= 780 && temp.x <= 1050)
 		{
 			SceneManager::LoadScene(mSceneType);
 		}
+
+
+
 	}
 	void LobbyScene::Render(HDC hdc)
 	{

@@ -1,23 +1,22 @@
 #pragma once
-#include "tyScene.h"
+#include"tyScene.h"
 
 namespace ty
 {
-	class ToolScene : public Scene
+	class Image;
+	class CookieMapSelect : public GameObject
 	{
 	public:
-		ToolScene();
-		~ToolScene();
+		CookieMapSelect();
+		~CookieMapSelect();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 		virtual void Release() override;
 
-		virtual void OnEnter() override;
-		virtual void OnExit() override;
+
 	private:
-		bool isLoad;
-	
+		Image* mImage;
 	};
-}
+};

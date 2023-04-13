@@ -10,7 +10,7 @@ namespace ty
 		Z,X,C,V,B,N,M,
 		SPACEBAR, CTRL,
 		LEFT,UP,RIGHT,DOWN,
-		LBUTTON,
+		LBUTTON, RUBTTON,
 		END,
 	};
 

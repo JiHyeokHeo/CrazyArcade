@@ -46,13 +46,23 @@ namespace ty
             UINT tileIndex = TilePalatte::GetIndex();
             TilePalatte::CreateTile(tileIndex, pos); // 타일 위치가 들어온다.
         }
+        if (Input::GetKey(eKeyCode::RUBTTON))
+        {
+            Vector2 pos = Input::GetMousePos();
+            //pos -= Camera::CalculatePos(Vector2::Zero);
+
+            pos = TilePalatte::GetTilePos(pos);
+
+            UINT tileIndex = TilePalatte::GetIndex();
+            TilePalatte::CreateTile(tileIndex, pos); // 타일 위치가 들어온다.
+        }
         if (Input::GetKeyDown(eKeyCode::S))
         {
             TilePalatte::Save();
         }
         if (Input::GetKeyDown(eKeyCode::L))
         {
-            TilePalatte::Load(L"001");
+            TilePalatte::Load(L"502");
         }
 
 

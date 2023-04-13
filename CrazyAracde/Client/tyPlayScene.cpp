@@ -26,12 +26,13 @@
 #include "tyNeedle.h"
 #include "tyShield.h"
 #include "tyTimer.h"
+#include "tyGameStartUI.h"
 
+// ------------------------------------------------------------------------------------------ 해적맵
 namespace ty
 {
 	//Bazzi* PlayScene::mBazzi;
 	PlayScene::PlayScene()
-		:monstercnt(4) // 몬스터 수 정하기
 	{
 	}
 	PlayScene::~PlayScene()
@@ -88,9 +89,9 @@ namespace ty
 	}
 	void PlayScene::Update()
 	{
-		if (monstercnt == 0)
+		if (SceneManager::GetMonsterCnt() == 0)
 		{
-			SceneManager::LoadScene(eSceneType::PlayStage2);
+			SceneManager::LoadScene(eSceneType::Stage2);
 		}
 
 		Vector2 temp = Input::GetMousePos();
@@ -114,6 +115,9 @@ namespace ty
 		// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
 		SceneManager::SetmTime(240); // 4분 설정
+		SceneManager::SetMonsterCnt(1);
+		object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
+		object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
 		for (int i = 0; i < 5; i++)
 		{
 			time[i]->ResetIsTimeOn();

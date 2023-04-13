@@ -265,6 +265,9 @@ namespace ty
  	{
 		if (mAnimator->isComplete() == true)
 		{
+			int monstercnt = SceneManager::GetMonsterCnt();
+			monstercnt--;
+			SceneManager::SetMonsterCnt(monstercnt);
 			object::Destroy(this);
 		}
 	}

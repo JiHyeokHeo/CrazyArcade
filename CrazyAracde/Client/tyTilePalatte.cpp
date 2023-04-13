@@ -147,7 +147,7 @@ namespace ty
 	}
 
 	void TilePalatte::Clear()
-	{	// 여기서 지우면 될듯함
-	
+	{
+
 	}
 }

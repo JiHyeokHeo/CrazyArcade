@@ -26,6 +26,11 @@ namespace ty
 		{
 			object::Destroy(this);
 		}
+
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 680 && temp.y <= 715 && temp.x >= 612 && temp.x <= 739)
+		{
+			object::Destroy(this);
+		}
 		GameObject::Update();
 	}
 	void MapSelect::Render(HDC hdc)

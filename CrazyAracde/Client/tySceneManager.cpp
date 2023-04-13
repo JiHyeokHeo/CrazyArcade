@@ -16,6 +16,7 @@ namespace ty
 	Scene* SceneManager::mActiveScene = nullptr;
 	Bazzi* SceneManager::mBazzi;
 	int SceneManager::mTime = {};
+	int SceneManager::monstercnt = {};
 	void SceneManager::Initialize()
 	{
 		mScenes.resize((UINT)eSceneType::End); 

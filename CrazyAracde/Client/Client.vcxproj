@@ -135,8 +135,13 @@
     <ClInclude Include="tyBaseBossBomb.h" />
     <ClInclude Include="tyBazziImage.h" />
     <ClInclude Include="tyBird.h" />
+    <ClInclude Include="tyCookieMapSelect.h" />
+    <ClInclude Include="tyCookieSelect.h" />
     <ClInclude Include="tyDevil.h" />
     <ClInclude Include="tydir.h" />
+    <ClInclude Include="tyForestMapSelect.h" />
+    <ClInclude Include="tyForestSelect.h" />
+    <ClInclude Include="tyGameStartUI.h" />
     <ClInclude Include="tyIceMapSelect.h" />
     <ClInclude Include="tyIceSelect.h" />
     <ClInclude Include="tyIceTile.h" />
@@ -145,6 +150,8 @@
     <ClInclude Include="tyMapSelect.h" />
     <ClInclude Include="tyNeedle.h" />
     <ClInclude Include="tyNeedleUI.h" />
+    <ClInclude Include="tyPirateMapSelect.h" />
+    <ClInclude Include="tyPirateSelect.h" />
     <ClInclude Include="tyPlayerNum.h" />
     <ClInclude Include="tyPlaySceneStage2.h" />
     <ClInclude Include="tyPotion.h" />
@@ -211,6 +218,7 @@
     <ClInclude Include="tyTitleUI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tyCookieMapSelect.cpp" />
     <ClCompile Include="tyAlphaBlender.cpp" />
     <ClCompile Include="tyAnimation.cpp" />
     <ClCompile Include="tyAnimator.cpp" />
@@ -223,7 +231,11 @@
     <ClCompile Include="tyBlock.cpp" />
     <ClCompile Include="tyBombEffect.cpp" />
     <ClCompile Include="tyBossBombEffect.cpp" />
+    <ClCompile Include="tyCookieSelect.cpp" />
     <ClCompile Include="tyDevil.cpp" />
+    <ClCompile Include="tyForestMapSelect.cpp" />
+    <ClCompile Include="tyForestSelect.cpp" />
+    <ClCompile Include="tyGameStartUI.cpp" />
     <ClCompile Include="tyGround.cpp" />
     <ClCompile Include="tyIceMapSelect.cpp" />
     <ClCompile Include="tyIceSelect.cpp" />
@@ -233,6 +245,8 @@
     <ClCompile Include="tyMapSelect.cpp" />
     <ClCompile Include="tyNeedle.cpp" />
     <ClCompile Include="tyNeedleUI.cpp" />
+    <ClCompile Include="tyPirateMapSelect.cpp" />
+    <ClCompile Include="tyPirateSelect.cpp" />
     <ClCompile Include="tyPlayerNum.cpp" />
     <ClCompile Include="tyPlaySceneStage2.cpp" />
     <ClCompile Include="tyPotion.cpp" />
