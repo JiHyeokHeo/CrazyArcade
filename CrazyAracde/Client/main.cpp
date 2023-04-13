@@ -57,6 +57,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // CALLBACK으로 써도 된다.
         return FALSE;
     }
 
+    LPCWSTR cursorFilePath = L"..\\Resources\\mouse.cur";
+
+    // 커서 핸들 생성
+    HCURSOR hCursor = LoadCursorFromFile(cursorFilePath);
+    // set the new cursor position
+
+    // set the cursor
+    SetCursor(hCursor);
+    // 커서 설정
+   /* SetCursor(hCursor);*/
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
     MSG msg;
@@ -77,6 +88,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // CALLBACK으로 써도 된다.
         }
         else  //메시지가 없을때
         {
+            SetCursor(hCursor);
             // 여기서 게임 로직이 돌아가야한다
             application.Run(); 
         }
@@ -84,6 +96,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // CALLBACK으로 써도 된다.
 
     ty::SceneManager::Release();
     ty::Resources::Release();
+    DestroyCursor(hCursor);
     return (int) msg.wParam;
 
     // GetMessage는 따로 지우지 않아도 지워졌다.
@@ -116,7 +129,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance, LPCWSTR name, WNDPROC proc)
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CLIENT));
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
+    wcex.hCursor        = NULL;     //LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_CLIENT);
     wcex.lpszClassName  = name;
