@@ -46,6 +46,10 @@ namespace ty
 	}
 	void Ballon::Update()
 	{
+		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
+		{
+			object::Destroy(this);
+		}
 		GameObject::Update();
 	}
 	void Ballon::Render(HDC hdc)

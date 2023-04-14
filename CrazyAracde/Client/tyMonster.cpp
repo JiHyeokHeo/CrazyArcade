@@ -222,10 +222,10 @@ namespace ty
 			mState = eMonsterState::Die;
 		}
 		mTime = 0;
-		if (other->GetOwner()->GetName() == L"Ground" || other->GetOwner()->GetName() == L"Monster")
+	/*	if (other->GetOwner()->GetName() == L"Ground" || other->GetOwner()->GetName() == L"Monster")
 		{
 			animationCtr();
-		}
+		}*/
 	}
 	
 	void Monster::OnCollisionStay(Collider* other)
@@ -320,6 +320,7 @@ namespace ty
 			int monstercnt = SceneManager::GetMonsterCnt();
 			monstercnt--;
 			SceneManager::SetMonsterCnt(monstercnt);
+			mState = eMonsterState::Idle;
 			object::Pause(this);
 		}
 	}

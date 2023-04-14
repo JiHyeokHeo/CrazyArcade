@@ -42,6 +42,10 @@ namespace ty
 	}
 	void Potion::Update()
 	{
+		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
+		{
+			object::Destroy(this);
+		}
 		GameObject::Update();
 	}
 	void Potion::Render(HDC hdc)

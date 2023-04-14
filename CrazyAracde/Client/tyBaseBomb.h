@@ -55,6 +55,7 @@ namespace ty
 		float mPushTime;
 		bool hasBeenPushed;
 		bool isTarget;
+		bool isBossCol;
 
 		bool mleft;
 		bool mright;

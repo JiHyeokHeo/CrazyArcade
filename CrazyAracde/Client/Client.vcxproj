@@ -155,6 +155,7 @@
     <ClInclude Include="tyPirateSelect.h" />
     <ClInclude Include="tyPlayerNum.h" />
     <ClInclude Include="tyPlaySceneStage2.h" />
+    <ClInclude Include="tyPlaySceneStage3.h" />
     <ClInclude Include="tyPotion.h" />
     <ClInclude Include="tyPotionMax.h" />
     <ClInclude Include="tyShadow.h" />
@@ -252,6 +253,7 @@
     <ClCompile Include="tyPirateSelect.cpp" />
     <ClCompile Include="tyPlayerNum.cpp" />
     <ClCompile Include="tyPlaySceneStage2.cpp" />
+    <ClCompile Include="tyPlaySceneStage3.cpp" />
     <ClCompile Include="tyPotion.cpp" />
     <ClCompile Include="tyPotionMax.cpp" />
     <ClCompile Include="tySealBoss.cpp" />

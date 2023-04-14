@@ -74,7 +74,7 @@ namespace ty
 			object::Instantiate<PirateMapSelect>(eLayerType::MapSelectUI);
 			mSceneType = eSceneType::Play;
 		}
-		
+
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 458 && temp.y <= 478 && temp.x >= 525 && temp.x <= 906)
 		{
 			object::Instantiate<PirateSelect>(eLayerType::UI);
@@ -82,7 +82,10 @@ namespace ty
 			mSceneType = eSceneType::Play;
 		}
 
-
+		if (Input::GetKey(eKeyCode::Q))
+		{
+			mSceneType = eSceneType::PlayStage3;
+		}
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 750 && temp.y <= 820 && temp.x >= 780 && temp.x <= 1050)
 		{

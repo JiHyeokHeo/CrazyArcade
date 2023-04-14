@@ -29,6 +29,7 @@
 #include "tyGameStartUI.h"
 #include "tyWinLose.h"
 #include "tyTime.h"
+#include "tyMonster2.h"
 
 namespace ty
 {
@@ -142,7 +143,8 @@ namespace ty
 		SceneManager::SetmTime(240); // 4분 설정
 		if (isLoad == true)
 		{
-			Scene::ChangeGameObjectState();
+			Scene::ChangeGameObjectState(); // 타일 엑티브 전환
+			Scene::ChangeMonsterState(); // 몬스터 엑티브 전환
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)

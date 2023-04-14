@@ -400,6 +400,9 @@
     <ClInclude Include="tyMonster2.h">
       <Filter>Contents\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="tyPlaySceneStage3.h">
+      <Filter>Contents\Scene\PlayStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -651,6 +654,9 @@
     </ClCompile>
     <ClCompile Include="tyMonster2.cpp">
       <Filter>Contents\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPlaySceneStage3.cpp">
+      <Filter>Contents\Scene\PlayStage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

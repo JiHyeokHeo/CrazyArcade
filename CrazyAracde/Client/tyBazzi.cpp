@@ -168,7 +168,12 @@ namespace ty
 
 		if (Input::GetKeyDown(eKeyCode::C))
 		{
-			
+			mInvincibility = 1000;
+		}
+
+		if (Input::GetKeyDown(eKeyCode::V))
+		{
+			mInvincibility = -1;
 		}
 		GameObject::Update();
 
@@ -184,16 +189,26 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{
+		if (isColl == false && other->GetOwner()->GetName() == L"Monster"  && mInvincibility <= 0.0f )
+		{
+			mAnimator->Play(L"Bazzidie", false);
+			mState = eBazziState::Death;
+			isColl = true;
+		}
+		if (isColl == false && other->GetOwner()->GetName() == L"Boss" && mInvincibility <= 0.0f)
+		{
+			mAnimator->Play(L"Bazzidie", false);
+			mState = eBazziState::Death;
+			isColl = true;
+		}
 		if (isColl == false && other->GetOwner()->GetName() ==L"BossBombEffect" && isBirdOn == false && mInvincibility <= 0.0f)
 		{
-			mHP--;
 			mAnimator->Play(L"Bazzitrap", false);
 			mState = eBazziState::BubbleMove;
 			isColl = true;
 		}
 		if (isColl == false && other->GetOwner()->GetName() == L"BombEffect" && isBirdOn == false && mInvincibility <= 0.0f)
 		{
-			mHP--;
 			mAnimator->Play(L"Bazzitrap", false);
 			mState = eBazziState::BubbleMove;
 			isColl = true;
@@ -375,10 +390,7 @@ namespace ty
 	}
 	void Bazzi::death()
 	{
-		if (isColl == true)
-		{
-			mAnimator->Play(L"Bazzitrap", false);
-		}
+	
 
 	}
 	void Bazzi::idle()
@@ -540,7 +552,7 @@ namespace ty
 	}
 	void Bazzi::dieCompleteEvent()
 	{
-		mState = eBazziState::Death;
+		mInvincibility = 3.0f;
 		mHP = -1;
 	}
 	void Bazzi::liveCompleteEvent()

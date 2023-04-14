@@ -33,7 +33,10 @@ namespace ty
 	}
 	void WinLose::Update()
 	{
-		
+		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
+		{
+			object::Destroy(this);
+		}
 		if (SceneManager::GetMonsterCnt() == 0 && isPlayed == false)
 		{
 			isPlayed = true;
@@ -55,6 +58,7 @@ namespace ty
 		if (mTime >= 3.0f)
 		{
 			object::Destroy(this);
+			mTime = 0;
 		}
 		GameObject::Update();
 	}

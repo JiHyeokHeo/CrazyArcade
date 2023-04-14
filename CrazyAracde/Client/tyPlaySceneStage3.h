@@ -7,11 +7,11 @@ namespace ty
 {
 	class AlphaBlender;
 	class Bazzi; // 이것이 전방선언
-	class PlayScene : public Scene
+	class PlaySceneStage3 : public Scene
 	{
 	public:
-		PlayScene();
-		~PlayScene();
+		PlaySceneStage3();
+		~PlaySceneStage3();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -35,7 +35,7 @@ namespace ty
 		float mTime;
 		class Monster* monster[10];
 		class Monster2* monster2[10];
-		
+
 	};
 };
 

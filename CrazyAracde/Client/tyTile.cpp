@@ -130,6 +130,29 @@ namespace ty
 				object::Instantiate<Steam>(tr->GetPos(), eLayerType::Effect);
 				object::Pause(this);
 			}
+			else if(other->GetOwner()->GetName() == L"BossBombEffect" && mIndex >= 24 && mTime > 1.5f)
+			{
+				if (rand_num < 0.15f)
+				{
+					object::Instantiate<Ballon>(tr->GetPos() + Vector2(0.0f, -2.0f), eLayerType::Item);
+				}
+				else if (rand_num < 0.3f)
+				{
+					object::Instantiate<Potion>(tr->GetPos() + Vector2(0.0f, -2.0f), eLayerType::Item);
+				}
+				else if (rand_num < 0.5f)
+				{
+					object::Instantiate<Skate>(tr->GetPos() + Vector2(0.0f, -2.0f), eLayerType::Item);
+				}
+				else if (rand_num < 0.55f)
+				{
+					object::Instantiate<PotionMax>(tr->GetPos() + Vector2(0.0f, -2.0f), eLayerType::Item);
+				}
+
+				SceneManager::GetBazzi()->GetMapIndex()[mPos.y][mPos.x] = 0;
+				object::Instantiate<Steam>(tr->GetPos(), eLayerType::Effect);
+				object::Pause(this);
+			}
 		}
 	}
 	void Tile::OnCollisionStay(Collider* other)

@@ -42,6 +42,10 @@ namespace ty
 	}
 	void PotionMax::Update()
 	{
+		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
+		{
+			object::Destroy(this);
+		}
 		GameObject::Update();
 	}
 	void PotionMax::Render(HDC hdc)

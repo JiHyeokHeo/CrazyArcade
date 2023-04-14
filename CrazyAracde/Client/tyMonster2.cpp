@@ -261,6 +261,12 @@ namespace ty
 			colcnt++;
 			animationCtr();
 		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 && mPos.x >= 895.0f)
+		{
+			mState = eMonster2State::Left;
+			colcnt++;
+			animationCtr();
+		}
 		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1 || mPos.x >= 900.0f)
 		{
 			mState = eMonster2State::Left;
@@ -279,13 +285,19 @@ namespace ty
 			colcnt++;
 			animationCtr();
 		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
+			&& mPos.y <= 65.0f)
+		{
+			mState = eMonster2State::Right;
+			colcnt++;
+			animationCtr();
+		}
 		else if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1 || mPos.y <= 60.0f)
 		{
 			mState = eMonster2State::Down;
 			colcnt++;
 			animationCtr();
 		}
-
 		colcnt = 0;
 		mPos.y -= 60.0f * Time::DeltaTime();
 	}

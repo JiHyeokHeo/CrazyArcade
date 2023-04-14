@@ -1,4 +1,4 @@
-#include "tyPlayScene.h"
+#include "tyPlaySceneStage3.h"
 #include "tyBazzi.h" // 전방 선언을 할 경우 cpp 파일에 헤더를 추가해야한다.
 #include "tyInput.h"
 #include "tySceneManager.h"
@@ -30,20 +30,19 @@
 #include "tyWinLose.h"
 #include "tyTime.h"
 #include "tyMonster2.h"
-// ------------------------------------------------------------------------------------------ 해적맵
+
 namespace ty
 {
-	//Bazzi* PlayScene::mBazzi;
-	PlayScene::PlayScene()
+	PlaySceneStage3::PlaySceneStage3()
 	{
 	}
-	PlayScene::~PlayScene()
+	PlaySceneStage3::~PlaySceneStage3()
 	{
 	}
-	void PlayScene::Initialize()
+	void PlaySceneStage3::Initialize()
 	{
 		Scene::Initialize();
-		
+
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
@@ -64,9 +63,9 @@ namespace ty
 
 		// ------------------ 아이템 테스트
 		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
-		object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
 
 		// ------------------ 배경
 		object::Instantiate<Play_BG>(eLayerType::BG);
@@ -80,16 +79,19 @@ namespace ty
 
 		// ------------------ 몬스터
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
-		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
+		object::Instantiate<PirateBoss>(Vector2(350.0f, 120.0f), eLayerType::Boss);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
-		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
-		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
-		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
-
+		//object::Instantiate<Monster>(Vector2(350.0f, 120.0f), eLayerType::Monster);
+		////object::Instantiate<Monster2>(Vector2(370.0f, 420.0f), eLayerType::Monster);
+		////object::Instantiate<Monster2>(Vector2(230.0f, 420.0f), eLayerType::Monster);
+		////object::Instantiate<Monster2>(Vector2(170.0f, 420.0f), eLayerType::Monster);
+		////object::Instantiate<Monster2>(Vector2(430.0f, 420.0f), eLayerType::Monster);
+		////object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		////object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
+		////object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
+		////object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
 	}
-	void PlayScene::Update()
+	void PlaySceneStage3::Update()
 	{
 		if (SceneManager::GetMonsterCnt() == 0)
 		{
@@ -114,48 +116,39 @@ namespace ty
 		}
 
 
-
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
 		{
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-		
+
 		Scene::Update();
 	}
-	void PlayScene::Render(HDC hdc)
+	void PlaySceneStage3::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
 	}
-	void PlayScene::Release()
+	void PlaySceneStage3::Release()
 	{
-		Scene::Release();
 	}
-	void PlayScene::OnEnter()
-	{
-		// 캐릭터 설정 + 시간 조절
+	void PlaySceneStage3::OnEnter()
+	{	// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
-		SceneManager::SetMonsterCnt(5);
+		SceneManager::SetMonsterCnt(9);
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
-		
+
+
 		for (int i = 0; i < 5; i++)
 		{
 			time[i]->ResetIsTimeOn();
 		}
 		SceneManager::SetmTime(240); // 4분 설정
-
-
 		if (isLoad == true)
 		{
-			Scene::ChangeGameObjectState();
-			Scene::ChangeMonsterState();
-			monster[0]->GetComponent<Transform>()->SetPos(Vector2(450.0f, 120.0f));
-			monster[1]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 420.0f));
-			monster[2]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 420.0f));
-			monster[3]->GetComponent<Transform>()->SetPos(Vector2(690.0f, 420.0f));
-			monster[4]->GetComponent<Transform>()->SetPos(Vector2(750.0f, 420.0f));
+			Scene::ChangeGameObjectState(); // 타일 엑티브 전환
+			Scene::ChangeMonsterState(); // 몬스터 엑티브 전환
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)
@@ -167,7 +160,7 @@ namespace ty
 
 		if (isLoad == false)
 		{
-			TilePalatte::Load(L"001");
+			TilePalatte::Load(L"003");
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)
@@ -180,23 +173,26 @@ namespace ty
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::BombEffect, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Monster, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Tile, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Bomb, true);
-		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Item, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Tile, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
-		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Tile, true);
-		//CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
-		
+		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::BombEffect, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Player, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Bomb, true);
+
 	}
-	void PlayScene::OnExit()
+	void PlaySceneStage3::OnExit()
 	{
-		
 		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)
@@ -211,6 +207,5 @@ namespace ty
 		mBazzi->Reset();
 		SceneManager::SetmTime(240);
 		SceneManager::SetBazzi(mBazzi);
-		//object::Destroy(mBlender);
 	}
 }

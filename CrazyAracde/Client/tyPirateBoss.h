@@ -49,10 +49,16 @@ namespace ty
 		ePirateMonsterState mState;
 		float mTime;
 		Vector2 mPos;
+		Transform* tr;
 		bool isColl;
 		int Hp;
 		float mInvincibility;
 		bool isAttack;
+		Vector2 ColLIdx;
+		Vector2 ColUIdx;
+		Vector2 ColDIdx;
+		Vector2 ColRIdx;
+		Vector2 midmPos;
 	};
 }
 

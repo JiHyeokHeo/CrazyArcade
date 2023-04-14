@@ -10,6 +10,7 @@
 #include "tyScene.h"
 #include "tyObject.h"
 #include "tyBossBombEffect.h"
+#include "tyTileBomb.h"
 
 namespace ty
 {
@@ -22,7 +23,7 @@ namespace ty
 	}
 	void PirateBoss::Initialize()
 	{
-		SetName(L"PirateBoss");
+		SetName(L"Boss");
 		Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(2.0f, 2.0f));
 		mAnimator = AddComponent<Animator>();
@@ -40,15 +41,40 @@ namespace ty
 		mAnimator->Play(L"PirateBossDown", true);
 
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2::Zero);
-		collider->SetSize(Vector2(44.0f, 44.0f));
+		collider->SetCenter(Vector2(30.0f, 30.0f));
+		collider->SetSize(Vector2(120.0f, 150.0f));
 		mState = ePirateMonsterState::Idle;
 		GameObject::Initialize();
 	}
 	void PirateBoss::Update()
 	{
-		Transform* tr = GetComponent<Transform>();
+		tr = GetComponent<Transform>();
 		mPos = tr->GetPos();
+		midmPos = mPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		ColRIdx = TileBomb::SetColIndex(midmPos + Vector2(32.0f, 0.0f));
+		ColLIdx = TileBomb::SetColIndex(midmPos + Vector2(-32.0f, 0.0f));
+		ColUIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, -32.0f));
+		ColDIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, +32.0f));
+
+		mTime += Time::DeltaTime();
+		if (ColRIdx.x > 14)
+			ColRIdx.x = 14;
+		if (ColLIdx.x > 14)
+			ColLIdx.x = 14;
+		if (ColUIdx.x > 14)
+			ColUIdx.x = 14;
+		if (ColDIdx.x > 14)
+			ColDIdx.x = 14;
+
+		if (ColRIdx.y > 12)
+			ColRIdx.y = 12;
+		if (ColLIdx.y > 12)
+			ColLIdx.y = 12;
+		if (ColUIdx.y > 12)
+			ColUIdx.y = 12;
+		if (ColDIdx.y > 12)
+			ColDIdx.y = 12;
+
 
 		mTime += Time::DeltaTime();
 		switch (mState)
@@ -104,20 +130,47 @@ namespace ty
 	}
 	void PirateBoss::OnCollisionEnter(Collider* other)
   	{
-		if (isColl == false && Hp >=1)
+		if (other->GetOwner()->GetName() == L"Ground" || other->GetOwner()->GetName() == L"Monster")
+		{
+			switch (mState)
+			{
+			case ePirateMonsterState::Left:
+				mState = ePirateMonsterState::Right;
+				break;
+			case ePirateMonsterState::Right:
+				mState = ePirateMonsterState::Left;
+				break;
+			case ePirateMonsterState::Up:
+				mState = ePirateMonsterState::Down;
+				break;
+			case ePirateMonsterState::Down:
+				mState = ePirateMonsterState::Up;
+				break;
+			default:
+				break;
+			}
+		}
+		if (isColl == false && Hp >=1 && other->GetOwner()->GetName() == L"BombEffect")
 		{
 			mAnimator->Play(L"PirateBossHit", false);
 			mState = ePirateMonsterState::Hit;
 			isColl = true;
 		}
 
-		if (isColl == false && Hp <= 0)
+		if (isColl == false && Hp <= 0 && other->GetOwner()->GetName() == L"BombEffect")
 		{
 			mAnimator->Play(L"PirateBossBubble", false);
 			mState = ePirateMonsterState::Bubble;
 			isColl = true;
 		}
 
+		if (mState == ePirateMonsterState::Bubble && other->GetOwner()->GetName() == L"Bazzi")
+		{
+			mAnimator->Play(L"PirateBossDie", false);
+			mState = ePirateMonsterState::Die;
+			isColl = true;
+		}
+	
 
 	}
 	void PirateBoss::OnCollisionStay(Collider* other)
@@ -141,10 +194,10 @@ namespace ty
 			for (int i = 0; i < 7; i++)
 			{
 				ePirateMonsterState::Idle;
-				object::Instantiate<BossBombEffect>(tr->GetPos() + Vector2(180 , 180 - (i * 60)), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(tr->GetPos() + Vector2(180 - (i * 60), 180), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(tr->GetPos() + Vector2(-180 + (i * 60), -180), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(tr->GetPos() + Vector2(-180, 180 - (i * 60)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(180 , 180 - (i * 60))), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(180 - (i * 60), 180)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(-180 + (i * 60), -180)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(-180, 180 - (i * 60))), eLayerType::BombEffect);
 				isAttack = false;
 			}
 		}

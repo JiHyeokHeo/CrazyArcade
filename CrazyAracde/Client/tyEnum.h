@@ -7,6 +7,7 @@ enum class eSceneType
 	Lobby, // 그냥 로비
 	Play, // 플레이
 	PlayStage2, //
+	PlayStage3,
 	Stage2, //
 	Reward, // 결과창
 	Tool,
@@ -23,6 +24,7 @@ enum class eLayerType
 	Item,
 	Tile, // 타일
 	Monster, // 몬스터
+	Boss, // 보스
 	Shadow, // 
 	Player, // 플레이어
 	Effect, // 일반 이펙트

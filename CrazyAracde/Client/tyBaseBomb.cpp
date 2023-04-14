@@ -306,14 +306,12 @@ namespace ty
 			mTime = 3.5f;
 		}
 
-		if (other->GetOwner()->GetName() == L"PirateBoss")
+		if (other->GetOwner()->GetName() == L"Boss")
 		{
-			for (int i = 0; i < mBombEffect.size(); i++)
-			{
-				mBombEffect[i]->SetTime(3.5f);
-			}
 			mTime = 3.5f;
+			isBossCol = true;
 		}
+
 	}
 	void BaseBomb::OnCollisionStay(Collider* other)
 	{
@@ -390,6 +388,15 @@ namespace ty
 				{
 					mBombEffect[i]->SetBomb(this);
 				}
+
+				if (isBossCol == true)
+				{
+					for (int i = 0; i < mBombEffect.size(); i++)
+					{
+						mBombEffect[i]->SetTime(3.5f);
+					}
+				}
+				
 			}
 		
 			mTime = 0;
@@ -407,6 +414,11 @@ namespace ty
 
 	void BaseBomb::up()
 	{
+		if (isBossCol == true)
+		{
+			return;
+		}
+		
 		Vector2 realPos = tr->GetPos();
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		Vector2 ColPos = collider->GetPos();
@@ -483,6 +495,10 @@ namespace ty
 
 	void BaseBomb::right()
 	{
+		if (isBossCol == true)
+		{
+			return;
+		}
 		Vector2 realPos = tr->GetPos();
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		Vector2 ColPos = collider->GetPos();
@@ -559,6 +575,10 @@ namespace ty
 
 	void BaseBomb::down()
 	{
+		if (isBossCol == true)
+		{
+			return;
+		}
 		Vector2 realPos = tr->GetPos();
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		Vector2 ColPos = collider->GetPos();
@@ -636,6 +656,10 @@ namespace ty
 
 	void BaseBomb::left()
 	{
+		if (isBossCol == true)
+		{
+			return;
+		}
 		Vector2 realPos = tr->GetPos();
 		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 		Vector2 ColPos = collider->GetPos();
