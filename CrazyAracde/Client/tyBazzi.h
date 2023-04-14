@@ -43,6 +43,7 @@ namespace ty
 		int GetMaxWaterCourse() { return maxWaterCourse; }
 		float GetMaxSpeed() { return maxSpeed; }
 		int GetPlayerSpeed() { return mPlayerSpeed; }
+		int GetPlayerHP() { return mHP; }
 		Vector2 GetUpIdx() { return mUpIdx; }
 		Vector2 GetRightIdx() { return mRightIdx; }
 		Vector2 GetDownIdx() { return mDownIdx; }

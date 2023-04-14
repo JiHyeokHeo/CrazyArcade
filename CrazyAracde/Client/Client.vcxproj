@@ -148,6 +148,7 @@
     <ClInclude Include="tyItem.h" />
     <ClInclude Include="tyLRGround.h" />
     <ClInclude Include="tyMapSelect.h" />
+    <ClInclude Include="tyMonster2.h" />
     <ClInclude Include="tyNeedle.h" />
     <ClInclude Include="tyNeedleUI.h" />
     <ClInclude Include="tyPirateMapSelect.h" />
@@ -216,6 +217,7 @@
     <ClInclude Include="tyToolScene.h" />
     <ClInclude Include="tyTransform.h" />
     <ClInclude Include="tyTitleUI.h" />
+    <ClInclude Include="tyWinLose.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tyCookieMapSelect.cpp" />
@@ -243,6 +245,7 @@
     <ClCompile Include="tyItem.cpp" />
     <ClCompile Include="tyLRGround.cpp" />
     <ClCompile Include="tyMapSelect.cpp" />
+    <ClCompile Include="tyMonster2.cpp" />
     <ClCompile Include="tyNeedle.cpp" />
     <ClCompile Include="tyNeedleUI.cpp" />
     <ClCompile Include="tyPirateMapSelect.cpp" />
@@ -295,6 +298,7 @@
     <ClCompile Include="tyToolScene.cpp" />
     <ClCompile Include="tyTransform.cpp" />
     <ClCompile Include="tyTitleUI.cpp" />
+    <ClCompile Include="tyWinLose.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

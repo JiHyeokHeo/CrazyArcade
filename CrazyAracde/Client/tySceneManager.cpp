@@ -15,7 +15,7 @@ namespace ty
 	std::vector<Scene*> SceneManager::mScenes = {};
 	Scene* SceneManager::mActiveScene = nullptr;
 	Bazzi* SceneManager::mBazzi;
-	int SceneManager::mTime = {};
+	int SceneManager::mRealPlayTime = {};
 	int SceneManager::monstercnt = {};
 	void SceneManager::Initialize()
 	{

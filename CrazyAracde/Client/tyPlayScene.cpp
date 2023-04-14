@@ -27,7 +27,8 @@
 #include "tyShield.h"
 #include "tyTimer.h"
 #include "tyGameStartUI.h"
-
+#include "tyWinLose.h"
+#include "tyTime.h"
 // ------------------------------------------------------------------------------------------ 해적맵
 namespace ty
 {
@@ -49,16 +50,16 @@ namespace ty
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 
 		// ------------------ 시간 관련
-		time[0] = object::Instantiate<Timer>(Vector2(1064.0f, 110.0f), eLayerType::UI);
-		time[0]->SetTimeType(Timer::TimeType::TenMinutes);
-		time[1] = object::Instantiate<Timer>(Vector2(1084.0f, 110.0f), eLayerType::UI);
-		time[1]->SetTimeType(Timer::TimeType::Minutes);
-		time[2] = object::Instantiate<Timer>(Vector2(1104.0f, 110.0f), eLayerType::UI);
-		time[2]->SetTimeType(Timer::TimeType::None);
-		time[3] = object::Instantiate<Timer>(Vector2(1124.0f, 110.0f), eLayerType::UI);
-		time[3]->SetTimeType(Timer::TimeType::TenSeconds);
-		time[4] = object::Instantiate<Timer>(Vector2(1144.0f, 110.0f), eLayerType::UI);
-		time[4]->SetTimeType(Timer::TimeType::Seconds);
+		time2[0] = object::Instantiate<Timer>(Vector2(1064.0f, 110.0f), eLayerType::UI);
+		time2[0]->SetTimeType(Timer::TimeType::TenMinutes);
+		time2[1] = object::Instantiate<Timer>(Vector2(1084.0f, 110.0f), eLayerType::UI);
+		time2[1]->SetTimeType(Timer::TimeType::Minutes);
+		time2[2] = object::Instantiate<Timer>(Vector2(1104.0f, 110.0f), eLayerType::UI);
+		time2[2]->SetTimeType(Timer::TimeType::None);
+		time2[3] = object::Instantiate<Timer>(Vector2(1124.0f, 110.0f), eLayerType::UI);
+		time2[3]->SetTimeType(Timer::TimeType::TenSeconds);
+		time2[4] = object::Instantiate<Timer>(Vector2(1144.0f, 110.0f), eLayerType::UI);
+		time2[4]->SetTimeType(Timer::TimeType::Seconds);
 
 		// ------------------ 아이템 테스트
 		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
@@ -91,8 +92,26 @@ namespace ty
 	{
 		if (SceneManager::GetMonsterCnt() == 0)
 		{
-			SceneManager::LoadScene(eSceneType::Stage2);
+			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+			mTime += Time::DeltaTime();
+			if (mTime >= 6.0f)
+			{
+				SceneManager::LoadScene(eSceneType::PlayStage2);
+				mTime = 0;
+			}
 		}
+
+		if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
+		{
+			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+			mTime += Time::DeltaTime();
+			if (mTime >= 6.0f)
+			{
+				SceneManager::LoadScene(eSceneType::Lobby);
+				mTime = 0;
+			}
+		}
+
 
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
@@ -100,6 +119,7 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
+		
 		Scene::Update();
 	}
 	void PlayScene::Render(HDC hdc)
@@ -114,14 +134,15 @@ namespace ty
 	{
 		// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
-		SceneManager::SetmTime(240); // 4분 설정
 		SceneManager::SetMonsterCnt(1);
-		object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
-		object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
+		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
+		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
+		
 		for (int i = 0; i < 5; i++)
 		{
-			time[i]->ResetIsTimeOn();
+			time2[i]->ResetIsTimeOn();
 		}
+		SceneManager::SetmTime(240); // 4분 설정
 
 
 		if (isLoad == true)
@@ -180,6 +201,8 @@ namespace ty
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();
+		SceneManager::SetmTime(240);
+		SceneManager::SetBazzi(mBazzi);
 		//object::Destroy(mBlender);
 	}
 }

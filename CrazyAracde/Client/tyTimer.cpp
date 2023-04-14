@@ -148,8 +148,10 @@ namespace ty
 			mAnimator->Play(L"TimerZero", false);
 		}
 
-
-		SceneManager::SetmTime(mTime);
+		if (mTime <= 0)
+		{
+			SceneManager::SetmTime(mTime);
+		}
 
 		GameObject::Update();
 	}

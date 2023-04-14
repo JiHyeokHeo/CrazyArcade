@@ -32,6 +32,7 @@ namespace ty
 		bool isLoad;
 		int PlayIndex[13][15];
 		class Timer* time[5];
+		float mTime;
 
 	};
 };

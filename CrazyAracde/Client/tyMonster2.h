@@ -5,10 +5,10 @@
 namespace ty
 {
 	class Animator;
-	class Monster : public GameObject
+	class Monster2 : public GameObject
 	{
 	public:
-		enum class eMonsterState
+		enum class eMonster2State
 		{
 			Idle,
 			Left,
@@ -17,8 +17,8 @@ namespace ty
 			Down,
 			Die,
 		};
-		Monster();
-		~Monster();
+		Monster2();
+		~Monster2();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -40,16 +40,12 @@ namespace ty
 
 	private:
 		Animator* mAnimator;
-		eMonsterState mState;
+		eMonster2State mState;
 		float mTime;
 		Vector2 mPos;
 		Collider* collider;
 		int colcnt;
 		bool isStateChosen;
 		Transform* tr;
-		Vector2 ColRIdx;
-		Vector2 ColLIdx;
-		Vector2 ColUIdx;
-		Vector2 ColDIdx;
 	};
 }

@@ -136,9 +136,9 @@ namespace ty
 			case ty::Bazzi::eBazziState::BubbleMove:
 				bubblemove();
 				break;
-			case ty::Bazzi::eBazziState::Revive:
-				revive();
-				break;
+			//case ty::Bazzi::eBazziState::Revive:
+			//	revive();
+			//	break;
 			case ty::Bazzi::eBazziState::NoMove:
 				nomove();
 				break;
@@ -163,6 +163,12 @@ namespace ty
 			mWaterCourse = 2; // 물줄기
 			mSpeed = 5.0f; // 속도
 			isPushPossible = false;
+		}
+
+
+		if (Input::GetKeyDown(eKeyCode::C))
+		{
+			
 		}
 		GameObject::Update();
 
@@ -534,8 +540,8 @@ namespace ty
 	}
 	void Bazzi::dieCompleteEvent()
 	{
-		mState = eBazziState::Revive;
-		
+		mState = eBazziState::Death;
+		mHP = -1;
 	}
 	void Bazzi::liveCompleteEvent()
 	{
@@ -682,6 +688,8 @@ namespace ty
 	
 	void Bazzi::Reset()
 	{
+		mState = eBazziState::Idle;
+		mAnimator->Play(L"Bazziready", false);
 		mHP = 1; // 체력 
 		mBomb = 3; // 폭탄
 		mWaterCourse = 3; // 물줄기

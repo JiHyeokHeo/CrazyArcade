@@ -104,9 +104,6 @@
     <Filter Include="Contents\Tile\TileImage">
       <UniqueIdentifier>{ec5505c5-be5a-4f1d-aba8-6ab32d270e42}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\UI\Ice">
-      <UniqueIdentifier>{24f0e5c9-ca31-4276-a72a-dfd1ad2507f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Effect">
       <UniqueIdentifier>{ae143bbc-62af-4cee-8b54-9d7320f8b415}</UniqueIdentifier>
     </Filter>
@@ -115,6 +112,24 @@
     </Filter>
     <Filter Include="Contents\Timer">
       <UniqueIdentifier>{8664e356-d90c-469f-a532-185687745ae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\Map">
+      <UniqueIdentifier>{105d3f7f-0054-4cad-8cb3-0aac633f5f4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\Map\Cookie">
+      <UniqueIdentifier>{0f0b3583-b6e9-41ef-b2fb-645a1e1140db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\Map\Ice">
+      <UniqueIdentifier>{24f0e5c9-ca31-4276-a72a-dfd1ad2507f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\Map\Forest">
+      <UniqueIdentifier>{39afb48c-a18f-464b-b239-21dfd74269db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\Map\Pirate">
+      <UniqueIdentifier>{d5ec6694-c9e5-45de-aee0-865fffb0af5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\WinLose">
+      <UniqueIdentifier>{f413f9f3-2f7c-4944-bcee-c255467b3767}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -317,10 +332,10 @@
       <Filter>Contents\UI</Filter>
     </ClInclude>
     <ClInclude Include="tyIceSelect.h">
-      <Filter>Contents\UI\Ice</Filter>
+      <Filter>Contents\UI\Map\Ice</Filter>
     </ClInclude>
     <ClInclude Include="tyIceMapSelect.h">
-      <Filter>Contents\UI\Ice</Filter>
+      <Filter>Contents\UI\Map\Ice</Filter>
     </ClInclude>
     <ClInclude Include="tyBazziImage.h">
       <Filter>Contents\UI</Filter>
@@ -357,6 +372,33 @@
     </ClInclude>
     <ClInclude Include="tyTimer.h">
       <Filter>Contents\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="tyCookieMapSelect.h">
+      <Filter>Contents\UI\Map\Cookie</Filter>
+    </ClInclude>
+    <ClInclude Include="tyCookieSelect.h">
+      <Filter>Contents\UI\Map\Cookie</Filter>
+    </ClInclude>
+    <ClInclude Include="tyForestMapSelect.h">
+      <Filter>Contents\UI\Map\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="tyForestSelect.h">
+      <Filter>Contents\UI\Map\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateMapSelect.h">
+      <Filter>Contents\UI\Map\Pirate</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateSelect.h">
+      <Filter>Contents\UI\Map\Pirate</Filter>
+    </ClInclude>
+    <ClInclude Include="tyGameStartUI.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="tyWinLose.h">
+      <Filter>Contents\UI\WinLose</Filter>
+    </ClInclude>
+    <ClInclude Include="tyMonster2.h">
+      <Filter>Contents\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -542,10 +584,10 @@
       <Filter>Contents\UI</Filter>
     </ClCompile>
     <ClCompile Include="tyIceSelect.cpp">
-      <Filter>Contents\UI\Ice</Filter>
+      <Filter>Contents\UI\Map\Ice</Filter>
     </ClCompile>
     <ClCompile Include="tyIceMapSelect.cpp">
-      <Filter>Contents\UI\Ice</Filter>
+      <Filter>Contents\UI\Map\Ice</Filter>
     </ClCompile>
     <ClCompile Include="tyBazziImage.cpp">
       <Filter>Contents\UI</Filter>
@@ -582,6 +624,33 @@
     </ClCompile>
     <ClCompile Include="tyTimer.cpp">
       <Filter>Contents\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="tyCookieMapSelect.cpp">
+      <Filter>Contents\UI\Map\Cookie</Filter>
+    </ClCompile>
+    <ClCompile Include="tyCookieSelect.cpp">
+      <Filter>Contents\UI\Map\Cookie</Filter>
+    </ClCompile>
+    <ClCompile Include="tyForestMapSelect.cpp">
+      <Filter>Contents\UI\Map\Forest</Filter>
+    </ClCompile>
+    <ClCompile Include="tyForestSelect.cpp">
+      <Filter>Contents\UI\Map\Forest</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateMapSelect.cpp">
+      <Filter>Contents\UI\Map\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateSelect.cpp">
+      <Filter>Contents\UI\Map\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="tyGameStartUI.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="tyWinLose.cpp">
+      <Filter>Contents\UI\WinLose</Filter>
+    </ClCompile>
+    <ClCompile Include="tyMonster2.cpp">
+      <Filter>Contents\Monster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

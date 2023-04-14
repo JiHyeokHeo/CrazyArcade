@@ -24,6 +24,8 @@ namespace ty
 		virtual void Render(HDC hdc) override;
 		virtual void Release() override;
 
+
+		int GetPlayTime() { return mTime; }
 		void SetTimeType(TimeType type) { mType = type; }
 		void ResetIsTimeOn() { isTimeOn = false; }
 	private:

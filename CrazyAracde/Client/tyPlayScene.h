@@ -31,7 +31,8 @@ namespace ty
 		int monstercnt;
 		bool isLoad;
 		int PlayIndex[13][15];
-		class Timer* time[5];
+		class Timer* time2[5];
+		float mTime;
 		
 	};
 };
