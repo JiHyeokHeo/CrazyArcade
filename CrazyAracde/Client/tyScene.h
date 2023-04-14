@@ -21,6 +21,7 @@ namespace ty
 		
 		void AddGameObject(GameObject* obj, eLayerType layer);
 		void ChangeGameObjectState();
+		void ChangeMonsterState();
 		std::vector<GameObject*>& GetGameObjects(eLayerType layer);
 
 	private:

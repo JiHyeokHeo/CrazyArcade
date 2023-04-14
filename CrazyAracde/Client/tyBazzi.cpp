@@ -697,6 +697,7 @@ namespace ty
 		maxSpeed = 9.0f;
 		maxBomb = 6;
 		maxWaterCourse = 7;
+		mTime = 0;
 		mPlayerSpeed = 50;
 	}
 }

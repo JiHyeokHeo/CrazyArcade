@@ -47,5 +47,9 @@ namespace ty
 		int colcnt;
 		bool isStateChosen;
 		Transform* tr;
+		Vector2 ColRIdx;
+		Vector2 ColLIdx;
+		Vector2 ColUIdx;
+		Vector2 ColDIdx;
 	};
 }

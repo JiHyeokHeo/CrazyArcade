@@ -243,12 +243,12 @@ namespace ty
 	}
 	void Monster::left()
 	{
-	 if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 30.0f)
-	{
-		mState = eMonsterState::Right;
-		colcnt++;
-		animationCtr();
-	}
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 30.0f)
+		{
+			mState = eMonsterState::Right;
+			colcnt++;
+			animationCtr();
+		}
 		colcnt = 0;
 		mPos.x -= 60.0f * Time::DeltaTime();
 	}
@@ -258,6 +258,12 @@ namespace ty
 			&& SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2)
 		{
 			mState = eMonsterState::Down;
+			colcnt++;
+			animationCtr();
+		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 && mPos.x >= 895.0f)
+		{
+			mState = eMonsterState::Left;
 			colcnt++;
 			animationCtr();
 		}
@@ -279,6 +285,13 @@ namespace ty
 			colcnt++;
 			animationCtr();
 		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
+			&& mPos.y <= 65.0f)
+		{
+			mState = eMonsterState::Right;
+			colcnt++;
+			animationCtr();
+		}
 		else if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1 || mPos.y <= 60.0f)
 		{
 			mState = eMonsterState::Down;
@@ -291,12 +304,12 @@ namespace ty
 	}
 	void Monster::down()
 	{
-	 if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1 || mPos.y >= 840.0f)
-	{
-		mState = eMonsterState::Up;
-		colcnt++;
-		animationCtr();
-	}
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1 || mPos.y >= 840.0f)
+		{
+			mState = eMonsterState::Up;
+			colcnt++;
+			animationCtr();
+		}
 		colcnt = 0;
 		mPos.y += 60.0f * Time::DeltaTime();
 	}
@@ -307,7 +320,7 @@ namespace ty
 			int monstercnt = SceneManager::GetMonsterCnt();
 			monstercnt--;
 			SceneManager::SetMonsterCnt(monstercnt);
-			object::Destroy(this);
+			object::Pause(this);
 		}
 	}
 	void Monster::animationCtr()

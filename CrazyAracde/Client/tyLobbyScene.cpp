@@ -27,6 +27,7 @@ namespace ty
 	}
 	void LobbyScene::Initialize()
 	{
+		SetName(L"Lobby");
 		Scene::Initialize();
 		object::Instantiate<Lobby_BG>(eLayerType::BG);
 		//object::Instantiate<MapSelect>(eLayerType::UI);

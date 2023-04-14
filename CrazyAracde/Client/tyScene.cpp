@@ -107,6 +107,25 @@ namespace ty
 		}
 	}
 
+	void Scene::ChangeMonsterState()
+	{
+		for (Layer& layer : mLayers)
+		{
+			std::vector<GameObject*>& gameObjects
+				= layer.GetGameObject();
+
+			for (std::vector<GameObject*>::iterator iter = gameObjects.begin();
+				iter != gameObjects.end(); iter++)
+			{
+				if ((*iter)->GetState() == GameObject::eState::Pause)
+				{
+					(*iter)->SetState(GameObject::eState::Active);
+				}
+
+			}
+		}
+	}
+
 	std::vector<GameObject*>& Scene::GetGameObjects(eLayerType layer)
 	{
 		return mLayers[(UINT)layer].GetGameObject();

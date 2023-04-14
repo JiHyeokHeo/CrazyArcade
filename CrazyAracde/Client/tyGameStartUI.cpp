@@ -34,6 +34,10 @@ namespace ty
 	}
 	void GameStartUI::Update()
 	{
+		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
+		{
+			object::Destroy(this);
+		}
 		Transform* tr = GetComponent<Transform>();
 		Vector2 mPos = tr->GetPos();
 		

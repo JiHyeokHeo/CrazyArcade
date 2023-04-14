@@ -28,12 +28,12 @@ namespace ty
 		tr->SetScale(Vector2(1.1f, 1.1f));
 
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Up", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Right", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Left", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Down", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Die", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
-		mAnimator->Play(L"PirateDown", true);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate2\\Up", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate2\\Right", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate2\\Left", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate2\\Down", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate2\\Die", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
+		mAnimator->Play(L"Pirate2Down", true);
 
 		collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2::Zero);
@@ -46,10 +46,10 @@ namespace ty
 		tr = GetComponent<Transform>();
 		mPos = tr->GetPos();
 		Vector2 midmPos = mPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		Vector2 ColRIdx = TileBomb::SetColIndex(midmPos + Vector2(32.0f, 0.0f));
-		Vector2 ColLIdx = TileBomb::SetColIndex(midmPos + Vector2(-32.0f, 0.0f));
-		Vector2 ColUIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, -32.0f));
-		Vector2 ColDIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, +32.0f));
+		ColRIdx = TileBomb::SetColIndex(midmPos + Vector2(32.0f, 0.0f));
+		ColLIdx = TileBomb::SetColIndex(midmPos + Vector2(-32.0f, 0.0f));
+		ColUIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, -32.0f));
+		ColDIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, +32.0f));
 
 		mTime += Time::DeltaTime();
 		if (ColRIdx.x > 14)
@@ -218,7 +218,7 @@ namespace ty
 
 		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
-			mAnimator->Play(L"PirateDie", false);
+			mAnimator->Play(L"Pirate2Die", false);
 			mState = eMonster2State::Die;
 		}
 		mTime = 0;
@@ -243,21 +243,60 @@ namespace ty
 	}
 	void Monster2::left()
 	{
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 30.0f)
+		{
+			mState = eMonster2State::Right;
+			colcnt++;
+			animationCtr();
+		}
 		colcnt = 0;
 		mPos.x -= 60.0f * Time::DeltaTime();
 	}
 	void Monster2::right()
 	{
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2
+			&& SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2)
+		{
+			mState = eMonster2State::Down;
+			colcnt++;
+			animationCtr();
+		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1 || mPos.x >= 900.0f)
+		{
+			mState = eMonster2State::Left;
+			colcnt++;
+			animationCtr();
+		}
 		colcnt = 0;
 		mPos.x += 60.0f * Time::DeltaTime();
 	}
 	void Monster2::up()
 	{
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
+			&& SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2)
+		{
+			mState = eMonster2State::Right;
+			colcnt++;
+			animationCtr();
+		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1 || mPos.y <= 60.0f)
+		{
+			mState = eMonster2State::Down;
+			colcnt++;
+			animationCtr();
+		}
+
 		colcnt = 0;
 		mPos.y -= 60.0f * Time::DeltaTime();
 	}
 	void Monster2::down()
 	{
+		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1 || mPos.y >= 840.0f)
+		{
+			mState = eMonster2State::Up;
+			colcnt++;
+			animationCtr();
+		}
 		colcnt = 0;
 		mPos.y += 60.0f * Time::DeltaTime();
 	}
@@ -278,16 +317,16 @@ namespace ty
 		case ty::Monster2::eMonster2State::Idle:
 			break;
 		case ty::Monster2::eMonster2State::Left:
-			mAnimator->Play(L"PirateLeft", true);
+			mAnimator->Play(L"Pirate2Left", true);
 			break;
 		case ty::Monster2::eMonster2State::Right:
-			mAnimator->Play(L"PirateRight", true);
+			mAnimator->Play(L"Pirate2Right", true);
 			break;
 		case ty::Monster2::eMonster2State::Up:
-			mAnimator->Play(L"PirateUp", true);
+			mAnimator->Play(L"Pirate2Up", true);
 			break;
 		case ty::Monster2::eMonster2State::Down:
-			mAnimator->Play(L"PirateDown", true);
+			mAnimator->Play(L"Pirate2Down", true);
 			break;
 		default:
 			break;

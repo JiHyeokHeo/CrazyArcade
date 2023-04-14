@@ -81,11 +81,11 @@ namespace ty
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
-		//object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
-		//object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
-		//object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		//object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
+		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
+		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
+		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
 
 	}
 	void PlayScene::Update()
@@ -134,7 +134,7 @@ namespace ty
 	{
 		// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
-		SceneManager::SetMonsterCnt(1);
+		SceneManager::SetMonsterCnt(5);
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
 		
@@ -148,6 +148,12 @@ namespace ty
 		if (isLoad == true)
 		{
 			Scene::ChangeGameObjectState();
+			Scene::ChangeMonsterState();
+			monster[0]->GetComponent<Transform>()->SetPos(Vector2(450.0f, 120.0f));
+			monster[1]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 420.0f));
+			monster[2]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 420.0f));
+			monster[3]->GetComponent<Transform>()->SetPos(Vector2(690.0f, 420.0f));
+			monster[4]->GetComponent<Transform>()->SetPos(Vector2(750.0f, 420.0f));
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)
@@ -156,7 +162,7 @@ namespace ty
 				}
 			}
 		}
-		
+
 		if (isLoad == false)
 		{
 			TilePalatte::Load(L"001");
