@@ -131,6 +131,18 @@
     <Filter Include="Contents\UI\WinLose">
       <UniqueIdentifier>{f413f9f3-2f7c-4944-bcee-c255467b3767}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Scene\PlayStage\Forest">
+      <UniqueIdentifier>{b5204949-60d5-419a-9124-5a4a493d123c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\PlayStage\Ice">
+      <UniqueIdentifier>{21eb86a7-db80-4dd2-89e4-6946da2ccdd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\PlayStage\Pirate">
+      <UniqueIdentifier>{daa638df-f75e-410b-b4da-59b86bb80144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\PlayStage\Toy">
+      <UniqueIdentifier>{dbb9f714-5916-467e-b766-5e2d13b6cd39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -243,12 +255,6 @@
     </ClInclude>
     <ClInclude Include="tyTitleUI.h">
       <Filter>Contents\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="tyPlayScene.h">
-      <Filter>Contents\Scene\PlayStage</Filter>
-    </ClInclude>
-    <ClInclude Include="tyStage2.h">
-      <Filter>Contents\Scene\PlayStage</Filter>
     </ClInclude>
     <ClInclude Include="tyBlock.h">
       <Filter>Contents\Block</Filter>
@@ -367,9 +373,6 @@
     <ClInclude Include="tyBaseBossBomb.h">
       <Filter>Contents\Bomb</Filter>
     </ClInclude>
-    <ClInclude Include="tyPlaySceneStage2.h">
-      <Filter>Contents\Scene\PlayStage</Filter>
-    </ClInclude>
     <ClInclude Include="tyTimer.h">
       <Filter>Contents\Timer</Filter>
     </ClInclude>
@@ -400,8 +403,53 @@
     <ClInclude Include="tyMonster2.h">
       <Filter>Contents\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="tyForestStage2.h">
+      <Filter>Contents\Scene\PlayStage\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="tyForestStage1.h">
+      <Filter>Contents\Scene\PlayStage\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPlayScene.h">
+      <Filter>Contents\Scene\PlayStage\Ice</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPlaySceneStage2.h">
+      <Filter>Contents\Scene\PlayStage\Ice</Filter>
+    </ClInclude>
     <ClInclude Include="tyPlaySceneStage3.h">
-      <Filter>Contents\Scene\PlayStage</Filter>
+      <Filter>Contents\Scene\PlayStage\Ice</Filter>
+    </ClInclude>
+    <ClInclude Include="tyForestStage3.h">
+      <Filter>Contents\Scene\PlayStage\Forest</Filter>
+    </ClInclude>
+    <ClInclude Include="tyForestTile.h">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateNormalTile.h">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateTile.h">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClInclude>
+    <ClInclude Include="tyToyTile.h">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateStage1.h">
+      <Filter>Contents\Scene\PlayStage\Pirate</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateStage2.h">
+      <Filter>Contents\Scene\PlayStage\Pirate</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateStage3.h">
+      <Filter>Contents\Scene\PlayStage\Pirate</Filter>
+    </ClInclude>
+    <ClInclude Include="tyToyStage1.h">
+      <Filter>Contents\Scene\PlayStage\Toy</Filter>
+    </ClInclude>
+    <ClInclude Include="tyToyStage2.h">
+      <Filter>Contents\Scene\PlayStage\Toy</Filter>
+    </ClInclude>
+    <ClInclude Include="tyToyStage3.h">
+      <Filter>Contents\Scene\PlayStage\Toy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -504,12 +552,6 @@
     </ClCompile>
     <ClCompile Include="tyTitleUI.cpp">
       <Filter>Contents\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="tyPlayScene.cpp">
-      <Filter>Contents\Scene\PlayStage</Filter>
-    </ClCompile>
-    <ClCompile Include="tyStage2.cpp">
-      <Filter>Contents\Scene\PlayStage</Filter>
     </ClCompile>
     <ClCompile Include="tyBlock.cpp">
       <Filter>Contents\Block</Filter>
@@ -622,9 +664,6 @@
     <ClCompile Include="tyBaseBossBomb.cpp">
       <Filter>Contents\Bomb</Filter>
     </ClCompile>
-    <ClCompile Include="tyPlaySceneStage2.cpp">
-      <Filter>Contents\Scene\PlayStage</Filter>
-    </ClCompile>
     <ClCompile Include="tyTimer.cpp">
       <Filter>Contents\Timer</Filter>
     </ClCompile>
@@ -655,8 +694,53 @@
     <ClCompile Include="tyMonster2.cpp">
       <Filter>Contents\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="tyForestStage2.cpp">
+      <Filter>Contents\Scene\PlayStage\Forest</Filter>
+    </ClCompile>
+    <ClCompile Include="tyForestStage1.cpp">
+      <Filter>Contents\Scene\PlayStage\Forest</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPlayScene.cpp">
+      <Filter>Contents\Scene\PlayStage\Ice</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPlaySceneStage2.cpp">
+      <Filter>Contents\Scene\PlayStage\Ice</Filter>
+    </ClCompile>
     <ClCompile Include="tyPlaySceneStage3.cpp">
-      <Filter>Contents\Scene\PlayStage</Filter>
+      <Filter>Contents\Scene\PlayStage\Ice</Filter>
+    </ClCompile>
+    <ClCompile Include="tyForestStage3.cpp">
+      <Filter>Contents\Scene\PlayStage\Forest</Filter>
+    </ClCompile>
+    <ClCompile Include="tyForestTile.cpp">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateNormalTile.cpp">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateTile.cpp">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClCompile>
+    <ClCompile Include="tyToyTile.cpp">
+      <Filter>Contents\Tile\TileImage</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateStage1.cpp">
+      <Filter>Contents\Scene\PlayStage\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateStage2.cpp">
+      <Filter>Contents\Scene\PlayStage\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateStage3.cpp">
+      <Filter>Contents\Scene\PlayStage\Pirate</Filter>
+    </ClCompile>
+    <ClCompile Include="tyToyStage1.cpp">
+      <Filter>Contents\Scene\PlayStage\Toy</Filter>
+    </ClCompile>
+    <ClCompile Include="tyToyStage2.cpp">
+      <Filter>Contents\Scene\PlayStage\Toy</Filter>
+    </ClCompile>
+    <ClCompile Include="tyToyStage3.cpp">
+      <Filter>Contents\Scene\PlayStage\Toy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

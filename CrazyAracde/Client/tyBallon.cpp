@@ -46,6 +46,7 @@ namespace ty
 	}
 	void Ballon::Update()
 	{
+		InvTime += Time::DeltaTime();
 		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
 		{
 			object::Destroy(this);
@@ -68,7 +69,7 @@ namespace ty
 			object::Destroy(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"BombEffect" )
+		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >=1.5f )
 		{
 			object::Destroy(this);
 		}

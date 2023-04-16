@@ -22,6 +22,7 @@ namespace ty
 	private:
 		Animator* mAnimator;
 		int isHit;
+		float InvTime;
 	};
 
 }

@@ -8,7 +8,15 @@ enum class eSceneType
 	Play, // 플레이
 	PlayStage2, //
 	PlayStage3,
-	Stage2, //
+	ForestStage1,
+	ForestStage2,
+	ForestStage3,
+	ToyStage1,
+	ToyStage2,
+	ToyStage3,
+	PirateStage1,
+	PirateStage2,
+	PirateStage3,
 	Reward, // 결과창
 	Tool,
 	End,

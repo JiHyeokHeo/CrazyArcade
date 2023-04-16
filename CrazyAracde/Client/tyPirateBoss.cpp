@@ -77,38 +77,42 @@ namespace ty
 
 
 		mTime += Time::DeltaTime();
-		switch (mState)
+		TimeSpend += Time::DeltaTime();
+		if (TimeSpend >= 1.5f)
 		{
-		case ty::PirateBoss::ePirateMonsterState::Idle:
-			idle();
-			break;
-		case ty::PirateBoss::ePirateMonsterState::Attack:
-			attack();
-			break;
-		case ty::PirateBoss::ePirateMonsterState::Left:
-			left();
-			break;
-		case ty::PirateBoss::ePirateMonsterState::Right:
-			right();
-			break;
-		case ty::PirateBoss::ePirateMonsterState::Up:
-			up();
-			break;
-		case ty::PirateBoss::ePirateMonsterState::Down:
-			down();
-			break;
-		case ty::PirateBoss::ePirateMonsterState::Hit:
-			hit();
-			break;
-		case ty::PirateBoss::ePirateMonsterState::Bubble:
-			bubble();
-			break;
-		case ty::PirateBoss::ePirateMonsterState::Die:
-			die();
-			break;
+			switch (mState)
+			{
+			case ty::PirateBoss::ePirateMonsterState::Idle:
+				idle();
+				break;
+			case ty::PirateBoss::ePirateMonsterState::Attack:
+				attack();
+				break;
+			case ty::PirateBoss::ePirateMonsterState::Left:
+				left();
+				break;
+			case ty::PirateBoss::ePirateMonsterState::Right:
+				right();
+				break;
+			case ty::PirateBoss::ePirateMonsterState::Up:
+				up();
+				break;
+			case ty::PirateBoss::ePirateMonsterState::Down:
+				down();
+				break;
+			case ty::PirateBoss::ePirateMonsterState::Hit:
+				hit();
+				break;
+			case ty::PirateBoss::ePirateMonsterState::Bubble:
+				bubble();
+				break;
+			case ty::PirateBoss::ePirateMonsterState::Die:
+				die();
+				break;
 
-		default:
-			break;
+			default:
+				break;
+			}
 		}
 
 		tr->SetPos(mPos);

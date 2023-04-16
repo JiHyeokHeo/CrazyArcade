@@ -1,4 +1,4 @@
-#include "tyPlayScene.h"
+#include "tyForestStage3.h"
 #include "tyBazzi.h" // 전방 선언을 할 경우 cpp 파일에 헤더를 추가해야한다.
 #include "tyInput.h"
 #include "tySceneManager.h"
@@ -29,20 +29,20 @@
 #include "tyWinLose.h"
 #include "tyTime.h"
 #include "tyMonster2.h"
-// ------------------------------------------------------------------------------------------ 해적맵
+#include "tyForestTile.h"
+
 namespace ty
 {
-	//Bazzi* PlayScene::mBazzi;
-	PlayScene::PlayScene()
+	ForestStage3::ForestStage3()
 	{
 	}
-	PlayScene::~PlayScene()
+	ForestStage3::~ForestStage3()
 	{
 	}
-	void PlayScene::Initialize()
+	void ForestStage3::Initialize()
 	{
 		Scene::Initialize();
-		
+
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
@@ -69,7 +69,7 @@ namespace ty
 
 		// ------------------ 배경
 		object::Instantiate<Play_BG>(eLayerType::BG);
-		object::Instantiate<IceTile>(eLayerType::BG);
+		object::Instantiate<ForestTile>(eLayerType::BG);
 
 		// ------------------ 충돌
 		object::Instantiate<Ground>(Vector2(30.0f, -720.0f), eLayerType::Ground);
@@ -86,9 +86,8 @@ namespace ty
 		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
 		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
 		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
-
 	}
-	void PlayScene::Update()
+	void ForestStage3::Update()
 	{
 		if (SceneManager::GetMonsterCnt() == 0)
 		{
@@ -96,7 +95,7 @@ namespace ty
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
-				SceneManager::LoadScene(eSceneType::PlayStage2);
+				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}
 		}
@@ -116,28 +115,26 @@ namespace ty
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
 		{
+			Scene::ChangeMonsterState();
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-		
 		Scene::Update();
 	}
-	void PlayScene::Render(HDC hdc)
+	void ForestStage3::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
 	}
-	void PlayScene::Release()
+	void ForestStage3::Release()
 	{
-		Scene::Release();
 	}
-	void PlayScene::OnEnter()
-	{
-		// 캐릭터 설정 + 시간 조절
+	void ForestStage3::OnEnter()
+	{		// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
 		SceneManager::SetMonsterCnt(5);
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
-		
+
 		for (int i = 0; i < 5; i++)
 		{
 			time[i]->ResetIsTimeOn();
@@ -169,7 +166,7 @@ namespace ty
 
 		if (isLoad == false)
 		{
-			TilePalatte::Load(L"001");
+			TilePalatte::Load(L"103");
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)
@@ -200,11 +197,9 @@ namespace ty
 		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Tile, true);
 		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Bomb, true);
 		//CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
-		
 	}
-	void PlayScene::OnExit()
+	void ForestStage3::OnExit()
 	{
-		
 		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)
@@ -214,7 +209,7 @@ namespace ty
 				SceneManager::GetBazzi()->GetMapIndex()[j][i] = 0;
 			}
 		}
-		
+
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();

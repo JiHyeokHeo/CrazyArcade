@@ -20,7 +20,6 @@
 #include "tyResources.h"
 #include "tyIceTile.h"
 #include "tyTile.h"
-#include "tyStage2.h"
 #include "tyDevil.h"
 #include "tyBird.h"
 #include "tyNeedle.h"
@@ -95,17 +94,19 @@ namespace ty
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
-				SceneManager::LoadScene(eSceneType::PlayStage2);
+				Scene::ChangeMonsterState();
+				SceneManager::LoadScene(eSceneType::PlayStage3);
 				mTime = 0;
 			}
 		}
 
-		if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
+		else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
 		{
 			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
+				Scene::ChangeMonsterState();
 				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}
@@ -167,19 +168,25 @@ namespace ty
 			isLoad = true;
 		}
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
+		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::BombEffect, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::BombEffect, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Monster, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Tile, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Bomb, true);
-		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
 		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Item, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Tile, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
-		CollisionManager::SetLayer(eLayerType::Monster, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::BombEffect, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Player, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Tile, true);
+		CollisionManager::SetLayer(eLayerType::Boss, eLayerType::Bomb, true);
 		//CollisionManager::SetLayer(eLayerType::BombEffect, eLayerType::Tile, true);
 	}
 	void PlaySceneStage2::OnExit()

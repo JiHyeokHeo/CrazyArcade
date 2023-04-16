@@ -5,12 +5,13 @@
 
 namespace ty
 {
+	class AlphaBlender;
 	class Bazzi; // 이것이 전방선언
-	class Stage2 : public Scene
+	class PirateStage3 : public Scene
 	{
 	public:
-		Stage2();
-		~Stage2();
+		PirateStage3();
+		~PirateStage3();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -21,10 +22,19 @@ namespace ty
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
 
+		/*static Bazzi* GetBazzi() { return mBazzi; }*/
 	private:
 		Bazzi* mBazzi;
 		Play_BG* mPlayBG;
+		AlphaBlender* mBlender;
+		Image* mImage;
+		int monstercnt;
 		bool isLoad;
-	};
-}; 
+		int PlayIndex[13][15];
+		class Timer* time[5];
+		float mTime;
+		class Monster* monster[10];
+		class Monster2* monster2[10];
 
+	};
+};

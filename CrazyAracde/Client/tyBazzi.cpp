@@ -25,8 +25,8 @@ namespace ty
 	Bazzi::Bazzi()
 		: mHP(1) // 체력 
 		, mItemState(eItemType::None)
-		, mBomb(3) // 폭탄
-		, mWaterCourse(3) // 물줄기
+		, mBomb(1) // 폭탄
+		, mWaterCourse(2) // 물줄기
 		, mSpeed(5.0f) // 속도
 		, maxSpeed(9.0f)
 		, maxBomb(6)
@@ -189,7 +189,7 @@ namespace ty
 	}
 	void Bazzi::OnCollisionEnter(Collider* other)
 	{
-		if (isColl == false && other->GetOwner()->GetName() == L"Monster"  && mInvincibility <= 0.0f )
+		if (isColl == false && other->GetOwner()->GetName() == L"Monster"  && mInvincibility <= 0.0f && other->GetOwner()->GetState() == eState::Active )
 		{
 			mAnimator->Play(L"Bazzidie", false);
 			mState = eBazziState::Death;
@@ -470,7 +470,7 @@ namespace ty
 	}
 	void Bazzi::bubblemove()
 	{
-		
+		mInvincibility = 2;
 		mPos = tr->GetPos();
 
 		if (mPos.x <= 30.0f)
@@ -541,7 +541,7 @@ namespace ty
 	}
 	void Bazzi::nomove()
 	{
-		
+		mInvincibility = 3.0f;
 	}
 	
 	void Bazzi::trapCompleteEvent(/*const Cuphead* this*/) // 애니메이션 동작이 끝나면 실행되도록 할 수 있다.

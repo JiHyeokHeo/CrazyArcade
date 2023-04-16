@@ -41,7 +41,7 @@ namespace ty
 
 		mBazzi = SceneManager::GetBazzi();
 
-		mState = eBombState::Idle;
+		/*mState = eBombState::Idle;*/
 		GameObject::Initialize();
 	}
 
@@ -212,76 +212,83 @@ namespace ty
 			break;
 		}
 
-		//mTime += Time::DeltaTime();
-		//Vector2 ColPos = collider->GetPos();
-		//Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		//Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
-		//if (mTime >= 3.0f)
-		//{
-		//	if (isShot == false)
-		//	{
-		//		isShot = true;
-		//		Transform* tr = GetComponent<Transform>();
-		//		Vector2 realPos = tr->GetPos();
-		//		Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
-		//		Vector2 ColPos = collider->GetPos();
-		//		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		//		Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
-		//		Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
+		mTime += Time::DeltaTime();
+	
+		if (mTime >= 4.0f)
+		{
+			if (isShot == false)
+			{
+				isShot = true;
+				Transform* tr = GetComponent<Transform>();
+				Vector2 realPos = tr->GetPos();
+				Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+				Vector2 ColPos = collider->GetPos();
+				Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+				Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
+				Bazzi::GetMapIndex()[mPos.y][mPos.x] = 1;
 
-		//		Vector2 BombPos = tr->GetPos();
-		//		Vector2 BombIdx = TileBomb::SetIndex(BombPos);
+				Vector2 BombPos = tr->GetPos();
+				Vector2 BombIdx = TileBomb::SetIndex(BombPos);
 
-		//		int WaterStatus = SceneManager::GetBazzi()->GetmWaterCourse();
-		//		if (BombIdx.x < 15 || BombIdx.y < 13)
-		//		{
-		//			for (int i = 1; i < WaterStatus; i++)
-		//			{
-		//				if (BombIdx.x + i >= 15)
-		//					break;
-		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
-		//				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] >= 2)
-		//					break;
-		//			}
-		//			for (int i = 1; i < WaterStatus; i++)
-		//			{
-		//				if (BombIdx.y + i >= 13)
-		//					break;
-		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
-		//				if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] >= 2)
-		//					break;
-		//			}
-		//			for (int i = 1; i < WaterStatus; i++)
-		//			{
-		//				if (BombIdx.x - i <= -1)
-		//					break;
-		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
-		//				if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] >= 2)
-		//					break;
-		//			}
-		//			for (int i = 1; i < WaterStatus; i++)
-		//			{
-		//				if (BombIdx.y - i <= -1)
-		//					break;
-		//				mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
-		//				if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] >= 2)
-		//					break;
-		//			}
-		//			mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));
-		//		}
-		//		for (int i = 0; i < mBombEffect.size(); i++)
-		//		{
-		//			mBombEffect[i]->SetBomb(this);
-		//		}
-		//	}
+				int WaterStatus = SceneManager::GetBazzi()->GetmWaterCourse();
+				if (BombIdx.x < 15 || BombIdx.y < 13)
+				{
+					for (int i = 1; i < WaterStatus; i++)
+					{
+						if (BombIdx.x + i >= 15)
+							break;
+						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 우측
+						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x + i] >= 2)
+							break;
+					}
+					for (int i = 1; i < WaterStatus; i++)
+					{
+						if (BombIdx.y + i >= 13)
+							break;
+						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos + Vector2(0.0f, float(i * 60.0f)), eLayerType::BombEffect)); // 하단
+						if (Bazzi::GetMapIndex()[BombIdx.y + i][BombIdx.x] >= 2)
+							break;
+					}
+					for (int i = 1; i < WaterStatus; i++)
+					{
+						if (BombIdx.x - i <= -1)
+							break;
+						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2((float)(i * 60.0f), 0.0f), eLayerType::BombEffect)); // 좌측
+						if (Bazzi::GetMapIndex()[BombIdx.y][BombIdx.x - i] >= 2)
+							break;
+					}
+					for (int i = 1; i < WaterStatus; i++)
+					{
+						if (BombIdx.y - i <= -1)
+							break;
+						mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos - Vector2(0.0f, (float)(i * 60.0f)), eLayerType::BombEffect)); // 상단
+						if (Bazzi::GetMapIndex()[BombIdx.y - i][BombIdx.x] >= 2)
+							break;
+					}
+					mBombEffect.push_back(object::Instantiate<BombEffect>(BombPos, eLayerType::BombEffect));
+				}
+				for (int i = 0; i < mBombEffect.size(); i++)
+				{
+					mBombEffect[i]->SetBomb(this);
+				}
 
-		//	mTime = 0;
-		//	Transform* tr = GetComponent<Transform>();
-		//	Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
-		//	Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
-		//	int Click = SceneManager::GetBazzi()->GetmClick()--;
-		//	isBomb = true;
-		//}
+				if (isBossCol == true)
+				{
+					for (int i = 0; i < mBombEffect.size(); i++)
+					{
+						mBombEffect[i]->SetTime(3.5f);
+					}
+				}
+
+			}
+
+			mTime = 0;
+			Transform* tr = GetComponent<Transform>();
+			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
+			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
+			int Click = SceneManager::GetBazzi()->GetmClick()--;
+			isBomb = true;
+		}
 
 
 		GameObject::Update();
@@ -303,12 +310,12 @@ namespace ty
 			{
 				mBombEffect[i]->SetTime(3.5f);
 			}
-			mTime = 3.5f;
+			mTime = 4.5f;
 		}
 
 		if (other->GetOwner()->GetName() == L"Boss")
 		{
-			mTime = 3.5f;
+			mTime = 4.5f;
 			isBossCol = true;
 		}
 

@@ -176,7 +176,7 @@ namespace ty
 		}
 		
 		tr->SetPos(mPos);
-		if (mTime >= 2.0f)
+		if (mTime >= 1.0f)
 		{
 			mState = eMonsterState::Idle();
 			mTime = 0;

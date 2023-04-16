@@ -20,7 +20,6 @@
 #include "tyResources.h"
 #include "tyIceTile.h"
 #include "tyTile.h"
-#include "tyStage2.h"
 #include "tyDevil.h"
 #include "tyBird.h"
 #include "tyNeedle.h"
@@ -99,7 +98,8 @@ namespace ty
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
-				SceneManager::LoadScene(eSceneType::PlayStage2);
+				Scene::ChangeMonsterState();
+				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}
 		}
@@ -110,6 +110,7 @@ namespace ty
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
+				Scene::ChangeMonsterState();
 				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}

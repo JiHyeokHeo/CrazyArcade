@@ -50,14 +50,14 @@ namespace ty
 		{
 			object::Instantiate<CookieSelect>(eLayerType::UI);
 			object::Instantiate<CookieMapSelect>(eLayerType::MapSelectUI);
-			mSceneType = eSceneType::Play;
+			mSceneType = eSceneType::ToyStage1;
 		}
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 358 && temp.y <= 378 && temp.x >= 525 && temp.x <= 906)
 		{
 			object::Instantiate<ForestSelect>(eLayerType::UI);
 			object::Instantiate<ForestMapSelect>(eLayerType::MapSelectUI);
-			mSceneType = eSceneType::Play;
+			mSceneType = eSceneType::ForestStage1;
 		}
 
 
@@ -72,15 +72,9 @@ namespace ty
 		{
 			object::Instantiate<PirateSelect>(eLayerType::UI);
 			object::Instantiate<PirateMapSelect>(eLayerType::MapSelectUI);
-			mSceneType = eSceneType::Play;
+			mSceneType = eSceneType::PirateStage1;
 		}
 
-		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 458 && temp.y <= 478 && temp.x >= 525 && temp.x <= 906)
-		{
-			object::Instantiate<PirateSelect>(eLayerType::UI);
-			object::Instantiate<PirateMapSelect>(eLayerType::MapSelectUI);
-			mSceneType = eSceneType::Play;
-		}
 
 		if (Input::GetKey(eKeyCode::Q))
 		{

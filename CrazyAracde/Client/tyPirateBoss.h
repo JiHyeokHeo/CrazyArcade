@@ -59,6 +59,7 @@ namespace ty
 		Vector2 ColDIdx;
 		Vector2 ColRIdx;
 		Vector2 midmPos;
+		float TimeSpend;
 	};
 }
 

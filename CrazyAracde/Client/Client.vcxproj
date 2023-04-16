@@ -141,6 +141,9 @@
     <ClInclude Include="tydir.h" />
     <ClInclude Include="tyForestMapSelect.h" />
     <ClInclude Include="tyForestSelect.h" />
+    <ClInclude Include="tyForestStage2.h" />
+    <ClInclude Include="tyForestStage3.h" />
+    <ClInclude Include="tyForestTile.h" />
     <ClInclude Include="tyGameStartUI.h" />
     <ClInclude Include="tyIceMapSelect.h" />
     <ClInclude Include="tyIceSelect.h" />
@@ -152,7 +155,12 @@
     <ClInclude Include="tyNeedle.h" />
     <ClInclude Include="tyNeedleUI.h" />
     <ClInclude Include="tyPirateMapSelect.h" />
+    <ClInclude Include="tyPirateNormalTile.h" />
     <ClInclude Include="tyPirateSelect.h" />
+    <ClInclude Include="tyPirateStage1.h" />
+    <ClInclude Include="tyPirateStage2.h" />
+    <ClInclude Include="tyPirateStage3.h" />
+    <ClInclude Include="tyPirateTile.h" />
     <ClInclude Include="tyPlayerNum.h" />
     <ClInclude Include="tyPlaySceneStage2.h" />
     <ClInclude Include="tyPlaySceneStage3.h" />
@@ -208,7 +216,7 @@
     <ClInclude Include="tyRigidBody.h" />
     <ClInclude Include="tyScene.h" />
     <ClInclude Include="tySceneManager.h" />
-    <ClInclude Include="tyStage2.h" />
+    <ClInclude Include="tyForestStage1.h" />
     <ClInclude Include="tyTile.h" />
     <ClInclude Include="tyTilePalatte.h" />
     <ClInclude Include="tyTime.h" />
@@ -216,6 +224,10 @@
     <ClInclude Include="tyLogin_BG.h" />
     <ClInclude Include="tyTimer.h" />
     <ClInclude Include="tyToolScene.h" />
+    <ClInclude Include="tyToyStage1.h" />
+    <ClInclude Include="tyToyStage2.h" />
+    <ClInclude Include="tyToyStage3.h" />
+    <ClInclude Include="tyToyTile.h" />
     <ClInclude Include="tyTransform.h" />
     <ClInclude Include="tyTitleUI.h" />
     <ClInclude Include="tyWinLose.h" />
@@ -238,6 +250,9 @@
     <ClCompile Include="tyDevil.cpp" />
     <ClCompile Include="tyForestMapSelect.cpp" />
     <ClCompile Include="tyForestSelect.cpp" />
+    <ClCompile Include="tyForestStage2.cpp" />
+    <ClCompile Include="tyForestStage3.cpp" />
+    <ClCompile Include="tyForestTile.cpp" />
     <ClCompile Include="tyGameStartUI.cpp" />
     <ClCompile Include="tyGround.cpp" />
     <ClCompile Include="tyIceMapSelect.cpp" />
@@ -250,7 +265,12 @@
     <ClCompile Include="tyNeedle.cpp" />
     <ClCompile Include="tyNeedleUI.cpp" />
     <ClCompile Include="tyPirateMapSelect.cpp" />
+    <ClCompile Include="tyPirateNormalTile.cpp" />
     <ClCompile Include="tyPirateSelect.cpp" />
+    <ClCompile Include="tyPirateStage1.cpp" />
+    <ClCompile Include="tyPirateStage2.cpp" />
+    <ClCompile Include="tyPirateStage3.cpp" />
+    <ClCompile Include="tyPirateTile.cpp" />
     <ClCompile Include="tyPlayerNum.cpp" />
     <ClCompile Include="tyPlaySceneStage2.cpp" />
     <ClCompile Include="tyPlaySceneStage3.cpp" />
@@ -289,7 +309,7 @@
     <ClCompile Include="tyShieldEffect.cpp" />
     <ClCompile Include="tyShiledUI.cpp" />
     <ClCompile Include="tySkate.cpp" />
-    <ClCompile Include="tyStage2.cpp" />
+    <ClCompile Include="tyForestStage1.cpp" />
     <ClCompile Include="tySteam.cpp" />
     <ClCompile Include="tyTile.cpp" />
     <ClCompile Include="tyTilePalatte.cpp" />
@@ -298,6 +318,10 @@
     <ClCompile Include="tyLogin_BG.cpp" />
     <ClCompile Include="tyTimer.cpp" />
     <ClCompile Include="tyToolScene.cpp" />
+    <ClCompile Include="tyToyStage1.cpp" />
+    <ClCompile Include="tyToyStage2.cpp" />
+    <ClCompile Include="tyToyStage3.cpp" />
+    <ClCompile Include="tyToyTile.cpp" />
     <ClCompile Include="tyTransform.cpp" />
     <ClCompile Include="tyTitleUI.cpp" />
     <ClCompile Include="tyWinLose.cpp" />

@@ -103,11 +103,7 @@ namespace ty
 			tr = GetComponent<Transform>();
 			Vector2 mPos = TileBomb::SetIndex(tr->GetPos());
 
-			while (mTime < 1.6f)
-			{
-				checkTime();
-			}
-			if (other->GetOwner()->GetName() == L"BombEffect" && mIndex >= 24 && mTime > 1.5f)
+			if (other->GetOwner()->GetName() == L"BombEffect" && mIndex >= 24 )
 			{
 				if (rand_num < 0.15f)
 				{
@@ -130,7 +126,7 @@ namespace ty
 				object::Instantiate<Steam>(tr->GetPos(), eLayerType::Effect);
 				object::Pause(this);
 			}
-			else if(other->GetOwner()->GetName() == L"BossBombEffect" && mIndex >= 24 && mTime > 1.5f)
+			else if(other->GetOwner()->GetName() == L"BossBombEffect" && mIndex >= 24 )
 			{
 				if (rand_num < 0.15f)
 				{

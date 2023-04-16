@@ -56,6 +56,7 @@ namespace ty
 		bool GetIsShieldOn() { return isShieldOn; }
 		eItemType GetItemState() { return mItemState; }
 		void SetItemState(eItemType type) { mItemState = type; }
+		void SeteBazziState(eBazziState type) { mState = type; }
 	private:
 		void move();
 		void shoot();
