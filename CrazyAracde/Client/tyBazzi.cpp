@@ -191,6 +191,7 @@ namespace ty
 	{
 		if (isColl == false && other->GetOwner()->GetName() == L"Monster"  && mInvincibility <= 0.0f && other->GetOwner()->GetState() == eState::Active )
 		{
+			mInvincibility = 3.0f;
 			mAnimator->Play(L"Bazzidie", false);
 			mState = eBazziState::Death;
 			isColl = true;
@@ -557,8 +558,7 @@ namespace ty
 	}
 	void Bazzi::liveCompleteEvent()
 	{
-		mHP++;
-		
+		mHP = 1;
 		mState = eBazziState::Move;
 		mAnimator->Play(L"BazzidownIdle", false);
 	}
@@ -711,5 +711,7 @@ namespace ty
 		maxWaterCourse = 7;
 		mTime = 0;
 		mPlayerSpeed = 50;
+		mItemCnt = 0;
+		mItemState = eItemType::None;
 	}
 }

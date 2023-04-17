@@ -28,6 +28,7 @@ namespace ty
 		static void Save();
 		static void Load(const wchar_t* num);
 		static void Clear();
+		static void TargetClear(Vector2 pos);
 		static Vector2 GetTilePos(Vector2 mousePos);
 		static void SetIndex(UINT index) { mIndex = index; }
 		static UINT GetIndex() { return mIndex; }

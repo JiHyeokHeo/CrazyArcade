@@ -117,7 +117,7 @@ namespace ty
 			for (std::vector<GameObject*>::iterator iter = gameObjects.begin();
 				iter != gameObjects.end(); iter++)
 			{
-				if ((*iter)->GetState() == GameObject::eState::Pause && (*iter)->GetName()==L"Monster")
+				if ((*iter)->GetState() == GameObject::eState::Pause)
 				{
 					(*iter)->SetState(GameObject::eState::Active);
 				}

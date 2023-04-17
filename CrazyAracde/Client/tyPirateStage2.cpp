@@ -200,7 +200,6 @@ namespace ty
 	}
 	void PirateStage2::OnExit()
 	{
-		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)
 		{

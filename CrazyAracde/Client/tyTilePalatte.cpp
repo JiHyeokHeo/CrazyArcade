@@ -148,6 +148,45 @@ namespace ty
 
 	void TilePalatte::Clear()
 	{
+		for (int i = 0; i < 13; i++)
+		{
+			for (int j = 0; j < 15; j++)
+			{
+				SceneManager::GetBazzi()->GetMapIndex()[i][j] = 0;
+			}
+		}
 
+		std::unordered_map<UINT64, Tile*>::iterator iter = mTiles.begin();
+		for (; iter != mTiles.end(); iter++)
+		{
+			object::Destroy(iter->second);
+		} 
+		mTiles.clear();
+	}
+
+	void TilePalatte::TargetClear(Vector2 pos)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			for (int j = 0; j < 15; j++)
+			{
+				SceneManager::GetBazzi()->GetMapIndex()[i][j] = 0;
+			}
+		}
+
+		TileID id;
+		id.x = (UINT32)pos.x; // 좌표값이 즉 id가 된다
+		id.y = (UINT32)pos.y;
+
+		std::unordered_map<UINT64, Tile*>::iterator iter = mTiles.begin();
+		
+		
+		for (; iter != mTiles.end(); iter++)
+		{
+			if (id.id == iter->first)
+			{
+6;				object::Destroy(iter->second);
+			}
+		}
 	}
 }

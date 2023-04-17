@@ -199,7 +199,6 @@ namespace ty
 	}
 	void ToyStage1::OnExit()
 	{
-		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)
 		{

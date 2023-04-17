@@ -149,7 +149,7 @@ namespace ty
 		monster[2]->SetState(GameObject::eState::Active);
 		monster[3]->SetState(GameObject::eState::Active);
 		monster[4]->SetState(GameObject::eState::Active);
-
+		
 		if (isLoad == true)
 		{
 			Scene::ChangeGameObjectState();

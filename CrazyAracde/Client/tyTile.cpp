@@ -45,12 +45,12 @@ namespace ty
 			return;
 		SetName(L"Tile");
 		SceneManager::GetBazzi()->GetMapIndex()[pos.y][pos.x] = 2;
-		//if (index >= 5)
-		//{
-		//	mCollider = AddComponent<Collider>();
-		//	mCollider -> SetPos(Vector2(30.0f + pos.x * TILE_SIZE_X, 60.0f + pos.y * TILE_SIZE_Y));
-		//	mCollider ->SetSize(Vector2(60.0f, 60.0f));
-		//}
+		if (index >= 5)
+		{
+			mCollider = AddComponent<Collider>();
+			mCollider -> SetPos(Vector2(30.0f + pos.x * TILE_SIZE_X, 60.0f + pos.y * TILE_SIZE_Y));
+			mCollider ->SetSize(Vector2(60.0f, 60.0f));
+		}
 		if (index == 28)
 		{
 			SceneManager::GetBazzi()->GetMapIndex()[pos.y][pos.x] = 4;

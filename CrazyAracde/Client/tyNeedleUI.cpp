@@ -25,7 +25,7 @@ namespace ty
 	{
 		if (SceneManager::GetBazzi()->GetItemState() != eItemType::Needle)
 		{
-			object::Destroy(this);
+			object::Pause(this);
 		}
 		
 		GameObject::Update();

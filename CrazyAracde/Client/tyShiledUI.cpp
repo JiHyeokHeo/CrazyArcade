@@ -25,7 +25,7 @@ namespace ty
 	{
 		if (SceneManager::GetBazzi()->GetItemState() != eItemType::Shield)
 		{
-			object::Destroy(this);
+			object::Pause(this);
 		}
 
 		GameObject::Update();

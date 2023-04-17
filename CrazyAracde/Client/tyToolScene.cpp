@@ -37,7 +37,7 @@ namespace ty
 
         Vector2 temp = Input::GetMousePos();
 
-        if (Input::GetKey(eKeyCode::LBUTTON))
+        if (Input::GetKeyDown(eKeyCode::LBUTTON))
         {
             Vector2 pos = Input::GetMousePos();
             //pos -= Camera::CalculatePos(Vector2::Zero);
@@ -47,7 +47,8 @@ namespace ty
             UINT tileIndex = TilePalatte::GetIndex();
             TilePalatte::CreateTile(tileIndex, pos); // 타일 위치가 들어온다.
         }
-        if (Input::GetKey(eKeyCode::RUBTTON))
+
+        if (Input::GetKeyDown(eKeyCode::RUBTTON))
         {
             Vector2 pos = Input::GetMousePos();
             //pos -= Camera::CalculatePos(Vector2::Zero);
@@ -55,7 +56,7 @@ namespace ty
             pos = TilePalatte::GetTilePos(pos);
 
             UINT tileIndex = TilePalatte::GetIndex();
-            TilePalatte::CreateTile(tileIndex, pos); // 타일 위치가 들어온다.
+            TilePalatte::TargetClear(pos); // 타일 위치가 들어온다.
         }
         if (Input::GetKeyDown(eKeyCode::S))
         {
@@ -63,7 +64,7 @@ namespace ty
         }
         if (Input::GetKeyDown(eKeyCode::L))
         {
-            TilePalatte::Load(L"502");
+            TilePalatte::Load(L"601");
         }
 
 
