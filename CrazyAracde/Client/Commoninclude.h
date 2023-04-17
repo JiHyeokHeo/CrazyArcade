@@ -7,7 +7,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <assert.h>
-
+#include <random>
 
 #include <string>
 #include <vector>
@@ -21,3 +21,9 @@
 
 #define TILE_SIZE_X 60
 #define TILE_SIZE_Y 60
+
+
+// Define a random number generator engine
+std::mt19937 gen{ std::random_device{}() };
+// Define a uniform distribution between 0 and 1
+std::uniform_real_distribution<float> dist{ 0.0f, 1.0f };

@@ -10,11 +10,11 @@ namespace ty
 	public:
 		enum class eMonsterState
 		{
-			Idle,
 			Left,
 			Right,
 			Up,
 			Down,
+			Idle,
 			Die,
 		};
 		Monster();
@@ -51,5 +51,6 @@ namespace ty
 		Vector2 ColLIdx;
 		Vector2 ColUIdx;
 		Vector2 ColDIdx;
+		float mPlayTime;
 	};
 }

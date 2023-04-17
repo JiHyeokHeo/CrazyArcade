@@ -140,6 +140,7 @@
     <ClInclude Include="tyDevil.h" />
     <ClInclude Include="tydir.h" />
     <ClInclude Include="tyForestMapSelect.h" />
+    <ClInclude Include="tyForestMonster.h" />
     <ClInclude Include="tyForestSelect.h" />
     <ClInclude Include="tyForestStage2.h" />
     <ClInclude Include="tyForestStage3.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="tyNeedleUI.h" />
     <ClInclude Include="tyPirateMapSelect.h" />
     <ClInclude Include="tyPirateNormalTile.h" />
+    <ClInclude Include="tyPirateOBJ.h" />
     <ClInclude Include="tyPirateSelect.h" />
     <ClInclude Include="tyPirateStage1.h" />
     <ClInclude Include="tyPirateStage2.h" />
@@ -249,6 +251,7 @@
     <ClCompile Include="tyCookieSelect.cpp" />
     <ClCompile Include="tyDevil.cpp" />
     <ClCompile Include="tyForestMapSelect.cpp" />
+    <ClCompile Include="tyForestMonster.cpp" />
     <ClCompile Include="tyForestSelect.cpp" />
     <ClCompile Include="tyForestStage2.cpp" />
     <ClCompile Include="tyForestStage3.cpp" />
@@ -266,6 +269,7 @@
     <ClCompile Include="tyNeedleUI.cpp" />
     <ClCompile Include="tyPirateMapSelect.cpp" />
     <ClCompile Include="tyPirateNormalTile.cpp" />
+    <ClCompile Include="tyPirateOBJ.cpp" />
     <ClCompile Include="tyPirateSelect.cpp" />
     <ClCompile Include="tyPirateStage1.cpp" />
     <ClCompile Include="tyPirateStage2.cpp" />

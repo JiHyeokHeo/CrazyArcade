@@ -73,8 +73,7 @@ namespace ty
 	}
 	void Tile::Update()
 	{
-
-		rand_num = (float)rand() / RAND_MAX; // 0 ¶Ç´Â 1
+		rand_num = dist(gen);
 		GameObject::Update();
 	}
 	void Tile::Render(HDC hdc)

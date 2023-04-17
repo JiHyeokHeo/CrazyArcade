@@ -186,7 +186,7 @@ namespace ty
 	}
 	void PirateBoss::idle()
 	{
-		mState = (ePirateMonsterState)((rand() % 6));
+		mState = (ePirateMonsterState)((rand() % 5));
 		animationCtr();
 	}
 	void PirateBoss::attack()

@@ -143,6 +143,15 @@
     <Filter Include="Contents\Scene\PlayStage\Toy">
       <UniqueIdentifier>{dbb9f714-5916-467e-b766-5e2d13b6cd39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Monster\PirateMonster">
+      <UniqueIdentifier>{86125841-095b-42a4-8b60-cae454c2e8fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Monster\IceMonster">
+      <UniqueIdentifier>{f9d19329-9a96-43b5-ab12-780bb9d4f5b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Monster\ForestMonster">
+      <UniqueIdentifier>{07c723a9-445c-47c8-9be3-937f0410561a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -237,9 +246,6 @@
     </ClInclude>
     <ClInclude Include="tyBaseBomb.h">
       <Filter>Contents\Bomb</Filter>
-    </ClInclude>
-    <ClInclude Include="tyMonster.h">
-      <Filter>Contents\Monster</Filter>
     </ClInclude>
     <ClInclude Include="tyCollider.h">
       <Filter>Engine\Component\Collider</Filter>
@@ -400,9 +406,6 @@
     <ClInclude Include="tyWinLose.h">
       <Filter>Contents\UI\WinLose</Filter>
     </ClInclude>
-    <ClInclude Include="tyMonster2.h">
-      <Filter>Contents\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="tyForestStage2.h">
       <Filter>Contents\Scene\PlayStage\Forest</Filter>
     </ClInclude>
@@ -450,6 +453,18 @@
     </ClInclude>
     <ClInclude Include="tyToyStage3.h">
       <Filter>Contents\Scene\PlayStage\Toy</Filter>
+    </ClInclude>
+    <ClInclude Include="tyPirateOBJ.h">
+      <Filter>Contents\Objcet</Filter>
+    </ClInclude>
+    <ClInclude Include="tyMonster.h">
+      <Filter>Contents\Monster\PirateMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="tyMonster2.h">
+      <Filter>Contents\Monster\PirateMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="tyForestMonster.h">
+      <Filter>Contents\Monster\ForestMonster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -537,9 +552,6 @@
     </ClCompile>
     <ClCompile Include="tyBaseBomb.cpp">
       <Filter>Contents\Bomb</Filter>
-    </ClCompile>
-    <ClCompile Include="tyMonster.cpp">
-      <Filter>Contents\Monster</Filter>
     </ClCompile>
     <ClCompile Include="tyCollider.cpp">
       <Filter>Engine\Component\Collider</Filter>
@@ -691,9 +703,6 @@
     <ClCompile Include="tyWinLose.cpp">
       <Filter>Contents\UI\WinLose</Filter>
     </ClCompile>
-    <ClCompile Include="tyMonster2.cpp">
-      <Filter>Contents\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="tyForestStage2.cpp">
       <Filter>Contents\Scene\PlayStage\Forest</Filter>
     </ClCompile>
@@ -741,6 +750,18 @@
     </ClCompile>
     <ClCompile Include="tyToyStage3.cpp">
       <Filter>Contents\Scene\PlayStage\Toy</Filter>
+    </ClCompile>
+    <ClCompile Include="tyPirateOBJ.cpp">
+      <Filter>Contents\Objcet</Filter>
+    </ClCompile>
+    <ClCompile Include="tyMonster.cpp">
+      <Filter>Contents\Monster\PirateMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="tyMonster2.cpp">
+      <Filter>Contents\Monster\PirateMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="tyForestMonster.cpp">
+      <Filter>Contents\Monster\ForestMonster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

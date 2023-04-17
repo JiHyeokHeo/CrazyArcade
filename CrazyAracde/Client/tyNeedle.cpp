@@ -56,16 +56,16 @@ namespace ty
 	void Needle::OnCollisionEnter(Collider* other)
 	{
 		
-		if (other->GetOwner()->GetName() == L"Bazzi")
+		if (other->GetOwner()->GetName() == L"Bazzi" && this->GetState() == eState::Active)
 		{
 			SceneManager::GetBazzi()->SetItemState(eItemType::Needle);
 			object::Instantiate<NeedleUI>(eLayerType::UI);
-			object::Destroy(this);
+			object::Pause(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >= 1.5f)
+		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >= 1.5f && this->GetState() == eState::Active)
 		{
-			object::Destroy(this);
+			object::Pause(this);
 		}
 	}
 	void Needle::OnCollisionStay(Collider* other)

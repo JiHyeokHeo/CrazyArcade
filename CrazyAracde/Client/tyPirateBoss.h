@@ -10,13 +10,13 @@ namespace ty
 	public:
 		enum class ePirateMonsterState
 		{
-			Idle,
 			Attack,
 			Left,
 			Right,
 			Up,
 			Down,
 			Hit,
+			Idle,
 			Bubble,
 			Die,
 		};

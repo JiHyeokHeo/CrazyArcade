@@ -33,7 +33,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Left", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Down", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\Pirate\\Die", Vector2(Vector2(10.0f, 5.0f)), 0.1f);
-		mAnimator->Play(L"PirateDown", true);
+		mAnimator->Play(L"PirateDown", false);
 		
 		collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2::Zero);
@@ -52,6 +52,7 @@ namespace ty
 		ColDIdx = TileBomb::SetColIndex(midmPos + Vector2(0.0f, +32.0f));
 
 		mTime += Time::DeltaTime();
+		mPlayTime += Time::DeltaTime();
 		if (ColRIdx.x > 14)
 			ColRIdx.x = 14;
 		if (ColLIdx.x > 14)
@@ -70,115 +71,37 @@ namespace ty
 		if (ColDIdx.y > 12)
 			ColDIdx.y = 12;
 
-	
-			//if(SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2  
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2  ) // 세 면에 무언가 있을때 하는 행동 
-			//{
-			//	mState = eMonsterState::Down;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2  
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2   )
-			//{
-			//	mState = eMonsterState::Up;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2  )
-			//{
-			//	mState = eMonsterState::Right;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2 
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 )
-			//{
-			//	mState = eMonsterState::Left;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if(SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 )
-			//{
-			//	mState = eMonsterState::Down;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if ( SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 
-			//	&& SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2 )
-			//{
-			//	mState = eMonsterState::Right;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 30.0f)
-			//{
-			//	mState = eMonsterState::Right;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if (
-			//	SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1 || mPos.x >= 900.0f)
-			//{
-			//	mState = eMonsterState::Left;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if (
-			//	SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1 || mPos.y <= 60.0f)
-			//{
-			//	mState = eMonsterState::Down;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-			//else if (
-			//	SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1 || mPos.y >= 840.0f)
-			//{
-			//	mState = eMonsterState::Up;
-			//	colcnt++;
-			//	animationCtr();
-			//}
-	
-	/*	if (PlayScene::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 2 && PlayScene::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 2)
+		if (mPlayTime >= 1.5f)
 		{
-			mState = eMonsterState::Up;
-			animationCtr();
-		}*/
-
-		switch (mState)
-		{
-		case ty::Monster::eMonsterState::Idle:
-			idle();
-			break;
-		case ty::Monster::eMonsterState::Left:
-			left();
-			break;
-		case ty::Monster::eMonsterState::Right:
-			right();
-			break;
-		case ty::Monster::eMonsterState::Up:
-			up();
-			break;
-		case ty::Monster::eMonsterState::Down:
-			down();
-			break;
-		case ty::Monster::eMonsterState::Die:
-			die();
-			break;
-		default:
-			break;
+			switch (mState)
+			{
+			case ty::Monster::eMonsterState::Idle:
+				idle();
+				break;
+			case ty::Monster::eMonsterState::Left:
+				left();
+				break;
+			case ty::Monster::eMonsterState::Right:
+				right();
+				break;
+			case ty::Monster::eMonsterState::Up:
+				up();
+				break;
+			case ty::Monster::eMonsterState::Down:
+				down();
+				break;
+			case ty::Monster::eMonsterState::Die:
+				die();
+				break;
+			default:
+				break;
+			}
 		}
 		
 		tr->SetPos(mPos);
 		if (mTime >= 1.0f)
 		{
-			mState = eMonsterState::Idle();
+			mState = eMonsterState::Idle;
 			mTime = 0;
 		}
 		
@@ -194,27 +117,6 @@ namespace ty
 	}
 	void Monster::OnCollisionEnter(Collider* other)
 	{
-		if (other->GetOwner()->GetName() == L"Ground" || other->GetOwner()->GetName() == L"Monster")
-		{
-			switch (mState)
-			{
-			case eMonsterState::Left:
-				mState = eMonsterState::Right;
-				break;
-			case eMonsterState::Right:
-				mState = eMonsterState::Left;
-				break;
-			case eMonsterState::Up:
-				mState = eMonsterState::Down;
-				break;
-			case eMonsterState::Down:
-				mState = eMonsterState::Up;
-				break;
-			default:
-				break;
-			}
-		}
-
 			
 		if (other->GetOwner()->GetName() == L"BombEffect")
 		{
@@ -243,14 +145,31 @@ namespace ty
 	}
 	void Monster::left()
 	{
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 30.0f)
+		if(SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2
+			&& SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2)
+		{
+			mState = eMonsterState::Up;
+			colcnt++;
+			animationCtr();
+		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 && mPos.x <= 35.0f)
+		{
+			mState = eMonsterState::Down;
+			colcnt++;
+			animationCtr();
+		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 35.0f)
 		{
 			mState = eMonsterState::Right;
 			colcnt++;
 			animationCtr();
 		}
-		colcnt = 0;
-		mPos.x -= 60.0f * Time::DeltaTime();
+		else
+		{
+			colcnt = 0;
+			mPos.x -= 60.0f * Time::DeltaTime();
+
+		}
 	}
 	void Monster::right()
 	{
@@ -261,20 +180,23 @@ namespace ty
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 && mPos.x >= 895.0f)
+		else if(SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 && mPos.x >= 870.0f)
+		{
+			mState = eMonsterState::Down;
+			colcnt++;
+			animationCtr();
+		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1 || mPos.x >= 870.0f)
 		{
 			mState = eMonsterState::Left;
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1 || mPos.x >= 900.0f)
+		else
 		{
-			mState = eMonsterState::Left;
-			colcnt++;
-			animationCtr();
+			colcnt = 0;
+			mPos.x += 60.0f * Time::DeltaTime();
 		}
-		colcnt = 0;
-		mPos.x += 60.0f * Time::DeltaTime();
 	}
 	void Monster::up()
 	{
@@ -298,20 +220,42 @@ namespace ty
 			colcnt++;
 			animationCtr();
 		}
+		else
+		{
+			colcnt = 0;
+			mPos.y -= 60.0f * Time::DeltaTime();
 
-		colcnt = 0;
-		mPos.y -= 60.0f * Time::DeltaTime();
+		}
+
 	}
 	void Monster::down()
 	{
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1 || mPos.y >= 840.0f)
+		if(SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
+			&& SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2)
+		{
+			mState = eMonsterState::Left;
+			colcnt++;
+			animationCtr();
+		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2
+			&& mPos.y >= 775.0f)
+		{
+			mState = eMonsterState::Left;
+			colcnt++;
+			animationCtr();
+		}
+		else if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1 || mPos.y >= 780.0f)
 		{
 			mState = eMonsterState::Up;
 			colcnt++;
 			animationCtr();
 		}
-		colcnt = 0;
-		mPos.y += 60.0f * Time::DeltaTime();
+		else 
+		{
+			colcnt = 0;
+			mPos.y += 60.0f * Time::DeltaTime();
+
+		}
 	}
 	void Monster::die()
  	{

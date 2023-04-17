@@ -44,9 +44,8 @@ namespace ty
 		Scene::Initialize();
 		
 		// ------------------ 캐릭터 + 그림자 + 이펙트
-		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
+		mBazzi = object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f),eLayerType::Player);
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 
 		// ------------------ 시간 관련

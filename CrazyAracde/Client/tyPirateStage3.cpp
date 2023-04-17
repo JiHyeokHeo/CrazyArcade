@@ -96,7 +96,7 @@ namespace ty
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
-				SceneManager::LoadScene(eSceneType::PlayStage2);
+				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}
 		}
@@ -167,7 +167,7 @@ namespace ty
 
 		if (isLoad == false)
 		{
-			TilePalatte::Load(L"001");
+			TilePalatte::Load(L"203");
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)

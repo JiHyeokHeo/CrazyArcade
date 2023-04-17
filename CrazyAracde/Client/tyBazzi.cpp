@@ -32,9 +32,10 @@ namespace ty
 		, maxBomb(6)
 		, maxWaterCourse(7)
 		, mPlayerSpeed(50)
-		, mInvincibility(0)
+		, mInvincibility(1.5f)
 		, mItemCnt(0)
 		, maxItemCnt(1) // 최대 아이템 보유 갯수
+		, isColl(true)
 		
 	{
 		int row = 15;
@@ -49,7 +50,7 @@ namespace ty
 	/*	isBirdOn = true;*/
 		//isPushPossible = true;
 		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(20,40));
+	
 		tr->SetScale(Vector2(1.18f, 1.18f));
 		SetName(L"Bazzi");
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
@@ -703,8 +704,8 @@ namespace ty
 		mState = eBazziState::Idle;
 		mAnimator->Play(L"Bazziready", false);
 		mHP = 1; // 체력 
-		mBomb = 3; // 폭탄
-		mWaterCourse = 3; // 물줄기
+		mBomb = 1; // 폭탄
+		mWaterCourse = 2; // 물줄기
 		mSpeed = 5.0f; // 속도
 		maxSpeed = 9.0f;
 		maxBomb = 6;
@@ -712,6 +713,9 @@ namespace ty
 		mTime = 0;
 		mPlayerSpeed = 50;
 		mItemCnt = 0;
+		mInvincibility = 1.5f;
 		mItemState = eItemType::None;
+		isPushPossible = false;
+		isColl = true;
 	}
 }

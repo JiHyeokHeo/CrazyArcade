@@ -57,17 +57,16 @@ namespace ty
 	void Devil::OnCollisionEnter(Collider* other)
 	{
 		
-		if (other->GetOwner()->GetName() == L"Bazzi")
+		if (other->GetOwner()->GetName() == L"Bazzi" && this->GetState() == eState::Active)
 		{
-			SceneManager::GetBazzi()->GetmWaterCourse() = SceneManager::GetBazzi()->GetMaxWaterCourse();
 			SceneManager::GetBazzi()->GetmSpeed() = SceneManager::GetBazzi()->GetMaxSpeed();
 			SceneManager::GetBazzi()->SetIsPushPossible(true);
-			object::Destroy(this);
+			object::Pause(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >= 1.5f)
+		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >= 1.5f && this->GetState() == eState::Active)
 		{
-			object::Destroy(this);
+			object::Pause(this);
 		}
 	}
 	void Devil::OnCollisionStay(Collider* other)

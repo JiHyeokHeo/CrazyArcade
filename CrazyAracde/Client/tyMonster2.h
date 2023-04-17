@@ -8,7 +8,7 @@ namespace ty
 	class Monster2 : public GameObject
 	{
 	public:
-		enum class eMonster2State
+		enum class eMonsterState
 		{
 			Idle,
 			Left,
@@ -40,7 +40,7 @@ namespace ty
 
 	private:
 		Animator* mAnimator;
-		eMonster2State mState;
+		eMonsterState mState;
 		float mTime;
 		Vector2 mPos;
 		Collider* collider;
@@ -51,5 +51,6 @@ namespace ty
 		Vector2 ColLIdx;
 		Vector2 ColUIdx;
 		Vector2 ColDIdx;
+		float mPlayTime;
 	};
 }

@@ -166,7 +166,7 @@ namespace ty
 
 		if (isLoad == false)
 		{
-			TilePalatte::Load(L"001");
+			TilePalatte::Load(L"202");
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)

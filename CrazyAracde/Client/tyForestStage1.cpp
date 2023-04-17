@@ -30,6 +30,7 @@
 #include "tyTime.h"
 #include "tyMonster2.h"
 #include "tyForestTile.h"
+#include "tyForestMonster.h"
 
 namespace ty
 {
@@ -62,10 +63,10 @@ namespace ty
 		time[4]->SetTimeType(Timer::TimeType::Seconds);
 
 		// ------------------ 아이템 테스트
-		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
-		object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
+		obj[0] = object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
+		obj[1] = object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
+		obj[2] = object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
+		obj[3] = object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
 
 		// ------------------ 배경
 		object::Instantiate<Play_BG>(eLayerType::BG);
@@ -81,11 +82,11 @@ namespace ty
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
-		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
-		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
-		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		monster[0] = object::Instantiate<ForestMonster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
+		monster[1] = object::Instantiate<ForestMonster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		monster[2] = object::Instantiate<ForestMonster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
+		monster[3] = object::Instantiate<ForestMonster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
+		monster[4] = object::Instantiate<ForestMonster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
 	}
 	void ForestStage1::Update()
 	{
@@ -134,8 +135,8 @@ namespace ty
 		// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
 		SceneManager::SetMonsterCnt(5);
-		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
-		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
+		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
+		GameStartUI* obj3 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
 
 		for (int i = 0; i < 5; i++)
 		{
@@ -148,6 +149,11 @@ namespace ty
 		monster[2]->SetState(GameObject::eState::Active);
 		monster[3]->SetState(GameObject::eState::Active);
 		monster[4]->SetState(GameObject::eState::Active);
+		obj[0]->SetState(GameObject::eState::Active);
+		obj[1]->SetState(GameObject::eState::Active);
+		obj[2]->SetState(GameObject::eState::Active);
+		obj[3]->SetState(GameObject::eState::Active);
+		
 
 		if (isLoad == true)
 		{
@@ -168,7 +174,7 @@ namespace ty
 
 		if (isLoad == false)
 		{
-			TilePalatte::Load(L"101");
+			TilePalatte::Load(L"102");
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)

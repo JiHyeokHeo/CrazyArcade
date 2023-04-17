@@ -45,9 +45,8 @@ namespace ty
 		Scene::Initialize();
 
 		// ------------------ 캐릭터 + 그림자 + 이펙트
-		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
+		mBazzi = object::Instantiate<Bazzi>(Vector2(210.0f, 240.0f),eLayerType::Player);
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 
 		// ------------------ 시간 관련
@@ -87,6 +86,7 @@ namespace ty
 		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
 		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
 		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		monster[5] = object::Instantiate<Monster>(Vector2(30.0f, 60.0f), eLayerType::Monster);
 	}
 	void PirateStage1::Update()
 	{
@@ -96,7 +96,7 @@ namespace ty
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
-				SceneManager::LoadScene(eSceneType::PlayStage2);
+				SceneManager::LoadScene(eSceneType::PirateStage2);
 				mTime = 0;
 			}
 		}
@@ -132,7 +132,7 @@ namespace ty
 	void PirateStage1::OnEnter()
 	{// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
-		SceneManager::SetMonsterCnt(5);
+		SceneManager::SetMonsterCnt(6);
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
 
@@ -167,7 +167,7 @@ namespace ty
 
 		if (isLoad == false)
 		{
-			TilePalatte::Load(L"001");
+			TilePalatte::Load(L"201");
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)
@@ -211,7 +211,7 @@ namespace ty
 			}
 		}
 
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(210.0f, 240.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();
 		SceneManager::SetmTime(240);

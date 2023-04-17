@@ -11,12 +11,13 @@ namespace ty
 		enum class eSealMonsterState
 		{
 			Idle,
+			Attack,
 			Left,
 			Right,
 			Up,
 			Down,
-			Attack,
 			Hit,
+			Bubble,
 			Die,
 		};
 		SealBoss();
@@ -38,9 +39,11 @@ namespace ty
 		void up();
 		void down();
 		void hit();
+		void attack();
+		void bubble();
 		void die();
 		void animationCtr();
-
+		void bubbleCompleteEvent();
 	private:
 		Animator* mAnimator;
 		eSealMonsterState mState;
@@ -49,6 +52,14 @@ namespace ty
 		bool isColl;
 		int Hp;
 		float mInvincibility;
+		bool isAttack;
+		Transform* tr;
+		Vector2 ColLIdx;
+		Vector2 ColUIdx;
+		Vector2 ColDIdx;
+		Vector2 ColRIdx;
+		Vector2 midmPos;
+		float TimeSpend;
 	};
 }
 

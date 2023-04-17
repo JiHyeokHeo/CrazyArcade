@@ -14,7 +14,7 @@ namespace ty
 	}
 	void ToyTile::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"ForestTile", L"..\\Resources\\Bg\\PirateTile.bmp");
+		mImage = Resources::Load<Image>(L"ToyTile", L"..\\Resources\\Bg\\ToyTile.bmp");
 	}
 	void ToyTile::Update()
 	{

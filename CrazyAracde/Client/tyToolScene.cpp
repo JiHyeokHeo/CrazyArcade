@@ -64,7 +64,7 @@ namespace ty
         }
         if (Input::GetKeyDown(eKeyCode::L))
         {
-            TilePalatte::Load(L"601");
+            TilePalatte::Load(L"201");
         }
 
 

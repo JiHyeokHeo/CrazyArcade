@@ -155,13 +155,6 @@ namespace ty
 				SceneManager::GetBazzi()->GetMapIndex()[i][j] = 0;
 			}
 		}
-
-		std::unordered_map<UINT64, Tile*>::iterator iter = mTiles.begin();
-		for (; iter != mTiles.end(); iter++)
-		{
-			object::Destroy(iter->second);
-		} 
-		mTiles.clear();
 	}
 
 	void TilePalatte::TargetClear(Vector2 pos)
