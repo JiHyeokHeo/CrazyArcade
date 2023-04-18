@@ -30,6 +30,7 @@
 #include "tyTime.h"
 #include "tyMonster2.h"
 #include "tyToyTile.h"
+#include "tyToyBoss.h"
 
 namespace ty
 {
@@ -80,7 +81,7 @@ namespace ty
 		// ------------------ 몬스터
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
-		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
+		object::Instantiate<ToyBoss>(Vector2(410.0f, 320.0f), eLayerType::Boss);
 	/*	monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
 		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
 		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
@@ -136,7 +137,8 @@ namespace ty
 	void ToyStage3::OnEnter()
 	{// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
-		SceneManager::SetMonsterCnt(5);
+		SceneManager::SetMonsterCnt(1);
+
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
 

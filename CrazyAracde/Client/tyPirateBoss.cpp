@@ -15,7 +15,7 @@
 namespace ty
 {
 	PirateBoss::PirateBoss()
-		: Hp(1)
+		: Hp(10)
 	{
 	}
 	PirateBoss::~PirateBoss()
@@ -32,7 +32,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Left", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Down", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Bubble", Vector2::Zero, 0.3f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Hit", Vector2::Zero, 0.3f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Hit", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Die", Vector2::Zero, 0.6f);
 
 		mAnimator->GetCompleteEvent(L"PirateBossBubble") = std::bind(&PirateBoss::bubbleCompleteEvent, this);
@@ -191,7 +191,6 @@ namespace ty
 	}
 	void PirateBoss::attack()
 	{
-		Transform* tr = GetComponent<Transform>();
 
 		if (isAttack == true)
 		{
@@ -235,7 +234,7 @@ namespace ty
 				Hp--;
 				mState = ePirateMonsterState::Idle;
 				isColl = false;
-				mInvincibility = 3;
+				mInvincibility = 1;
 			}
 		}
 	}

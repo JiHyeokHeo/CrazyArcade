@@ -73,6 +73,11 @@ namespace ty
 		{
 			object::Destroy(this);
 		}
+
+		if (other->GetOwner()->GetName() == L"BossBombEffect" && InvTime >= 1.5f)
+		{
+			object::Destroy(this);
+		}
 	}
 	void Ballon::OnCollisionStay(Collider* other)
 	{

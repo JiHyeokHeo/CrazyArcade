@@ -82,7 +82,7 @@ namespace ty
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
 		monster[0] = object::Instantiate<ToyMonster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
-		monster[1] = object::Instantiate<ToyMonster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		monster[1] = object::Instantiate<ToyMonster>(Vector2(510.0f, 420.0f), eLayerType::Monster);
 		monster[2] = object::Instantiate<ToyMonster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
 		monster[3] = object::Instantiate<ToyMonster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
 		monster[4] = object::Instantiate<ToyMonster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
@@ -156,7 +156,7 @@ namespace ty
 		{
 			Scene::ChangeGameObjectState();
 			monster[0]->GetComponent<Transform>()->SetPos(Vector2(450.0f, 120.0f));
-			monster[1]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 420.0f));
+			monster[1]->GetComponent<Transform>()->SetPos(Vector2(510.0f, 420.0f));
 			monster[2]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 420.0f));
 			monster[3]->GetComponent<Transform>()->SetPos(Vector2(690.0f, 420.0f));
 			monster[4]->GetComponent<Transform>()->SetPos(Vector2(750.0f, 420.0f));

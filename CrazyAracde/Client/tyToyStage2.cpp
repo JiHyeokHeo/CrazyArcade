@@ -81,7 +81,7 @@ namespace ty
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		monster[0] = object::Instantiate<ToyMonster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
+		monster[0] = object::Instantiate<ToyMonster>(Vector2(450.0f, 180.0f), eLayerType::Monster);
 		monster[1] = object::Instantiate<ToyMonster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
 		monster[2] = object::Instantiate<ToyMonster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
 		monster[3] = object::Instantiate<ToyMonster>(Vector2(690.0f, 420.0f), eLayerType::Monster);

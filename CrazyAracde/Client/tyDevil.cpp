@@ -68,6 +68,11 @@ namespace ty
 		{
 			object::Pause(this);
 		}
+
+		if (other->GetOwner()->GetName() == L"BossBombEffect" && InvTime >= 1.5f)
+		{
+			object::Destroy(this);
+		}
 	}
 	void Devil::OnCollisionStay(Collider* other)
 	{

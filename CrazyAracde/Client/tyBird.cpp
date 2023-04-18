@@ -67,6 +67,11 @@ namespace ty
 		{
 			object::Pause(this);
 		}
+
+		if (other->GetOwner()->GetName() == L"BossBombEffect" && InvTime >= 1.5f)
+		{
+			object::Destroy(this);
+		}
 	}
 	void Bird::OnCollisionStay(Collider* other)
 	{

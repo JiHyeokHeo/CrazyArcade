@@ -304,7 +304,7 @@ namespace ty
 	}
 	void BaseBomb::OnCollisionEnter(Collider* other)
 	{
-		if (other->GetOwner()->GetName() == L"BombEffect")
+		if (other->GetOwner()->GetName() == L"BombEffect" || other->GetOwner()->GetName() == L"BossBombEffect")
 		{
 			for (int i = 0; i < mBombEffect.size(); i++)
 			{
