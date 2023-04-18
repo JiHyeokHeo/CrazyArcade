@@ -30,7 +30,7 @@
 #include "tyTime.h"
 #include "tyMonster2.h"
 #include "tyForestTile.h"
-
+#include "tyForestMonster.h"
 namespace ty
 {
 	ForestStage2::ForestStage2()
@@ -46,7 +46,7 @@ namespace ty
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(440.0f, 700.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 
 		// ------------------ 시간 관련
@@ -81,11 +81,11 @@ namespace ty
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
-		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
-		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
-		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		monster[0] = object::Instantiate<ForestMonster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
+		monster[1] = object::Instantiate<ForestMonster>(Vector2(270.0f, 420.0f), eLayerType::Monster);
+		monster[2] = object::Instantiate<ForestMonster>(Vector2(340.0f, 420.0f), eLayerType::Monster);
+		monster[3] = object::Instantiate<ForestMonster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		monster[4] = object::Instantiate<ForestMonster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
 	}
 	void ForestStage2::Update()
 	{
@@ -158,10 +158,10 @@ namespace ty
 		{
 			Scene::ChangeGameObjectState();
 			monster[0]->GetComponent<Transform>()->SetPos(Vector2(450.0f, 120.0f));
-			monster[1]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 420.0f));
-			monster[2]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 420.0f));
-			monster[3]->GetComponent<Transform>()->SetPos(Vector2(690.0f, 420.0f));
-			monster[4]->GetComponent<Transform>()->SetPos(Vector2(750.0f, 420.0f));
+			monster[1]->GetComponent<Transform>()->SetPos(Vector2(270.0f, 420.0f));
+			monster[2]->GetComponent<Transform>()->SetPos(Vector2(340.0f, 420.0f));
+			monster[3]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 420.0f));
+			monster[4]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 420.0f));
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)
@@ -217,7 +217,7 @@ namespace ty
 			}
 		}
 
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(440.0f, 700.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();
 		SceneManager::SetmTime(240);

@@ -33,7 +33,7 @@ namespace ty
 		int PlayIndex[13][15];
 		class Timer* time[5];
 		float mTime;
-		class Monster* monster[10];
+		class ToyMonster* monster[10];
 		class Monster2* monster2[10];
 		bool isPlayed;
 

@@ -81,11 +81,11 @@ namespace ty
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
+	/*	monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
 		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
 		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
 		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);*/
 	}
 	void ToyStage3::Update()
 	{
@@ -146,11 +146,11 @@ namespace ty
 		}
 		SceneManager::SetmTime(240); // 4분 설정
 
-		monster[0]->SetState(GameObject::eState::Active);
-		monster[1]->SetState(GameObject::eState::Active);
-		monster[2]->SetState(GameObject::eState::Active);
-		monster[3]->SetState(GameObject::eState::Active);
-		monster[4]->SetState(GameObject::eState::Active);
+		//monster[0]->SetState(GameObject::eState::Active);
+		//monster[1]->SetState(GameObject::eState::Active);
+		//monster[2]->SetState(GameObject::eState::Active);
+		//monster[3]->SetState(GameObject::eState::Active);
+		//monster[4]->SetState(GameObject::eState::Active);
 
 		if (isLoad == true)
 		{
@@ -171,7 +171,7 @@ namespace ty
 
 		if (isLoad == false)
 		{
-			TilePalatte::Load(L"001");
+			TilePalatte::Load(L"302");
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)
