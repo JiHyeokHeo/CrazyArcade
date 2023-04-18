@@ -147,11 +147,11 @@ namespace ty
 		}
 		SceneManager::SetmTime(240); // 4ºÐ ¼³Á¤
 
-		monster[0]->SetState(GameObject::eState::Active);
-		monster[1]->SetState(GameObject::eState::Active);
-		monster[2]->SetState(GameObject::eState::Active);
-		monster[3]->SetState(GameObject::eState::Active);
-		monster[4]->SetState(GameObject::eState::Active);
+		//monster[0]->SetState(GameObject::eState::Active);
+		//monster[1]->SetState(GameObject::eState::Active);
+		//monster[2]->SetState(GameObject::eState::Active);
+		//monster[3]->SetState(GameObject::eState::Active);
+		//monster[4]->SetState(GameObject::eState::Active);
 
 		if (isLoad == true)
 		{
@@ -206,6 +206,12 @@ namespace ty
 	}
 	void PirateStage3::OnExit()
 	{
+		monster[0]->SetState(GameObject::eState::Active);
+		monster[1]->SetState(GameObject::eState::Active);
+		monster[2]->SetState(GameObject::eState::Active);
+		monster[3]->SetState(GameObject::eState::Active);
+		monster[4]->SetState(GameObject::eState::Active);
+		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)
 		{

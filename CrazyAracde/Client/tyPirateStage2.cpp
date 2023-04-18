@@ -146,11 +146,11 @@ namespace ty
 		}
 		SceneManager::SetmTime(240); // 4분 설정
 
-		monster[0]->SetState(GameObject::eState::Active);
-		monster[1]->SetState(GameObject::eState::Active);
-		monster[2]->SetState(GameObject::eState::Active);
-		monster[3]->SetState(GameObject::eState::Active);
-		monster[4]->SetState(GameObject::eState::Active);
+		//monster[0]->SetState(GameObject::eState::Active);
+		//monster[1]->SetState(GameObject::eState::Active);
+		//monster[2]->SetState(GameObject::eState::Active);
+		//monster[3]->SetState(GameObject::eState::Active);
+		//monster[4]->SetState(GameObject::eState::Active);
 
 		if (isLoad == true)
 		{
@@ -205,6 +205,12 @@ namespace ty
 	}
 	void PirateStage2::OnExit()
 	{
+		monster[0]->SetState(GameObject::eState::Active);
+		monster[1]->SetState(GameObject::eState::Active);
+		monster[2]->SetState(GameObject::eState::Active);
+		monster[3]->SetState(GameObject::eState::Active);
+		monster[4]->SetState(GameObject::eState::Active);
+		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)
 		{
@@ -214,7 +220,7 @@ namespace ty
 			}
 		}
 
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();
 		SceneManager::SetmTime(240);

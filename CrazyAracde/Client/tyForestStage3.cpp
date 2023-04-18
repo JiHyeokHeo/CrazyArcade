@@ -157,10 +157,10 @@ namespace ty
 		{
 			Scene::ChangeGameObjectState();
 			Bossmonster[0]->GetComponent<Transform>()->SetPos(Vector2(410.0f, 300.0f));
-			monster3[0]->GetComponent<Transform>()->SetPos(Vector2(90.0f, 120.0f));
-			monster3[1]->GetComponent<Transform>()->SetPos(Vector2(810.0f, 120.0f));
-			monster3[2]->GetComponent<Transform>()->SetPos(Vector2(90.0f, 720.0f));
-			monster3[3]->GetComponent<Transform>()->SetPos(Vector2(810.0f, 720.0f));
+			//monster3[0]->GetComponent<Transform>()->SetPos(Vector2(90.0f, 120.0f));
+			//monster3[1]->GetComponent<Transform>()->SetPos(Vector2(810.0f, 120.0f));
+			//monster3[2]->GetComponent<Transform>()->SetPos(Vector2(90.0f, 720.0f));
+			//monster3[3]->GetComponent<Transform>()->SetPos(Vector2(810.0f, 720.0f));
 			
 			for (int i = 0; i < 13; i++)
 			{
@@ -207,6 +207,7 @@ namespace ty
 	}
 	void ForestStage3::OnExit()
 	{
+		Bossmonster[0]->SetState(GameObject::eState::Active);
 		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)
@@ -217,7 +218,7 @@ namespace ty
 			}
 		}
 
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(460.0f, 720.0f)); // 화면 전환시 기능 추가
 		mBazzi->SetState(GameObject::eState::Active);
 		mBazzi->Reset();
 		SceneManager::SetmTime(240);

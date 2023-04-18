@@ -81,7 +81,7 @@ namespace ty
 		// ------------------ 몬스터
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
-		object::Instantiate<ToyBoss>(Vector2(410.0f, 320.0f), eLayerType::Boss);
+		mBossMonster[0] = object::Instantiate<ToyBoss>(Vector2(410.0f, 320.0f), eLayerType::Boss);
 	/*	monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
 		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
 		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
@@ -157,11 +157,11 @@ namespace ty
 		if (isLoad == true)
 		{
 			Scene::ChangeGameObjectState();
-			monster[0]->GetComponent<Transform>()->SetPos(Vector2(450.0f, 120.0f));
+			/*monster[0]->GetComponent<Transform>()->SetPos(Vector2(450.0f, 120.0f));
 			monster[1]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 420.0f));
 			monster[2]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 420.0f));
 			monster[3]->GetComponent<Transform>()->SetPos(Vector2(690.0f, 420.0f));
-			monster[4]->GetComponent<Transform>()->SetPos(Vector2(750.0f, 420.0f));
+			monster[4]->GetComponent<Transform>()->SetPos(Vector2(750.0f, 420.0f));*/
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)
@@ -207,6 +207,7 @@ namespace ty
 	}
 	void ToyStage3::OnExit()
 	{
+		mBossMonster[0]->SetState(GameObject::eState::Active);
 		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)

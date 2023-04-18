@@ -49,10 +49,6 @@ namespace ty
 	{
 		BaseBomb* bomb = this;
 
-		if (isBomb == true)
-		{
-			object::Destroy(this);
-		}
 		Transform* mPlayer = SceneManager::GetBazzi()->GetComponent<Transform>();
 		Vector2 mPlayerPos = mPlayer->GetPos();
 		Vector2 IDX = TileBomb::SetIndex(mPlayerPos);
@@ -74,6 +70,11 @@ namespace ty
 		}
 
 	
+		if (isBomb == true)
+		{
+			Bazzi::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
+			object::Destroy(this);
+		}
 
 
 		mBazzi = SceneManager::GetBazzi();

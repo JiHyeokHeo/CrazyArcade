@@ -534,6 +534,7 @@ namespace ty
 		if (Input::GetKey(eKeyCode::CTRL) && mItemState == eItemType::Needle
 			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 		{
+			isColl = true;
 			mItemState = eItemType::None;
 			mAnimator->Play(L"Bazzilive", false);
 		}

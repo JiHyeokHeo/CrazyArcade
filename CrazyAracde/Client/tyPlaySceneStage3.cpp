@@ -148,8 +148,8 @@ namespace ty
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
 
-		Bossmonster[0]->SetState(GameObject::eState::Active);
-		monster[0]->SetState(GameObject::eState::Active);
+		//Bossmonster[0]->SetState(GameObject::eState::Active);
+		//monster[0]->SetState(GameObject::eState::Active);
 		for (int i = 0; i < 5; i++)
 		{
 			time[i]->ResetIsTimeOn();
@@ -203,6 +203,8 @@ namespace ty
 	}
 	void PlaySceneStage3::OnExit()
 	{
+		Bossmonster[0]->SetState(GameObject::eState::Active);
+		monster[0]->SetState(GameObject::eState::Active);
 		TilePalatte::Clear();
 		CollisionManager::Clear();
 		for (int j = 0; j < 13; j++)
