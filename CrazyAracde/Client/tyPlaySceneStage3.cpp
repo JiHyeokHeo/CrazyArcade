@@ -59,7 +59,7 @@ namespace ty
 		time[3]->SetTimeType(Timer::TimeType::TenSeconds);
 		time[4] = object::Instantiate<Timer>(Vector2(1144.0f, 110.0f), eLayerType::UI);
 		time[4]->SetTimeType(Timer::TimeType::Seconds);
-
+		
 		// ------------------ 아이템 테스트
 		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
 		//object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
@@ -78,27 +78,35 @@ namespace ty
 
 		// ------------------ 몬스터
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
-		object::Instantiate<PirateBoss>(Vector2(350.0f, 120.0f), eLayerType::Boss);
+		Bossmonster[0] = object::Instantiate<PirateBoss>(Vector2(350.0f, 120.0f), eLayerType::Boss);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<Monster>(Vector2(350.0f, 120.0f), eLayerType::Monster);
 		////object::Instantiate<Monster2>(Vector2(370.0f, 420.0f), eLayerType::Monster);
 		////object::Instantiate<Monster2>(Vector2(230.0f, 420.0f), eLayerType::Monster);
 		////object::Instantiate<Monster2>(Vector2(170.0f, 420.0f), eLayerType::Monster);
 		////object::Instantiate<Monster2>(Vector2(430.0f, 420.0f), eLayerType::Monster);
-		////object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
-		////object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
-		////object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		////object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		monster[0] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
+		//object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
 	}
 	void PlaySceneStage3::Update()
 	{
-		if (SceneManager::GetMonsterCnt() == 0)
+		if (SceneManager::GetMonsterCnt() == 0 )
 		{
-			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+			if (isPlayed == false)
+			{
+				object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+				isPlayed = true;
+			}
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
-				Scene::ChangeMonsterState();
+				isPlayed = false;
 				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}
@@ -110,7 +118,6 @@ namespace ty
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
-				Scene::ChangeMonsterState();
 				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}
@@ -136,11 +143,13 @@ namespace ty
 	void PlaySceneStage3::OnEnter()
 	{	// 캐릭터 설정 + 시간 조절
 		SceneManager::SetBazzi(mBazzi);
-		SceneManager::SetMonsterCnt(9);
+		SceneManager::SetMonsterCnt(2);
+		SceneManager::SetBossCnt(1);
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
 
-
+		Bossmonster[0]->SetState(GameObject::eState::Active);
+		monster[0]->SetState(GameObject::eState::Active);
 		for (int i = 0; i < 5; i++)
 		{
 			time[i]->ResetIsTimeOn();
@@ -149,7 +158,7 @@ namespace ty
 		if (isLoad == true)
 		{
 			Scene::ChangeGameObjectState(); // 타일 엑티브 전환
-			Scene::ChangeMonsterState(); // 몬스터 엑티브 전환
+			
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)

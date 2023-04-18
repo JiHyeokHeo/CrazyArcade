@@ -30,6 +30,7 @@
 #include "tyTime.h"
 #include "tyMonster2.h"
 #include "tyForestTile.h"
+#include "tyForestMonster.h"
 
 namespace ty
 {
@@ -46,7 +47,7 @@ namespace ty
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(460.0f, 720.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 
 		// ------------------ 시간 관련
@@ -62,10 +63,11 @@ namespace ty
 		time[4]->SetTimeType(Timer::TimeType::Seconds);
 
 		// ------------------ 아이템 테스트
-		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
-		object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
+		object::Instantiate<Devil>(Vector2(90.0f, 120.0f), eLayerType::Item);
+		//object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
+		object::Instantiate<Shield>(Vector2(90.0f, 720.0f), eLayerType::Item);
+		object::Instantiate<Shield>(Vector2(810.0f, 120.0f), eLayerType::Item);
+		object::Instantiate<Needle>(Vector2(810.0f, 720.0f), eLayerType::Item);
 
 		// ------------------ 배경
 		object::Instantiate<Play_BG>(eLayerType::BG);
@@ -80,21 +82,25 @@ namespace ty
 		// ------------------ 몬스터
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
-		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
-		monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
-		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
-		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
-		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		Bossmonster[0] = object::Instantiate<SealBoss>(Vector2(410.0f, 300.0f), eLayerType::Boss);
+		monster3[0] = object::Instantiate<ForestMonster>(Vector2(90.0f, 120.0f), eLayerType::Monster);
+		monster3[1] = object::Instantiate<ForestMonster>(Vector2(810.0f, 120.0f), eLayerType::Monster);
+		monster3[2] = object::Instantiate<ForestMonster>(Vector2(90.0f, 720.0f), eLayerType::Monster);
+		monster3[3] = object::Instantiate<ForestMonster>(Vector2(810.0f, 720.0f), eLayerType::Monster);
 	}
 	void ForestStage3::Update()
 	{
 		if (SceneManager::GetMonsterCnt() == 0)
 		{
-			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+			if (isPlayed == false)
+			{
+				object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+				isPlayed = true;
+			}
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
+				isPlayed = false;
 				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}
@@ -141,20 +147,21 @@ namespace ty
 		}
 		SceneManager::SetmTime(240); // 4분 설정
 
-		monster[0]->SetState(GameObject::eState::Active);
-		monster[1]->SetState(GameObject::eState::Active);
-		monster[2]->SetState(GameObject::eState::Active);
-		monster[3]->SetState(GameObject::eState::Active);
-		monster[4]->SetState(GameObject::eState::Active);
+		//monster3[0]->SetState(GameObject::eState::Active);
+		//monster3[1]->SetState(GameObject::eState::Active);
+		//monster3[2]->SetState(GameObject::eState::Active);
+		//monster3[3]->SetState(GameObject::eState::Active);
+		//monster3[4]->SetState(GameObject::eState::Active);
 
 		if (isLoad == true)
 		{
 			Scene::ChangeGameObjectState();
-			monster[0]->GetComponent<Transform>()->SetPos(Vector2(450.0f, 120.0f));
-			monster[1]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 420.0f));
-			monster[2]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 420.0f));
-			monster[3]->GetComponent<Transform>()->SetPos(Vector2(690.0f, 420.0f));
-			monster[4]->GetComponent<Transform>()->SetPos(Vector2(750.0f, 420.0f));
+			Bossmonster[0]->GetComponent<Transform>()->SetPos(Vector2(410.0f, 300.0f));
+			monster3[0]->GetComponent<Transform>()->SetPos(Vector2(90.0f, 120.0f));
+			monster3[1]->GetComponent<Transform>()->SetPos(Vector2(810.0f, 120.0f));
+			monster3[2]->GetComponent<Transform>()->SetPos(Vector2(90.0f, 720.0f));
+			monster3[3]->GetComponent<Transform>()->SetPos(Vector2(810.0f, 720.0f));
+			
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)

@@ -86,15 +86,21 @@ namespace ty
 		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
 		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
 
+
 	}
 	void PlayScene::Update()
 	{
 		if (SceneManager::GetMonsterCnt() == 0)
 		{
-			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+			if (isPlayed == false)
+			{
+				object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+				isPlayed = true;
+			}
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
+				isPlayed = false;
 				SceneManager::LoadScene(eSceneType::PlayStage2);
 				mTime = 0;
 			}

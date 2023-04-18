@@ -31,10 +31,11 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Down", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Left", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Right", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Bubble", Vector2::Zero, 0.3f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Die", Vector2::Zero, 0.5f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Hit", Vector2::Zero, 0.3f);
 
-		mAnimator->GetCompleteEvent(L"SealBossDie") = std::bind(&SealBoss::bubbleCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"SealBossBubble") = std::bind(&SealBoss::bubbleCompleteEvent, this);
 		mAnimator->Play(L"SealBossDown", false);
 
 		Collider* collider = AddComponent<Collider>();
@@ -152,6 +153,8 @@ namespace ty
 				break;
 			}
 		}
+
+
 		if (isColl == false && Hp >= 1 && other->GetOwner()->GetName() == L"BombEffect")
 		{
 			mAnimator->Play(L"SealBossHit", false);
@@ -159,7 +162,7 @@ namespace ty
 			isColl = true;
 		}
 
-		if (isColl == false && Hp <= 0 && other->GetOwner()->GetName() == L"BombEffect")
+		if (isColl == false && Hp <= 0 && other->GetOwner()->GetName() == L"BombEffect" && mState != eSealMonsterState::Bubble)
 		{
 			mAnimator->Play(L"SealBossBubble", false);
 			mState = eSealMonsterState::Bubble;
@@ -249,6 +252,14 @@ namespace ty
 	}
 	void SealBoss::die()
 	{
+		if (mAnimator->isComplete() == true)
+		{
+			int monstercnt = SceneManager::GetMonsterCnt();
+			monstercnt--;
+			SceneManager::SetMonsterCnt(monstercnt);
+			mState = eSealMonsterState::Idle;
+			object::Pause(this);
+		}
 	}
 	void SealBoss::animationCtr()
 	{
@@ -277,9 +288,6 @@ namespace ty
 	}
 	void SealBoss::bubbleCompleteEvent()
 	{
-		if (mAnimator->isComplete() == true)
-		{
-			object::Destroy(this);
-		}
+		mState = eSealMonsterState::Die;
 	}
 }

@@ -35,10 +35,10 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Hit", Vector2::Zero, 0.3f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\PirateBoss\\Die", Vector2::Zero, 0.6f);
 
-		mAnimator->GetCompleteEvent(L"PirateBossDie") = std::bind(&PirateBoss::bubbleCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"PirateBossBubble") = std::bind(&PirateBoss::bubbleCompleteEvent, this);
 
 
-		mAnimator->Play(L"PirateBossDown", true);
+		mAnimator->Play(L"PirateBossDown", false);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetCenter(Vector2(30.0f, 30.0f));
@@ -161,11 +161,11 @@ namespace ty
 			isColl = true;
 		}
 
-		if (isColl == false && Hp <= 0 && other->GetOwner()->GetName() == L"BombEffect")
+		if (isColl == false && Hp <= 0 && other->GetOwner()->GetName() == L"BombEffect" && mState != ePirateMonsterState::Bubble)
 		{
 			mAnimator->Play(L"PirateBossBubble", false);
 			mState = ePirateMonsterState::Bubble;
-			isColl = true;
+ 			isColl = true;
 		}
 
 		if (mState == ePirateMonsterState::Bubble && other->GetOwner()->GetName() == L"Bazzi")
@@ -251,6 +251,14 @@ namespace ty
 	}
 	void PirateBoss::die()
 	{
+		if (mAnimator->isComplete() == true)
+		{
+			int monstercnt = SceneManager::GetMonsterCnt();
+			monstercnt--;
+			SceneManager::SetMonsterCnt(monstercnt);
+			mState = ePirateMonsterState::Idle;
+			object::Pause(this);
+		}
 	}
 	void PirateBoss::animationCtr()
 	{
@@ -279,10 +287,7 @@ namespace ty
 	}
 	void PirateBoss::bubbleCompleteEvent()
 	{
-		if (mAnimator->isComplete() == true)
-		{
-			object::Destroy(this);
-		}
+		mState = ePirateMonsterState::Die;
 	}
 }
 

@@ -18,6 +18,9 @@
 #include "tySkate.h"
 #include  "tySteam.h"
 #include "tyShieldEffect.h"
+#include "tyShield.h"
+#include "tyNeedle.h"
+#include "tyDevil.h"
 
 namespace ty
 {
@@ -158,6 +161,13 @@ namespace ty
 			object::Instantiate<Potion>(TileBomb::SetPos(Vector2(tr->GetPos().x , tr->GetPos().y + TILE_SIZE_Y)), eLayerType::Item);
 		}
 
+		if (Input::GetKeyDown(eKeyCode::B))
+		{
+			object::Instantiate<Needle>(TileBomb::SetPos(Vector2(tr->GetPos().x + TILE_SIZE_X, tr->GetPos().y)), eLayerType::Item);
+			object::Instantiate<Shield>(TileBomb::SetPos(Vector2(tr->GetPos().x - TILE_SIZE_X, tr->GetPos().y)), eLayerType::Item);
+			object::Instantiate<Devil>(TileBomb::SetPos(Vector2(tr->GetPos().x, tr->GetPos().y + TILE_SIZE_Y)), eLayerType::Item);
+		}
+
 		if (Input::GetKeyDown(eKeyCode::X))
 		{
 			mBomb = 1; // ÆøÅº
@@ -215,13 +225,13 @@ namespace ty
 			mState = eBazziState::BubbleMove;
 			isColl = true;
 		}
-		if (other->GetOwner()->GetName() == L"Bird")
-		{
-			mHP++;
-			isBirdOn = true;
-			mState = eBazziState::Idle;
-			mAnimator->Play(L"BirdDown", true);
-		}
+		//if (other->GetOwner()->GetName() == L"Bird" );
+		//{
+		//	mHP++;
+		//	isBirdOn = true;
+		//	mState = eBazziState::Idle;
+		//	mAnimator->Play(L"BirdDown", true);
+		//}
 		if(other->GetOwner()->GetName() == L"BossBombEffect" && isBirdOn == true)
 		{
 			mHP--;

@@ -24,6 +24,8 @@ namespace ty
 		static int GetTime() { return mRealPlayTime; }
 		static void SetMonsterCnt(int cnt) { monstercnt = cnt; }
 		static int GetMonsterCnt() { return monstercnt; }
+		static void SetBossCnt(int cnt) { mBossCnt = cnt; }
+		static int GetBossCnt() { return mBossCnt; }
 
 	private:
 		static std::vector<Scene*> mScenes;
@@ -31,6 +33,7 @@ namespace ty
 		static Bazzi* mBazzi;
 		static int mRealPlayTime;
 		static int monstercnt;
+		static int mBossCnt;
 
 	};
 }

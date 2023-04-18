@@ -32,6 +32,7 @@ namespace ty
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
+		void SetPirateBossHp(int hp) { Hp = hp; }
 	private:
 		void idle();
 		void attack();

@@ -26,6 +26,7 @@ namespace ty
 	Bazzi* SceneManager::mBazzi;
 	int SceneManager::mRealPlayTime = {};
 	int SceneManager::monstercnt = {};
+	int  SceneManager::mBossCnt;
 	void SceneManager::Initialize()
 	{
 		mScenes.resize((UINT)eSceneType::End); 

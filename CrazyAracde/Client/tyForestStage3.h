@@ -32,6 +32,9 @@ namespace ty
 		float mTime;
 		class Monster* monster[10];
 		class Monster2* monster2[10];
+		class ForestMonster* monster3[10];
+		class SealBoss* Bossmonster[3];
+		bool isPlayed;
 	};
 };
 

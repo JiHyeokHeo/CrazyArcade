@@ -33,6 +33,7 @@ namespace ty
 		class ForestMonster* monster[10];
 		class Monster2* monster2[10];
 		class GameObject* obj[10];
+		bool isPlayed;
 	};
 }; 
 

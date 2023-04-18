@@ -91,11 +91,16 @@ namespace ty
 	{
 		if (SceneManager::GetMonsterCnt() == 0)
 		{
-			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+			if (isPlayed == false)
+			{
+				object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+				isPlayed = true;
+			}
 			mTime += Time::DeltaTime();
 			if (mTime >= 6.0f)
 			{
-				SceneManager::LoadScene(eSceneType::PlayStage2);
+				isPlayed = false;
+				SceneManager::LoadScene(eSceneType::Lobby);
 				mTime = 0;
 			}
 		}
