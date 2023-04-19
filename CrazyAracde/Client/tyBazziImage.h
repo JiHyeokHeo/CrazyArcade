@@ -18,6 +18,8 @@ namespace ty
 
 	private:
 		Image* mImage;
+		BazziImage* mBazziImage;
+		bool isClicked;
 	};
 };
 

@@ -4,11 +4,11 @@
 namespace ty
 {
 	class Image;
-	class TitleUI : public GameObject
+	class DaoLobbyUI : public GameObject
 	{
 	public:
-		TitleUI();
-		~TitleUI();
+		DaoLobbyUI();
+		~DaoLobbyUI();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -20,3 +20,5 @@ namespace ty
 		Image* mImage;
 	};
 };
+
+

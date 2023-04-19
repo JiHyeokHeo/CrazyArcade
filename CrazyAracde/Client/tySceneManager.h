@@ -17,17 +17,31 @@ namespace ty
 		static Scene* GetActiveScene() { return mActiveScene; }
 		static void SetActiveScene(Scene* scene) { mActiveScene = scene; }
 
+		// 배찌 씬 매니저에 등록
 		static void SetBazzi(Bazzi* bazzi) { mBazzi = bazzi; }
 		static void DeleteBazzi() { mBazzi = nullptr; }
+
+		// 다른 클래스에서 사용하기 위해 만듬
 		static Bazzi* GetBazzi() { return mBazzi; }
+
+		// 시간 설정 및 가져오기
 		static void SetmTime(int time) { mRealPlayTime = time; }
 		static int GetTime() { return mRealPlayTime; }
+
+		// 몬스터 갯수 정하기
 		static void SetMonsterCnt(int cnt) { monstercnt = cnt; }
 		static int GetMonsterCnt() { return monstercnt; }
+
+		// 보스 몬스터 갯수 정하기
 		static void SetBossCnt(int cnt) { mBossCnt = cnt; }
 		static int GetBossCnt() { return mBossCnt; }
-
+		
+		// 맵 정보 가져오기
 		static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
+
+		// 1인플레이 또는 2인 플레이 구분하기
+		static void SetIsDuo(bool check) { isDuo = check; }
+
 
 	private:
 		static std::vector<Scene*> mScenes;
@@ -37,6 +51,6 @@ namespace ty
 		static int monstercnt;
 		static int mBossCnt;
 		static std::vector<std::vector<int>> mapIndex;
-
+		static bool isDuo;
 	};
 }

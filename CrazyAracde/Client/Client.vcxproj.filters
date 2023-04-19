@@ -152,6 +152,36 @@
     <Filter Include="Contents\Monster\ForestMonster">
       <UniqueIdentifier>{07c723a9-445c-47c8-9be3-937f0410561a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Monster\ToyMonster">
+      <UniqueIdentifier>{7b14f2e4-2117-4433-b07f-6e1209995a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\GameStart">
+      <UniqueIdentifier>{09aa177c-feb5-416b-a364-54e34fbe6aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\MapSelect">
+      <UniqueIdentifier>{9ca929c8-9d84-47e5-951a-2f2a9e1b6c83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\CheckSingle">
+      <UniqueIdentifier>{d393aac3-6363-44ff-bcd5-ca440319cd79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\CharctorUI">
+      <UniqueIdentifier>{01e317f0-46aa-4d61-8407-02f20f122a5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\CharctorUI\DaoUI">
+      <UniqueIdentifier>{9b824d19-1511-4051-8e1f-49953cf71321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\CharctorUI\BazziUI">
+      <UniqueIdentifier>{d49eea09-ea9c-4f17-9d97-1038cc17535b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\Lobby">
+      <UniqueIdentifier>{20a86b87-e4f6-4262-aaed-5bd78d23b65e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\Lobby\Bazzi">
+      <UniqueIdentifier>{b441ff71-e24e-4065-a57c-018b25d09cf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\UI\Lobby\Dao">
+      <UniqueIdentifier>{6db62281-0b53-4c08-a8a7-047bf66fd003}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -259,9 +289,6 @@
     <ClInclude Include="tyObject.h">
       <Filter>Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="tyTitleUI.h">
-      <Filter>Contents\UI</Filter>
-    </ClInclude>
     <ClInclude Include="tyBlock.h">
       <Filter>Contents\Block</Filter>
     </ClInclude>
@@ -340,17 +367,11 @@
     <ClInclude Include="tyPotion.h">
       <Filter>Contents\Item</Filter>
     </ClInclude>
-    <ClInclude Include="tyMapSelect.h">
-      <Filter>Contents\UI</Filter>
-    </ClInclude>
     <ClInclude Include="tyIceSelect.h">
       <Filter>Contents\UI\Map\Ice</Filter>
     </ClInclude>
     <ClInclude Include="tyIceMapSelect.h">
       <Filter>Contents\UI\Map\Ice</Filter>
-    </ClInclude>
-    <ClInclude Include="tyBazziImage.h">
-      <Filter>Contents\UI</Filter>
     </ClInclude>
     <ClInclude Include="tySteam.h">
       <Filter>Contents\Effect</Filter>
@@ -399,9 +420,6 @@
     </ClInclude>
     <ClInclude Include="tyPirateSelect.h">
       <Filter>Contents\UI\Map\Pirate</Filter>
-    </ClInclude>
-    <ClInclude Include="tyGameStartUI.h">
-      <Filter>Contents\UI</Filter>
     </ClInclude>
     <ClInclude Include="tyWinLose.h">
       <Filter>Contents\UI\WinLose</Filter>
@@ -465,6 +483,42 @@
     </ClInclude>
     <ClInclude Include="tyForestMonster.h">
       <Filter>Contents\Monster\ForestMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="tyToyBoss.h">
+      <Filter>Contents\Monster\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="tyToyMonster.h">
+      <Filter>Contents\Monster\ToyMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="tyDao.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="tyBazziImage.h">
+      <Filter>Contents\UI\CharctorUI\BazziUI</Filter>
+    </ClInclude>
+    <ClInclude Include="tyGameStartUI.h">
+      <Filter>Contents\UI\GameStart</Filter>
+    </ClInclude>
+    <ClInclude Include="tyMapSelect.h">
+      <Filter>Contents\UI\MapSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="tySinglePlayUI.h">
+      <Filter>Contents\UI\CheckSingle</Filter>
+    </ClInclude>
+    <ClInclude Include="tyDuoPlayUI.h">
+      <Filter>Contents\UI\CheckSingle</Filter>
+    </ClInclude>
+    <ClInclude Include="tySelect.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="tyDaoImage.h">
+      <Filter>Contents\UI\CharctorUI\DaoUI</Filter>
+    </ClInclude>
+    <ClInclude Include="tyBazziLobbyUI.h">
+      <Filter>Contents\UI\Lobby\Bazzi</Filter>
+    </ClInclude>
+    <ClInclude Include="tyDaoLobbyUI.h">
+      <Filter>Contents\UI\Lobby\Dao</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -562,9 +616,6 @@
     <ClCompile Include="tyCamera.cpp">
       <Filter>Engine\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="tyTitleUI.cpp">
-      <Filter>Contents\UI</Filter>
-    </ClCompile>
     <ClCompile Include="tyBlock.cpp">
       <Filter>Contents\Block</Filter>
     </ClCompile>
@@ -637,17 +688,11 @@
     <ClCompile Include="tyPotion.cpp">
       <Filter>Contents\Item</Filter>
     </ClCompile>
-    <ClCompile Include="tyMapSelect.cpp">
-      <Filter>Contents\UI</Filter>
-    </ClCompile>
     <ClCompile Include="tyIceSelect.cpp">
       <Filter>Contents\UI\Map\Ice</Filter>
     </ClCompile>
     <ClCompile Include="tyIceMapSelect.cpp">
       <Filter>Contents\UI\Map\Ice</Filter>
-    </ClCompile>
-    <ClCompile Include="tyBazziImage.cpp">
-      <Filter>Contents\UI</Filter>
     </ClCompile>
     <ClCompile Include="tySteam.cpp">
       <Filter>Contents\Effect</Filter>
@@ -696,9 +741,6 @@
     </ClCompile>
     <ClCompile Include="tyPirateSelect.cpp">
       <Filter>Contents\UI\Map\Pirate</Filter>
-    </ClCompile>
-    <ClCompile Include="tyGameStartUI.cpp">
-      <Filter>Contents\UI</Filter>
     </ClCompile>
     <ClCompile Include="tyWinLose.cpp">
       <Filter>Contents\UI\WinLose</Filter>
@@ -762,6 +804,39 @@
     </ClCompile>
     <ClCompile Include="tyForestMonster.cpp">
       <Filter>Contents\Monster\ForestMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="tyToyBoss.cpp">
+      <Filter>Contents\Monster\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="tyToyMonster.cpp">
+      <Filter>Contents\Monster\ToyMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="tyDao.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBazziImage.cpp">
+      <Filter>Contents\UI\CharctorUI\BazziUI</Filter>
+    </ClCompile>
+    <ClCompile Include="tyGameStartUI.cpp">
+      <Filter>Contents\UI\GameStart</Filter>
+    </ClCompile>
+    <ClCompile Include="tyMapSelect.cpp">
+      <Filter>Contents\UI\MapSelect</Filter>
+    </ClCompile>
+    <ClCompile Include="tySinglePlayUI.cpp">
+      <Filter>Contents\UI\CheckSingle</Filter>
+    </ClCompile>
+    <ClCompile Include="tyDuoPlayUI.cpp">
+      <Filter>Contents\UI\CheckSingle</Filter>
+    </ClCompile>
+    <ClCompile Include="tyDaoImage.cpp">
+      <Filter>Contents\UI\CharctorUI\DaoUI</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBazziLobbyUI.cpp">
+      <Filter>Contents\UI\Lobby\Bazzi</Filter>
+    </ClCompile>
+    <ClCompile Include="tyDaoLobbyUI.cpp">
+      <Filter>Contents\UI\Lobby\Dao</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

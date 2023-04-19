@@ -28,6 +28,9 @@ namespace ty
 	int SceneManager::mRealPlayTime = {};
 	int SceneManager::monstercnt = {};
 	int  SceneManager::mBossCnt;
+	bool SceneManager::isDuo = false;
+
+
 	void SceneManager::Initialize()
 	{
 		//-------------------------------------------- 맵 사이즈 조절
@@ -64,7 +67,7 @@ namespace ty
 			
  			scene->Initialize();
 		}
-		mActiveScene = mScenes[(UINT)eSceneType::Logo];
+		mActiveScene = mScenes[(UINT)eSceneType::Login];
 	}
 
 	void SceneManager::Update()

@@ -131,14 +131,19 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
+    <ClInclude Include="tyDaoImage.h" />
+    <ClInclude Include="tyDaoLobbyUI.h" />
+    <ClInclude Include="tySelect.h" />
     <ClInclude Include="tyBallon.h" />
     <ClInclude Include="tyBaseBossBomb.h" />
     <ClInclude Include="tyBazziImage.h" />
     <ClInclude Include="tyBird.h" />
     <ClInclude Include="tyCookieMapSelect.h" />
     <ClInclude Include="tyCookieSelect.h" />
+    <ClInclude Include="tyDao.h" />
     <ClInclude Include="tyDevil.h" />
     <ClInclude Include="tydir.h" />
+    <ClInclude Include="tyDuoPlayUI.h" />
     <ClInclude Include="tyForestMapSelect.h" />
     <ClInclude Include="tyForestMonster.h" />
     <ClInclude Include="tyForestSelect.h" />
@@ -172,6 +177,7 @@
     <ClInclude Include="tyShield.h" />
     <ClInclude Include="tyShieldEffect.h" />
     <ClInclude Include="tyShiledUI.h" />
+    <ClInclude Include="tySinglePlayUI.h" />
     <ClInclude Include="tySkate.h" />
     <ClInclude Include="tySteam.h" />
     <ClInclude Include="tyTileBomb.h" />
@@ -233,7 +239,7 @@
     <ClInclude Include="tyToyStage3.h" />
     <ClInclude Include="tyToyTile.h" />
     <ClInclude Include="tyTransform.h" />
-    <ClInclude Include="tyTitleUI.h" />
+    <ClInclude Include="tyBazziLobbyUI.h" />
     <ClInclude Include="tyWinLose.h" />
   </ItemGroup>
   <ItemGroup>
@@ -251,7 +257,11 @@
     <ClCompile Include="tyBombEffect.cpp" />
     <ClCompile Include="tyBossBombEffect.cpp" />
     <ClCompile Include="tyCookieSelect.cpp" />
+    <ClCompile Include="tyDao.cpp" />
+    <ClCompile Include="tyDaoImage.cpp" />
+    <ClCompile Include="tyDaoLobbyUI.cpp" />
     <ClCompile Include="tyDevil.cpp" />
+    <ClCompile Include="tyDuoPlayUI.cpp" />
     <ClCompile Include="tyForestMapSelect.cpp" />
     <ClCompile Include="tyForestMonster.cpp" />
     <ClCompile Include="tyForestSelect.cpp" />
@@ -314,6 +324,7 @@
     <ClCompile Include="tyShield.cpp" />
     <ClCompile Include="tyShieldEffect.cpp" />
     <ClCompile Include="tyShiledUI.cpp" />
+    <ClCompile Include="tySinglePlayUI.cpp" />
     <ClCompile Include="tySkate.cpp" />
     <ClCompile Include="tyForestStage1.cpp" />
     <ClCompile Include="tySteam.cpp" />
@@ -331,7 +342,7 @@
     <ClCompile Include="tyToyStage3.cpp" />
     <ClCompile Include="tyToyTile.cpp" />
     <ClCompile Include="tyTransform.cpp" />
-    <ClCompile Include="tyTitleUI.cpp" />
+    <ClCompile Include="tyBazziLobbyUI.cpp" />
     <ClCompile Include="tyWinLose.cpp" />
   </ItemGroup>
   <ItemGroup>

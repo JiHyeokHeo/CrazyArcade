@@ -21,5 +21,6 @@ namespace ty
 	private:
 		Login_BG* mLoginBG;
 		AlphaBlender* mBlender;
+		bool isChecked;
 	};
 }

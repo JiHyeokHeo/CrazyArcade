@@ -18,10 +18,21 @@ namespace ty
 
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
+
+		static bool GetIsPicked() { return isPicked; }
+		bool GetisMapClicked() { return isMapClicked; }
 	private:
+		static bool isPicked;
+
+
 		Lobby_BG* mLobbyBG;
 		AlphaBlender* mBlender;
-		IceMapSelect* mMapSelect;
+		class IceMapSelect* mMapSelect;
 		eSceneType mSceneType;
+		class BazziImage* mBazziUIImage;
+		class DaoImage* mDaoUIImage;
+		bool isBazziVisited;
+		bool isDaoVisited;
+		bool isMapClicked;
 	};
 }

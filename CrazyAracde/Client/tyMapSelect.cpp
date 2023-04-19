@@ -6,6 +6,7 @@
 #include "tyinput.h"
 #include "tyObject.h"
 #include "tyIceSelect.h"
+#include "tyLobbyScene.h"
 
 namespace ty
 {
@@ -24,11 +25,13 @@ namespace ty
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 680 && temp.y <= 715 && temp.x >= 460 && temp.x <= 590)
 		{
+			mLobbyScene->GetisMapClicked() == false;
 			object::Destroy(this);
 		}
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 680 && temp.y <= 715 && temp.x >= 612 && temp.x <= 739)
 		{
+			mLobbyScene->GetisMapClicked() == false;
 			object::Destroy(this);
 		}
 		GameObject::Update();

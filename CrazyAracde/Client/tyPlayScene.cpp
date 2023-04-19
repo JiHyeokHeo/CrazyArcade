@@ -105,7 +105,7 @@ namespace ty
 				mTime = 0;
 			}
 		}
-		else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
+		else if (SceneManager::GetBazzi()->GetPlayerHP() == -1 || SceneManager::GetTime() <=0)
 		{
 			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
 			mTime += Time::DeltaTime();
