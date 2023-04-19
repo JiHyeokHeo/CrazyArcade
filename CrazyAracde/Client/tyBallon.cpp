@@ -69,7 +69,7 @@ namespace ty
 			object::Destroy(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >=1.5f )
+		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >= 1.5f)
 		{
 			object::Destroy(this);
 		}

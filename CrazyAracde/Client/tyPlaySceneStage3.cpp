@@ -163,7 +163,7 @@ namespace ty
 			{
 				for (int j = 0; j < 15; j++)
 				{
-					SceneManager::GetBazzi()->GetMapIndex()[i][j] = PlayIndex[i][j];
+					SceneManager::GetMapIndex()[i][j] = PlayIndex[i][j];
 				}
 			}
 		}
@@ -175,7 +175,7 @@ namespace ty
 			{
 				for (int j = 0; j < 15; j++)
 				{
-					PlayIndex[i][j] = SceneManager::GetBazzi()->GetMapIndex()[i][j];
+					PlayIndex[i][j] = SceneManager::GetMapIndex()[i][j];
 				}
 			}
 			isLoad = true;
@@ -211,7 +211,7 @@ namespace ty
 		{
 			for (int i = 0; i < 15; i++)
 			{
-				SceneManager::GetBazzi()->GetMapIndex()[j][i] = 0;
+				SceneManager::GetMapIndex()[j][i] = 0;
 			}
 		}
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 100.0f)); // 화면 전환시 기능 추가

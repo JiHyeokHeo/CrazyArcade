@@ -145,20 +145,20 @@ namespace ty
 	}
 	void Monster::left()
 	{
-		if(SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2
-			&& SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2)
+		if(SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2
+			&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2)
 		{
 			mState = eMonsterState::Up;
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 && mPos.x <= 35.0f)
+		else if (SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 && mPos.x <= 35.0f)
 		{
 			mState = eMonsterState::Down;
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 35.0f)
+		else if (SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1 || mPos.x <= 35.0f)
 		{
 			mState = eMonsterState::Right;
 			colcnt++;
@@ -173,20 +173,20 @@ namespace ty
 	}
 	void Monster::right()
 	{
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2
-			&& SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2)
+		if (SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2
+			&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2)
 		{
 			mState = eMonsterState::Down;
 			colcnt++;
 			animationCtr();
 		}
-		else if(SceneManager::GetBazzi()->GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 && mPos.x >= 870.0f)
+		else if(SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 && mPos.x >= 870.0f)
 		{
 			mState = eMonsterState::Down;
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1 || mPos.x >= 870.0f)
+		else if (SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] >= 2 || SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] == 1 || mPos.x >= 870.0f)
 		{
 			mState = eMonsterState::Left;
 			colcnt++;
@@ -200,21 +200,21 @@ namespace ty
 	}
 	void Monster::up()
 	{
-		if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
-			&& SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2)
+		if (SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
+			&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2)
 		{
 			mState = eMonsterState::Right;
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
+		else if (SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
 			&& mPos.y <= 65.0f)
 		{
 			mState = eMonsterState::Right;
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1 || mPos.y <= 60.0f)
+		else if (SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2 || SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1 || mPos.y <= 60.0f)
 		{
 			mState = eMonsterState::Down;
 			colcnt++;
@@ -230,21 +230,21 @@ namespace ty
 	}
 	void Monster::down()
 	{
-		if(SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
-			&& SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2)
+		if(SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2
+			&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2)
 		{
 			mState = eMonsterState::Left;
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2
+		else if (SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] >= 2
 			&& mPos.y >= 775.0f)
 		{
 			mState = eMonsterState::Left;
 			colcnt++;
 			animationCtr();
 		}
-		else if (SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetBazzi()->GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1 || mPos.y >= 780.0f)
+		else if (SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1 || mPos.y >= 780.0f)
 		{
 			mState = eMonsterState::Up;
 			colcnt++;

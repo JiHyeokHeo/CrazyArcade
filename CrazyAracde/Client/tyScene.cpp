@@ -96,10 +96,10 @@ namespace ty
 					(*iter)->SetState(GameObject::eState::Active);
 					Vector2 mPos = (*iter)->GetComponent<Transform>()->GetPos();
 					Vector2 mIdx = TileBomb::SetIndex(mPos);
-					SceneManager::GetBazzi()->GetMapIndex()[mIdx.y][mIdx.x] = 2;
+					SceneManager::GetMapIndex()[mIdx.y][mIdx.x] = 2;
 					if ((*iter)->GetName() == L"Tile" && tile->Index() == 4)
 					{
-						SceneManager::GetBazzi()->GetMapIndex()[mIdx.y][mIdx.x] = 4;
+						SceneManager::GetMapIndex()[mIdx.y][mIdx.x] = 4;
 					}
 				}
 				

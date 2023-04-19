@@ -44,7 +44,8 @@ namespace ty
 		if (pos.y > 12 || pos.x > 14 || pos.y < 0 || pos.x < 0)
 			return;
 		SetName(L"Tile");
-		SceneManager::GetBazzi()->GetMapIndex()[pos.y][pos.x] = 2;
+		SceneManager::GetMapIndex()[pos.y][pos.x] = 2;
+		
 		if (index >= 5)
 		{
 			mCollider = AddComponent<Collider>();
@@ -53,7 +54,7 @@ namespace ty
 		}
 		if (index == 28)
 		{
-			SceneManager::GetBazzi()->GetMapIndex()[pos.y][pos.x] = 4;
+			SceneManager::GetMapIndex()[pos.y][pos.x] = 4;
 		}
 		mIndex = index;
 		if (atlas == nullptr || index < 0)
@@ -121,7 +122,7 @@ namespace ty
 					object::Instantiate<PotionMax>(tr->GetPos() + Vector2(0.0f, -2.0f), eLayerType::Item);
 				}
 
-				SceneManager::GetBazzi()->GetMapIndex()[mPos.y][mPos.x] = 0;
+				SceneManager::GetMapIndex()[mPos.y][mPos.x] = 0;
 				object::Instantiate<Steam>(tr->GetPos(), eLayerType::Effect);
 				object::Pause(this);
 			}
@@ -144,7 +145,7 @@ namespace ty
 					object::Instantiate<PotionMax>(tr->GetPos() + Vector2(0.0f, -2.0f), eLayerType::Item);
 				}
 
-				SceneManager::GetBazzi()->GetMapIndex()[mPos.y][mPos.x] = 0;
+				SceneManager::GetMapIndex()[mPos.y][mPos.x] = 0;
 				object::Instantiate<Steam>(tr->GetPos(), eLayerType::Effect);
 				object::Pause(this);
 			}

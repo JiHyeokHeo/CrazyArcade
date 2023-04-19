@@ -21,6 +21,7 @@
 
 namespace ty
 {
+	std::vector<std::vector<int>> SceneManager::mapIndex;
 	std::vector<Scene*> SceneManager::mScenes = {};
 	Scene* SceneManager::mActiveScene = nullptr;
 	Bazzi* SceneManager::mBazzi;
@@ -29,6 +30,12 @@ namespace ty
 	int  SceneManager::mBossCnt;
 	void SceneManager::Initialize()
 	{
+		//-------------------------------------------- ∏  ªÁ¿Ã¡Ó ¡∂¿˝
+		int row = 15;
+		int col = 13;
+		mapIndex.assign(col, std::vector<int>(row, 0));
+
+		//-------------------------------------------- æ¿ ¿Ã¥œº»∂Û¿Ã¡Ó
 		mScenes.resize((UINT)eSceneType::End); 
 
 		mScenes[(UINT)eSceneType::Logo] = new LogoScene();

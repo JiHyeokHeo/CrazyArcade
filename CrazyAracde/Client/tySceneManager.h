@@ -27,6 +27,8 @@ namespace ty
 		static void SetBossCnt(int cnt) { mBossCnt = cnt; }
 		static int GetBossCnt() { return mBossCnt; }
 
+		static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
+
 	private:
 		static std::vector<Scene*> mScenes;
 		static Scene* mActiveScene;
@@ -34,6 +36,7 @@ namespace ty
 		static int mRealPlayTime;
 		static int monstercnt;
 		static int mBossCnt;
+		static std::vector<std::vector<int>> mapIndex;
 
 	};
 }

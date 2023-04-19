@@ -152,7 +152,7 @@ namespace ty
 		{
 			for (int j = 0; j < 15; j++)
 			{
-				SceneManager::GetBazzi()->GetMapIndex()[i][j] = 0;
+				SceneManager::GetMapIndex()[i][j] = 0;
 			}
 		}
 	}
@@ -163,7 +163,7 @@ namespace ty
 		{
 			for (int j = 0; j < 15; j++)
 			{
-				SceneManager::GetBazzi()->GetMapIndex()[i][j] = 0;
+				SceneManager::GetMapIndex()[i][j] = 0;
 			}
 		}
 

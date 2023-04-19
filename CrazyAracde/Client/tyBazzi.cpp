@@ -24,7 +24,7 @@
 
 namespace ty
 {
-	std::vector<std::vector<int>> Bazzi:: mapIndex;
+	//std::vector<std::vector<int>> Bazzi:: mapIndex;
 	Bazzi::Bazzi()
 		: mHP(1) // Ã¼·Â 
 		, mItemState(eItemType::None)
@@ -41,9 +41,7 @@ namespace ty
 		, isColl(true)
 		
 	{
-		int row = 15;
-		int col = 13;
-		mapIndex.assign(col, std::vector<int>(row, 0));
+		
 	}
 	Bazzi::~Bazzi()
 	{
@@ -320,25 +318,25 @@ namespace ty
 
 
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
-			&& mapIndex[ColLIdx.y][ColLIdx.x] != 4 && mapIndex[ColLIdx.y][ColLIdx.x] != 2 && mapIndex[ColLIdx.y][ColLIdx.x] != 1 )
+			&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1 )
 		{
 			mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
 			mPos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			&& mapIndex[ColRIdx.y][ColRIdx.x] != 4 && mapIndex[ColRIdx.y][ColRIdx.x] != 2 && mapIndex[ColRIdx.y][ColRIdx.x] != 1)
+			&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
 		{
 			mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
 			mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			&& mapIndex[ColUIdx.y][ColUIdx.x] != 4 && mapIndex[ColUIdx.y][ColUIdx.x] != 2 && mapIndex[ColUIdx.y][ColUIdx.x] != 1)
+			&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
 		{
 			mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
 			mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			&& mapIndex[ColDIdx.y][ColDIdx.x] != 4 && mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1 )
+			&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1 )
 		{
 			mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x , ColMidPos.y  +TILE_SIZE_Y));
 			mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
@@ -384,12 +382,12 @@ namespace ty
 		{
 			mBomb = maxBomb;
 		}
-		if (Input::GetKey(eKeyCode::SPACEBAR) && mapIndex[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+		if (Input::GetKey(eKeyCode::SPACEBAR) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
 		{
 			mClick++;
 			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
 			IdxPos = TileBomb::SetIndex(tr->GetPos());
-			mapIndex[IdxPos.y][IdxPos.x] = 3; // 13 15
+			SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
 		}
 		if (isBirdOn == false)
 		{
@@ -636,25 +634,25 @@ namespace ty
 
 
 		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
-			&& mapIndex[ColLIdx.y][ColLIdx.x] != 2 && mapIndex[ColLIdx.y][ColLIdx.x] != 1)
+			&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
 		{
 			mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
 			mPos.x -= 250.0f * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			&& mapIndex[ColRIdx.y][ColRIdx.x] != 2 && mapIndex[ColRIdx.y][ColRIdx.x] != 1)
+			&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
 		{
 			mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
 			mPos.x += 250.0f * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			&& mapIndex[ColUIdx.y][ColUIdx.x] != 2 && mapIndex[ColUIdx.y][ColUIdx.x] != 1)
+			&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
 		{
 			mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
 			mPos.y -= 250.0f * Time::DeltaTime();
 		}
 		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			&& mapIndex[ColDIdx.y][ColDIdx.x] != 2 && mapIndex[ColDIdx.y][ColDIdx.x] != 1)
+			&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
 		{
 			mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
 			mPos.y += 250.0f * Time::DeltaTime();

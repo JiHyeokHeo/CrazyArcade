@@ -35,7 +35,7 @@ namespace ty
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
-		static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
+		//static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
 		int& GetmClick() { return mClick; }
 		float& GetmSpeed() { return mSpeed; }
 		int& GetmWaterCourse() { return mWaterCourse; }
@@ -106,7 +106,7 @@ namespace ty
 		int mRandomPosy;
 		float mInvincibility;
 
-		static std::vector<std::vector<int>> mapIndex;
+		//static std::vector<std::vector<int>> mapIndex;
 		Vector2 IdxPos;
 		int mPlayerSpeed;
 		Collider* collider;
