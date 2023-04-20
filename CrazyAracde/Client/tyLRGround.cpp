@@ -8,6 +8,7 @@
 #include "tyPlayScene.h"
 #include "tyColliderPosControl.h"
 #include "tyTime.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -27,7 +28,6 @@ namespace ty
 
 
 		//mImage = Resources::Load<Image>(L"Ground", L"..\\Resources\\Ground\\Ground.bmp"); 
-		mPlayer = SceneManager::GetBazzi();
 		GameObject::Initialize();
 	}
 
@@ -67,21 +67,43 @@ namespace ty
 
 	void LRGround::OnCollisionStay(Collider* other)
 	{
-		int mSpeed = SceneManager::GetBazzi()->GetmSpeed();
-		mPlayer = SceneManager::GetBazzi();
-		Transform* mPlayerPos = mPlayer->GetComponent<Transform>();
-		Vector2 mGameobjPos = mPlayerPos->GetPos();
-		Vector2 mGameobjColPos = mPlayer->GetComponent<Collider>()->GetPos();
-		Vector2 mColPos = mCollider->GetPos();
-		if (mGameobjColPos.x > mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
+		if (SceneManager::GetBazzi() != NULL)
 		{
-			mGameobjPos.x += mPlayer->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
-			mPlayerPos->SetPos(mGameobjPos);
+			int mSpeed = SceneManager::GetBazzi()->GetmSpeed();
+			mBazzi = SceneManager::GetBazzi();
+			Transform* mPlayerPos = mBazzi->GetComponent<Transform>();
+			Vector2 mGameobjPos = mPlayerPos->GetPos();
+			Vector2 mGameobjColPos = mBazzi->GetComponent<Collider>()->GetPos();
+			Vector2 mColPos = mCollider->GetPos();
+			if (mGameobjColPos.x > mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
+			{
+				mGameobjPos.x += mBazzi->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
+				mPlayerPos->SetPos(mGameobjPos);
+			}
+			if (mGameobjColPos.x < mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
+			{
+				mGameobjPos.x -= mBazzi->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
+				mPlayerPos->SetPos(mGameobjPos);
+			}
 		}
-		if (mGameobjColPos.x < mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
+		else if (SceneManager::GetDao() != NULL)
 		{
-			mGameobjPos.x -= mPlayer->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
-			mPlayerPos->SetPos(mGameobjPos);
+			int mSpeed = SceneManager::GetDao()->GetmSpeed();
+			mDao = SceneManager::GetDao();
+			Transform* mPlayerPos = mDao->GetComponent<Transform>();
+			Vector2 mGameobjPos = mPlayerPos->GetPos();
+			Vector2 mGameobjColPos = mDao->GetComponent<Collider>()->GetPos();
+			Vector2 mColPos = mCollider->GetPos();
+			if (mGameobjColPos.x > mColPos.x && other->GetOwner()->GetName() == L"Dao")
+			{
+				mGameobjPos.x += mDao->GetPlayerSpeed() * mSpeed * Time::DeltaTime();
+				mPlayerPos->SetPos(mGameobjPos);
+			}
+			if (mGameobjColPos.x < mColPos.x && other->GetOwner()->GetName() == L"Dao")
+			{
+				mGameobjPos.x -= mDao->GetPlayerSpeed() * mSpeed * Time::DeltaTime();
+				mPlayerPos->SetPos(mGameobjPos);
+			}
 		}
 
 		//colposctr::ColPosControl(other, this);

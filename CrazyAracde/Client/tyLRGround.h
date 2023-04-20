@@ -18,12 +18,12 @@ namespace ty
 		virtual void OnCollisionStay(class Collider* other);
 		virtual void OnCollisionExit(class Collider* other);
 
-		void SetPlayer(class Bazzi* player) { mPlayer = player; }
 
 	private:
 		class Collider* mCollider;
 		class Image* mImage;
-		class Bazzi* mPlayer;
+		class Bazzi* mBazzi;
+		class Dao* mDao;
 		bool isGround;
 		Vector2 mPlayerPos;
 	};

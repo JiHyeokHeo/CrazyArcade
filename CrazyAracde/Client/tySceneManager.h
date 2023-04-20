@@ -4,6 +4,7 @@
 namespace ty
 {
 	class Bazzi;
+	class Dao;
 	class SceneManager
 	{
 	public:
@@ -21,9 +22,12 @@ namespace ty
 		static void SetBazzi(Bazzi* bazzi) { mBazzi = bazzi; }
 		static void DeleteBazzi() { mBazzi = nullptr; }
 
+		static void SetDao(Dao* dao) { mDao = dao; }
+		static void DeleteDao() { mDao = nullptr; }
+
 		// 다른 클래스에서 사용하기 위해 만듬
 		static Bazzi* GetBazzi() { return mBazzi; }
-
+		static Dao* GetDao() { return mDao; }
 		// 시간 설정 및 가져오기
 		static void SetmTime(int time) { mRealPlayTime = time; }
 		static int GetTime() { return mRealPlayTime; }
@@ -42,11 +46,19 @@ namespace ty
 		// 1인플레이 또는 2인 플레이 구분하기
 		static void SetIsDuo(bool check) { isDuo = check; }
 
+		static bool GetIsDuo() { return isDuo; }
+
+		// 캐릭터 선택
+		static void SetCharactorPick(eCharactorPick pick) { mPick = pick; }
+		static eCharactorPick GetCharactorPick() { return mPick; }
 
 	private:
 		static std::vector<Scene*> mScenes;
 		static Scene* mActiveScene;
 		static Bazzi* mBazzi;
+		static Dao* mDao;
+		static eCharactorPick mPick;
+
 		static int mRealPlayTime;
 		static int monstercnt;
 		static int mBossCnt;

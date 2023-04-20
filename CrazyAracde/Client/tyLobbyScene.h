@@ -21,9 +21,9 @@ namespace ty
 
 		static bool GetIsPicked() { return isPicked; }
 		bool GetisMapClicked() { return isMapClicked; }
+		void SetIsMapClicked(bool check) { isMapClicked = check; }
 	private:
 		static bool isPicked;
-
 
 		Lobby_BG* mLobbyBG;
 		AlphaBlender* mBlender;
@@ -34,5 +34,6 @@ namespace ty
 		bool isBazziVisited;
 		bool isDaoVisited;
 		bool isMapClicked;
+
 	};
 }

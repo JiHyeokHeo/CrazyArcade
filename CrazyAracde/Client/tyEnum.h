@@ -42,6 +42,13 @@ enum class eLayerType
 };
 
 
+enum class eCharactorPick
+{
+	Bazzi,
+	Dao,
+	None,
+};
+
 enum class eItemType
 {
 	Needle,

@@ -22,6 +22,7 @@ namespace ty
 
 	private:
 		Bazzi* mBazzi;
+		Dao* mDao;
 		Play_BG* mPlayBG;
 		AlphaBlender* mBlender;
 		Image* mImage;
@@ -34,6 +35,7 @@ namespace ty
 		class Monster2* monster2[10];
 		class GameObject* obj[10];
 		bool isPlayed;
+		LobbyScene* mLobby;
 	};
 }; 
 

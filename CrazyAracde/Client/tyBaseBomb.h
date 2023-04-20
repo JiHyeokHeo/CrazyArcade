@@ -37,11 +37,15 @@ namespace ty
 		void down();
 		void left();
 		void SetTarget() { isTarget = true; }
+
+		void BazziBombChecking();
+		void DaoBombChecking();
 	private:
 		std::vector<BombEffect*> mBombEffect;
 		Collider* collider;
 		Transform* tr;
 		class Bazzi* mBazzi;
+		class Dao* mDao;
 		Vector2 BazziPos;;
 		Vector2 mBasePos;
 		Vector2 realPos;
@@ -62,6 +66,13 @@ namespace ty
 		bool mup;
 		bool mdown;
 		int pushcnt;
+
+
+		Vector2 mDownIdx;
+		Vector2 mUpdx;
+		Vector2 mRightdx;
+		Vector2 mLeftIdx;
+		Transform* mPlayer;
 	};
 	
 	

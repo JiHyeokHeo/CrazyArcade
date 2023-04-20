@@ -25,11 +25,12 @@ namespace ty
 	std::vector<Scene*> SceneManager::mScenes = {};
 	Scene* SceneManager::mActiveScene = nullptr;
 	Bazzi* SceneManager::mBazzi;
+	Dao* SceneManager::mDao;
 	int SceneManager::mRealPlayTime = {};
 	int SceneManager::monstercnt = {};
 	int  SceneManager::mBossCnt;
 	bool SceneManager::isDuo = false;
-
+	eCharactorPick SceneManager::mPick = eCharactorPick::None;
 
 	void SceneManager::Initialize()
 	{

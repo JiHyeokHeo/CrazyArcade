@@ -230,26 +230,26 @@ namespace ty
 		//	mState = eBazziState::Idle;
 		//	mAnimator->Play(L"BirdDown", true);
 		//}
-		if(other->GetOwner()->GetName() == L"BossBombEffect" && isBirdOn == true)
-		{
-			mHP--;
-			object::Instantiate<Steam>(mPos, eLayerType::Effect);
-			mAnimator->Play(L"BazzidownIdle", false);
-			mState = eBazziState::Idle;
-			isColl = true;
-			isBirdOn = false;
-			mInvincibility = 1.0f;
-		}
-		if (other->GetOwner()->GetName() == L"BombEffect" && isBirdOn == true)
-		{
-			mHP--;
-			object::Instantiate<Steam>(mPos, eLayerType::Effect);
-			mAnimator->Play(L"Bazziflash", false);
-			mState = eBazziState::Idle;
-			isColl = true;
-			isBirdOn = false;
-			mInvincibility = 1.0f;
-		}
+		//if(other->GetOwner()->GetName() == L"BossBombEffect" && isBirdOn == true)
+		//{
+		//	mHP--;
+		//	object::Instantiate<Steam>(mPos, eLayerType::Effect);
+		//	mAnimator->Play(L"BazzidownIdle", false);
+		//	mState = eBazziState::Idle;
+		//	isColl = true;
+		//	isBirdOn = false;
+		//	mInvincibility = 1.0f;
+		//}
+		//if (other->GetOwner()->GetName() == L"BombEffect" && isBirdOn == true)
+		//{
+		//	mHP--;
+		//	object::Instantiate<Steam>(mPos, eLayerType::Effect);
+		//	mAnimator->Play(L"Bazziflash", false);
+		//	mState = eBazziState::Idle;
+		//	isColl = true;
+		//	isBirdOn = false;
+		//	mInvincibility = 1.0f;
+		//}
 	}
 	void Bazzi::OnCollisionStay(Collider* other)
 	{

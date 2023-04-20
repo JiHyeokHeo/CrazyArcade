@@ -21,7 +21,6 @@ namespace ty
 	}
 	void BazziLobbyUI::Update()
 	{
-	
 		GameObject::Update();
 	}
 	void BazziLobbyUI::Render(HDC hdc)
