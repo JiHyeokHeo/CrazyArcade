@@ -944,7 +944,7 @@ namespace ty
 				Vector2 BombPos = tr->GetPos();
 				Vector2 BombIdx = TileBomb::SetIndex(BombPos);
 
-				int WaterStatus = SceneManager::GetBazzi()->GetmWaterCourse();
+				int WaterStatus = SceneManager::GetDao()->GetmWaterCourse();
 				if (BombIdx.x < 15 || BombIdx.y < 13)
 				{
 					for (int i = 1; i < WaterStatus; i++)
