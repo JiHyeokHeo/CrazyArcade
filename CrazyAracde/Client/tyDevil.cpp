@@ -16,6 +16,7 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -61,6 +62,13 @@ namespace ty
 		{
 			SceneManager::GetBazzi()->GetmSpeed() = SceneManager::GetBazzi()->GetMaxSpeed();
 			SceneManager::GetBazzi()->SetIsPushPossible(true);
+			object::Pause(this);
+		}
+
+		if (other->GetOwner()->GetName() == L"Dao" && this->GetState() == eState::Active)
+		{
+			SceneManager::GetDao()->GetmSpeed() = SceneManager::GetDao()->GetMaxSpeed();
+			SceneManager::GetDao()->SetIsPushPossible(true);
 			object::Pause(this);
 		}
 

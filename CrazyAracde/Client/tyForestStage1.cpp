@@ -276,13 +276,13 @@ namespace ty
 		if (SceneManager::GetCharactorPick() == eCharactorPick::Bazzi)
 		{
 			mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
-			mBazzi->SetState(GameObject::eState::Active);
+			mBazzi->SetState(GameObject::eState::Pause);
 			mBazzi->Reset();
 		}
 		else if (SceneManager::GetCharactorPick() == eCharactorPick::Dao)
 		{
 			mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
-			mDao->SetState(GameObject::eState::Active);
+			mDao->SetState(GameObject::eState::Pause);
 			mDao->Reset();
 		}
 		SceneManager::SetmTime(240);

@@ -60,7 +60,7 @@ namespace ty
 			{
 				object::Instantiate<BazziLobbyUI>(eLayerType::UI);
 				SceneManager::SetCharactorPick(eCharactorPick::Bazzi); // 씬 매니저에서 캐릭터 선택 보유
-				isPicked = true;
+				//isPicked = true;
 			}
 
 			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
@@ -87,7 +87,7 @@ namespace ty
 			{
 				object::Instantiate<DaoLobbyUI>(eLayerType::UI);
 				SceneManager::SetCharactorPick(eCharactorPick::Dao);  // 씬 매니저에서 캐릭터 선택 보유
-				isPicked = true;
+				//isPicked = true;
 			}
 
 			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)

@@ -12,6 +12,7 @@
 #include "tyAnimator.h"
 #include "tyObject.h"
 #include "tySceneManager.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -33,13 +34,28 @@ namespace ty
 	}
 	void ShieldEffect::Update()
 	{
-		Vector2 mPlayerPos = SceneManager::GetBazzi()->GetComponent<Transform>()->GetPos();
-		mPlayerPos -= Vector2(5.0f, 0.0f);
-		tr->SetPos(mPlayerPos);
-		
-		if (SceneManager::GetBazzi()->GetIsShieldOn() == false)
+		if (SceneManager::GetBazzi() != NULL)
 		{
-			object::Destroy(this);
+			Vector2 mPlayerPos = SceneManager::GetBazzi()->GetComponent<Transform>()->GetPos();
+			mPlayerPos -= Vector2(5.0f, 0.0f);
+			tr->SetPos(mPlayerPos);
+		
+			if (SceneManager::GetBazzi()->GetIsShieldOn() == false)
+			{
+				object::Destroy(this);
+			}
+		}
+		else if(SceneManager::GetDao() != NULL)
+		{
+			Vector2 mPlayerPos = SceneManager::GetDao()->GetComponent<Transform>()->GetPos();
+			mPlayerPos -= Vector2(5.0f, 0.0f);
+			tr->SetPos(mPlayerPos);
+
+			if (SceneManager::GetDao()->GetIsShieldOn() == false)
+			{
+				object::Destroy(this);
+			}
+
 		}
 		GameObject::Update();
 	}

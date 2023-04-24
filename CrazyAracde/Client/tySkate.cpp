@@ -16,6 +16,7 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -62,6 +63,13 @@ namespace ty
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
 			float& Stat = SceneManager::GetBazzi()->GetmSpeed();
+			Stat += 1.0f;
+			object::Destroy(this);
+		}
+	
+		if (other->GetOwner()->GetName() == L"Dao")
+		{
+			float& Stat = SceneManager::GetDao()->GetmSpeed();
 			Stat += 1.0f;
 			object::Destroy(this);
 		}

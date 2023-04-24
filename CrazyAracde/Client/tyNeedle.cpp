@@ -17,6 +17,7 @@
 #include "tyPlayScene.h"
 #include "tyinput.h"
 #include "tyNeedleUI.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -59,6 +60,13 @@ namespace ty
 		if (other->GetOwner()->GetName() == L"Bazzi" && this->GetState() == eState::Active)
 		{
 			SceneManager::GetBazzi()->SetItemState(eItemType::Needle);
+			object::Instantiate<NeedleUI>(eLayerType::UI);
+			object::Pause(this);
+		}
+
+		if (other->GetOwner()->GetName() == L"Dao" && this->GetState() == eState::Active)
+		{
+			SceneManager::GetDao()->SetItemState(eItemType::Needle);
 			object::Instantiate<NeedleUI>(eLayerType::UI);
 			object::Pause(this);
 		}

@@ -8,6 +8,7 @@
 #include "tyObject.h"
 #include "tyBazzi.h"
 #include "tyObject.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -23,11 +24,22 @@ namespace ty
 	}
 	void NeedleUI::Update()
 	{
-		if (SceneManager::GetBazzi()->GetItemState() != eItemType::Needle)
+		if (SceneManager::GetBazzi() != NULL)
 		{
-			object::Pause(this);
+			if (SceneManager::GetBazzi()->GetItemState() != eItemType::Needle)
+			{
+				object::Pause(this);
+			}
 		}
-		
+		else if(SceneManager::GetDao() != NULL)
+		{
+			if (SceneManager::GetDao()->GetItemState() != eItemType::Needle)
+			{
+				object::Pause(this);
+			}
+
+		}
+
 		GameObject::Update();
 	}
 	void NeedleUI::Render(HDC hdc)

@@ -8,6 +8,7 @@
 #include "tyObject.h"
 #include "tyBazzi.h"
 #include "tyObject.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -23,10 +24,21 @@ namespace ty
 	}
 	void ShieldUI::Update()
 	{
-		if (SceneManager::GetBazzi()->GetItemState() != eItemType::Shield)
+		if (SceneManager::GetBazzi() != NULL)
 		{
-			object::Pause(this);
+			if (SceneManager::GetBazzi()->GetItemState() != eItemType::Shield)
+			{
+				object::Pause(this);
+			}
 		}
+		else if (SceneManager::GetDao() != NULL)
+		{
+			if (SceneManager::GetDao()->GetItemState() != eItemType::Shield)
+			{
+				object::Pause(this);
+			}
+		}
+
 
 		GameObject::Update();
 	}

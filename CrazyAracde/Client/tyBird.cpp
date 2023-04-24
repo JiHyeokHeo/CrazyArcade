@@ -16,7 +16,7 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
-
+#include "tyDao.h"
 
 namespace ty
 {
@@ -62,7 +62,10 @@ namespace ty
 		{
 			object::Pause(this);
 		}
-
+		if (other->GetOwner()->GetName() == L"Dao" && this->GetState() == eState::Active)
+		{
+			object::Pause(this);
+		}
 		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >= 1.5f && this->GetState() == eState::Active)
 		{
 			object::Pause(this);

@@ -15,6 +15,7 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -33,33 +34,51 @@ namespace ty
 	}
 	void WinLose::Update()
 	{
-		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
+		if (SceneManager::GetIsDuo() == false)
 		{
-			object::Destroy(this);
-		}
-		if (SceneManager::GetMonsterCnt() == 0 && isPlayed == false)
-		{
-			isPlayed = true;
-			mAnimator->Play(L"UIWin", false);
-		}
-		else if(SceneManager::GetTime() == 0 && isPlayed == false)
-		{
-			isPlayed = true;
-			mAnimator->Play(L"UILose", false);
-		}
-		else if (SceneManager::GetBazzi()->GetPlayerHP() == -1 && isPlayed == false)
-		 {
-			isPlayed = true;
-			mAnimator->Play(L"UILose", false);
-		}
+			if (SceneManager::GetBazzi() != NULL)
+			{
+				if (SceneManager::GetBazzi()->GetPlayerHP() == -1 && isPlayed == false)
+				{
+					isPlayed = true;
+					mAnimator->Play(L"UILose", false);
+				}
+			}
+			else if (SceneManager::GetDao() != NULL)
+			{
 
-		mTime += Time::DeltaTime();
+				if (SceneManager::GetDao()->GetPlayerHP() == -1 && isPlayed == false)
+				{
+					isPlayed = true;
+					mAnimator->Play(L"UILose", false);
+				}
+			}
+			if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
+			{
+				object::Destroy(this);
+			}
+			if (SceneManager::GetMonsterCnt() == 0 && isPlayed == false)
+			{
+				isPlayed = true;
+				mAnimator->Play(L"UIWin", false);
+			}
+			else if (SceneManager::GetTime() == 0 && isPlayed == false)
+			{
+				isPlayed = true;
+				mAnimator->Play(L"UILose", false);
+			}
+			mTime += Time::DeltaTime();
 
-		if (mTime >= 3.0f)
-		{
-			object::Destroy(this);
-			mTime = 0;
+			if (mTime >= 3.0f)
+			{
+				object::Destroy(this);
+				mTime = 0;
+			}
+
 		}
+		
+
+
 		GameObject::Update();
 	}
 	void WinLose::Render(HDC hdc)

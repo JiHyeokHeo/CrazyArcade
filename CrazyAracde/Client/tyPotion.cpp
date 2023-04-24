@@ -16,6 +16,7 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -64,7 +65,11 @@ namespace ty
 			SceneManager::GetBazzi()->GetmWaterCourse()++;
 			object::Destroy(this);
 		}
-
+		if (other->GetOwner()->GetName() == L"Dao")
+		{
+			SceneManager::GetDao()->GetmWaterCourse()++;
+			object::Destroy(this);
+		}
 		if (other->GetOwner()->GetName() == L"BombEffect" && InvTime >= 1.5f)
 		{
 			object::Destroy(this);

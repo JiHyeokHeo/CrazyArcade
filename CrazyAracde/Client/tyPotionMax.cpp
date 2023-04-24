@@ -16,6 +16,7 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -63,6 +64,13 @@ namespace ty
 		{
 			int& WaterCourse = SceneManager::GetBazzi()->GetmWaterCourse();
 			WaterCourse = SceneManager::GetBazzi()->GetMaxWaterCourse();
+			object::Destroy(this);
+		}
+
+		if (other->GetOwner()->GetName() == L"Bazzi")
+		{
+			int& WaterCourse = SceneManager::GetDao()->GetmWaterCourse();
+			WaterCourse = SceneManager::GetDao()->GetMaxWaterCourse();
 			object::Destroy(this);
 		}
 

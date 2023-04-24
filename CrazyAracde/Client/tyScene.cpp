@@ -90,7 +90,7 @@ namespace ty
 			for (std::vector<GameObject*>::iterator iter = gameObjects.begin();
 				iter != gameObjects.end(); iter++)
 			{
-				if ((*iter)->GetState() == GameObject::eState::Pause)
+				if ((*iter)->GetState() == GameObject::eState::Pause && (*iter)->GetName() != L"Bazzi" && (*iter)->GetName() != L"Dao")
 				{
 					Tile* tile = dynamic_cast<Tile*>(*iter);
 					(*iter)->SetState(GameObject::eState::Active);
@@ -117,7 +117,7 @@ namespace ty
 			for (std::vector<GameObject*>::iterator iter = gameObjects.begin();
 				iter != gameObjects.end(); iter++)
 			{
-				if ((*iter)->GetState() == GameObject::eState::Pause)
+				if ((*iter)->GetState() == GameObject::eState::Pause && (*iter)->GetName() != L"Bazzi" && (*iter)->GetName() != L"Dao")
 				{
 					(*iter)->SetState(GameObject::eState::Active);
 				}

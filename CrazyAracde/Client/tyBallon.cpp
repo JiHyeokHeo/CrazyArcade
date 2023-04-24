@@ -16,6 +16,7 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -66,6 +67,12 @@ namespace ty
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
 			SceneManager::GetBazzi()->GetmBomb()++;
+			object::Destroy(this);
+		}
+
+		if (other->GetOwner()->GetName() == L"Dao")
+		{
+			SceneManager::GetDao()->GetmBomb()++;
 			object::Destroy(this);
 		}
 
