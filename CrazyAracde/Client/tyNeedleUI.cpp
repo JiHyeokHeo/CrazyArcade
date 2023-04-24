@@ -24,14 +24,14 @@ namespace ty
 	}
 	void NeedleUI::Update()
 	{
-		if (SceneManager::GetBazzi() != NULL)
+		if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
 		{
 			if (SceneManager::GetBazzi()->GetItemState() != eItemType::Needle)
 			{
 				object::Pause(this);
 			}
 		}
-		else if(SceneManager::GetDao() != NULL)
+		else if(SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
 		{
 			if (SceneManager::GetDao()->GetItemState() != eItemType::Needle)
 			{

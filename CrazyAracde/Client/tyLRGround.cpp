@@ -67,42 +67,45 @@ namespace ty
 
 	void LRGround::OnCollisionStay(Collider* other)
 	{
-		if (SceneManager::GetBazzi() != NULL)
+		if (SceneManager::GetBazzi() != NULL || SceneManager::GetDao() != NULL)
 		{
-			int mSpeed = SceneManager::GetBazzi()->GetmSpeed();
-			mBazzi = SceneManager::GetBazzi();
-			Transform* mPlayerPos = mBazzi->GetComponent<Transform>();
-			Vector2 mGameobjPos = mPlayerPos->GetPos();
-			Vector2 mGameobjColPos = mBazzi->GetComponent<Collider>()->GetPos();
-			Vector2 mColPos = mCollider->GetPos();
-			if (mGameobjColPos.x > mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
+			if (other->GetOwner()->GetName() == L"Bazzi" && SceneManager::GetBazzi() != NULL)
 			{
-				mGameobjPos.x += mBazzi->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
-				mPlayerPos->SetPos(mGameobjPos);
+				int mSpeed = SceneManager::GetBazzi()->GetmSpeed();
+				mBazzi = SceneManager::GetBazzi();
+				Transform* mPlayerPos = mBazzi->GetComponent<Transform>();
+				Vector2 mGameobjPos = mPlayerPos->GetPos();
+				Vector2 mGameobjColPos = mBazzi->GetComponent<Collider>()->GetPos();
+				Vector2 mColPos = mCollider->GetPos();
+				if (mGameobjColPos.x > mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
+				{
+					mGameobjPos.x += mBazzi->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
+					mPlayerPos->SetPos(mGameobjPos);
+				}
+				if (mGameobjColPos.x < mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
+				{
+					mGameobjPos.x -= mBazzi->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
+					mPlayerPos->SetPos(mGameobjPos);
+				}
 			}
-			if (mGameobjColPos.x < mColPos.x  && other->GetOwner()->GetName() == L"Bazzi")
+			else if (other->GetOwner()->GetName() == L"Dao" && SceneManager::GetDao() != NULL)
 			{
-				mGameobjPos.x -= mBazzi->GetPlayerSpeed()  * mSpeed * Time::DeltaTime();
-				mPlayerPos->SetPos(mGameobjPos);
-			}
-		}
-		else if (SceneManager::GetDao() != NULL)
-		{
-			int mSpeed = SceneManager::GetDao()->GetmSpeed();
-			mDao = SceneManager::GetDao();
-			Transform* mPlayerPos = mDao->GetComponent<Transform>();
-			Vector2 mGameobjPos = mPlayerPos->GetPos();
-			Vector2 mGameobjColPos = mDao->GetComponent<Collider>()->GetPos();
-			Vector2 mColPos = mCollider->GetPos();
-			if (mGameobjColPos.x > mColPos.x && other->GetOwner()->GetName() == L"Dao")
-			{
-				mGameobjPos.x += mDao->GetPlayerSpeed() * mSpeed * Time::DeltaTime();
-				mPlayerPos->SetPos(mGameobjPos);
-			}
-			if (mGameobjColPos.x < mColPos.x && other->GetOwner()->GetName() == L"Dao")
-			{
-				mGameobjPos.x -= mDao->GetPlayerSpeed() * mSpeed * Time::DeltaTime();
-				mPlayerPos->SetPos(mGameobjPos);
+				int mSpeed = SceneManager::GetDao()->GetmSpeed();
+				mDao = SceneManager::GetDao();
+				Transform* mPlayerPos = mDao->GetComponent<Transform>();
+				Vector2 mGameobjPos = mPlayerPos->GetPos();
+				Vector2 mGameobjColPos = mDao->GetComponent<Collider>()->GetPos();
+				Vector2 mColPos = mCollider->GetPos();
+				if (mGameobjColPos.x > mColPos.x && other->GetOwner()->GetName() == L"Dao")
+				{
+					mGameobjPos.x += mDao->GetPlayerSpeed() * mSpeed * Time::DeltaTime();
+					mPlayerPos->SetPos(mGameobjPos);
+				}
+				if (mGameobjColPos.x < mColPos.x && other->GetOwner()->GetName() == L"Dao")
+				{
+					mGameobjPos.x -= mDao->GetPlayerSpeed() * mSpeed * Time::DeltaTime();
+					mPlayerPos->SetPos(mGameobjPos);
+				}
 			}
 		}
 

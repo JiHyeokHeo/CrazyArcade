@@ -67,7 +67,7 @@ namespace ty
 			object::Destroy(this);
 		}
 
-		if (other->GetOwner()->GetName() == L"Bazzi")
+		if (other->GetOwner()->GetName() == L"Dao")
 		{
 			int& WaterCourse = SceneManager::GetDao()->GetmWaterCourse();
 			WaterCourse = SceneManager::GetDao()->GetMaxWaterCourse();

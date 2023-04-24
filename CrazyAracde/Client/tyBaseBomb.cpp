@@ -51,13 +51,17 @@ namespace ty
 		BaseBomb* bomb = this;
 
 		tr = bomb->GetComponent<Transform>();
-		if(SceneManager::GetBazzi() != NULL)
+
+		if (SceneManager::GetIsDuo() == false)
 		{
-			BazziBombChecking();
-		}
-		else if (SceneManager::GetDao() != NULL)
-		{
-			DaoBombChecking();
+			if(SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				BazziBombChecking();
+			}
+			else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				DaoBombChecking();
+			}
 		}
 
 		GameObject::Update();

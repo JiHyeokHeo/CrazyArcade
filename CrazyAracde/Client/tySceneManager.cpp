@@ -30,8 +30,9 @@ namespace ty
 	int SceneManager::monstercnt = {};
 	int  SceneManager::mBossCnt;
 	bool SceneManager::isDuo = false;
-	eCharactorPick SceneManager::mPick = eCharactorPick::None;
-
+	bool SceneManager::isFirstPlayer = false;
+	eCharactorPick SceneManager::mFirstPick = eCharactorPick::None;
+	eCharactorPick SceneManager::mSecondPick = eCharactorPick::None;
 	void SceneManager::Initialize()
 	{
 		//-------------------------------------------- 맵 사이즈 조절

@@ -20,6 +20,7 @@ namespace ty
 		virtual void OnExit() override;
 
 		static bool GetIsPicked() { return isPicked; }
+		static void SetIsPicked(bool ispicked) { isPicked = ispicked; }
 		bool GetisMapClicked() { return isMapClicked; }
 		void SetIsMapClicked(bool check) { isMapClicked = check; }
 	private:
@@ -34,6 +35,6 @@ namespace ty
 		bool isBazziVisited;
 		bool isDaoVisited;
 		bool isMapClicked;
-
+		
 	};
 }

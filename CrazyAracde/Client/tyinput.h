@@ -8,9 +8,10 @@ namespace ty
 		Q,W,E,R,T,Y,U,I,O,P,
 		A,S,D,F,G,H,J,K,L,
 		Z,X,C,V,B,N,M,
-		SPACEBAR, CTRL,
+		SPACEBAR, LCTRL, RCTRL,
 		LEFT,UP,RIGHT,DOWN,
 		LBUTTON, RUBTTON,
+		LSHIFT,RSHIFT,
 		END,
 	};
 

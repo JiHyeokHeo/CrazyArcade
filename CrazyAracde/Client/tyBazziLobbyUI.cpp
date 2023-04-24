@@ -7,6 +7,7 @@
 #include "tyObject.h"
 #include "tyLobbyScene.h"
 
+
 namespace ty
 {
 	BazziLobbyUI::BazziLobbyUI()
@@ -21,6 +22,13 @@ namespace ty
 	}
 	void BazziLobbyUI::Update()
 	{
+		Vector2 temp = Input::GetMousePos();
+
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+		{
+			LobbyScene::SetIsPicked(false);
+			object::Destroy(this);
+		}
 		GameObject::Update();
 	}
 	void BazziLobbyUI::Render(HDC hdc)

@@ -175,13 +175,13 @@ namespace ty
 	void ForestStage1::OnEnter()
 	{
 		// 캐릭터 설정 + 시간 조절
-		if (SceneManager::GetCharactorPick() == eCharactorPick::Bazzi)
+		if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
 		{
 			mBazzi->SetState(GameObject::eState::Active);
 			SceneManager::SetBazzi(mBazzi);
 		}
 
-		if (SceneManager::GetCharactorPick() == eCharactorPick::Dao)
+		if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
 		{
 			mDao->SetState(GameObject::eState::Active);
 			SceneManager::SetDao(mDao);
@@ -273,13 +273,13 @@ namespace ty
 				SceneManager::GetMapIndex()[j][i] = 0;
 			}
 		}
-		if (SceneManager::GetCharactorPick() == eCharactorPick::Bazzi)
+		if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
 		{
 			mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
 			mBazzi->SetState(GameObject::eState::Pause);
 			mBazzi->Reset();
 		}
-		else if (SceneManager::GetCharactorPick() == eCharactorPick::Dao)
+		else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
 		{
 			mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
 			mDao->SetState(GameObject::eState::Pause);

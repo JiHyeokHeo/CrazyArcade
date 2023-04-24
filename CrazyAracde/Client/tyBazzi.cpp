@@ -270,107 +270,321 @@ namespace ty
 			mSpeed = maxSpeed;
 		}
 
-		if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == false)
+		if (SceneManager::GetIsDuo() == false)                                  ///////// 솔로플레이
 		{
-			mAnimator->Play(L"BazzileftIdle", false);
-			mState = eBazziState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == false)
-		{
-			mAnimator->Play(L"BazzirightIdle", false);
-			mState = eBazziState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == false)
-		{
-			mAnimator->Play(L"BazziupIdle", false);
-			mState = eBazziState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == false)
-		{	
-			mAnimator->Play(L"BazzidownIdle", false);
-			mState = eBazziState::Idle;
-		}
+			if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazzileftIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazzirightIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazziupIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == false)
+			{	
+				mAnimator->Play(L"BazzidownIdle", false);
+				mState = eBazziState::Idle;
+			}
 	
-		Vector2 ColPos = collider->GetPos();
-		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f,0.0f));
-		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
-		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
-		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
+			Vector2 ColPos = collider->GetPos();
+			Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+			Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f,0.0f));
+			Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+			Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+			Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
 	
-		if (ColRIdx.x > 14)
-			ColRIdx.x = 14;
-		if (ColLIdx.x > 14)
-			ColLIdx.x = 14;
-		if (ColUIdx.x > 14)
-			ColUIdx.x = 14;
-		if (ColDIdx.x > 14)
-			ColDIdx.x = 14;
+			if (ColRIdx.x > 14)
+				ColRIdx.x = 14;
+			if (ColLIdx.x > 14)
+				ColLIdx.x = 14;
+			if (ColUIdx.x > 14)
+				ColUIdx.x = 14;
+			if (ColDIdx.x > 14)
+				ColDIdx.x = 14;
 
-		if (ColRIdx.y > 12)
-			ColRIdx.y = 12;
-		if (ColLIdx.y > 12)
-			ColLIdx.y = 12;
-		if (ColUIdx.y > 12)
-			ColUIdx.y = 12;
-		if (ColDIdx.y > 12)
-			ColDIdx.y = 12;
+			if (ColRIdx.y > 12)
+				ColRIdx.y = 12;
+			if (ColLIdx.y > 12)
+				ColLIdx.y = 12;
+			if (ColUIdx.y > 12)
+				ColUIdx.y = 12;
+			if (ColDIdx.y > 12)
+				ColDIdx.y = 12;
 
 
-		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
-			&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1 )
-		{
-			mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
-			mPos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
-		{
-			mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
-			mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
-		{
-			mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
-			mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1 )
-		{
-			mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x , ColMidPos.y  +TILE_SIZE_Y));
-			mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
-		}
+			if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false 
+				&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1 )
+			{
+				mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
+				mPos.x -= mPlayerSpeed * mSpeed  * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
+			{
+				mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
+				mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
+			{
+				mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
+				mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
+				&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1 )
+			{
+				mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x , ColMidPos.y  +TILE_SIZE_Y));
+				mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
 
-		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
-		{
-			mState = eBazziState::Shoot;
-			//mAnimator->Play(L"downIdle", true);
-		}
+			if (Input::GetKeyDown(eKeyCode::SPACEBAR))
+			{
+				mState = eBazziState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
 
-		if (Input::GetKeyDown(eKeyCode::CTRL) && mItemState == eItemType::Shield)
-		{
-			isShieldOn = true;
-			mInvincibility = 2;
-			object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
-			mItemState = eItemType::None;
-		}
+			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+				mItemState = eItemType::None;
+			}
 
-		if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
-		{
-			mAnimator->Play(L"Bazzileft", true);
+			if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazzileft", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazziright", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazziup", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazzidown", true);
+			}
 		}
-		if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)            ///////// 1P플레이
 		{
-			mAnimator->Play(L"Bazziright", true);
+			if (Input::GetKeyUp(eKeyCode::F) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazzileftIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::H) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazzirightIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::T) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazziupIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::G) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazzidownIdle", false);
+				mState = eBazziState::Idle;
+			}
+
+			Vector2 ColPos = collider->GetPos();
+			Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+			Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
+			Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+			Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+			Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
+
+			if (ColRIdx.x > 14)
+				ColRIdx.x = 14;
+			if (ColLIdx.x > 14)
+				ColLIdx.x = 14;
+			if (ColUIdx.x > 14)
+				ColUIdx.x = 14;
+			if (ColDIdx.x > 14)
+				ColDIdx.x = 14;
+
+			if (ColRIdx.y > 12)
+				ColRIdx.y = 12;
+			if (ColLIdx.y > 12)
+				ColLIdx.y = 12;
+			if (ColUIdx.y > 12)
+				ColUIdx.y = 12;
+			if (ColDIdx.y > 12)
+				ColDIdx.y = 12;
+
+
+			if (Input::GetKey(eKeyCode::F) && isRPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
+			{
+				mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
+				mPos.x -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::H) && isLPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
+			{
+				mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
+				mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::T) && isRPressed == false && isLPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
+			{
+				mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
+				mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::G) && isRPressed == false && isLPressed == false && isUPressed == false
+				&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
+			{
+				mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
+				mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+
+			if (Input::GetKeyDown(eKeyCode::LSHIFT))
+			{
+				mState = eBazziState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
+
+			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+				mItemState = eItemType::None;
+			}
+
+			if (Input::GetKeyDown(eKeyCode::F) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazzileft", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::H) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazziright", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::T) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazziup", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::G) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazzidown", true);
+			}
 		}
-		if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)               ///////// 2P플레이
 		{
-			mAnimator->Play(L"Bazziup", true);
-		}
-		if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
-		{
-			mAnimator->Play(L"Bazzidown", true);
+
+			if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazzileftIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazzirightIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazziupIdle", false);
+				mState = eBazziState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == false)
+			{
+				mAnimator->Play(L"BazzidownIdle", false);
+				mState = eBazziState::Idle;
+			}
+
+			Vector2 ColPos = collider->GetPos();
+			Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+			Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
+			Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+			Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+			Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
+
+			if (ColRIdx.x > 14)
+				ColRIdx.x = 14;
+			if (ColLIdx.x > 14)
+				ColLIdx.x = 14;
+			if (ColUIdx.x > 14)
+				ColUIdx.x = 14;
+			if (ColDIdx.x > 14)
+				ColDIdx.x = 14;
+
+			if (ColRIdx.y > 12)
+				ColRIdx.y = 12;
+			if (ColLIdx.y > 12)
+				ColLIdx.y = 12;
+			if (ColUIdx.y > 12)
+				ColUIdx.y = 12;
+			if (ColDIdx.y > 12)
+				ColDIdx.y = 12;
+
+
+			if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
+			{
+				mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
+				mPos.x -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
+			{
+				mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
+				mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
+			{
+				mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
+				mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
+				&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
+			{
+				mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
+				mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+
+			if (Input::GetKeyDown(eKeyCode::RSHIFT))
+			{
+				mState = eBazziState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
+
+			if (Input::GetKeyDown(eKeyCode::RCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+				mItemState = eItemType::None;
+			}
+
+			if (Input::GetKeyDown(eKeyCode::F) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazzileft", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::H) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazziright", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::T) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazziup", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::G) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"Bazzidown", true);
+			}
 		}
 
 		tr->SetPos(mPos);
@@ -382,12 +596,36 @@ namespace ty
 		{
 			mBomb = maxBomb;
 		}
-		if (Input::GetKey(eKeyCode::SPACEBAR) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+		if (SceneManager::GetIsDuo() == false)
 		{
-			mClick++;
-			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
-			IdxPos = TileBomb::SetIndex(tr->GetPos());
-			SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+
+			if (Input::GetKey(eKeyCode::SPACEBAR) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+			{
+				mClick++;
+				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
+				IdxPos = TileBomb::SetIndex(tr->GetPos());
+				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
+		{
+			if (Input::GetKey(eKeyCode::LSHIFT) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+			{
+				mClick++;
+				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
+				IdxPos = TileBomb::SetIndex(tr->GetPos());
+				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
+		{
+			if (Input::GetKey(eKeyCode::RSHIFT) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+			{
+				mClick++;
+				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
+				IdxPos = TileBomb::SetIndex(tr->GetPos());
+				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+			}
 		}
 		if (isBirdOn == false)
 		{
@@ -409,69 +647,205 @@ namespace ty
 		isRPressed = false;
 		isUPressed = false;
 		isDPressed = false;
-		if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == false)
+		if (SceneManager::GetIsDuo() == false)
 		{
-			isLPressed = true;
-			mAnimator->Play(L"Bazzileft", true);
-			mState = eBazziState::Move;
-		}
-		if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == false)
-		{
-			isRPressed = true;
-			mAnimator->Play(L"Bazziright", true);
-			mState = eBazziState::Move;
-		}
-		if (Input::GetKey(eKeyCode::UP) && isBirdOn == false)
-		{
-			isUPressed = true;
-			mAnimator->Play(L"Bazziup", true);
-			mState = eBazziState::Move;
-		}
-		if(Input::GetKey(eKeyCode::DOWN) && isBirdOn == false)
-		{
-			isDPressed = true;
-			mAnimator->Play(L"Bazzidown", true);
-			mState = eBazziState::Move;
-		}
+			if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == false)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"Bazzileft", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == false)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"Bazziright", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::UP) && isBirdOn == false)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"Bazziup", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == false)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"Bazzidown", true);
+				mState = eBazziState::Move;
+			}
 
-		if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == true)
-		{
-			isLPressed = true;
-			mAnimator->Play(L"BirdLeft", true);
-			mState = eBazziState::BirdOn;
-		}
-		if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == true)
-		{
-			isRPressed = true;
-			mAnimator->Play(L"BirdRight", true);
-			mState = eBazziState::BirdOn;
-		}
-		if (Input::GetKey(eKeyCode::UP) && isBirdOn == true)
-		{
-			isUPressed = true;
-			mAnimator->Play(L"BirdUp", true);
-			mState = eBazziState::BirdOn;
-		}
-		if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == true)
-		{
-			isDPressed = true;
-			mAnimator->Play(L"BirdDown", true);
-			mState = eBazziState::BirdOn;
-		}
+			if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == true)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"BirdLeft", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == true)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"BirdRight", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::UP) && isBirdOn == true)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"BirdUp", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == true)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"BirdDown", true);
+				mState = eBazziState::BirdOn;
+			}
 
-		if (Input::GetKeyDown(eKeyCode::CTRL) && mItemState == eItemType::Shield)
-		{
-			isShieldOn = true;
-			mInvincibility = 2;
-			mItemState = eItemType::None;
-			object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
-		}
+			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				mItemState = eItemType::None;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+			}
 
-		if (Input::GetKey(eKeyCode::SPACEBAR))
-		{
-			mState = eBazziState::Shoot;
-			//mAnimator->Play(L"downIdle", true);
+			if (Input::GetKey(eKeyCode::SPACEBAR))
+			{
+				mState = eBazziState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
 		}
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
+		{
+			if (Input::GetKey(eKeyCode::F) && isBirdOn == false)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"Bazzileft", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::H) && isBirdOn == false)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"Bazziright", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::T) && isBirdOn == false)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"Bazziup", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::G) && isBirdOn == false)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"Bazzidown", true);
+				mState = eBazziState::Move;
+			}
+
+			if (Input::GetKey(eKeyCode::F) && isBirdOn == true)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"BirdLeft", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::H) && isBirdOn == true)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"BirdRight", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::T) && isBirdOn == true)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"BirdUp", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::G) && isBirdOn == true)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"BirdDown", true);
+				mState = eBazziState::BirdOn;
+			}
+
+			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				mItemState = eItemType::None;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+			}
+
+			if (Input::GetKey(eKeyCode::LSHIFT))
+			{
+				mState = eBazziState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
+		{
+			if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == false)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"Bazzileft", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == false)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"Bazziright", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::UP) && isBirdOn == false)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"Bazziup", true);
+				mState = eBazziState::Move;
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == false)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"Bazzidown", true);
+				mState = eBazziState::Move;
+			}
+
+			if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == true)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"BirdLeft", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == true)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"BirdRight", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::UP) && isBirdOn == true)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"BirdUp", true);
+				mState = eBazziState::BirdOn;
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == true)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"BirdDown", true);
+				mState = eBazziState::BirdOn;
+			}
+
+			if (Input::GetKeyDown(eKeyCode::RCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				mItemState = eItemType::None;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+			}
+
+			if (Input::GetKey(eKeyCode::RSHIFT))
+			{
+				mState = eBazziState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
+		}
+		
 
 	}
 	void Bazzi::bubble()
@@ -503,38 +877,111 @@ namespace ty
 			mPos.y == 780.0f;
 		}
 
+		if (SceneManager::GetIsDuo() == false)
+		{
+			if (Input::GetKey(eKeyCode::LEFT)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isLPressed = true;
+				mPos.x -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::RIGHT)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isRPressed = true;
+				mPos.x += 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::UP)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isUPressed = true;
+				mPos.y -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::DOWN)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isDPressed = true;
+				mPos.y += 50.0f * Time::DeltaTime();
+			}
 
-		if (Input::GetKey(eKeyCode::LEFT)
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
-		{
-			//isLPressed = true;
-			mPos.x -= 50.0f * Time::DeltaTime();
+			if (Input::GetKey(eKeyCode::LCTRL) && mItemState == eItemType::Needle
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				isColl = true;
+				mItemState = eItemType::None;
+				mAnimator->Play(L"Bazzilive", false);
+			}
 		}
-		else if (Input::GetKey(eKeyCode::RIGHT)
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+		else if(SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
 		{
-			//isRPressed = true;
-			mPos.x += 50.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKey(eKeyCode::UP)
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
-		{
-			//isUPressed = true;
-			mPos.y -= 50.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKey(eKeyCode::DOWN)
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
-		{
-			//isDPressed = true;
-			mPos.y += 50.0f * Time::DeltaTime();
-		}
+			if (Input::GetKey(eKeyCode::F)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isLPressed = true;
+				mPos.x -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::H)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isRPressed = true;
+				mPos.x += 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::T)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isUPressed = true;
+				mPos.y -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::G)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isDPressed = true;
+				mPos.y += 50.0f * Time::DeltaTime();
+			}
 
-		if (Input::GetKey(eKeyCode::CTRL) && mItemState == eItemType::Needle
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			if (Input::GetKey(eKeyCode::LCTRL) && mItemState == eItemType::Needle
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				isColl = true;
+				mItemState = eItemType::None;
+				mAnimator->Play(L"Bazzilive", false);
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
 		{
-			isColl = true;
-			mItemState = eItemType::None;
-			mAnimator->Play(L"Bazzilive", false);
+
+			if (Input::GetKey(eKeyCode::LEFT)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isLPressed = true;
+				mPos.x -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::RIGHT)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isRPressed = true;
+				mPos.x += 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::UP)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isUPressed = true;
+				mPos.y -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::DOWN)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isDPressed = true;
+				mPos.y += 50.0f * Time::DeltaTime();
+			}
+
+			if (Input::GetKey(eKeyCode::RCTRL) && mItemState == eItemType::Needle
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				isColl = true;
+				mItemState = eItemType::None;
+				mAnimator->Play(L"Bazzilive", false);
+			}
 		}
 
 		tr->SetPos(mPos);
@@ -579,109 +1026,109 @@ namespace ty
 	}
 	void Bazzi::birdmove()
 	{
-		Vector2 idxpos = TileBomb::SetIndex(mPos);
+		//Vector2 idxpos = TileBomb::SetIndex(mPos);
 
-		if (mSpeed >= maxSpeed)
-		{
-			mSpeed = maxSpeed;
-		}
+		//if (mSpeed >= maxSpeed)
+		//{
+		//	mSpeed = maxSpeed;
+		//}
 
-		if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == true)
-		{
-			mAnimator->Play(L"BirdLeftIdle", false);
-			mState = eBazziState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == true)
-		{
-			mAnimator->Play(L"BirdRightIdle", false);
-			mState = eBazziState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == true)
-		{
-			mAnimator->Play(L"BirdUpIdle", false);
-			mState = eBazziState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == true)
-		{
-			mAnimator->Play(L"BirdDownIdle", false);
-			mState = eBazziState::Idle;
-		}
+		//if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == true)
+		//{
+		//	mAnimator->Play(L"BirdLeftIdle", false);
+		//	mState = eBazziState::Idle;
+		//}
+		//if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == true)
+		//{
+		//	mAnimator->Play(L"BirdRightIdle", false);
+		//	mState = eBazziState::Idle;
+		//}
+		//if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == true)
+		//{
+		//	mAnimator->Play(L"BirdUpIdle", false);
+		//	mState = eBazziState::Idle;
+		//}
+		//if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == true)
+		//{
+		//	mAnimator->Play(L"BirdDownIdle", false);
+		//	mState = eBazziState::Idle;
+		//}
 
-		Vector2 ColPos = collider->GetPos();
-		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
-		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
-		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
-		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
+		//Vector2 ColPos = collider->GetPos();
+		//Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		//Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
+		//Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+		//Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+		//Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
 
-		if (ColRIdx.x > 14)
-			ColRIdx.x = 14;
-		if (ColLIdx.x > 14)
-			ColLIdx.x = 14;
-		if (ColUIdx.x > 14)
-			ColUIdx.x = 14;
-		if (ColDIdx.x > 14)
-			ColDIdx.x = 14;
+		//if (ColRIdx.x > 14)
+		//	ColRIdx.x = 14;
+		//if (ColLIdx.x > 14)
+		//	ColLIdx.x = 14;
+		//if (ColUIdx.x > 14)
+		//	ColUIdx.x = 14;
+		//if (ColDIdx.x > 14)
+		//	ColDIdx.x = 14;
 
-		if (ColRIdx.y > 12)
-			ColRIdx.y = 12;
-		if (ColLIdx.y > 12)
-			ColLIdx.y = 12;
-		if (ColUIdx.y > 12)
-			ColUIdx.y = 12;
-		if (ColDIdx.y > 12)
-			ColDIdx.y = 12;
+		//if (ColRIdx.y > 12)
+		//	ColRIdx.y = 12;
+		//if (ColLIdx.y > 12)
+		//	ColLIdx.y = 12;
+		//if (ColUIdx.y > 12)
+		//	ColUIdx.y = 12;
+		//if (ColDIdx.y > 12)
+		//	ColDIdx.y = 12;
 
 
-		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
-			&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
-		{
-			mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
-			mPos.x -= 250.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
-		{
-			mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
-			mPos.x += 250.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
-		{
-			mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
-			mPos.y -= 250.0f * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
-		{
-			mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
-			mPos.y += 250.0f * Time::DeltaTime();
-		}
+		//if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
+		//	&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
+		//{
+		//	mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
+		//	mPos.x -= 250.0f * Time::DeltaTime();
+		//}
+		//if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
+		//	&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
+		//{
+		//	mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
+		//	mPos.x += 250.0f * Time::DeltaTime();
+		//}
+		//if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
+		//	&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
+		//{
+		//	mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
+		//	mPos.y -= 250.0f * Time::DeltaTime();
+		//}
+		//if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
+		//	&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
+		//{
+		//	mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
+		//	mPos.y += 250.0f * Time::DeltaTime();
+		//}
 
-		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
-		{
-			mState = eBazziState::Shoot;
-			//mAnimator->Play(L"downIdle", true);
-		}
+		//if (Input::GetKeyDown(eKeyCode::SPACEBAR))
+		//{
+		//	mState = eBazziState::Shoot;
+		//	//mAnimator->Play(L"downIdle", true);
+		//}
 
-		if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
-		{
-			mAnimator->Play(L"BirdLeft", true);
-		}
-		if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
-		{
-			mAnimator->Play(L"BirdRight", true);
-		}
-		if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
-		{
-			mAnimator->Play(L"BirdUp", true);
-		}
-		if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
-		{
-			mAnimator->Play(L"BirdDown", true);
-		}
+		//if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+		//{
+		//	mAnimator->Play(L"BirdLeft", true);
+		//}
+		//if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+		//{
+		//	mAnimator->Play(L"BirdRight", true);
+		//}
+		//if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+		//{
+		//	mAnimator->Play(L"BirdUp", true);
+		//}
+		//if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
+		//{
+		//	mAnimator->Play(L"BirdDown", true);
+		//}
 
-		tr->SetPos(mPos);
+		//tr->SetPos(mPos);
 	}
 
 	void Bazzi::checkInVTime()

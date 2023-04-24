@@ -45,24 +45,29 @@ namespace ty
 
 		// 1인플레이 또는 2인 플레이 구분하기
 		static void SetIsDuo(bool check) { isDuo = check; }
-
+		static bool GetIsFirstPlayer() { return isFirstPlayer; }
 		static bool GetIsDuo() { return isDuo; }
 
 		// 캐릭터 선택
-		static void SetCharactorPick(eCharactorPick pick) { mPick = pick; }
-		static eCharactorPick GetCharactorPick() { return mPick; }
+		static void SetFirstCharactorPick(eCharactorPick pick) { mFirstPick = pick; }
+		static eCharactorPick GetFirstCharactorPick() { return mFirstPick; }
+
+		static void SetSecondCharactorPick(eCharactorPick pick) { mSecondPick = pick; }
+		static eCharactorPick GetSecondCharactorPick() { return mSecondPick; }
 
 	private:
 		static std::vector<Scene*> mScenes;
 		static Scene* mActiveScene;
 		static Bazzi* mBazzi;
 		static Dao* mDao;
-		static eCharactorPick mPick;
+		static eCharactorPick mFirstPick;
+		static eCharactorPick mSecondPick;
 
 		static int mRealPlayTime;
 		static int monstercnt;
 		static int mBossCnt;
 		static std::vector<std::vector<int>> mapIndex;
 		static bool isDuo;
+		static bool isFirstPlayer;
 	};
 }

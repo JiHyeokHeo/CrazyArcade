@@ -64,7 +64,7 @@ namespace ty
 		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\LeftIdle", Vector2(-10.0f, -5.0f), 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\DownIdle", Vector2(-10.0f, -5.0f), 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Die", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Bubble", Vector2(-10.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Bubble", Vector2(-10.0f, -5.0f), 0.3f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Live", Vector2(-10.0f, -5.0f), 0.1f);
 
 
@@ -240,108 +240,322 @@ namespace ty
 			mSpeed = maxSpeed;
 		}
 
-		if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == false)
+		if (SceneManager::GetIsDuo() == false)                                  ///////// 솔로플레이
 		{
-			mAnimator->Play(L"DaoLeftIdle", false);
-			mState = eDaoState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == false)
-		{
-			mAnimator->Play(L"DaoRightIdle", false);
-			mState = eDaoState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == false)
-		{
-			mAnimator->Play(L"DaoUpIdle", false);
-			mState = eDaoState::Idle;
-		}
-		if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == false)
-		{
-			mAnimator->Play(L"DaoDownIdle", false);
-			mState = eDaoState::Idle;
-		}
+			if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoLeftIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoRightIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoUpIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoDownIdle", false);
+				mState = eDaoState::Idle;
+			}
 
-		Vector2 ColPos = collider->GetPos();
-		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
-		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
-		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
-		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
-		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
+			Vector2 ColPos = collider->GetPos();
+			Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+			Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
+			Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+			Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+			Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
 
-		if (ColRIdx.x > 14)
-			ColRIdx.x = 14;
-		if (ColLIdx.x > 14)
-			ColLIdx.x = 14;
-		if (ColUIdx.x > 14)
-			ColUIdx.x = 14;
-		if (ColDIdx.x > 14)
-			ColDIdx.x = 14;
+			if (ColRIdx.x > 14)
+				ColRIdx.x = 14;
+			if (ColLIdx.x > 14)
+				ColLIdx.x = 14;
+			if (ColUIdx.x > 14)
+				ColUIdx.x = 14;
+			if (ColDIdx.x > 14)
+				ColDIdx.x = 14;
 
-		if (ColRIdx.y > 12)
-			ColRIdx.y = 12;
-		if (ColLIdx.y > 12)
-			ColLIdx.y = 12;
-		if (ColUIdx.y > 12)
-			ColUIdx.y = 12;
-		if (ColDIdx.y > 12)
-			ColDIdx.y = 12;
+			if (ColRIdx.y > 12)
+				ColRIdx.y = 12;
+			if (ColLIdx.y > 12)
+				ColLIdx.y = 12;
+			if (ColUIdx.y > 12)
+				ColUIdx.y = 12;
+			if (ColDIdx.y > 12)
+				ColDIdx.y = 12;
 
 
-		if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
-			&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
-		{
-			mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
-			mPos.x -= mPlayerSpeed * mSpeed * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
-			&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
-		{
-			mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
-			mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
-			&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
-		{
-			mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
-			mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
-			&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
-		{
-			mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
-			mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
-		}
+			if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
+			{
+				mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
+				mPos.x -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
+			{
+				mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
+				mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
+			{
+				mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
+				mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
+				&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
+			{
+				mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
+				mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
 
-		if (Input::GetKeyDown(eKeyCode::SPACEBAR))
-		{
-			mState = eDaoState::Shoot;
-			//mAnimator->Play(L"downIdle", true);
-		}
+			if (Input::GetKeyDown(eKeyCode::SPACEBAR))
+			{
+				mState = eDaoState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
 
-		if (Input::GetKeyDown(eKeyCode::CTRL) && mItemState == eItemType::Shield)
-		{
-			isShieldOn = true;
-			mInvincibility = 2;
-			object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
-			mItemState = eItemType::None;
-		}
+			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+				mItemState = eItemType::None;
+			}
 
-		if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			if (Input::GetKeyDown(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoLeft", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoRight", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoUp", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoDown", true);
+			}
+		} // 솔로플레이   
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)            ///////// 1P플레이
 		{
-			mAnimator->Play(L"DaoLeft", true);
-		}
-		if (Input::GetKeyDown(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			if (Input::GetKeyUp(eKeyCode::F) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoLeftIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::H) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoRightIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::T) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoUpIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::G) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoDownIdle", false);
+				mState = eDaoState::Idle;
+			}
+
+			Vector2 ColPos = collider->GetPos();
+			Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+			Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
+			Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+			Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+			Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
+
+			if (ColRIdx.x > 14)
+				ColRIdx.x = 14;
+			if (ColLIdx.x > 14)
+				ColLIdx.x = 14;
+			if (ColUIdx.x > 14)
+				ColUIdx.x = 14;
+			if (ColDIdx.x > 14)
+				ColDIdx.x = 14;
+
+			if (ColRIdx.y > 12)
+				ColRIdx.y = 12;
+			if (ColLIdx.y > 12)
+				ColLIdx.y = 12;
+			if (ColUIdx.y > 12)
+				ColUIdx.y = 12;
+			if (ColDIdx.y > 12)
+				ColDIdx.y = 12;
+
+
+			if (Input::GetKey(eKeyCode::F) && isRPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
+			{
+				mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
+				mPos.x -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::H) && isLPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
+			{
+				mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
+				mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::T) && isRPressed == false && isLPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
+			{
+				mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
+				mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::G) && isRPressed == false && isLPressed == false && isUPressed == false
+				&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
+			{
+				mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
+				mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+
+			if (Input::GetKeyDown(eKeyCode::LSHIFT))
+			{
+				mState = eDaoState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
+
+			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+				mItemState = eItemType::None;
+			}
+
+			if (Input::GetKeyDown(eKeyCode::F) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoLeft", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::H) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoRight", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::T) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoUp", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::G) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoDown", true);
+			}
+		} // 1인 플레이 // 1P플레이
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)                   // 2p플레이
 		{
-			mAnimator->Play(L"DaoRight", true);
-		}
-		if (Input::GetKeyDown(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
-		{
-			mAnimator->Play(L"DaoUp", true);
-		}
-		if (Input::GetKeyDown(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
-		{
-			mAnimator->Play(L"DaoDown", true);
-		}
+
+			if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoLeftIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::RIGHT) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoRightIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::UP) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoUpIdle", false);
+				mState = eDaoState::Idle;
+			}
+			if (Input::GetKeyUp(eKeyCode::DOWN) && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoDownIdle", false);
+				mState = eDaoState::Idle;
+			}
+
+			Vector2 ColPos = collider->GetPos();
+			Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+			Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
+			Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+			Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+			Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
+
+			if (ColRIdx.x > 14)
+				ColRIdx.x = 14;
+			if (ColLIdx.x > 14)
+				ColLIdx.x = 14;
+			if (ColUIdx.x > 14)
+				ColUIdx.x = 14;
+			if (ColDIdx.x > 14)
+				ColDIdx.x = 14;
+
+			if (ColRIdx.y > 12)
+				ColRIdx.y = 12;
+			if (ColLIdx.y > 12)
+				ColLIdx.y = 12;
+			if (ColUIdx.y > 12)
+				ColUIdx.y = 12;
+			if (ColDIdx.y > 12)
+				ColDIdx.y = 12;
+
+
+			if (Input::GetKey(eKeyCode::LEFT) && isRPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 4 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 2 && SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] != 1)
+			{
+				mLeftIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y));
+				mPos.x -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isLPressed == false && isUPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 4 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 2 && SceneManager::GetMapIndex()[ColRIdx.y][ColRIdx.x] != 1)
+			{
+				mRightIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x + TILE_SIZE_X, ColMidPos.y));
+				mPos.x += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::UP) && isRPressed == false && isLPressed == false && isDPressed == false
+				&& SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 4 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 2 && SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] != 1)
+			{
+				mUpIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y - TILE_SIZE_Y));
+				mPos.y -= mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isRPressed == false && isLPressed == false && isUPressed == false
+				&& SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 4 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 2 && SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] != 1)
+			{
+				mDownIdx = TileBomb::SetColIndex(Vector2(ColMidPos.x, ColMidPos.y + TILE_SIZE_Y));
+				mPos.y += mPlayerSpeed * mSpeed * Time::DeltaTime();
+			}
+
+			if (Input::GetKeyDown(eKeyCode::RSHIFT))
+			{
+				mState = eDaoState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
+
+			if (Input::GetKeyDown(eKeyCode::RCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+				mItemState = eItemType::None;
+			}
+
+			if (Input::GetKeyDown(eKeyCode::F) && isRPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoLeft", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::H) && isLPressed == false && isUPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoRight", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::T) && isRPressed == false && isLPressed == false && isDPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoUp", true);
+			}
+			if (Input::GetKeyDown(eKeyCode::G) && isRPressed == false && isLPressed == false && isUPressed == false && isBirdOn == false)
+			{
+				mAnimator->Play(L"DaoDown", true);
+			}
+		} // 2인 플레이 //    // 2P플레이
 
 		tr->SetPos(mPos);
 	}
@@ -352,12 +566,36 @@ namespace ty
 		{
 			mBomb = maxBomb;
 		}
-		if (Input::GetKey(eKeyCode::SPACEBAR) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+		if (SceneManager::GetIsDuo() == false)
 		{
-			mClick++;
-			object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
-			IdxPos = TileBomb::SetIndex(tr->GetPos());
-			SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+
+			if (Input::GetKey(eKeyCode::SPACEBAR) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+			{
+				mClick++;
+				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
+				IdxPos = TileBomb::SetIndex(tr->GetPos());
+				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
+		{
+			if (Input::GetKey(eKeyCode::LSHIFT) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+			{
+				mClick++;
+				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
+				IdxPos = TileBomb::SetIndex(tr->GetPos());
+				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
+		{
+			if (Input::GetKey(eKeyCode::RSHIFT) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
+			{
+				mClick++;
+				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
+				IdxPos = TileBomb::SetIndex(tr->GetPos());
+				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+			}
 		}
 		if (isBirdOn == false)
 		{
@@ -377,69 +615,205 @@ namespace ty
 		isRPressed = false;
 		isUPressed = false;
 		isDPressed = false;
-		if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == false)
+		if (SceneManager::GetIsDuo() == false)
 		{
-			isLPressed = true;
-			mAnimator->Play(L"DaoLeft", true);
-			mState = eDaoState::Move;
+			if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == false)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"DaoLeft", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == false)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"DaoRight", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::UP) && isBirdOn == false)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"DaoUp", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == false)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"DaoDown", true);
+				mState = eDaoState::Move;
+			}
+
+			//if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == true)
+			//{
+			//	isLPressed = true;
+			//	mAnimator->Play(L"BirdLeft", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == true)
+			//{
+			//	isRPressed = true;
+			//	mAnimator->Play(L"BirdRight", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::UP) && isBirdOn == true)
+			//{
+			//	isUPressed = true;
+			//	mAnimator->Play(L"BirdUp", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == true)
+			//{
+			//	isDPressed = true;
+			//	mAnimator->Play(L"BirdDown", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+
+			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				mItemState = eItemType::None;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+			}
+
+			if (Input::GetKey(eKeyCode::SPACEBAR))
+			{
+				mState = eDaoState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
 		}
-		if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == false)
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
 		{
-			isRPressed = true;
-			mAnimator->Play(L"DaoRight", true);
-			mState = eDaoState::Move;
+			if (Input::GetKey(eKeyCode::F) && isBirdOn == false)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"DaoLeft", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::H) && isBirdOn == false)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"DaoRight", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::T) && isBirdOn == false)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"DaoUp", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::G) && isBirdOn == false)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"DaoDown", true);
+				mState = eDaoState::Move;
+			}
+
+			//if (Input::GetKey(eKeyCode::F) && isBirdOn == true)
+			//{
+			//	isLPressed = true;
+			//	mAnimator->Play(L"BirdLeft", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::H) && isBirdOn == true)
+			//{
+			//	isRPressed = true;
+			//	mAnimator->Play(L"BirdRight", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::T) && isBirdOn == true)
+			//{
+			//	isUPressed = true;
+			//	mAnimator->Play(L"BirdUp", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::G) && isBirdOn == true)
+			//{
+			//	isDPressed = true;
+			//	mAnimator->Play(L"BirdDown", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+
+			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				mItemState = eItemType::None;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+			}
+
+			if (Input::GetKey(eKeyCode::LSHIFT))
+			{
+				mState = eDaoState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
 		}
-		if (Input::GetKey(eKeyCode::UP) && isBirdOn == false)
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
 		{
-			isUPressed = true;
-			mAnimator->Play(L"DaoUp", true);
-			mState = eDaoState::Move;
-		}
-		if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == false)
-		{
-			isDPressed = true;
-			mAnimator->Play(L"DaoDown", true);
-			mState = eDaoState::Move;
+			if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == false)
+			{
+				isLPressed = true;
+				mAnimator->Play(L"DaoLeft", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == false)
+			{
+				isRPressed = true;
+				mAnimator->Play(L"DaoRight", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::UP) && isBirdOn == false)
+			{
+				isUPressed = true;
+				mAnimator->Play(L"DaoUp", true);
+				mState = eDaoState::Move;
+			}
+			if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == false)
+			{
+				isDPressed = true;
+				mAnimator->Play(L"DaoDown", true);
+				mState = eDaoState::Move;
+			}
+
+			//if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == true)
+			//{
+			//	isLPressed = true;
+			//	mAnimator->Play(L"BirdLeft", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == true)
+			//{
+			//	isRPressed = true;
+			//	mAnimator->Play(L"BirdRight", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::UP) && isBirdOn == true)
+			//{
+			//	isUPressed = true;
+			//	mAnimator->Play(L"BirdUp", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+			//if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == true)
+			//{
+			//	isDPressed = true;
+			//	mAnimator->Play(L"BirdDown", true);
+			//	mState = eDaoState::BirdOn;
+			//}
+
+			if (Input::GetKeyDown(eKeyCode::RCTRL) && mItemState == eItemType::Shield)
+			{
+				isShieldOn = true;
+				mInvincibility = 2;
+				mItemState = eItemType::None;
+				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
+			}
+
+			if (Input::GetKey(eKeyCode::RSHIFT))
+			{
+				mState = eDaoState::Shoot;
+				//mAnimator->Play(L"downIdle", true);
+			}
 		}
 
-		//if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == true)
-		//{
-		//	isLPressed = true;
-		//	mAnimator->Play(L"BirdLeft", true);
-		//	mState = eDaoState::BirdOn;
-		//}
-		//if (Input::GetKey(eKeyCode::RIGHT) && isBirdOn == true)
-		//{
-		//	isRPressed = true;
-		//	mAnimator->Play(L"BirdRight", true);
-		//	mState = eDaoState::BirdOn;
-		//}
-		//if (Input::GetKey(eKeyCode::UP) && isBirdOn == true)
-		//{
-		//	isUPressed = true;
-		//	mAnimator->Play(L"BirdUp", true);
-		//	mState = eDaoState::BirdOn;
-		//}
-		//if (Input::GetKey(eKeyCode::DOWN) && isBirdOn == true)
-		//{
-		//	isDPressed = true;
-		//	mAnimator->Play(L"BirdDown", true);
-		//	mState = eDaoState::BirdOn;
-		//}
-
-		if (Input::GetKeyDown(eKeyCode::CTRL) && mItemState == eItemType::Shield)
-		{
-			isShieldOn = true;
-			mInvincibility = 2;
-			mItemState = eItemType::None;
-			object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
-		}
-
-		if (Input::GetKey(eKeyCode::SPACEBAR))
-		{
-			mState = eDaoState::Shoot;
-			//mAnimator->Play(L"downIdle", true);
-		}
 
 	}
 	void Dao::bubble()
@@ -470,41 +844,112 @@ namespace ty
 			mPos.y == 780.0f;
 		}
 
+		if (SceneManager::GetIsDuo() == false)
+		{
+			if (Input::GetKey(eKeyCode::LEFT)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isLPressed = true;
+				mPos.x -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::RIGHT)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isRPressed = true;
+				mPos.x += 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::UP)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isUPressed = true;
+				mPos.y -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::DOWN)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isDPressed = true;
+				mPos.y += 50.0f * Time::DeltaTime();
+			}
 
-		if (Input::GetKey(eKeyCode::LEFT)
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
-		{
-			//isLPressed = true;
-			mPos.x -= 50.0f * Time::DeltaTime();
+			if (Input::GetKey(eKeyCode::LCTRL) && mItemState == eItemType::Needle
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				isColl = true;
+				mItemState = eItemType::None;
+				mAnimator->Play(L"DaoLive", false);
+			}
 		}
-		else if (Input::GetKey(eKeyCode::RIGHT)
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
 		{
-			//isRPressed = true;
-			mPos.x += 50.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKey(eKeyCode::UP)
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
-		{
-			//isUPressed = true;
-			mPos.y -= 50.0f * Time::DeltaTime();
-		}
-		else if (Input::GetKey(eKeyCode::DOWN)
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
-		{
-			//isDPressed = true;
-			mPos.y += 50.0f * Time::DeltaTime();
-		}
+			if (Input::GetKey(eKeyCode::F)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isLPressed = true;
+				mPos.x -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::H)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isRPressed = true;
+				mPos.x += 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::T)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isUPressed = true;
+				mPos.y -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::G)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isDPressed = true;
+				mPos.y += 50.0f * Time::DeltaTime();
+			}
 
-		if (Input::GetKey(eKeyCode::CTRL) && mItemState == eItemType::Needle
-			/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
-		{
-			isColl = true;
-			mItemState = eItemType::None;
-			mAnimator->Play(L"DaoLive", false);
+			if (Input::GetKey(eKeyCode::LCTRL) && mItemState == eItemType::Needle
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				isColl = true;
+				mItemState = eItemType::None;
+				mAnimator->Play(L"DaoLive", false);
+			}
 		}
+		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
+		{
 
-		tr->SetPos(mPos);
+			if (Input::GetKey(eKeyCode::LEFT)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isLPressed = true;
+				mPos.x -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::RIGHT)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isRPressed = true;
+				mPos.x += 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::UP)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isUPressed = true;
+				mPos.y -= 50.0f * Time::DeltaTime();
+			}
+			else if (Input::GetKey(eKeyCode::DOWN)
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				//isDPressed = true;
+				mPos.y += 50.0f * Time::DeltaTime();
+			}
+
+			if (Input::GetKey(eKeyCode::RCTRL) && mItemState == eItemType::Needle
+				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
+			{
+				isColl = true;
+				mItemState = eItemType::None;
+				mAnimator->Play(L"DaoLive", false);
+			}
+		}
 	}
 	void Dao::revive()
 	{

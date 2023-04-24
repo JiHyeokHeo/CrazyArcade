@@ -41,7 +41,8 @@ namespace ty
 	{
 		Scene::Update();
 		Vector2 temp = Input::GetMousePos();
-
+		
+		
 
 		// 솔플 상태
 		if (SceneManager::GetIsDuo() == false)
@@ -56,11 +57,14 @@ namespace ty
 				isBazziVisited = true;
 			}
 
-			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040 && isPicked == false)
+			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
 			{
-				object::Instantiate<BazziLobbyUI>(eLayerType::UI);
-				SceneManager::SetCharactorPick(eCharactorPick::Bazzi); // 씬 매니저에서 캐릭터 선택 보유
-				//isPicked = true;
+				if (isPicked == false )
+				{
+					object::Instantiate<BazziLobbyUI>(eLayerType::UI);
+					isPicked = true;
+				}
+				SceneManager::SetFirstCharactorPick(eCharactorPick::Bazzi); // 씬 매니저에서 캐릭터 선택 보유
 			}
 
 			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
@@ -83,11 +87,15 @@ namespace ty
 			}
 
 
-			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825 && isPicked == false)
+			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
 			{
-				object::Instantiate<DaoLobbyUI>(eLayerType::UI);
-				SceneManager::SetCharactorPick(eCharactorPick::Dao);  // 씬 매니저에서 캐릭터 선택 보유
-				//isPicked = true;
+				if (isPicked == false)
+				{
+					object::Instantiate<DaoLobbyUI>(eLayerType::UI);
+					isPicked = true;
+				}
+				
+				SceneManager::SetFirstCharactorPick(eCharactorPick::Dao);  // 씬 매니저에서 캐릭터 선택 보유
 			}
 
 			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)

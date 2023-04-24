@@ -21,6 +21,13 @@ namespace ty
 	}
 	void DaoLobbyUI::Update()
 	{
+		Vector2 temp = Input::GetMousePos();
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+		{
+			LobbyScene::SetIsPicked(false);
+			object::Destroy(this);
+		}
+		GameObject::Update();
 	}
 	void DaoLobbyUI::Render(HDC hdc)
 	{

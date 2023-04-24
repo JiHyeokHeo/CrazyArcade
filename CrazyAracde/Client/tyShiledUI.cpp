@@ -24,14 +24,14 @@ namespace ty
 	}
 	void ShieldUI::Update()
 	{
-		if (SceneManager::GetBazzi() != NULL)
+		if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
 		{
 			if (SceneManager::GetBazzi()->GetItemState() != eItemType::Shield)
 			{
 				object::Pause(this);
 			}
 		}
-		else if (SceneManager::GetDao() != NULL)
+		else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
 		{
 			if (SceneManager::GetDao()->GetItemState() != eItemType::Shield)
 			{
