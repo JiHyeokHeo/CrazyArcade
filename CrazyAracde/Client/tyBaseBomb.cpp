@@ -63,6 +63,17 @@ namespace ty
 				DaoBombChecking();
 			}
 		}
+		else if (SceneManager::GetIsDuo() == true)
+		{
+			if (SceneManager::GetBazzi()->GetState() == eState::Active)
+			{
+				BazziBombChecking();
+			}
+			else if (SceneManager::GetDao()->GetState() == eState::Active)
+			{
+				DaoBombChecking();
+			}
+		}
 
 		GameObject::Update();
     }

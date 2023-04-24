@@ -375,7 +375,7 @@ namespace ty
 				mAnimator->Play(L"Bazzidown", true);
 			}
 		}
-		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)            ///////// 1P플레이
+		else if (SceneManager::GetIsDuo() == true && is1P == true)            ///////// 1P플레이
 		{
 			if (Input::GetKeyUp(eKeyCode::F) && isBirdOn == false)
 			{
@@ -480,7 +480,7 @@ namespace ty
 				mAnimator->Play(L"Bazzidown", true);
 			}
 		}
-		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)               ///////// 2P플레이
+		else if (SceneManager::GetIsDuo() == true && is1P == false)               ///////// 2P플레이
 		{
 
 			if (Input::GetKeyUp(eKeyCode::LEFT) && isBirdOn == false)
@@ -607,7 +607,7 @@ namespace ty
 				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
 			}
 		}
-		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
+		else if (SceneManager::GetIsDuo() == true && is1P == true)
 		{
 			if (Input::GetKey(eKeyCode::LSHIFT) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
 			{
@@ -617,7 +617,7 @@ namespace ty
 				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
 			}
 		}
-		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
+		else if (SceneManager::GetIsDuo() == true && is1P == false)
 		{
 			if (Input::GetKey(eKeyCode::RSHIFT) && SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] == 0 && mBomb <= maxBomb && mClick < mBomb)
 			{
@@ -713,7 +713,7 @@ namespace ty
 				//mAnimator->Play(L"downIdle", true);
 			}
 		}
-		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
+		else if (SceneManager::GetIsDuo() == true && is1P == true)
 		{
 			if (Input::GetKey(eKeyCode::F) && isBirdOn == false)
 			{
@@ -779,7 +779,7 @@ namespace ty
 				//mAnimator->Play(L"downIdle", true);
 			}
 		}
-		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
+		else if (SceneManager::GetIsDuo() == true && is1P == false)
 		{
 			if (Input::GetKey(eKeyCode::LEFT) && isBirdOn == false)
 			{
@@ -912,7 +912,7 @@ namespace ty
 				mAnimator->Play(L"Bazzilive", false);
 			}
 		}
-		else if(SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == true)
+		else if(SceneManager::GetIsDuo() == true && is1P == true)
 		{
 			if (Input::GetKey(eKeyCode::F)
 				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
@@ -947,7 +947,7 @@ namespace ty
 				mAnimator->Play(L"Bazzilive", false);
 			}
 		}
-		else if (SceneManager::GetIsDuo() == true && SceneManager::GetIsFirstPlayer() == false)
+		else if (SceneManager::GetIsDuo() == true && is1P == false)
 		{
 
 			if (Input::GetKey(eKeyCode::LEFT)

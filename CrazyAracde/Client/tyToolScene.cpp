@@ -48,7 +48,7 @@ namespace ty
             TilePalatte::CreateTile(tileIndex, pos); // 타일 위치가 들어온다.
         }
 
-        if (Input::GetKeyDown(eKeyCode::RUBTTON))
+        if (Input::GetKeyDown(eKeyCode::RBUTTON))
         {
             Vector2 pos = Input::GetMousePos();
             //pos -= Camera::CalculatePos(Vector2::Zero);

@@ -23,13 +23,13 @@ namespace ty
 	void DaoImage::Update()
 	{
 		Vector2 temp = Input::GetMousePos();
-		if (temp.y <= 300 || temp.y >= 360 || temp.x <= 730 || temp.x >= 825)
-		{
-			if (isClicked == false)
-			{
-				object::Pause(this);
-			}
-		}
+		//if (temp.y <= 300 || temp.y >= 360 || temp.x <= 730 || temp.x >= 825)
+		//{
+		//	if (isClicked == false)
+		//	{
+		//		object::Pause(this);
+		//	}
+		//}
 
 
 	/*	if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
@@ -49,12 +49,17 @@ namespace ty
 	}
 	void DaoImage::Render(HDC hdc)
 	{
-		if (SceneManager::GetIsDuo() == false)
+		if (LobbyScene::GetFirstPicked() == true && LobbyScene::GetSecondPicked() == true && SceneManager::GetSecondCharactorPick() == eCharactorPick::Dao && SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+		{
+			StretchBlt(hdc, LOWERSELECT_X, LOWERSELECT_Y, mImage->GetWidth() * 1.5f, mImage->GetHeight() * 1.5f, mImage->GetHdc()
+				, 0, 0, mImage->GetWidth(), mImage->GetHeight(), SRCCOPY);
+		}
+		if (LobbyScene::GetFirstPicked() == true && SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
 		{
 			StretchBlt(hdc, UPPERSELECT_X, UPPERSELECT_Y, mImage->GetWidth() * 1.5f, mImage->GetHeight() * 1.5f, mImage->GetHdc()
 				, 0, 0, mImage->GetWidth(), mImage->GetHeight(), SRCCOPY);
 		}
-		else
+		else if (LobbyScene::GetSecondPicked() == true && SceneManager::GetSecondCharactorPick() == eCharactorPick::Dao)
 		{
 			StretchBlt(hdc, LOWERSELECT_X, LOWERSELECT_Y, mImage->GetWidth() * 1.5f, mImage->GetHeight() * 1.5f, mImage->GetHdc()
 				, 0, 0, mImage->GetWidth(), mImage->GetHeight(), SRCCOPY);

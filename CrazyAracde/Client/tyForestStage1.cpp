@@ -175,16 +175,47 @@ namespace ty
 	void ForestStage1::OnEnter()
 	{
 		// 캐릭터 설정 + 시간 조절
-		if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
-		{
-			mBazzi->SetState(GameObject::eState::Active);
-			SceneManager::SetBazzi(mBazzi);
-		}
 
-		if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+		if (SceneManager::GetIsDuo() == false)
 		{
-			mDao->SetState(GameObject::eState::Active);
-			SceneManager::SetDao(mDao);
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->SetState(GameObject::eState::Active);
+				SceneManager::SetBazzi(mBazzi);
+			}
+
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->SetState(GameObject::eState::Active);
+				SceneManager::SetDao(mDao);
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true)
+		{
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->SetState(GameObject::eState::Active);
+				SceneManager::SetBazzi(mBazzi);
+				mBazzi->SetIs1P(true);
+			}
+			if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->SetState(GameObject::eState::Active);
+				SceneManager::SetBazzi(mBazzi);
+				mBazzi->SetIs1P(false);
+			}
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->SetState(GameObject::eState::Active);
+				mDao->SetIs1P(true);
+				SceneManager::SetDao(mDao);
+			}
+			if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->SetState(GameObject::eState::Active);
+				mDao->SetIs1P(false);
+				SceneManager::SetDao(mDao);
+			}
 		}
 
 		SceneManager::SetMonsterCnt(6);

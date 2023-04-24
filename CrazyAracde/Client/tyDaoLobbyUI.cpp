@@ -22,17 +22,33 @@ namespace ty
 	void DaoLobbyUI::Update()
 	{
 		Vector2 temp = Input::GetMousePos();
-		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040
+			&& LobbyScene::GetFirstPicked() == true)
 		{
-			LobbyScene::SetIsPicked(false);
+			LobbyScene::SetisFirstPicked(false);
+			object::Destroy(this);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::RBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040
+			&& LobbyScene::GetSecondPicked() == true)
+		{
+			LobbyScene::SetisSecondPicked(false);
 			object::Destroy(this);
 		}
 		GameObject::Update();
 	}
 	void DaoLobbyUI::Render(HDC hdc)
 	{
-		TransparentBlt(hdc, 70, 180, mImage->GetWidth() * 1.5f, mImage->GetHeight() * 1.5f, mImage->GetHdc()
-			, 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(255, 0, 255));
+		if (LobbyScene::GetFirstPicked() == true && SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+		{
+			TransparentBlt(hdc, 70, 180, mImage->GetWidth() * 1.5f, mImage->GetHeight() * 1.5f, mImage->GetHdc()
+				, 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(255, 0, 255));
+		}
+		if (LobbyScene::GetSecondPicked() == true && SceneManager::GetSecondCharactorPick() == eCharactorPick::Dao)
+		{
+			TransparentBlt(hdc, 235, 180, mImage->GetWidth() * 1.5f, mImage->GetHeight() * 1.5f, mImage->GetHdc()
+				, 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(255, 0, 255));
+		}
 		GameObject::Render(hdc);
 	}
 	void DaoLobbyUI::Release()

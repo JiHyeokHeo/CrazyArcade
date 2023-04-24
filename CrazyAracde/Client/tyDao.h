@@ -57,6 +57,10 @@ namespace ty
 		eItemType GetItemState() { return mItemState; }
 		void SetItemState(eItemType type) { mItemState = type; }
 		void SeteBazziState(eDaoState type) { mState = type; }
+
+
+		void SetIs1P(bool t) { is1P = t; }
+		bool isIt1p() { return is1P; }
 	private:
 		void move();
 		void shoot();
@@ -118,6 +122,8 @@ namespace ty
 		Vector2 mDownIdx;
 		Vector2 mLeftIdx;
 
+
+		bool is1P;
 	};
 }
 

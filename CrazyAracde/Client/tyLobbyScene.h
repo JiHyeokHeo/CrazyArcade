@@ -18,13 +18,22 @@ namespace ty
 
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
+		// 1p 확인
+		static bool GetFirstPicked() { return isFirstPicked; }
+		static void SetisFirstPicked(bool ispicked) { isFirstPicked = ispicked; }
 
-		static bool GetIsPicked() { return isPicked; }
-		static void SetIsPicked(bool ispicked) { isPicked = ispicked; }
+		// 2p 확인
+		static bool GetSecondPicked() { return isSecondPicked; }
+		static void SetisSecondPicked(bool ispicked) { isSecondPicked = ispicked; }
+
+
+
 		bool GetisMapClicked() { return isMapClicked; }
 		void SetIsMapClicked(bool check) { isMapClicked = check; }
 	private:
-		static bool isPicked;
+		static bool isFirstPicked;
+		static bool isSecondPicked;
+
 
 		Lobby_BG* mLobbyBG;
 		AlphaBlender* mBlender;

@@ -18,5 +18,6 @@ namespace ty
 
 	private:
 		Image* mImage;
+		bool isShown;
 	};
 };

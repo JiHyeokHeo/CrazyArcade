@@ -23,7 +23,9 @@
 
 namespace ty
 {
-	bool LobbyScene::isPicked;
+	bool LobbyScene::isFirstPicked;
+	bool LobbyScene::isSecondPicked;
+
 	LobbyScene::LobbyScene()
 	{
 	}
@@ -42,27 +44,26 @@ namespace ty
 		Scene::Update();
 		Vector2 temp = Input::GetMousePos();
 		
-		
-
 		// 솔플 상태
 		if (SceneManager::GetIsDuo() == false)
 		{
 			// 배찌선택 관련 코드
-			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
-			{
-				if (isBazziVisited == false)
-				{
-					mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI); // 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
-				}
-				isBazziVisited = true;
-			}
+			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+			//{
+			//	if (isBazziVisited == false)
+			//	{
+			//		mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI); // 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
+			//	}
+			//	isBazziVisited = true;
+			//}
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
 			{
-				if (isPicked == false )
+				if (isFirstPicked == false )
 				{
+					mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI);
 					object::Instantiate<BazziLobbyUI>(eLayerType::UI);
-					isPicked = true;
+					isFirstPicked = true;
 				}
 				SceneManager::SetFirstCharactorPick(eCharactorPick::Bazzi); // 씬 매니저에서 캐릭터 선택 보유
 			}
@@ -76,40 +77,122 @@ namespace ty
 			}
 
 			// 다오 선택 관련 코드
-			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
-			{
-				if (isDaoVisited == false)
-				{
-					mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);// 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
-				}
+			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+			//{
+			//	if (isDaoVisited == false)
+			//	{
+			//		mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);// 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
+			//	}
 
-				isDaoVisited = true;
-			}
+			//	isDaoVisited = true;
+			//}
 
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
 			{
-				if (isPicked == false)
+				if (isFirstPicked == false)
 				{
+					mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);
 					object::Instantiate<DaoLobbyUI>(eLayerType::UI);
-					isPicked = true;
+					isFirstPicked = true;
 				}
 				
 				SceneManager::SetFirstCharactorPick(eCharactorPick::Dao);  // 씬 매니저에서 캐릭터 선택 보유
 			}
 
-			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
-			{
-				if (isDaoVisited == true)
-				{
-					object::Active(mDaoUIImage); // 여기서 상태를 다시 Active 시킴
-				}
-			}
+			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+			//{
+			//	if (isDaoVisited == true)
+			//	{
+			//		object::Active(mDaoUIImage); // 여기서 상태를 다시 Active 시킴
+			//	}
+			//}
 
 		}
 		else if (SceneManager::GetIsDuo() == true)
 		{
+			// 배찌선택 관련 코드
+			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+			//{
+			//	if (isBazziVisited == false)
+			//	{
+			//		mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI); // 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
+			//	}
+			//	isBazziVisited = true;
+			//}
 
+			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+			{
+				if (isFirstPicked == false)
+				{
+					mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI);
+					object::Instantiate<BazziLobbyUI>(eLayerType::UI);
+					isFirstPicked = true;
+				}
+				SceneManager::SetFirstCharactorPick(eCharactorPick::Bazzi); // 씬 매니저에서 캐릭터 선택 보유
+			}
+
+			if (Input::GetKeyDown(eKeyCode::RBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+			{
+				if (isSecondPicked == false)
+				{
+					mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI);
+					object::Instantiate<BazziLobbyUI>(eLayerType::UI);
+					isSecondPicked = true;
+				}
+				SceneManager::SetSecondCharactorPick(eCharactorPick::Bazzi); // 씬 매니저에서 캐릭터 선택 보유 2P셀렉
+			}
+
+			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+			//{
+			//	if (isBazziVisited == true)
+			//	{
+			//		object::Active(mBazziUIImage); // 여기서 상태를 다시 Active 시킴
+			//	}
+			//}
+
+			// 다오 선택 관련 코드
+			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+			//{
+			//	if (isDaoVisited == false)
+			//	{
+			//		mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);// 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
+			//	}
+
+			//	isDaoVisited = true;
+			//}
+
+
+			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+			{
+				if (isFirstPicked == false)
+				{
+					mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);
+					object::Instantiate<DaoLobbyUI>(eLayerType::UI);
+					isFirstPicked = true;
+				}
+
+				SceneManager::SetFirstCharactorPick(eCharactorPick::Dao);  // 씬 매니저에서 캐릭터 선택 보유
+			}
+
+			if (Input::GetKeyDown(eKeyCode::RBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+			{
+				if (isSecondPicked == false)
+				{
+					mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);
+					object::Instantiate<DaoLobbyUI>(eLayerType::UI);
+					isSecondPicked = true;
+				}
+				SceneManager::SetSecondCharactorPick(eCharactorPick::Dao); // 씬 매니저에서 캐릭터 선택 보유 2P셀렉
+			}
+
+			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+			//{
+			//	if (isDaoVisited == true)
+			//	{
+			//		object::Active(mDaoUIImage); // 여기서 상태를 다시 Active 시킴
+			//	}
+			//}
 		}
 
 
