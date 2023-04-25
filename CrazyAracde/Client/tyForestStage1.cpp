@@ -99,7 +99,66 @@ namespace ty
 	}
 	void ForestStage1::Update()
 	{
-		if (SceneManager::GetIsDuo() == false && SceneManager::GetBazzi() != NULL) // 배찌
+		if (SceneManager::GetIsDuo() == false)
+		{
+			if (SceneManager::GetBazzi() != NULL) // 배찌
+			{
+				if (SceneManager::GetMonsterCnt() == 0)
+				{
+					if (isPlayed == false)
+					{
+						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+						isPlayed = true;
+					}
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						isPlayed = false;
+						SceneManager::LoadScene(eSceneType::ForestStage2);
+						mTime = 0;
+					}
+				}
+				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
+				{
+					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						SceneManager::LoadScene(eSceneType::Lobby);
+						mTime = 0;
+					}
+				}
+			}
+			else if (SceneManager::GetDao() != NULL) // 다오
+			{
+				if (SceneManager::GetMonsterCnt() == 0)
+				{
+					if (isPlayed == false)
+					{
+						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+						isPlayed = true;
+					}
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						isPlayed = false;
+						SceneManager::LoadScene(eSceneType::ForestStage2);
+						mTime = 0;
+					}
+				}
+				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
+				{
+					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						SceneManager::LoadScene(eSceneType::Lobby);
+						mTime = 0;
+					}
+				}
+			}
+		}
+		else if(SceneManager::GetIsDuo() == true)
 		{
 			if (SceneManager::GetMonsterCnt() == 0)
 			{
@@ -116,46 +175,22 @@ namespace ty
 					mTime = 0;
 				}
 			}
-			else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
-			{
-				object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-				mTime += Time::DeltaTime();
-				if (mTime >= 6.0f)
-				{
-					SceneManager::LoadScene(eSceneType::Lobby);
-					mTime = 0;
-				}
-			}
-		}
-		else if (SceneManager::GetIsDuo() == false && SceneManager::GetDao() != NULL) // 다오
-		{
-			if (SceneManager::GetMonsterCnt() == 0)
-			{
-				if (isPlayed == false)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					isPlayed = true;
-				}
-				mTime += Time::DeltaTime();
-				if (mTime >= 6.0f)
-				{
-					isPlayed = false;
-					SceneManager::LoadScene(eSceneType::ForestStage2);
-					mTime = 0;
-				}
-			}
-			else if (SceneManager::GetDao()->GetPlayerHP() == -1)
-			{
-				object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-				mTime += Time::DeltaTime();
-				if (mTime >= 6.0f)
-				{
-					SceneManager::LoadScene(eSceneType::Lobby);
-					mTime = 0;
-				}
-			}
-		}
 
+			if (SceneManager::GetDao() != NULL && SceneManager::GetBazzi() != NULL)
+			{
+				if (SceneManager::GetDao()->GetPlayerHP() == -1 && SceneManager::GetBazzi()->GetPlayerHP() == -1)
+				{
+					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						SceneManager::LoadScene(eSceneType::Lobby);
+						mTime = 0;
+					}
+				}
+			}
+		}
+		
 
 
 		Vector2 temp = Input::GetMousePos();
@@ -165,6 +200,7 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
+		
 		Scene::Update();
 	}
 	void ForestStage1::Render(HDC hdc)
@@ -183,7 +219,6 @@ namespace ty
 		{
 			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
 			{
-				
 				mBazzi->SetState(GameObject::eState::Active);
 				SceneManager::SetBazzi(mBazzi);
 			}
@@ -308,17 +343,49 @@ namespace ty
 				SceneManager::GetMapIndex()[j][i] = 0;
 			}
 		}
-		if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+
+		if (SceneManager::GetIsDuo() == false)
 		{
-			mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
-			mBazzi->SetState(GameObject::eState::Pause);
-			mBazzi->Reset();
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazzi->SetState(GameObject::eState::Pause);
+				mBazzi->Reset();
+			}
+			else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDao->SetState(GameObject::eState::Pause);
+				mDao->Reset();
+			}
 		}
-		else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+		else if (SceneManager::GetIsDuo() == true)
 		{
-			mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
-			mDao->SetState(GameObject::eState::Pause);
-			mDao->Reset();
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazzi->SetState(GameObject::eState::Pause);
+				mBazzi->Reset();
+			}
+			else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDao->SetState(GameObject::eState::Pause);
+				mDao->Reset();
+			}
+
+			if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazzi->SetState(GameObject::eState::Pause);
+				mBazzi->Reset();
+			}
+			else if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDao->SetState(GameObject::eState::Pause);
+				mDao->Reset();
+			}
 		}
 		SceneManager::SetmTime(240);
 		//object::Destroy(mBlender);

@@ -18,6 +18,7 @@ namespace ty
 	}
 	void LoginScene::Initialize()
 	{
+		SetName(L"Login");
 		Scene::Initialize();
 		object::Instantiate<Login_BG>(eLayerType::BG);
 		object::Instantiate<SinglePlayUI>(eLayerType::UI);

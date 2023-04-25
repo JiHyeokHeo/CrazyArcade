@@ -23,6 +23,10 @@ namespace ty
 	void BazziLobbyUI::Update()
 	{
 		Vector2 temp = Input::GetMousePos();
+		if (SceneManager::GetActiveScene()->GetName() == L"Login")
+		{
+			object::Destroy(this);
+		}
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825
 			&& LobbyScene::GetFirstPicked() == true)

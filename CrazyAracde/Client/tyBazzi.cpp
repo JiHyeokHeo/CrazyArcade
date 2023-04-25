@@ -21,6 +21,7 @@
 #include "tyShield.h"
 #include "tyNeedle.h"
 #include "tyDevil.h"
+#include "tyDao.h"
 
 namespace ty
 {
@@ -223,6 +224,10 @@ namespace ty
 			mState = eBazziState::BubbleMove;
 			isColl = true;
 		}
+	/*	if (isColl == false && other->GetOwner()->GetName() == L"Dao" 
+		{
+
+		}*/
 		//if (other->GetOwner()->GetName() == L"Bird" );
 		//{
 		//	mHP++;

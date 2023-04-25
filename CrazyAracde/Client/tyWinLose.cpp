@@ -34,8 +34,7 @@ namespace ty
 	}
 	void WinLose::Update()
 	{
-		if (SceneManager::GetIsDuo() == false)
-		{
+		
 			if (SceneManager::GetBazzi() != NULL)
 			{
 				if (SceneManager::GetBazzi()->GetPlayerHP() == -1 && isPlayed == false)
@@ -75,7 +74,7 @@ namespace ty
 				mTime = 0;
 			}
 
-		}
+		
 		
 
 

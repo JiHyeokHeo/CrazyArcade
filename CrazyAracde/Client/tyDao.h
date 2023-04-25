@@ -56,7 +56,7 @@ namespace ty
 		bool GetIsShieldOn() { return isShieldOn; }
 		eItemType GetItemState() { return mItemState; }
 		void SetItemState(eItemType type) { mItemState = type; }
-		void SeteBazziState(eDaoState type) { mState = type; }
+		eDaoState GetDaoState() { return mState; }
 
 
 		void SetIs1P(bool t) { is1P = t; }

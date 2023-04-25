@@ -48,24 +48,24 @@ namespace ty
 		//isPushPossible = true;
 		Transform* tr = GetComponent<Transform>();
 
-		tr->SetScale(Vector2(1.4f, 1.4f));
+		tr->SetScale(Vector2(1.5f, 1.5f));
 		SetName(L"Dao");
 	
 
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Up", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Right", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Up", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Left", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Down", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\UpIdle", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\RightIdle", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\UpIdle", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\LeftIdle", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\DownIdle", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Die", Vector2(-10.0f, -5.0f), 0.1f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Bubble", Vector2(-10.0f, -5.0f), 0.3f);
-		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Live", Vector2(-10.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Up", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Right", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Up", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Left", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Down", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\UpIdle", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\RightIdle", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\UpIdle", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\LeftIdle", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\DownIdle", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Die", Vector2(-15.0f, -5.0f), 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Bubble", Vector2(-15.0f, -5.0f), 0.5f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Dao\\Live", Vector2(-15.0f, -5.0f), 0.1f);
 
 
 		mAnimator->GetCompleteEvent(L"DaoBubble") = std::bind(&Dao::trapCompleteEvent, this);
