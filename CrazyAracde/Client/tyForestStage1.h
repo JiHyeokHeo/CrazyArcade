@@ -25,6 +25,7 @@ namespace ty
 		Bazzi* mBazzi;
 		Dao* mDao;
 		InGameBazziUI* mBazziUI;
+		InGameDaoUI* mDaoUI;
 		Play_BG* mPlayBG;
 		AlphaBlender* mBlender;
 		Image* mImage;

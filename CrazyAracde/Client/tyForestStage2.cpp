@@ -31,6 +31,11 @@
 #include "tyMonster2.h"
 #include "tyForestTile.h"
 #include "tyForestMonster.h"
+#include "tyDao.h"
+#include "tyInGameBazziUI.h"
+#include "tyIngameDaoUI.h"
+
+
 namespace ty
 {
 	ForestStage2::ForestStage2()
@@ -45,8 +50,14 @@ namespace ty
 
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
+		mDao = object::Instantiate<Dao>(eLayerType::Player);
+		mBazzi->SetState(GameObject::eState::Pause);
+		mDao->SetState(GameObject::eState::Pause);
+		mBazziUI = object::Instantiate<InGameBazziUI>(eLayerType::UI);
+		mDaoUI = object::Instantiate<InGameDaoUI>(eLayerType::UI);
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(440.0f, 700.0f));
+		mDao->GetComponent<Transform>()->SetPos(Vector2(510.0f, 700.0f));
 		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
 
 		// ------------------ 시간 관련
@@ -135,9 +146,55 @@ namespace ty
 		Scene::Release();
 	}
 	void ForestStage2::OnEnter()
-	{
+	{		
+		
+		// UI 상태 변환
+		mBazziUI->SetState(GameObject::eState::Active);
+		mDaoUI->SetState(GameObject::eState::Active);
 		// 캐릭터 설정 + 시간 조절
-		SceneManager::SetBazzi(mBazzi);
+			// 캐릭터 설정 + 시간 조절
+
+		if (SceneManager::GetIsDuo() == false)
+		{
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->SetState(GameObject::eState::Active);
+				SceneManager::SetBazzi(mBazzi);
+			}
+
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->SetState(GameObject::eState::Active);
+				SceneManager::SetDao(mDao);
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true)
+		{
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->SetState(GameObject::eState::Active);
+				SceneManager::SetBazzi(mBazzi);
+				mBazzi->SetIs1P(true);
+			}
+			if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->SetState(GameObject::eState::Active);
+				SceneManager::SetBazzi(mBazzi);
+				mBazzi->SetIs1P(false);
+			}
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->SetState(GameObject::eState::Active);
+				mDao->SetIs1P(true);
+				SceneManager::SetDao(mDao);
+			}
+			if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->SetState(GameObject::eState::Active);
+				mDao->SetIs1P(false);
+				SceneManager::SetDao(mDao);
+			}
+		}
 		SceneManager::SetMonsterCnt(5);
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
@@ -217,11 +274,56 @@ namespace ty
 			}
 		}
 
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(440.0f, 700.0f)); // 화면 전환시 기능 추가
-		mBazzi->SetState(GameObject::eState::Active);
-		mBazzi->Reset();
+		if (SceneManager::GetIsDuo() == false)
+		{
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazziUI->SetState(GameObject::eState::Pause);
+				mBazzi->SetState(GameObject::eState::Pause);
+				mBazzi->Reset();
+			}
+			else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDaoUI->SetState(GameObject::eState::Pause);
+				mDao->SetState(GameObject::eState::Pause);
+				mDao->Reset();
+			}
+		}
+		else if (SceneManager::GetIsDuo() == true)
+		{
+			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazziUI->SetState(GameObject::eState::Pause);
+				mBazzi->SetState(GameObject::eState::Pause);
+				mBazzi->Reset();
+			}
+			else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDaoUI->SetState(GameObject::eState::Pause);
+				mDao->SetState(GameObject::eState::Pause);
+				mDao->Reset();
+			}
+
+			if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Bazzi)
+			{
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazziUI->SetState(GameObject::eState::Pause);
+				mBazzi->SetState(GameObject::eState::Pause);
+				mBazzi->Reset();
+			}
+			else if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Dao)
+			{
+				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDaoUI->SetState(GameObject::eState::Pause);
+				mDao->SetState(GameObject::eState::Pause);
+				mDao->Reset();
+			}
+		}
 		SceneManager::SetmTime(240);
-		SceneManager::SetBazzi(mBazzi);
 		//object::Destroy(mBlender);
 	}
 }

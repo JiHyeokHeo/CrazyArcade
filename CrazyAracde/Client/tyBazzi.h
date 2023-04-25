@@ -94,6 +94,7 @@ namespace ty
 		Animator* mAnimator;
 		float mTime;
 
+	
 
 		bool isColl;
 		bool isReady;

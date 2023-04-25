@@ -23,7 +23,7 @@ namespace ty
 	{
 		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
 		{
-			object::Destroy(this);
+			object::Pause(this);
 		}
 		GameObject::Update();
 	}

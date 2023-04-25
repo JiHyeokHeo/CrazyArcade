@@ -22,7 +22,10 @@ namespace ty
 
 	private:
 		Bazzi* mBazzi;
+		class Dao* mDao;
 		Play_BG* mPlayBG;
+		class InGameBazziUI* mBazziUI;
+		class InGameDaoUI* mDaoUI;
 		AlphaBlender* mBlender;
 		Image* mImage;
 		int monstercnt;

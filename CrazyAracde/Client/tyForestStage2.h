@@ -21,8 +21,11 @@ namespace ty
 		virtual void OnExit() override;
 
 	private:
-		Bazzi* mBazzi;
+		class Bazzi* mBazzi;
+		class Dao* mDao;
 		Play_BG* mPlayBG;
+		class InGameBazziUI* mBazziUI;
+		class InGameDaoUI* mDaoUI;
 		AlphaBlender* mBlender;
 		Image* mImage;
 		int monstercnt;

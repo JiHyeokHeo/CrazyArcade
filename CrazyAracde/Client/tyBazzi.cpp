@@ -185,6 +185,8 @@ namespace ty
 		{
 			mInvincibility = -1;
 		}
+
+		
 		GameObject::Update();
 
 	}
@@ -1178,5 +1180,6 @@ namespace ty
 		mItemState = eItemType::None;
 		isPushPossible = false;
 		isColl = true;
+		mClick = 0;
 	}
 }

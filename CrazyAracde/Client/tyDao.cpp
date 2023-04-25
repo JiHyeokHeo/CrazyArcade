@@ -1023,5 +1023,6 @@ namespace ty
 		mItemState = eItemType::None;
 		isPushPossible = false;
 		isColl = true;
+		mClick = 0;
 	}
 }
