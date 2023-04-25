@@ -133,6 +133,8 @@
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="tyDaoImage.h" />
     <ClInclude Include="tyDaoLobbyUI.h" />
+    <ClInclude Include="tyInGameBazziUI.h" />
+    <ClInclude Include="tyIngameDaoUI.h" />
     <ClInclude Include="tySelect.h" />
     <ClInclude Include="tyBallon.h" />
     <ClInclude Include="tyBaseBossBomb.h" />
@@ -273,6 +275,8 @@
     <ClCompile Include="tyIceMapSelect.cpp" />
     <ClCompile Include="tyIceSelect.cpp" />
     <ClCompile Include="tyIceTile.cpp" />
+    <ClCompile Include="tyInGameBazziUI.cpp" />
+    <ClCompile Include="tyIngameDaoUI.cpp" />
     <ClCompile Include="tyItem.cpp" />
     <ClCompile Include="tyLRGround.cpp" />
     <ClCompile Include="tyMapSelect.cpp" />

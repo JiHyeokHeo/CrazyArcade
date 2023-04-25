@@ -33,6 +33,8 @@
 #include "tyForestMonster.h"
 #include "tyDao.h"
 #include "tyLobbyScene.h"
+#include "tyInGameBazziUI.h"
+#include "tyIngameDaoUI.h"
 
 namespace ty
 {
@@ -51,7 +53,8 @@ namespace ty
 		mDao = object::Instantiate<Dao>(eLayerType::Player);
 		mDao->SetState(GameObject::eState::Pause);
 		// 생성과 동시에 일단 Pause 상태로 진입
-
+		object::Instantiate<InGameBazziUI>(eLayerType::UI);
+		object::Instantiate<InGameDaoUI>(eLayerType::UI);
 		mDao ->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f));
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
 
@@ -180,6 +183,7 @@ namespace ty
 		{
 			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
 			{
+				
 				mBazzi->SetState(GameObject::eState::Active);
 				SceneManager::SetBazzi(mBazzi);
 			}

@@ -182,6 +182,9 @@
     <Filter Include="Contents\UI\Lobby\Dao">
       <UniqueIdentifier>{6db62281-0b53-4c08-a8a7-047bf66fd003}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\UI\IngameUI">
+      <UniqueIdentifier>{69f0b322-4691-447d-8237-d7bf2003b4fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -520,6 +523,12 @@
     <ClInclude Include="tyDaoLobbyUI.h">
       <Filter>Contents\UI\Lobby\Dao</Filter>
     </ClInclude>
+    <ClInclude Include="tyInGameBazziUI.h">
+      <Filter>Contents\UI\IngameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="tyIngameDaoUI.h">
+      <Filter>Contents\UI\IngameUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -837,6 +846,12 @@
     </ClCompile>
     <ClCompile Include="tyDaoLobbyUI.cpp">
       <Filter>Contents\UI\Lobby\Dao</Filter>
+    </ClCompile>
+    <ClCompile Include="tyInGameBazziUI.cpp">
+      <Filter>Contents\UI\IngameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="tyIngameDaoUI.cpp">
+      <Filter>Contents\UI\IngameUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

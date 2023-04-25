@@ -236,6 +236,11 @@ namespace ty
 			mSceneType = eSceneType::PirateStage1;
 		}
 
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 877 && temp.y <= 890 && temp.x >= 157 && temp.x <= 191 && isMapClicked == false)
+		{
+			SceneManager::SetIsDuo(false);
+			SceneManager::LoadScene(eSceneType::Login);
+		}
 
 		if (Input::GetKey(eKeyCode::Q))
 		{

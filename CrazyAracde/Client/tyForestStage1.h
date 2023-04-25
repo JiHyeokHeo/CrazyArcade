@@ -4,6 +4,7 @@
 
 namespace ty
 {
+	class Dao;
 	class Bazzi; // 이것이 전방선언
 	class ForestStage1 : public Scene
 	{
@@ -23,6 +24,7 @@ namespace ty
 	private:
 		Bazzi* mBazzi;
 		Dao* mDao;
+		InGameBazziUI* mBazziUI;
 		Play_BG* mPlayBG;
 		AlphaBlender* mBlender;
 		Image* mImage;
