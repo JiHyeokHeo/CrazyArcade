@@ -344,6 +344,7 @@ namespace ty
 			for (int i = 0; i < 15; i++)
 			{
 				SceneManager::GetMapIndex()[j][i] = 0;
+				SceneManager::GetBombIndex()[j][i] = 0;
 			}
 		}
 

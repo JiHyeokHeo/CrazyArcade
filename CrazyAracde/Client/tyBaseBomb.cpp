@@ -48,9 +48,24 @@ namespace ty
 
 	void BaseBomb::Update()
 	{
-		BaseBomb* bomb = this;
 
+
+		BaseBomb* bomb = this;
+		Vector2 ColPos = collider->GetPos();
+		Vector2 ColMidPos = ColPos + Vector2(TILE_SIZE_X / 2, TILE_SIZE_Y / 2);
+		Vector2 ColMidIdx = TileBomb::SetColIndex(ColMidPos);
+		Vector2 ColRIdx = TileBomb::SetColIndex(ColMidPos + Vector2(31.0f, 0.0f));
+		Vector2 ColLIdx = TileBomb::SetColIndex(ColMidPos + Vector2(-31.0f, 0.0f));
+		Vector2 ColUIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, -31.0f));
+		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
 		tr = bomb->GetComponent<Transform>();
+
+
+		if (isBomb == true)
+		{
+			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
+			object::Destroy(this);
+		}
 
 		if (SceneManager::GetIsDuo() == false)
 		{
@@ -65,11 +80,11 @@ namespace ty
 		}
 		else if (SceneManager::GetIsDuo() == true)
 		{
-			if (SceneManager::GetBazzi()->GetState() == eState::Active)
+			if (SceneManager::GetBazzi()->GetState() == eState::Active && SceneManager::GetBombIndex()[ColMidIdx.y][ColMidIdx.x] == 1)
 			{
 				BazziBombChecking();
 			}
-			else if (SceneManager::GetDao()->GetState() == eState::Active)
+			else if (SceneManager::GetDao()->GetState() == eState::Active && SceneManager::GetBombIndex()[ColMidIdx.y][ColMidIdx.x] == 2)
 			{
 				DaoBombChecking();
 			}
@@ -547,11 +562,11 @@ namespace ty
 		}
 
 
-		if (isBomb == true)
-		{
-			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
-			object::Destroy(this);
-		}
+		//if (isBomb == true)
+		//{
+		//	SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
+		//	object::Destroy(this);
+		//}
 
 
 		mBazzi = SceneManager::GetBazzi();
@@ -795,11 +810,11 @@ namespace ty
 		}
 
 
-		if (isBomb == true)
-		{
-			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
-			object::Destroy(this);
-		}
+		//if (isBomb == true)
+		//{
+		//	SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
+		//	object::Destroy(this);
+		//}
 
 
 		mDao = SceneManager::GetDao();

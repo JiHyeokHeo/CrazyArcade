@@ -43,6 +43,9 @@ namespace ty
 		// 맵 정보 가져오기
 		static std::vector<std::vector<int>>& GetMapIndex() { return mapIndex; }
 
+		// 폭탄 정보 가져오기
+		static std::vector<std::vector<int>>& GetBombIndex() { return bombIndex; }
+
 		// 1인플레이 또는 2인 플레이 구분하기
 		static void SetIsDuo(bool check) { isDuo = check; }
 		static bool GetIsFirstPlayer() { return isFirstPlayer; }
@@ -67,6 +70,7 @@ namespace ty
 		static int monstercnt;
 		static int mBossCnt;
 		static std::vector<std::vector<int>> mapIndex;
+		static std::vector<std::vector<int>> bombIndex;
 		static bool isDuo;
 		static bool isFirstPlayer;
 	};

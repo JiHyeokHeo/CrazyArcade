@@ -612,6 +612,7 @@ namespace ty
 				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
 				IdxPos = TileBomb::SetIndex(tr->GetPos());
 				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+				SceneManager::GetBombIndex()[IdxPos.y][IdxPos.x] = 1; // ÆøÅº º§·ù´Â 1
 			}
 		}
 		else if (SceneManager::GetIsDuo() == true && is1P == true)
@@ -622,6 +623,7 @@ namespace ty
 				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
 				IdxPos = TileBomb::SetIndex(tr->GetPos());
 				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+				SceneManager::GetBombIndex()[IdxPos.y][IdxPos.x] = 1; // ÆøÅº º§·ù´Â 1
 			}
 		}
 		else if (SceneManager::GetIsDuo() == true && is1P == false)
@@ -632,6 +634,7 @@ namespace ty
 				object::Instantiate<BaseBomb>(TileBomb::SetPos(tr->GetPos()), eLayerType::Bomb);
 				IdxPos = TileBomb::SetIndex(tr->GetPos());
 				SceneManager::GetMapIndex()[IdxPos.y][IdxPos.x] = 3; // 13 15
+				SceneManager::GetBombIndex()[IdxPos.y][IdxPos.x] = 1; // ÆøÅº º§·ù´Â 1
 			}
 		}
 		if (isBirdOn == false)

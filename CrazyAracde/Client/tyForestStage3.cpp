@@ -97,29 +97,95 @@ namespace ty
 	}
 	void ForestStage3::Update()
 	{
-		if (SceneManager::GetMonsterCnt() == 0)
+		if (SceneManager::GetIsDuo() == false)
 		{
-			if (isPlayed == false)
+			if (SceneManager::GetBazzi() != NULL) // ¹èÂî
 			{
-				object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-				isPlayed = true;
+				if (SceneManager::GetMonsterCnt() == 0)
+				{
+					if (isPlayed == false)
+					{
+						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+						isPlayed = true;
+					}
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						isPlayed = false;
+						SceneManager::LoadScene(eSceneType::ForestStage3);
+						mTime = 0;
+					}
+				}
+				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
+				{
+					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						SceneManager::LoadScene(eSceneType::Lobby);
+						mTime = 0;
+					}
+				}
 			}
-			mTime += Time::DeltaTime();
-			if (mTime >= 6.0f)
+			else if (SceneManager::GetDao() != NULL) // ´Ù¿À
 			{
-				isPlayed = false;
-				SceneManager::LoadScene(eSceneType::Lobby);
-				mTime = 0;
+				if (SceneManager::GetMonsterCnt() == 0)
+				{
+					if (isPlayed == false)
+					{
+						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+						isPlayed = true;
+					}
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						isPlayed = false;
+						SceneManager::LoadScene(eSceneType::ForestStage3);
+						mTime = 0;
+					}
+				}
+				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
+				{
+					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						SceneManager::LoadScene(eSceneType::Lobby);
+						mTime = 0;
+					}
+				}
 			}
 		}
-		else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
+		else if (SceneManager::GetIsDuo() == true)
 		{
-			object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-			mTime += Time::DeltaTime();
-			if (mTime >= 6.0f)
+			if (SceneManager::GetMonsterCnt() == 0)
 			{
-				SceneManager::LoadScene(eSceneType::Lobby);
-				mTime = 0;
+				if (isPlayed == false)
+				{
+					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					isPlayed = true;
+				}
+				mTime += Time::DeltaTime();
+				if (mTime >= 6.0f)
+				{
+					isPlayed = false;
+					SceneManager::LoadScene(eSceneType::ForestStage2);
+					mTime = 0;
+				}
+			}
+
+			if (SceneManager::GetDao() != NULL && SceneManager::GetBazzi() != NULL)
+			{
+				if (SceneManager::GetDao()->GetPlayerHP() == -1 && SceneManager::GetBazzi()->GetPlayerHP() == -1)
+				{
+					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					mTime += Time::DeltaTime();
+					if (mTime >= 6.0f)
+					{
+						SceneManager::LoadScene(eSceneType::Lobby);
+						mTime = 0;
+					}
+				}
 			}
 		}
 
@@ -264,6 +330,7 @@ namespace ty
 			for (int i = 0; i < 15; i++)
 			{
 				SceneManager::GetMapIndex()[j][i] = 0;
+				SceneManager::GetBombIndex()[j][i] = 0;
 			}
 		}
 
