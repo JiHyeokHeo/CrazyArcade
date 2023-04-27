@@ -52,8 +52,6 @@ namespace ty
 	void ToyBoss::Update()
 	{
 
-		//checkPatternTime();
-
 		rand_num = dist(gen);
 
 		mTime += Time::DeltaTime();
@@ -62,11 +60,15 @@ namespace ty
 		{
 			switch (mState)
 			{
+
 			case ty::ToyBoss::eToyBossState::Idle:
 				idle();
 				break;
 			case ty::ToyBoss::eToyBossState::Attack:
 				attack();
+				break;
+			case ty::ToyBoss::eToyBossState::Attack1:
+				attack1();
 				break;
 			case ty::ToyBoss::eToyBossState::Stop:
 				stop();
@@ -86,6 +88,15 @@ namespace ty
 			case ty::ToyBoss::eToyBossState::Attack4:
 				attack4();
 				break;
+			case ty::ToyBoss::eToyBossState::Attack5:
+				attack5();
+				break;
+			case ty::ToyBoss::eToyBossState::Attack6:
+				attack6();
+				break;
+			case ty::ToyBoss::eToyBossState::Attack7:
+				attack7();
+				break;
 			default:
 				break;
 			}
@@ -93,7 +104,8 @@ namespace ty
 
 
 
-		if (mTime >= 5 && mState != eToyBossState::Die && mState != eToyBossState::Hit && mState != eToyBossState::Bubble)
+		if (mTime >= 5 && mState != eToyBossState::Die && mState != eToyBossState::Hit && mState != eToyBossState::Bubble && mState != eToyBossState::Attack 
+			&& mState != eToyBossState::Attack2 && mState != eToyBossState::Attack3 && mState != eToyBossState::Attack4)
 		{
 			mState = eToyBossState::Idle;
 			mTime = 0;
@@ -111,7 +123,7 @@ namespace ty
 		if (isColl == false && Hp >= 1 && other->GetOwner()->GetName() == L"BombEffect")
 		{
 			mState = eToyBossState::Hit;
-		}
+		}	
 
 		if (isColl == false && Hp <= 0 && other->GetOwner()->GetName() == L"BombEffect" && mState != eToyBossState::Bubble)
 		{
@@ -134,7 +146,7 @@ namespace ty
 		isPatternOn = false;
 		if (mTime >= 3)
 		{
-			mState = (eToyBossState)((rand() % 6));	
+			mState = (eToyBossState)((rand() % 4));	
 		}
 		if (mState == eToyBossState::Attack || mState == eToyBossState::Attack2 || mState == eToyBossState::Attack3 || mState == eToyBossState::Attack4)
 		{
@@ -176,10 +188,11 @@ namespace ty
 
 	void ToyBoss::attack()
 	{
+		mTime = 0;
 		isPatternOn = true;
+		checkPatternTime();
 
-
-		if (isAttack == true)
+		if (bossPattern >= 0.5f)
 		{
 			for (int i = 0; i < 7; i++)
 			{
@@ -208,10 +221,11 @@ namespace ty
 			}
 			isAttack = false;
 		}
-
+		
 		if (bossPattern >= 0.5f)
 		{
 			mState = eToyBossState::Attack2;
+			bossPattern = 0;
 		}
 	}
 	void ToyBoss::bubble()
@@ -231,39 +245,13 @@ namespace ty
 	void ToyBoss::bubbleCompleteEvent()
 	{
 	}
-	void ToyBoss::attack2()
+	void ToyBoss::attack1()
 	{
-		if (isAttack == true)
-		{
-			for (int i = 0; i < 9; i++)
-			{
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(240, 240 - (i * 60))), eLayerType::BombEffect); // 우측
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(240 - (i * 60), 240)), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-240 + (i * 60), -240)), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-240, 240 - (i * 60))), eLayerType::BombEffect);
-			}
-			isAttack = false;
-		}
-		mState = eToyBossState::Attack3;
-	}
-	void ToyBoss::attack3()
-	{
-		if (isAttack == true)
-		{
-			for (int i = 0; i < 11; i++)
-			{
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(300, 300 - (i * 60))), eLayerType::BombEffect); // 우측
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(300 - (i * 60), 300)), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-300 + (i * 60), -300)), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-300, 300 - (i * 60))), eLayerType::BombEffect);
-			}
-			isAttack = false;
-		}
-		mState = eToyBossState::Attack4;
-	}
-	void ToyBoss::attack4()
-	{
-		if (isAttack == true)
+		mTime = 0;
+		isPatternOn = true;
+		checkPatternTime();
+
+		if (bossPattern >= 0.5f)
 		{
 			for (int i = 0; i < 13; i++)
 			{
@@ -272,16 +260,161 @@ namespace ty
 				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-360 + (i * 60), -360)), eLayerType::BombEffect);
 				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-360, 300 - (i * 60))), eLayerType::BombEffect);
 			}
+
+			if (rand_num < 0.25f)
+			{
+				left();
+			}
+			else if (rand_num < 0.5f)
+			{
+				right();
+			}
+			else if (rand_num < 0.75f)
+			{
+				up();
+			}
+			else if (rand_num < 1.0f)
+			{
+				down();
+			}
 			isAttack = false;
 		}
-		mState = eToyBossState::Stop;
+
+		if (bossPattern >= 0.5f)
+		{
+			mState = eToyBossState::Attack7;
+			bossPattern = 0;
+		}
+	}
+	void ToyBoss::attack2()
+	{
+		mTime = 0;
+		checkPatternTime();
+		if (bossPattern >= 0.5f)
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(240, 240 - (i * 60))), eLayerType::BombEffect); // 우측
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(240 - (i * 60), 240)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-240 + (i * 60), -240)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-240, 240 - (i * 60))), eLayerType::BombEffect);
+			}
+		}
+		if (bossPattern >= 0.5f)
+		{
+			mState = eToyBossState::Attack3;
+			bossPattern = 0;
+		}
+	}
+	void ToyBoss::attack3()
+	{
+		mTime = 0;
+		checkPatternTime();
+		if (bossPattern >= 0.5f)
+		{
+			for (int i = 0; i < 11; i++)
+			{
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(300, 300 - (i * 60))), eLayerType::BombEffect); // 우측
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(300 - (i * 60), 300)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-300 + (i * 60), -300)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-300, 300 - (i * 60))), eLayerType::BombEffect);
+			}
+		}
+		if (bossPattern >= 0.5f)
+		{
+			mState = eToyBossState::Attack4;
+			bossPattern = 0;
+		}
+	}
+	void ToyBoss::attack4()
+	{
+		mTime = 0;
+		checkPatternTime();
+		if (bossPattern >= 0.5f)
+		{
+			for (int i = 0; i < 13; i++)
+			{
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(360, 360 - (i * 60))), eLayerType::BombEffect); // 우측
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(360 - (i * 60), 360)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-360 + (i * 60), -360)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-360, 300 - (i * 60))), eLayerType::BombEffect);
+			}
+		}
+		if (bossPattern >= 0.5f)
+		{
+			mState = eToyBossState::Stop;
+			bossPattern = 0;
+			mTime = 0;
+		}
+	}
+	void ToyBoss::attack5()
+	{
+		mTime = 0;
+		checkPatternTime();
+		if (bossPattern >= 0.5f)
+		{
+			for (int i = 0; i < 7; i++)
+			{
+				/*eToyBossState::Idle;*/
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(180, 180 - (i * 60))), eLayerType::BombEffect); // 두개씩 증가
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(180 - (i * 60), 180)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-180 + (i * 60), -180)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-180, 180 - (i * 60))), eLayerType::BombEffect);
+			}
+		}
+		if (bossPattern >= 0.5f)
+		{
+			mState = eToyBossState::Stop;
+			bossPattern = 0;
+			mTime = 0;
+		}
+		
+	}
+	void ToyBoss::attack6()
+	{
+		mTime = 0;
+		checkPatternTime();
+		if (bossPattern >= 0.5f)
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(240, 240 - (i * 60))), eLayerType::BombEffect); // 우측
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(240 - (i * 60), 240)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-240 + (i * 60), -240)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-240, 240 - (i * 60))), eLayerType::BombEffect);
+			}
+		}
+		if (bossPattern >= 0.5f)
+		{
+			mState = eToyBossState::Attack5;
+			bossPattern = 0;
+		}
+	}
+	void ToyBoss::attack7()
+	{
+		mTime = 0;
+		checkPatternTime();
+		if (bossPattern >= 0.5f)
+		{
+			for (int i = 0; i < 11; i++)
+			{
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(300, 300 - (i * 60))), eLayerType::BombEffect); // 우측
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(300 - (i * 60), 300)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-300 + (i * 60), -300)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-300, 300 - (i * 60))), eLayerType::BombEffect);
+			}
+		}
+		if (bossPattern >= 0.5f)
+		{
+			mState = eToyBossState::Attack6;
+			bossPattern = 0;
+		}
 	}
 	void ToyBoss::checkPatternTime()
 	{
-		if (isPatternOn == true)
-		{
-			bossPattern += Time::DeltaTime();
-		}
+		
+		bossPattern += Time::DeltaTime();
+		
 	}
 	void ToyBoss::stop()
 	{

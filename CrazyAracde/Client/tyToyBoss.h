@@ -12,10 +12,14 @@ namespace ty
 		{
 			Idle,
 			Attack,
+			Attack1,
+			Stop,
 			Attack2,
 			Attack3,
 			Attack4,
-			Stop,
+			Attack5,
+			Attack6,
+			Attack7,
 			Left,
 			Right,
 			Up,
@@ -23,6 +27,7 @@ namespace ty
 			Hit,
 			Bubble,
 			Die,
+			Check,
 		};
 		ToyBoss();
 		~ToyBoss();
@@ -48,9 +53,13 @@ namespace ty
 		void die();
 		void animationCtr();
 		void bubbleCompleteEvent();
+		void attack1();
 		void attack2();
 		void attack3();
 		void attack4();
+		void attack5();
+		void attack6();
+		void attack7();
 		void checkPatternTime();
 		void stop();
 	private:
