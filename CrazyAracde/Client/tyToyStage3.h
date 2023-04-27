@@ -6,6 +6,7 @@
 namespace ty
 {
 	class AlphaBlender;
+	class Dao;
 	class Bazzi; // 이것이 전방선언
 	class ToyStage3 : public Scene
 	{
@@ -25,6 +26,9 @@ namespace ty
 		/*static Bazzi* GetBazzi() { return mBazzi; }*/
 	private:
 		Bazzi* mBazzi;
+		Dao* mDao;
+		class InGameBazziUI* mBazziUI;
+		class InGameDaoUI* mDaoUI;
 		Play_BG* mPlayBG;
 		AlphaBlender* mBlender;
 		Image* mImage;

@@ -12,6 +12,10 @@ namespace ty
 		{
 			Idle,
 			Attack,
+			Attack2,
+			Attack3,
+			Attack4,
+			Stop,
 			Left,
 			Right,
 			Up,
@@ -45,6 +49,10 @@ namespace ty
 		void animationCtr();
 		void bubbleCompleteEvent();
 		void attack2();
+		void attack3();
+		void attack4();
+		void checkPatternTime();
+		void stop();
 	private:
 		Animator* mAnimator;
 		eToyBossState mState;
@@ -62,6 +70,9 @@ namespace ty
 		Vector2 midmPos;
 		float TimeSpend;
 		float rand_num;
+		float bossPattern;
+		bool isPatternOn;
+		
 	};
 }
 

@@ -112,7 +112,7 @@ namespace ty
 					if (mTime >= 6.0f)
 					{
 						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::ForestStage3);
+						SceneManager::LoadScene(eSceneType::Lobby);
 						mTime = 0;
 					}
 				}
@@ -140,7 +140,7 @@ namespace ty
 					if (mTime >= 6.0f)
 					{
 						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::ForestStage3);
+						SceneManager::LoadScene(eSceneType::Lobby);
 						mTime = 0;
 					}
 				}
@@ -169,7 +169,7 @@ namespace ty
 				if (mTime >= 6.0f)
 				{
 					isPlayed = false;
-					SceneManager::LoadScene(eSceneType::ForestStage2);
+					SceneManager::LoadScene(eSceneType::Lobby);
 					mTime = 0;
 				}
 			}
