@@ -27,7 +27,10 @@ namespace ty
 		{
 			object::Destroy(this);
 		}
-
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 877 && temp.y <= 890 && temp.x >= 157 && temp.x <= 191 )
+		{
+			object::Destroy(this);
+		}
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825
 			&& LobbyScene::GetFirstPicked() == true)
 		{

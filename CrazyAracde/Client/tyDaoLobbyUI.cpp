@@ -26,6 +26,11 @@ namespace ty
 			object::Destroy(this);
 		}
 		Vector2 temp = Input::GetMousePos();
+
+		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 877 && temp.y <= 890 && temp.x >= 157 && temp.x <= 191)
+		{
+			object::Destroy(this);
+		}
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040
 			&& LobbyScene::GetFirstPicked() == true)
 		{

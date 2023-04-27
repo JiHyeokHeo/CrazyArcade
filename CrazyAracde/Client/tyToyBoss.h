@@ -44,6 +44,7 @@ namespace ty
 		void die();
 		void animationCtr();
 		void bubbleCompleteEvent();
+		void attack2();
 	private:
 		Animator* mAnimator;
 		eToyBossState mState;

@@ -239,6 +239,8 @@ namespace ty
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 877 && temp.y <= 890 && temp.x >= 157 && temp.x <= 191 && isMapClicked == false)
 		{
 			SceneManager::SetIsDuo(false);
+			isFirstPicked = false;
+			isSecondPicked = false;
 			SceneManager::LoadScene(eSceneType::Login);
 		}
 

@@ -188,11 +188,35 @@ namespace ty
 			for (int i = 0; i < 7; i++)
 			{
 				eToyBossState::Idle;
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(180, 180 - (i * 60))), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(180 - (i * 60), 180)), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(-180 + (i * 60), -180)), eLayerType::BombEffect);
-				object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(-180, 180 - (i * 60))), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f,360.0f) + Vector2(180, 180 - (i * 60))), eLayerType::BombEffect); // 두개씩 증가
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(180 - (i * 60), 180)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-180 + (i * 60), -180)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-180, 180 - (i * 60))), eLayerType::BombEffect);
 				isAttack = false;
+			}
+			
+			for (int i = 0; i < 9; i++)
+			{
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(240, 240 - (i * 60))), eLayerType::BombEffect); // 우측
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(240 - (i * 60), 240)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-240 + (i * 60), -240)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-240, 240 - (i * 60))), eLayerType::BombEffect);
+			}
+
+			for (int i = 0; i < 11; i++)
+			{
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(300, 300 - (i * 60))), eLayerType::BombEffect); // 우측
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(300 - (i * 60), 300)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-300 + (i * 60), -300)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-300, 300 - (i * 60))), eLayerType::BombEffect);
+			}
+
+			for (int i = 0; i < 13; i++)
+			{
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(360, 360 - (i * 60))), eLayerType::BombEffect); // 우측
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(360 - (i * 60), 360)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-360 + (i * 60), -360)), eLayerType::BombEffect);
+				object::Instantiate<BossBombEffect>(TileBomb::SetPos(Vector2(450.0f, 360.0f) + Vector2(-360, 300 - (i * 60))), eLayerType::BombEffect);
 			}
 
 			if (rand_num < 0.25f)
@@ -229,6 +253,9 @@ namespace ty
 	{
 	}
 	void ToyBoss::bubbleCompleteEvent()
+	{
+	}
+	void ToyBoss::attack2()
 	{
 	}
 }
