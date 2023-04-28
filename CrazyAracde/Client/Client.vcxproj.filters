@@ -82,10 +82,6 @@
     <Filter Include="Engine\Component\RigidBody">
       <UniqueIdentifier>{d92a5237-d0ca-418c-862f-ffb9da6ed76e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Engine\Component\Collider\ColliderPosControl">
       <UniqueIdentifier>{85f8875e-c529-4361-877a-43c27d476edd}</UniqueIdentifier>
     </Filter>
@@ -184,6 +180,10 @@
     </Filter>
     <Filter Include="Contents\UI\IngameUI">
       <UniqueIdentifier>{69f0b322-4691-447d-8237-d7bf2003b4fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -529,6 +529,9 @@
     <ClInclude Include="tyIngameDaoUI.h">
       <Filter>Contents\UI\IngameUI</Filter>
     </ClInclude>
+    <ClInclude Include="tyBombImage.h">
+      <Filter>Contents\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -852,6 +855,9 @@
     </ClCompile>
     <ClCompile Include="tyIngameDaoUI.cpp">
       <Filter>Contents\UI\IngameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBombImage.cpp">
+      <Filter>Contents\Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

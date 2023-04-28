@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
+    <ClInclude Include="tyBombImage.h" />
     <ClInclude Include="tyDaoImage.h" />
     <ClInclude Include="tyDaoLobbyUI.h" />
     <ClInclude Include="tyInGameBazziUI.h" />
@@ -245,6 +246,7 @@
     <ClInclude Include="tyWinLose.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tyBombImage.cpp" />
     <ClCompile Include="tyCookieMapSelect.cpp" />
     <ClCompile Include="tyAlphaBlender.cpp" />
     <ClCompile Include="tyAnimation.cpp" />

@@ -218,7 +218,7 @@ namespace ty
 		{
 			object::Instantiate<ForestSelect>(eLayerType::UI);
 			object::Instantiate<ForestMapSelect>(eLayerType::MapSelectUI);
-			mSceneType = eSceneType::ForestStage1;
+			mSceneType = eSceneType::ForestStage3;
 		}
 
 

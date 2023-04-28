@@ -35,6 +35,7 @@
 #include "tyLobbyScene.h"
 #include "tyInGameBazziUI.h"
 #include "tyIngameDaoUI.h"
+#include "tyCollider.h"
 // ------------------------------------------------------------------------------------------ ÇØÀû¸Ê
 namespace ty
 {
@@ -163,6 +164,14 @@ namespace ty
 		}
 
 
+		if (Input::GetKeyDown(eKeyCode::O))
+		{
+			Collider::SetIsCollOn(true);
+		}
+		if (Input::GetKeyDown(eKeyCode::P))
+		{
+			Collider::SetIsCollOn(false);
+		}
 
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)

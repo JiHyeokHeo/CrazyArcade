@@ -10,6 +10,7 @@
 #include "tyScene.h"
 #include "tyObject.h"
 #include "tyTileBomb.h"
+#include "tyBombImage.h"
 
 namespace ty
 {
@@ -121,6 +122,8 @@ namespace ty
 			mState = eSealMonsterState::Idle;
 			mTime = 0;
 		}
+
+
 		GameObject::Update();
 	}
 	void SealBoss::Render(HDC hdc)
@@ -188,25 +191,23 @@ namespace ty
 	void SealBoss::idle()
 	{
 		mState = (eSealMonsterState)((rand() % 6));
+		if (mState == eSealMonsterState::Attack)
+		{
+			isAttack = true;
+		}
 		animationCtr();
 	}
 	void SealBoss::attack()
 	{
-		//Transform* tr = GetComponent<Transform>();
-
-		//if (isAttack == true)
-		//{
-		//	for (int i = 0; i < 7; i++)
-		//	{
-		//		ePirateMonsterState::Idle;
-		//		object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(180, 180 - (i * 60))), eLayerType::BombEffect);
-		//		object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(180 - (i * 60), 180)), eLayerType::BombEffect);
-		//		object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(-180 + (i * 60), -180)), eLayerType::BombEffect);
-		//		object::Instantiate<BossBombEffect>(TileBomb::SetPos(midmPos + Vector2(-180, 180 - (i * 60))), eLayerType::BombEffect);
-		//		isAttack = false;
-		//	}
-		//}
-
+		float x = disX(gen);
+		float y = disY(gen);
+		checkPatternTime();
+		if (mPatternTime >= 0.5f)
+		{
+			object::Instantiate<BombImage>(TileBomb::SetPos(Vector2(x,y)), eLayerType::Effect);
+			isAttack = false;
+			mPatternTime = 0;
+		}
 	}
 	void SealBoss::left()
 	{
@@ -289,5 +290,10 @@ namespace ty
 	void SealBoss::bubbleCompleteEvent()
 	{
 		mState = eSealMonsterState::Die;
+	}
+
+	void SealBoss::checkPatternTime()
+	{
+		mPatternTime += Time::DeltaTime();
 	}
 }

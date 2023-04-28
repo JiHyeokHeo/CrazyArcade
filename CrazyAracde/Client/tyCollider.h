@@ -27,6 +27,7 @@ namespace ty
 		Vector2 GetSize() { return mSize; }
 		UINT GetID() { return mID; }
 		
+		static void SetIsCollOn(bool isColl) { isCollider = isColl; }
 	private:
 		static UINT ColliderNumber;
 		UINT mCollisionCount;
@@ -34,5 +35,6 @@ namespace ty
 		Vector2 mCenter;
 		Vector2 mSize;
 		Vector2 mPos;
+		static bool isCollider;
 	};
 }

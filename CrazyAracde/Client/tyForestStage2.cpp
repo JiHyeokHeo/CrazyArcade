@@ -58,7 +58,7 @@ namespace ty
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(440.0f, 700.0f));
 		mDao->GetComponent<Transform>()->SetPos(Vector2(510.0f, 700.0f));
-		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
+		
 
 		// ------------------ 시간 관련
 		time[0] = object::Instantiate<Timer>(Vector2(1064.0f, 110.0f), eLayerType::UI);

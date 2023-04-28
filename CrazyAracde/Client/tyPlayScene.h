@@ -24,6 +24,7 @@ namespace ty
 		virtual void OnExit() override;
 
 		/*static Bazzi* GetBazzi() { return mBazzi; }*/
+
 	private:
 		Bazzi* mBazzi;
 		Dao* mDao;

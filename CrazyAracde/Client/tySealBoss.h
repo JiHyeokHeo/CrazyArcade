@@ -44,6 +44,7 @@ namespace ty
 		void die();
 		void animationCtr();
 		void bubbleCompleteEvent();
+		void checkPatternTime();
 	private:
 		Animator* mAnimator;
 		eSealMonsterState mState;
@@ -60,6 +61,8 @@ namespace ty
 		Vector2 ColRIdx;
 		Vector2 midmPos;
 		float TimeSpend;
+		float mPatternTime;
+		
 	};
 }
 

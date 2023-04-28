@@ -53,7 +53,7 @@ namespace ty
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
 		mBazzi->GetComponent<Transform>()->SetPos(Vector2(460.0f, 720.0f));
 		mDao->GetComponent<Transform>()->SetPos(Vector2(510.0f, 720.0f));
-		object::Instantiate<Shadow>(Vector2(20.0f, 40.0f), eLayerType::Shadow);
+		
 		// ¿Œ∞‘¿” UI
 		mBazziUI = object::Instantiate<InGameBazziUI>(eLayerType::UI);
 		mDaoUI = object::Instantiate<InGameDaoUI>(eLayerType::UI);
