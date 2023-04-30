@@ -40,6 +40,10 @@
 #include "tyMonster2.h"
 #include "tyToyTile.h"
 #include "tyToyMonster.h"
+#include "tySound.h"
+#include "tyResources.h"
+#include "tyCheckCharactor.h"
+
 namespace ty
 {
 	ToyStage1::ToyStage1()
@@ -52,6 +56,8 @@ namespace ty
 	{
 		Scene::Initialize();
 
+		toyStage = Resources::Load<Sound>(L"toyStageTheme", L"..\\Resources\\Sound\\Map\\bg_4.wav");
+		toyStage->SetVolume(20);
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		mBazzi->SetState(GameObject::eState::Pause);
@@ -103,67 +109,7 @@ namespace ty
 	}
 	void ToyStage1::Update()
 	{
-		if (SceneManager::GetIsDuo() == false)
-		{
-			if (SceneManager::GetBazzi() != NULL) // 배찌
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::ToyStage2);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-			else if (SceneManager::GetDao() != NULL) // 다오
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::ToyStage2);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-		}
-
-
+		CheckCharactor::Check(eSceneType::ToyStage2);
 
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
@@ -182,7 +128,10 @@ namespace ty
 	{
 	}
 	void ToyStage1::OnEnter()
-	{// UI 상태 변환
+	{
+		// 사운드 출력
+		toyStage->Play(true);
+		// UI 상태 변환
 		mBazziUI->SetState(GameObject::eState::Active);
 		mDaoUI->SetState(GameObject::eState::Active);
 		// 캐릭터 설정 + 시간 조절
@@ -297,6 +246,8 @@ namespace ty
 	}
 	void ToyStage1::OnExit()
 	{
+		// 사운드 출력
+		toyStage->Stop(true);
 		monster[0]->SetState(GameObject::eState::Active);
 		monster[1]->SetState(GameObject::eState::Active);
 		monster[2]->SetState(GameObject::eState::Active);

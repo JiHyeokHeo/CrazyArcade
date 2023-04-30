@@ -1,6 +1,7 @@
 #pragma once
 #include "tyScene.h"
 #include "tyLobby_BG.h"
+#include "tySound.h"
 
 namespace ty
 {
@@ -45,5 +46,7 @@ namespace ty
 		bool isDaoVisited;
 		bool isMapClicked;
 		
+
+		Sound* Lobby;
 	};
 }

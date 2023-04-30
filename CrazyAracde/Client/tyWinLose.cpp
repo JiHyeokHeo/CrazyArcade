@@ -16,6 +16,8 @@
 #include "tyPlayScene.h"
 #include "tyinput.h"
 #include "tyDao.h"
+#include "tySound.h"
+#include "tyResources.h"
 
 namespace ty
 {
@@ -27,6 +29,8 @@ namespace ty
 	}
 	void WinLose::Initialize()
 	{
+		mLose = Resources::Load<Sound>(L"LoseSound", L"..\\Resources\\Sound\\lose.wav");
+		mWin = Resources::Load<Sound>(L"WinSound", L"..\\Resources\\Sound\\win.wav");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\UI\\Win", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\UI\\Lose", Vector2::Zero, 0.1f);
@@ -35,34 +39,35 @@ namespace ty
 	void WinLose::Update()
 	{
 		
-			if (SceneManager::GetBazzi() != NULL)
+			if (SceneManager::GetBazzi()->GetPlayerHP() == -1 && isPlayed == false)
 			{
-				if (SceneManager::GetBazzi()->GetPlayerHP() == -1 && isPlayed == false)
-				{
-					isPlayed = true;
-					mAnimator->Play(L"UILose", false);
-				}
+				mLose->Play(false);
+				isPlayed = true;
+				mAnimator->Play(L"UILose", false);
 			}
-			else if (SceneManager::GetDao() != NULL)
+			
+	/*		else if (SceneManager::GetDao() != NULL)
 			{
-
 				if (SceneManager::GetDao()->GetPlayerHP() == -1 && isPlayed == false)
 				{
+					mLose->Play(false);
 					isPlayed = true;
 					mAnimator->Play(L"UILose", false);
 				}
-			}
+			}*/
 			if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
 			{
 				object::Destroy(this);
 			}
 			if (SceneManager::GetMonsterCnt() == 0 && isPlayed == false)
 			{
+				mWin->Play(false);
 				isPlayed = true;
 				mAnimator->Play(L"UIWin", false);
 			}
 			else if (SceneManager::GetTime() == 0 && isPlayed == false)
 			{
+				mLose->Play(false);
 				isPlayed = true;
 				mAnimator->Play(L"UILose", false);
 			}

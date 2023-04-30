@@ -22,6 +22,7 @@ namespace ty
 	private:
 		Logo_BG* mLogoBG;
 		float mTime;
+		class Sound* Logo;
 	};
 };
 

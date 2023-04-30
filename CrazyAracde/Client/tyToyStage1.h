@@ -1,7 +1,7 @@
 #pragma once
 #include "tyScene.h"
 #include "tyPlag_BG.h"
-
+#include "tySound.h"
 
 namespace ty
 {
@@ -36,9 +36,10 @@ namespace ty
 		bool isLoad;
 		int PlayIndex[13][15];
 		class Timer* time[5];
-		float mTime;
+		//float mTime;
 		class ToyMonster* monster[10];
 		class Monster2* monster2[10];
 		bool isPlayed;
+		Sound* toyStage;
 	};
 };

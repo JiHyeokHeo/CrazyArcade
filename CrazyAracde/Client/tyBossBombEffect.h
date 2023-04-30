@@ -34,6 +34,7 @@ namespace ty
 		float mTime;
 		eBossBombEffectState mState;
 		
+		class Sound* mBossEffect;
 	};
 }
 

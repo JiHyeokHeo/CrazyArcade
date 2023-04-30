@@ -17,7 +17,8 @@
 #include "tyPlayScene.h"
 #include "tyinput.h"
 #include "tyDao.h"
-
+#include "tyResources.h"
+#include "tySound.h"
 namespace ty
 {
 	Potion::Potion()
@@ -32,6 +33,7 @@ namespace ty
 	void Potion::Initialize()
 	{
 		Image* mPotion = Resources::Load<Image>(L"mPotion", L"..\\Resources\\Items\\potion.bmp");
+		eatSound = Resources::Load<Sound>(L"eatsound", L"..\\Resources\\Sound\\eat_item.wav");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"Potion", mPotion, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
 		mAnimator->Play(L"Potion", true);
@@ -62,11 +64,13 @@ namespace ty
 		
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
+			eatSound->Play(false);
 			SceneManager::GetBazzi()->GetmWaterCourse()++;
 			object::Destroy(this);
 		}
 		if (other->GetOwner()->GetName() == L"Dao")
 		{
+			eatSound->Play(false);
 			SceneManager::GetDao()->GetmWaterCourse()++;
 			object::Destroy(this);
 		}

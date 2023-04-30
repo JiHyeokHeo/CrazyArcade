@@ -17,7 +17,8 @@
 #include "tyPlayScene.h"
 #include "tyinput.h"
 #include "tyDao.h"
-
+#include "tyResources.h"
+#include "tySound.h"
 namespace ty
 {
 	Skate::Skate()
@@ -32,6 +33,7 @@ namespace ty
 	void Skate::Initialize()
 	{
 		Image* mSkate = Resources::Load<Image>(L"mSkate", L"..\\Resources\\Items\\skate.bmp");
+		eatSound = Resources::Load<Sound>(L"eatsound", L"..\\Resources\\Sound\\eat_item.wav");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"Skate", mSkate, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
 		mAnimator->Play(L"Skate", true);
@@ -62,6 +64,7 @@ namespace ty
 		
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
+			eatSound->Play(false);
 			float& Stat = SceneManager::GetBazzi()->GetmSpeed();
 			Stat += 1.0f;
 			object::Destroy(this);
@@ -69,6 +72,7 @@ namespace ty
 	
 		if (other->GetOwner()->GetName() == L"Dao")
 		{
+			eatSound->Play(false);
 			float& Stat = SceneManager::GetDao()->GetmSpeed();
 			Stat += 1.0f;
 			object::Destroy(this);

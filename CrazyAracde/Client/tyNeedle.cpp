@@ -18,7 +18,8 @@
 #include "tyinput.h"
 #include "tyNeedleUI.h"
 #include "tyDao.h"
-
+#include "tyResources.h"
+#include "tySound.h"
 namespace ty
 {
 	Needle::Needle()
@@ -33,6 +34,7 @@ namespace ty
 	void Needle::Initialize()
 	{
 		Image* mNeedle = Resources::Load<Image>(L"mNeedle", L"..\\Resources\\Items\\needle.bmp");
+		eatSound = Resources::Load<Sound>(L"eatsound", L"..\\Resources\\Sound\\eat_item.wav");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"Needle", mNeedle, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
 		mAnimator->Play(L"Needle", true);
@@ -59,6 +61,7 @@ namespace ty
 		
 		if (other->GetOwner()->GetName() == L"Bazzi" && this->GetState() == eState::Active)
 		{
+			eatSound->Play(false);
 			SceneManager::GetBazzi()->SetItemState(eItemType::Needle);
 			object::Instantiate<NeedleUI>(eLayerType::UI);
 			object::Pause(this);
@@ -66,6 +69,7 @@ namespace ty
 
 		if (other->GetOwner()->GetName() == L"Dao" && this->GetState() == eState::Active)
 		{
+			eatSound->Play(false);
 			SceneManager::GetDao()->SetItemState(eItemType::Needle);
 			object::Instantiate<NeedleUI>(eLayerType::UI);
 			object::Pause(this);

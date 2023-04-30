@@ -23,6 +23,8 @@ namespace ty
 		Animator* mAnimator;
 		int isHit;
 		float InvTime;
+
+		class Sound* eatSound;
 	};
 
 }

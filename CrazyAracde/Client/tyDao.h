@@ -124,6 +124,8 @@ namespace ty
 
 
 		bool is1P;
+
+		class Sound* popsound;
 	};
 }
 

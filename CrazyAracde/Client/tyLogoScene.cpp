@@ -19,6 +19,10 @@ namespace ty
 	{
 		Scene::Initialize();
 		//object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
+		Logo
+			= Resources::Load<Sound>(L"LogoTheme", L"..\\Resources\\Sound\\logo.wav");
+		Logo->SetVolume(20);
+		Logo->Play(false);
 		object::Instantiate<Logo_BG>(eLayerType::BG);
 	}
 	void LogoScene::Update()
@@ -41,11 +45,9 @@ namespace ty
 	}
 	void LogoScene::OnEnter()
 	{
-		Sound* Logo
-			= Resources::Load<Sound>(L"LogoTheme", L"..\\Resources\\Sound\\logo.wav");
-		Logo->Play(false);
 	}
 	void LogoScene::OnExit()
 	{
+		Logo->Stop(true);
 	}
 }

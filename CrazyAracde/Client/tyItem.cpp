@@ -30,7 +30,6 @@ namespace ty
 	}
 	void Item::Initialize()
 	{
-		SetName(L"BaseBomb");
 
 		Collider* Col = AddComponent<Collider>();
 		Col->SetCenter(Vector2(20.0f, 20.0f));

@@ -128,7 +128,11 @@ namespace ty
 				}
 				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
 				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					if (isPlayed == false)
+					{
+						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+						isPlayed = true;
+					}
 					mTime += Time::DeltaTime();
 					if (mTime >= 6.0f)
 					{
@@ -156,7 +160,11 @@ namespace ty
 				}
 				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
 				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+					if (isPlayed == false)
+					{
+						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
+						isPlayed = true;
+					}
 					mTime += Time::DeltaTime();
 					if (mTime >= 6.0f)
 					{

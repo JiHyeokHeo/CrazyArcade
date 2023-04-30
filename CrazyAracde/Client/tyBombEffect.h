@@ -40,6 +40,10 @@ namespace ty
 		Vector2 EffectPos;
 		class BaseBomb* mBaseBomb;
 		bool isBlown;
+
+		class Sound* mBombEffect;
+
+		bool isMake;
 	};
 }
 

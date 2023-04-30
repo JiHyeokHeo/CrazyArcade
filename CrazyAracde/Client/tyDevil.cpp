@@ -17,7 +17,8 @@
 #include "tyPlayScene.h"
 #include "tyinput.h"
 #include "tyDao.h"
-
+#include "tyResources.h"
+#include "tySound.h"
 namespace ty
 {
 	Devil::Devil()
@@ -34,6 +35,7 @@ namespace ty
 		SetName(L"Devil");
 
 		Image* mDevil = Resources::Load<Image>(L"mDevil", L"..\\Resources\\Items\\Devil.bmp");
+		eatSound = Resources::Load<Sound>(L"eatsound", L"..\\Resources\\Sound\\eat_item.wav");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"Devil", mDevil, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
 		mAnimator->Play(L"Devil", true);
@@ -60,6 +62,7 @@ namespace ty
 		
 		if (other->GetOwner()->GetName() == L"Bazzi" && this->GetState() == eState::Active)
 		{
+			eatSound->Play(false);
 			SceneManager::GetBazzi()->GetmSpeed() = SceneManager::GetBazzi()->GetMaxSpeed();
 			SceneManager::GetBazzi()->SetIsPushPossible(true);
 			object::Pause(this);
@@ -67,6 +70,7 @@ namespace ty
 
 		if (other->GetOwner()->GetName() == L"Dao" && this->GetState() == eState::Active)
 		{
+			eatSound->Play(false);
 			SceneManager::GetDao()->GetmSpeed() = SceneManager::GetDao()->GetMaxSpeed();
 			SceneManager::GetDao()->SetIsPushPossible(true);
 			object::Pause(this);

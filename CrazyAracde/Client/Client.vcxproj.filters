@@ -541,6 +541,9 @@
     <ClInclude Include="tySoundManager.h">
       <Filter>Engine\Component\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="tyCheckCharactor.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">

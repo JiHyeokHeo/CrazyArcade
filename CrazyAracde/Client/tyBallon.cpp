@@ -17,6 +17,9 @@
 #include "tyPlayScene.h"
 #include "tyinput.h"
 #include "tyDao.h"
+#include "tyResources.h"
+#include "tySound.h"
+
 
 namespace ty
 {
@@ -36,6 +39,7 @@ namespace ty
 	void Ballon::Initialize()
 	{
 		Image* mBallon = Resources::Load<Image>(L"mBallon", L"..\\Resources\\Items\\ballon.bmp");
+		eatSound =  Resources::Load<Sound>(L"eatsound", L"..\\Resources\\Sound\\eat_item.wav");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"Ballon", mBallon, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
 		mAnimator->Play(L"Ballon", true);
@@ -66,12 +70,14 @@ namespace ty
 		
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
+			eatSound->Play(false);
 			SceneManager::GetBazzi()->GetmBomb()++;
 			object::Destroy(this);
 		}
 
 		if (other->GetOwner()->GetName() == L"Dao")
 		{
+			eatSound->Play(false);
 			SceneManager::GetDao()->GetmBomb()++;
 			object::Destroy(this);
 		}

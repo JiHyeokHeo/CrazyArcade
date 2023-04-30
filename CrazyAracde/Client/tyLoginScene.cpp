@@ -7,6 +7,9 @@
 #include "tyObject.h"
 #include "tySinglePlayUI.h"
 #include "tyDuoPlayUI.h"
+#include "tySound.h"
+#include "tyResources.h"
+
 
 namespace ty
 {
@@ -20,6 +23,9 @@ namespace ty
 	{
 		SetName(L"Login");
 		Scene::Initialize();
+
+		Login = Resources::Load<Sound>(L"LoginTheme", L"..\\Resources\\Sound\\login_scene.wav");
+		Login->SetVolume(20);
 		object::Instantiate<Login_BG>(eLayerType::BG);
 		object::Instantiate<SinglePlayUI>(eLayerType::UI);
 		object::Instantiate<DuoPlayUI>(eLayerType::UI);
@@ -62,10 +68,12 @@ namespace ty
 	}
 	void LoginScene::OnEnter()
 	{
+		Login->Play(true);
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 	}
 	void LoginScene::OnExit()
 	{
+		Login->Stop(true);
 		//object::Destroy(mBlender);
 	}
 }

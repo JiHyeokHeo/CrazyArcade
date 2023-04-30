@@ -21,7 +21,8 @@
 #include "tyShield.h"
 #include "tyNeedle.h"
 #include "tyDevil.h"
-
+#include "tySound.h"
+#include "tyResources.h"
 namespace ty
 {
 	Dao::Dao()
@@ -47,7 +48,7 @@ namespace ty
 	{	/*	isBirdOn = true;*/
 		//isPushPossible = true;
 		Transform* tr = GetComponent<Transform>();
-
+		popsound = Resources::Load<Sound>(L"PopSound", L"..\\Resources\\Sound\\bomb_pop.wav");
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		SetName(L"Dao");
 	
@@ -877,6 +878,7 @@ namespace ty
 			if (Input::GetKey(eKeyCode::LCTRL) && mItemState == eItemType::Needle
 				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 			{
+				popsound->Play(false);
 				isColl = true;
 				mItemState = eItemType::None;
 				mAnimator->Play(L"DaoLive", false);
@@ -912,6 +914,7 @@ namespace ty
 			if (Input::GetKey(eKeyCode::LCTRL) && mItemState == eItemType::Needle
 				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 			{
+				popsound->Play(false);
 				isColl = true;
 				mItemState = eItemType::None;
 				mAnimator->Play(L"DaoLive", false);

@@ -132,6 +132,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="tyBombImage.h" />
+    <ClInclude Include="tyCheckCharactor.h" />
     <ClInclude Include="tyDaoImage.h" />
     <ClInclude Include="tyDaoLobbyUI.h" />
     <ClInclude Include="tyInGameBazziUI.h" />

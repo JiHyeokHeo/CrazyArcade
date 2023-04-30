@@ -22,5 +22,6 @@ namespace ty
 		Login_BG* mLoginBG;
 		AlphaBlender* mBlender;
 		bool isChecked;
+		Sound* Login;
 	};
 }

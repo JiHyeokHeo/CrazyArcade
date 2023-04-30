@@ -11,6 +11,8 @@
 #include "tyBazzi.h"
 #include "tyTileBomb.h"
 #include "tyDao.h"
+#include "tySound.h"
+#include "tyResources.h"
 
 namespace ty
 {
@@ -29,7 +31,8 @@ namespace ty
 	void BaseBomb::Initialize()
 	{
 		SetName(L"BaseBomb");
-		
+		bomb_set = Resources::Load<Sound>(L"bomb_set", L"..\\Resources\\Sound\\bomb_set.wav");
+		bomb_set->Play(false);
     	Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		mAnimator = AddComponent<Animator>();
@@ -128,6 +131,7 @@ namespace ty
 
 	void BaseBomb::bombed()
 	{
+		bomb_set->Stop(true);
 		object::Destroy(this);
 	}
 

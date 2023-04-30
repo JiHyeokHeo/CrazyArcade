@@ -7,7 +7,8 @@
 #include "tyAnimator.h"
 #include "tyCollider.h"
 #include "tyObject.h"
-
+#include "tySound.h"
+#include "tyResources.h"
 
 namespace ty
 {
@@ -21,6 +22,8 @@ namespace ty
 	{
 		SetName(L"BossBombEffect");
 		Transform* tr = GetComponent<Transform>();
+		mBossEffect = Resources::Load<Sound>(L"mBombEffect", L"..\\Resources\\Sound\\wave.wav");
+		mBossEffect->Play(false);
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Bomb\\Centerflow", Vector2::Zero, 0.16f);

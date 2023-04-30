@@ -41,6 +41,8 @@
 #include "tyMonster2.h"
 #include "tyToyTile.h"
 #include "tyToyMonster.h"
+#include "tyCheckCharactor.h"
+
 namespace ty
 {
 	ToyStage2::ToyStage2()
@@ -104,65 +106,7 @@ namespace ty
 	}
 	void ToyStage2::Update()
 	{
-		if (SceneManager::GetIsDuo() == false)
-		{
-			if (SceneManager::GetBazzi() != NULL) // ¹èÂî
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::ToyStage3);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-			else if (SceneManager::GetDao() != NULL) // ´Ù¿À
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::ToyStage3);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-		}
+		CheckCharactor::Check(eSceneType::ToyStage3);
 
 
 

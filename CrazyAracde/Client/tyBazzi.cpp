@@ -22,6 +22,8 @@
 #include "tyNeedle.h"
 #include "tyDevil.h"
 #include "tyDao.h"
+#include "tySound.h"
+#include "tyResources.h"
 
 namespace ty
 {
@@ -52,7 +54,7 @@ namespace ty
 	/*	isBirdOn = true;*/
 		//isPushPossible = true;
 		Transform* tr = GetComponent<Transform>();
-	
+		popsound = Resources::Load<Sound>(L"PopSound", L"..\\Resources\\Sound\\bomb_pop.wav");
 		tr->SetScale(Vector2(1.18f, 1.18f));
 		SetName(L"Bazzi");
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
@@ -917,6 +919,7 @@ namespace ty
 			if (Input::GetKey(eKeyCode::LCTRL) && mItemState == eItemType::Needle
 				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 			{
+				popsound->Play(false);
 				isColl = true;
 				mItemState = eItemType::None;
 				mAnimator->Play(L"Bazzilive", false);
@@ -952,6 +955,7 @@ namespace ty
 			if (Input::GetKey(eKeyCode::LCTRL) && mItemState == eItemType::Needle
 				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 			{
+				popsound->Play(false);
 				isColl = true;
 				mItemState = eItemType::None;
 				mAnimator->Play(L"Bazzilive", false);
@@ -988,6 +992,7 @@ namespace ty
 			if (Input::GetKey(eKeyCode::RCTRL) && mItemState == eItemType::Needle
 				/*&& pos.x >= 30.0f && pos.x <= 900.0f && pos.y >= 60.0f && pos.y <= 780.0f*/)
 			{
+				popsound->Play(false);
 				isColl = true;
 				mItemState = eItemType::None;
 				mAnimator->Play(L"Bazzilive", false);

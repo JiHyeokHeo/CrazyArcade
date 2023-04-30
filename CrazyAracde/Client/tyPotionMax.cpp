@@ -17,7 +17,8 @@
 #include "tyPlayScene.h"
 #include "tyinput.h"
 #include "tyDao.h"
-
+#include "tyResources.h"
+#include "tySound.h"
 namespace ty
 {
 	PotionMax::PotionMax()
@@ -32,6 +33,7 @@ namespace ty
 	void PotionMax::Initialize()
 	{
 		Image* mPotionMax = Resources::Load<Image>(L"mPotionMax", L"..\\Resources\\Items\\potionmax.bmp");
+		eatSound = Resources::Load<Sound>(L"eatsound", L"..\\Resources\\Sound\\eat_item.wav");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"PotionMax", mPotionMax, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
 		mAnimator->Play(L"PotionMax", true);
@@ -62,6 +64,7 @@ namespace ty
 		
 		if (other->GetOwner()->GetName() == L"Bazzi")
 		{
+			eatSound->Play(false);
 			int& WaterCourse = SceneManager::GetBazzi()->GetmWaterCourse();
 			WaterCourse = SceneManager::GetBazzi()->GetMaxWaterCourse();
 			object::Destroy(this);
@@ -69,6 +72,7 @@ namespace ty
 
 		if (other->GetOwner()->GetName() == L"Dao")
 		{
+			eatSound->Play(false);
 			int& WaterCourse = SceneManager::GetDao()->GetmWaterCourse();
 			WaterCourse = SceneManager::GetDao()->GetMaxWaterCourse();
 			object::Destroy(this);

@@ -18,7 +18,8 @@
 #include "tyinput.h"
 #include "tyShiledUI.h"
 #include "tyDao.h"
-
+#include "tyResources.h"
+#include "tySound.h"
 namespace ty
 {
 	Shield::Shield()
@@ -33,6 +34,7 @@ namespace ty
 	void Shield::Initialize()
 	{
 		Image* mShield = Resources::Load<Image>(L"mShield", L"..\\Resources\\Items\\shield.bmp");
+		eatSound = Resources::Load<Sound>(L"eatsound", L"..\\Resources\\Sound\\eat_item.wav");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"mShield", mShield, Vector2::Zero, 2, 1, 2, Vector2(0.0f, -10.0f), 0.2);
 		mAnimator->Play(L"mShield", true);
@@ -59,6 +61,7 @@ namespace ty
 		
 		if (other->GetOwner()->GetName() == L"Bazzi" && this->GetState() == eState::Active)
 		{
+			eatSound->Play(false);
 			SceneManager::GetBazzi()->SetItemState(eItemType::Shield);
 			object::Instantiate<ShieldUI>(eLayerType::UI);
 			object::Pause(this);
@@ -67,6 +70,7 @@ namespace ty
 
 		if (other->GetOwner()->GetName() == L"Dao" && this->GetState() == eState::Active)
 		{
+			eatSound->Play(false);
 			SceneManager::GetDao()->SetItemState(eItemType::Shield);
 			object::Instantiate<ShieldUI>(eLayerType::UI);
 			object::Pause(this);

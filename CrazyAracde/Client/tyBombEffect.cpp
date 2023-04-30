@@ -10,6 +10,8 @@
 #include "tyBazzi.h"
 #include "tyPlayScene.h"
 #include "tyBaseBomb.h"
+#include "tySound.h"
+#include "tyResources.h"
 
 namespace ty
 {
@@ -22,7 +24,7 @@ namespace ty
 	void BombEffect::Initialize()
 	{
 		SetName(L"BombEffect");
-		
+		mBombEffect = Resources::Load<Sound>(L"mBombEffect", L"..\\Resources\\Sound\\wave.wav");
 		Transform* tr = GetComponent<Transform>();
 		EffectPos = tr->GetPos();
 		//tr->SetPos(Vector2(400.0f, 400.0f));
@@ -119,11 +121,16 @@ namespace ty
 				mAnimator->Play(L"BombCenterflow", false);
 			}
 
-			Collider* collider = AddComponent<Collider>();
-			collider->SetCenter(Vector2(15.00f, 15.00f));
-			collider->SetSize(Vector2(30.0f, 30.0f));
-			mState = eBombEffectState::Bombed;
-			mTime = 0;
+			if (isMake == false)
+			{
+				mBombEffect->Play(false);
+				Collider* collider = AddComponent<Collider>();
+				collider->SetCenter(Vector2(15.00f, 15.00f));
+				collider->SetSize(Vector2(30.0f, 30.0f));
+				mState = eBombEffectState::Bombed;
+				mTime = 0;
+				isMake = true;
+			}
 		
 	}
 	void BombEffect::bombed()

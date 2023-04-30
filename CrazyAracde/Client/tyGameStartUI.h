@@ -28,6 +28,7 @@ namespace ty
 		bool isDone;
 		bool isPlayed;
 		Animator* mAnimator;
+		class Sound* mStartSound;
 	};
 }
 

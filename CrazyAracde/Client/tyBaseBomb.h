@@ -73,6 +73,8 @@ namespace ty
 		Vector2 mRightdx;
 		Vector2 mLeftIdx;
 		Transform* mPlayer;
+
+		class Sound* bomb_set;
 	};
 	
 	

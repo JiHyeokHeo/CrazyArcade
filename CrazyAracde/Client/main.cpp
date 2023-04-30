@@ -66,7 +66,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // CALLBACK으로 써도 된다.
     // set the cursor
     SetCursor(hCursor);
     // 커서 설정
-   /* SetCursor(hCursor);*/
+    //SetCursor(hCursor);
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 

@@ -20,6 +20,9 @@
 #include "tyDaoImage.h"
 #include "tyBazziLobbyUI.h"
 #include "tyDaoLobbyUI.h"
+#include "tySound.h"
+#include "tyResources.h"
+
 
 namespace ty
 {
@@ -36,6 +39,9 @@ namespace ty
 	{
 		SetName(L"Lobby");
 		Scene::Initialize();
+
+		Lobby = Resources::Load<Sound>(L"LobbbyTheme", L"..\\Resources\\Sound\\lobby_scene.wav");
+		Lobby->SetVolume(20);
 		object::Instantiate<Lobby_BG>(eLayerType::BG);
 		//object::Instantiate<MapSelect>(eLayerType::UI);
 	}
@@ -265,10 +271,12 @@ namespace ty
 	}
 	void LobbyScene::OnEnter()
 	{
+		Lobby->Play(true);
 		//mBlender = object::Instantiate<AlphaBlender>(eLayerType::AlphaBlender);
 	}
 	void LobbyScene::OnExit()
 	{
+		Lobby->Stop(true);
 		//object::Destroy(mMapSelect);
 		//object::Destroy(mBlender);
 	}

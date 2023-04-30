@@ -15,7 +15,8 @@
 #include "tyTileBomb.h"
 #include "tyPlayScene.h"
 #include "tyinput.h"
-
+#include "tyResources.h"
+#include "tySound.h"
 
 namespace ty
 {
@@ -27,15 +28,19 @@ namespace ty
 	}
 	void GameStartUI::Initialize()
 	{
+		mStartSound = Resources::Load<Sound>(L"gameStartSound", L"..\\Resources\\Sound\\game_start.wav");
+		mStartSound->SetVolume(20);
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Game_Start\\Game", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Game_Start\\Start", Vector2::Zero, 0.1f);
 		mAnimator->Play(L"Game_StartGame", false);
+		mStartSound->Play(false);
 	}
 	void GameStartUI::Update()
 	{
 		if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
 		{
+			mStartSound->Stop(false);
 			object::Destroy(this);
 		}
 		Transform* tr = GetComponent<Transform>();
