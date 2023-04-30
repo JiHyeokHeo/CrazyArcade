@@ -185,6 +185,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Engine\Component\Sound">
+      <UniqueIdentifier>{ce1136d1-d3a3-4dea-ab4e-6e3bbed30a14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -532,6 +535,12 @@
     <ClInclude Include="tyBombImage.h">
       <Filter>Contents\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="tySound.h">
+      <Filter>Engine\Component\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="tySoundManager.h">
+      <Filter>Engine\Component\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -858,6 +867,12 @@
     </ClCompile>
     <ClCompile Include="tyBombImage.cpp">
       <Filter>Contents\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="tySound.cpp">
+      <Filter>Engine\Component\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="tySoundManager.cpp">
+      <Filter>Engine\Component\Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
 #include "tyObject.h"
 #include "tyTime.h"
 #include "tyCamera.h"
+#include "tySound.h"
+#include "tyResources.h"
 
 namespace ty
 {
@@ -39,6 +41,9 @@ namespace ty
 	}
 	void LogoScene::OnEnter()
 	{
+		Sound* Logo
+			= Resources::Load<Sound>(L"LogoTheme", L"..\\Resources\\Sound\\logo.wav");
+		Logo->Play(false);
 	}
 	void LogoScene::OnExit()
 	{

@@ -182,6 +182,8 @@
     <ClInclude Include="tyShiledUI.h" />
     <ClInclude Include="tySinglePlayUI.h" />
     <ClInclude Include="tySkate.h" />
+    <ClInclude Include="tySound.h" />
+    <ClInclude Include="tySoundManager.h" />
     <ClInclude Include="tySteam.h" />
     <ClInclude Include="tyTileBomb.h" />
     <ClInclude Include="tyAlphaBlender.h" />
@@ -333,6 +335,8 @@
     <ClCompile Include="tySinglePlayUI.cpp" />
     <ClCompile Include="tySkate.cpp" />
     <ClCompile Include="tyForestStage1.cpp" />
+    <ClCompile Include="tySound.cpp" />
+    <ClCompile Include="tySoundManager.cpp" />
     <ClCompile Include="tySteam.cpp" />
     <ClCompile Include="tyTile.cpp" />
     <ClCompile Include="tyTilePalatte.cpp" />

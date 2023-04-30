@@ -5,6 +5,7 @@
 #include "tyinput.h"
 #include "tyCollisionManager.h"
 #include "tyCamera.h"
+#include "tySoundManager.h"
 
 namespace ty
 {
@@ -48,6 +49,7 @@ namespace ty
 
 		Time::Initialize();
 		Input::Initialize();
+		SoundManager::Initialize();
 6;		SceneManager::Initialize();
 		/*Camera::Initialize();*/
 
