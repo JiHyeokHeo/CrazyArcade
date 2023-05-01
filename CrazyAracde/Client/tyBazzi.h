@@ -122,7 +122,7 @@ namespace ty
 		Vector2 mDownIdx;
 		Vector2 mLeftIdx;
 
-
+		Vector2 ColMidPos;
 		bool is1P;
 		bool isPlayed;
 		class Sound* popsound;

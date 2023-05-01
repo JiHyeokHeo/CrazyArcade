@@ -26,7 +26,7 @@ namespace ty
 		Play_BG* mPlayBG;
 		class InGameBazziUI* mBazziUI;
 		class InGameDaoUI* mDaoUI;
-		AlphaBlender* mBlender;
+		//AlphaBlender* mBlender;
 		Image* mImage;
 		int monstercnt;
 		bool isLoad;
@@ -36,6 +36,8 @@ namespace ty
 		class ForestMonster* monster[10];
 		class Monster2* monster2[10];
 		bool isPlayed;
+
+		class Sound* forestSound;
 	};
 };
 

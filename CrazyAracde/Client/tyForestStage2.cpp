@@ -35,6 +35,8 @@
 #include "tyInGameBazziUI.h"
 #include "tyIngameDaoUI.h"
 #include "tyCheckCharactor.h"
+#include "tySound.h"
+
 
 namespace ty
 {
@@ -47,7 +49,8 @@ namespace ty
 	void ForestStage2::Initialize()
 	{
 		Scene::Initialize();
-
+		forestSound = Resources::Load<Sound>(L"iceStageTheme", L"..\\Resources\\Sound\\Map\\bg_2.wav");
+		forestSound->SetVolume(20);
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		mDao = object::Instantiate<Dao>(eLayerType::Player);
@@ -121,7 +124,7 @@ namespace ty
 	}
 	void ForestStage2::OnEnter()
 	{		
-		
+		forestSound->Play(true);
 		// UI 상태 변환
 		mBazziUI->SetState(GameObject::eState::Active);
 		mDaoUI->SetState(GameObject::eState::Active);

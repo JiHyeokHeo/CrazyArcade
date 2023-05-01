@@ -116,7 +116,7 @@ namespace ty
 		Collider* collider;
 		Transform* tr;
 		Vector2 mPos;
-
+		Vector2 ColMidPos;
 		Vector2 mUpIdx;
 		Vector2 mRightIdx;
 		Vector2 mDownIdx;

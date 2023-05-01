@@ -56,7 +56,8 @@ namespace ty
 	void ToyStage3::Initialize()
 	{
 		Scene::Initialize();
-
+		toyStage = Resources::Load<Sound>(L"toyStageTheme", L"..\\Resources\\Sound\\Map\\bg_4.wav");
+		toyStage->SetVolume(20);
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		mBazzi->SetState(GameObject::eState::Pause);
@@ -126,7 +127,10 @@ namespace ty
 	{
 	}
 	void ToyStage3::OnEnter()
-	{// UI 상태 변환
+	{
+		toyStage->Play(true);
+		
+		// UI 상태 변환
 		mBazziUI->SetState(GameObject::eState::Active);
 		mDaoUI->SetState(GameObject::eState::Active);
 		// 캐릭터 설정 + 시간 조절
@@ -242,6 +246,7 @@ namespace ty
 	}
 	void ToyStage3::OnExit()
 	{
+		toyStage->Stop(true);
 		mBossMonster[0]->SetState(GameObject::eState::Active);
 		TilePalatte::Clear();
 		CollisionManager::Clear();

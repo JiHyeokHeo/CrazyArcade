@@ -49,8 +49,8 @@ namespace ty
 	void PlaySceneStage2::Initialize()
 	{
 		Scene::Initialize();
-		//iceStage = Resources::Load<Sound>(L"iceStageTheme", L"..\\Resources\\Sound\\Map\IceStage.wav");
-		//iceStage->SetVolume(20);
+		iceStage = Resources::Load<Sound>(L"iceStageTheme", L"..\\Resources\\Sound\\Map\\IceStage.wav");
+		iceStage->SetVolume(20);
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		mBazzi->SetState(GameObject::eState::Pause);
@@ -107,7 +107,7 @@ namespace ty
 	}
 	void PlaySceneStage2::Update()
 	{
-		CheckCharactor::Check(eSceneType::PirateStage3);
+		CheckCharactor::Check(eSceneType::PlayStage3);
 
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
@@ -126,7 +126,10 @@ namespace ty
 	{
 	}
 	void PlaySceneStage2::OnEnter()
-	{		// 캐릭터 설정 + 시간 조절
+	{		
+		iceStage->Play(true);
+		
+		// 캐릭터 설정 + 시간 조절
 	// UI 상태 변환
 		mBazziUI->SetState(GameObject::eState::Active);
 		mDaoUI->SetState(GameObject::eState::Active);

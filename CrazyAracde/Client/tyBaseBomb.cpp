@@ -63,13 +63,13 @@ namespace ty
 		Vector2 ColDIdx = TileBomb::SetColIndex(ColMidPos + Vector2(0.0f, +31.0f));
 		tr = bomb->GetComponent<Transform>();
 
-
 		if (isBomb == true)
 		{
-			Vector2 tx = TileBomb::SetIndex(ColMidIdx);
-			SceneManager::GetMapIndex()[tx.y][tx.x] = 0;
+			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
 			object::Destroy(this);
 		}
+
+
 
 		if (SceneManager::GetIsDuo() == false)
 		{
@@ -93,7 +93,6 @@ namespace ty
 				DaoBombChecking();
 			}
 		}
-
 		GameObject::Update();
     }
 	
@@ -547,8 +546,11 @@ namespace ty
 	void BaseBomb::BazziBombChecking()
 	{	//BaseBomb* bomb = this;
 		Transform* mPlayer = SceneManager::GetBazzi()->GetComponent<Transform>();
+		Collider* mPlayerCollider = SceneManager::GetBazzi()->GetComponent<Collider>();
+		Vector2 mPlayerColPos = mPlayerCollider->GetPos();
+		mPlayerColPos = mPlayerColPos + Vector2(30.0f, 30.0f);
 		Vector2 mPlayerPos = mPlayer->GetPos();
-		Vector2 IDX = TileBomb::SetIndex(mPlayerPos);
+		Vector2 IDX = TileBomb::SetColIndex(mPlayerColPos);
 
 		//tr = bomb->GetComponent<Transform>();
 		//mBasePos = tr->GetPos();
@@ -795,8 +797,11 @@ namespace ty
 	void BaseBomb::DaoBombChecking()
 	{
 		Transform* mPlayer = SceneManager::GetDao()->GetComponent<Transform>();
+		Collider* mPlayerCollider = SceneManager::GetDao()->GetComponent<Collider>();
+		Vector2 mPlayerColPos = mPlayerCollider->GetPos();
+		mPlayerColPos = mPlayerColPos + Vector2(30.0f, 30.0f);
 		Vector2 mPlayerPos = mPlayer->GetPos();
-		Vector2 IDX = TileBomb::SetIndex(mPlayerPos);
+		Vector2 IDX = TileBomb::SetColIndex(mPlayerColPos);
 
 		//tr = bomb->GetComponent<Transform>();
 		//mBasePos = tr->GetPos();

@@ -38,6 +38,8 @@ namespace ty
 		class ForestMonster* monster3[10];
 		class SealBoss* Bossmonster[3];
 		bool isPlayed;
+
+		class Sound* forestSound;
 	};
 };
 

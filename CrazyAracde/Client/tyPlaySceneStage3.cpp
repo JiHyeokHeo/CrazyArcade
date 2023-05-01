@@ -52,8 +52,8 @@ namespace ty
 	{
 		Scene::Initialize();
 
-		//iceStage = Resources::Load<Sound>(L"iceBossStageTheme", L"..\\Resources\\Sound\\Map\IceStage.wav");
-		//iceStage->SetVolume(20);
+		iceStage = Resources::Load<Sound>(L"iceBossStageTheme", L"..\\Resources\\Sound\\Map\\IceBoss.wav");
+		iceStage->SetVolume(20);
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		mBazzi->SetState(GameObject::eState::Pause);

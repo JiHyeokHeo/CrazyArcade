@@ -50,7 +50,8 @@ namespace ty
 	void PirateStage2::Initialize()
 	{
 		Scene::Initialize();
-
+		pirateSound = Resources::Load<Sound>(L"iceStageTheme", L"..\\Resources\\Sound\\Map\\bg_6.wav");
+		pirateSound->SetVolume(20);
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		mBazzi->SetState(GameObject::eState::Pause);
@@ -122,6 +123,7 @@ namespace ty
 	}
 	void PirateStage2::OnEnter()
 	{
+		pirateSound->Play(true);
 		// UI 상태 변환
 		mBazziUI->SetState(GameObject::eState::Active);
 		mDaoUI->SetState(GameObject::eState::Active);
@@ -238,6 +240,7 @@ namespace ty
 	}
 	void PirateStage2::OnExit()
 	{
+		pirateSound->Stop(true);
 		monster[0]->SetState(GameObject::eState::Active);
 		monster[1]->SetState(GameObject::eState::Active);
 		monster[2]->SetState(GameObject::eState::Active);

@@ -41,5 +41,7 @@ namespace ty
 		class Monster2* monster2[10];
 		bool isPlayed;
 		class ToyBoss* mBossMonster[3];
+
+		class Sound* toyStage;
 	};
 };

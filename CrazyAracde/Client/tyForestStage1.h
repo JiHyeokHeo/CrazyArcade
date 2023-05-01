@@ -39,6 +39,8 @@ namespace ty
 		class GameObject* obj[10];
 		bool isPlayed;
 		LobbyScene* mLobby;
+
+		class Sound* forestSound;
 	};
 }; 
 
