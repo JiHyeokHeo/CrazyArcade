@@ -36,6 +36,7 @@
 #include "tyInGameBazziUI.h"
 #include "tyIngameDaoUI.h"
 #include "tyPirateNormalTile.h"
+#include "tyCheckCharactor.h"
 
 namespace ty
 {
@@ -101,67 +102,7 @@ namespace ty
 	}
 	void PirateStage1::Update()
 	{
-		if (SceneManager::GetIsDuo() == false)
-		{
-			if (SceneManager::GetBazzi() != NULL) // ¹èÂî
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::PlayStage2);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-			else if (SceneManager::GetDao() != NULL) // ´Ù¿À
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::PlayStage2);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-		}
-
-
+		CheckCharactor::Check(eSceneType::PirateStage2);
 
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)

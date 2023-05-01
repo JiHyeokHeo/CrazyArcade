@@ -35,6 +35,7 @@
 #include "tyLobbyScene.h"
 #include "tyInGameBazziUI.h"
 #include "tyIngameDaoUI.h"
+#include "tyCheckCharactor.h"
 
 namespace ty
 {
@@ -99,120 +100,15 @@ namespace ty
 	}
 	void ForestStage1::Update()
 	{
-		if (SceneManager::GetIsDuo() == false)
-		{
-			if (SceneManager::GetBazzi() != NULL) // ¹èÂî
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::ForestStage2);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-			else if (SceneManager::GetDao() != NULL) // ´Ù¿À
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::ForestStage2);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-		}
-		else if(SceneManager::GetIsDuo() == true)
-		{
-			if (SceneManager::GetMonsterCnt() == 0)
-			{
-				if (isPlayed == false)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					isPlayed = true;
-				}
-				mTime += Time::DeltaTime();
-				if (mTime >= 6.0f)
-				{
-					isPlayed = false;
-					SceneManager::LoadScene(eSceneType::ForestStage2);
-					mTime = 0;
-				}
-			}
-
-			if (SceneManager::GetDao() != NULL && SceneManager::GetBazzi() != NULL)
-			{
-				if (SceneManager::GetDao()->GetPlayerHP() == -1 && SceneManager::GetBazzi()->GetPlayerHP() == -1)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-		}
-		
-
+		CheckCharactor::Check(eSceneType::ForestStage2);
 
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
 		{
-			Scene::ChangeMonsterState();
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-		
+
 		Scene::Update();
 	}
 	void ForestStage1::Render(HDC hdc)

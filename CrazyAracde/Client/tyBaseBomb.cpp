@@ -66,7 +66,8 @@ namespace ty
 
 		if (isBomb == true)
 		{
-			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 0;
+			Vector2 tx = TileBomb::SetIndex(ColMidIdx);
+			SceneManager::GetMapIndex()[tx.y][tx.x] = 0;
 			object::Destroy(this);
 		}
 

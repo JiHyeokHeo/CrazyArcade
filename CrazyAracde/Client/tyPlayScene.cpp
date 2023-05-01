@@ -36,6 +36,7 @@
 #include "tyInGameBazziUI.h"
 #include "tyIngameDaoUI.h"
 #include "tyCollider.h"
+#include "tyCheckCharactor.h"
 // ------------------------------------------------------------------------------------------ ÇØÀû¸Ê
 namespace ty
 {
@@ -103,75 +104,7 @@ namespace ty
 	}
 	void PlayScene::Update()
 	{
-		if (SceneManager::GetIsDuo() == false)
-		{
-			if (SceneManager::GetBazzi() != NULL) // ¹èÂî
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::PlayStage2);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-			else if (SceneManager::GetDao() != NULL) // ´Ù¿À
-			{
-				if (SceneManager::GetMonsterCnt() == 0)
-				{
-					if (isPlayed == false)
-					{
-						object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-						isPlayed = true;
-					}
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						isPlayed = false;
-						SceneManager::LoadScene(eSceneType::PlayStage2);
-						mTime = 0;
-					}
-				}
-				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
-				{
-					object::Instantiate<WinLose>(Vector2(350.0f, 400.0f), eLayerType::UI);
-					mTime += Time::DeltaTime();
-					if (mTime >= 6.0f)
-					{
-						SceneManager::LoadScene(eSceneType::Lobby);
-						mTime = 0;
-					}
-				}
-			}
-		}
-
-
-		if (Input::GetKeyDown(eKeyCode::O))
-		{
-			Collider::SetIsCollOn(true);
-		}
-		if (Input::GetKeyDown(eKeyCode::P))
-		{
-			Collider::SetIsCollOn(false);
-		}
+		CheckCharactor::Check(eSceneType::PlayStage2);
 
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 846 && temp.y <= 888 && temp.x >= 974 && temp.x <= 1180)
@@ -179,7 +112,7 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-		
+
 		Scene::Update();
 	}
 	void PlayScene::Render(HDC hdc)

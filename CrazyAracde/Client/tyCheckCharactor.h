@@ -6,6 +6,8 @@
 #include "tyTime.h"
 #include "tyBazzi.h"
 #include "tyDao.h"
+#include "tyScene.h"
+#include "tyPlayScene.h"
 
 namespace ty::CheckCharactor
 {
@@ -117,5 +119,6 @@ namespace ty::CheckCharactor
 			}
 		}
 	};
+
 }
 

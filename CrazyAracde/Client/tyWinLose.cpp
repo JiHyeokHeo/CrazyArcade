@@ -39,14 +39,16 @@ namespace ty
 	void WinLose::Update()
 	{
 		
-			if (SceneManager::GetBazzi()->GetPlayerHP() == -1 && isPlayed == false)
+			if (SceneManager::GetBazzi() !=NULL)
 			{
-				mLose->Play(false);
-				isPlayed = true;
-				mAnimator->Play(L"UILose", false);
+				if (SceneManager::GetBazzi()->GetPlayerHP() == -1 && isPlayed == false)
+				{
+					mLose->Play(false);
+					isPlayed = true;
+					mAnimator->Play(L"UILose", false);
+				}
 			}
-			
-	/*		else if (SceneManager::GetDao() != NULL)
+			else if (SceneManager::GetDao() != NULL)
 			{
 				if (SceneManager::GetDao()->GetPlayerHP() == -1 && isPlayed == false)
 				{
@@ -54,7 +56,7 @@ namespace ty
 					isPlayed = true;
 					mAnimator->Play(L"UILose", false);
 				}
-			}*/
+			}
 			if (SceneManager::GetActiveScene()->GetName() == L"Lobby")
 			{
 				object::Destroy(this);
