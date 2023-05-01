@@ -50,7 +50,9 @@ namespace ty
 	void PlayScene::Initialize()
 	{
 		Scene::Initialize();
-		
+
+		iceStage = Resources::Load<Sound>(L"iceStageTheme", L"..\\Resources\\Sound\\Map\IceStage.wav");
+		iceStage->SetVolume(20);
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		mBazzi->SetState(GameObject::eState::Pause);
@@ -125,6 +127,7 @@ namespace ty
 	}
 	void PlayScene::OnEnter()
 	{
+		iceStage->Play(true);
 		// UI 상태 변환
 		mBazziUI->SetState(GameObject::eState::Active);
 		mDaoUI->SetState(GameObject::eState::Active);
@@ -241,6 +244,7 @@ namespace ty
 	}
 	void PlayScene::OnExit()
 	{
+		iceStage->Stop(true);
 		
 		TilePalatte::Clear();
 		CollisionManager::Clear();
