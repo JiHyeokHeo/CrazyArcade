@@ -43,6 +43,7 @@ namespace ty
 		class PirateBoss* Bossmonster[3];
 		bool isPlayed;
 
+		class Sound* iceStage;
 	};
 };
 

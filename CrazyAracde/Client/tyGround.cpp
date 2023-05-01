@@ -90,7 +90,7 @@ namespace ty
 					mPlayerPos->SetPos(mGameobjPos);
 				}
 			}
-			else if(other->GetOwner()->GetName() == L"Dao" && SceneManager::GetDao() != NULL)
+			if(other->GetOwner()->GetName() == L"Dao" && SceneManager::GetDao() != NULL)
 			{
 				int mSpeed = SceneManager::GetDao()->GetmSpeed();
 				mDao = SceneManager::GetDao();

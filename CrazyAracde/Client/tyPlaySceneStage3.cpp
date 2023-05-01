@@ -36,6 +36,10 @@
 #include "tyInGameBazziUI.h"
 #include "tyIngameDaoUI.h"
 #include "tyCheckCharactor.h"
+#include "tyResources.h"
+#include "tySound.h"
+
+
 namespace ty
 {
 	PlaySceneStage3::PlaySceneStage3()
@@ -48,6 +52,8 @@ namespace ty
 	{
 		Scene::Initialize();
 
+		//iceStage = Resources::Load<Sound>(L"iceBossStageTheme", L"..\\Resources\\Sound\\Map\IceStage.wav");
+		//iceStage->SetVolume(20);
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
 		mBazzi->SetState(GameObject::eState::Pause);
@@ -126,7 +132,10 @@ namespace ty
 	{
 	}
 	void PlaySceneStage3::OnEnter()
-	{	// 캐릭터 설정 + 시간 조절
+	{	
+		iceStage->Play(true);
+		
+		// 캐릭터 설정 + 시간 조절
 		// UI 상태 변환
 		mBazziUI->SetState(GameObject::eState::Active);
 		mDaoUI->SetState(GameObject::eState::Active);
@@ -233,6 +242,8 @@ namespace ty
 	}
 	void PlaySceneStage3::OnExit()
 	{
+		iceStage->Stop(true);
+
 		Bossmonster[0]->SetState(GameObject::eState::Active);
 		monster[0]->SetState(GameObject::eState::Active);
 		TilePalatte::Clear();
