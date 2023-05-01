@@ -49,6 +49,7 @@ namespace ty
 		//isPushPossible = true;
 		Transform* tr = GetComponent<Transform>();
 		popsound = Resources::Load<Sound>(L"PopSound", L"..\\Resources\\Sound\\bomb_pop.wav");
+		diesound = Resources::Load<Sound>(L"DieSound", L"..\\Resources\\Sound\\player_die.wav");
 		tr->SetScale(Vector2(1.5f, 1.5f));
 		SetName(L"Dao");
 	
@@ -971,6 +972,11 @@ namespace ty
 	}
 	void Dao::dieCompleteEvent()
 	{
+		if (isPlayed == false)
+		{
+			diesound->Play(false);
+			isPlayed = true;
+		}
 		mInvincibility = 3.0f;
 		mHP = -1;
 	}

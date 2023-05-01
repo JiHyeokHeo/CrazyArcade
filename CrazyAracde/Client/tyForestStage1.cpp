@@ -108,7 +108,6 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-
 		Scene::Update();
 	}
 	void ForestStage1::Render(HDC hdc)

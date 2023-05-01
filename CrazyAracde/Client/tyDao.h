@@ -122,10 +122,11 @@ namespace ty
 		Vector2 mDownIdx;
 		Vector2 mLeftIdx;
 
-
+		bool isPlayed;
 		bool is1P;
 
 		class Sound* popsound;
+		class Sound* diesound;
 	};
 }
 

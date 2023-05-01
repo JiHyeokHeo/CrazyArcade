@@ -11,6 +11,8 @@
 #include "tyObject.h"
 #include "tyTileBomb.h"
 #include "tyBombImage.h"
+#include "tySound.h"
+#include "tyResources.h"
 
 namespace ty
 {
@@ -26,7 +28,10 @@ namespace ty
 		SetName(L"Boss");
 		Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(2.0f, 2.0f));
-
+		mSealSound = Resources::Load<Sound>(L"SealIdleSound", L"..\\Resources\\Sound\\boss3.wav");
+		mSealSound->SetVolume(5);
+		mSealPatternSound = Resources::Load<Sound>(L"SealPattern", L"..\\Resources\\Sound\\boss2.wav");
+		mSealPatternSound->SetVolume(5);
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Up", Vector2::Zero, 0.1f);
 		mAnimator->CreateAnimations(L"..\\Resources\\Monster\\SealBoss\\Down", Vector2::Zero, 0.1f);
@@ -204,6 +209,12 @@ namespace ty
 		checkPatternTime();
 		if (mPatternTime >= 0.5f)
 		{
+			mSealSound->Stop(true);
+			if (isPatternOn == false)
+			{
+				mSealPatternSound->Play(false);
+				isPatternOn = true;
+			}
 			object::Instantiate<BombImage>(TileBomb::SetPos(Vector2(x,y)), eLayerType::Effect);
 			isAttack = false;
 			mPatternTime = 0;
@@ -273,15 +284,19 @@ namespace ty
 			break;
 		case ty::SealBoss::eSealMonsterState::Left:
 			mAnimator->Play(L"SealBossLeft", true);
+			mSealSound->Play(false);
 			break;
 		case ty::SealBoss::eSealMonsterState::Right:
 			mAnimator->Play(L"SealBossRight", true);
+			mSealSound->Play(false);
 			break;
 		case ty::SealBoss::eSealMonsterState::Up:
 			mAnimator->Play(L"SealBossUp", true);
+			mSealSound->Play(false);
 			break;
 		case ty::SealBoss::eSealMonsterState::Down:
 			mAnimator->Play(L"SealBossDown", true);
+			mSealSound->Play(false);
 			break;
 		default:
 			break;
@@ -289,11 +304,19 @@ namespace ty
 	}
 	void SealBoss::bubbleCompleteEvent()
 	{
+		mSealSound->Stop(true); 
+		mSealPatternSound->Stop(true);
 		mState = eSealMonsterState::Die;
 	}
 
 	void SealBoss::checkPatternTime()
 	{
 		mPatternTime += Time::DeltaTime();
+		soundTime += Time::DeltaTime();
+		if (soundTime >= 2.5f)
+		{
+			soundTime = 0;
+			isPatternOn = false;
+		}
 	}
 }

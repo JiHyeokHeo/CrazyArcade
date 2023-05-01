@@ -124,7 +124,8 @@ namespace ty
 
 
 		bool is1P;
-		
+		bool isPlayed;
 		class Sound* popsound;
+		class Sound* diesound;
 	};
 }

@@ -62,6 +62,12 @@ namespace ty
 		Vector2 midmPos;
 		float TimeSpend;
 		float mPatternTime;
+		float soundTime;
+
+		class Sound* mSealSound;
+		class Sound* mSealPatternSound;
+
+		bool isPatternOn;
 		
 	};
 }

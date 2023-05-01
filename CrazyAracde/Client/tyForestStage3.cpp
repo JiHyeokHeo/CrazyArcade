@@ -51,6 +51,7 @@ namespace ty
 
 		// ------------------ 캐릭터 + 그림자 + 이펙트
 		mBazzi = object::Instantiate<Bazzi>(eLayerType::Player);
+		mBazzi->SetState(GameObject::eState::Pause);
 		mDao = object::Instantiate<Dao>(eLayerType::Player);
 		mDao->SetState(GameObject::eState::Pause);
 		//object::Instantiate<PlayerNum>(Vector2(85.0f, 70.0f), eLayerType::Shadow);
@@ -118,8 +119,10 @@ namespace ty
 	{
 	}
 	void ForestStage3::OnEnter()
-	{		// 캐릭터 설정 + 시간 조절
-			// 캐릭터 설정 + 시간 조절
+	{
+		mBazziUI->SetState(GameObject::eState::Active);
+		mDaoUI->SetState(GameObject::eState::Active);
+		// 캐릭터 설정 + 시간 조절
 
 		if (SceneManager::GetIsDuo() == false)
 		{
