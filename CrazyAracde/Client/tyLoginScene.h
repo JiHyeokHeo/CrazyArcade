@@ -22,6 +22,9 @@ namespace ty
 		Login_BG* mLoginBG;
 		AlphaBlender* mBlender;
 		bool isChecked;
+		bool isPlayed;
 		Sound* Login;
+		class Sound* Click;
+		class Sound* mouseMove;
 	};
 }

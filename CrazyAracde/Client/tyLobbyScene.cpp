@@ -39,7 +39,10 @@ namespace ty
 	{
 		SetName(L"Lobby");
 		Scene::Initialize();
-
+		Click = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+		Click->SetVolume(20);
+		mouseMove = Resources::Load<Sound>(L"MouseMove", L"..\\Resources\\Sound\\pt_in_rect.wav");
+		mouseMove->SetVolume(20);
 		Lobby = Resources::Load<Sound>(L"LobbbyTheme", L"..\\Resources\\Sound\\lobby_scene.wav");
 		Lobby->SetVolume(20);
 		object::Instantiate<Lobby_BG>(eLayerType::BG);
@@ -53,20 +56,22 @@ namespace ty
 		// 솔플 상태
 		if (SceneManager::GetIsDuo() == false)
 		{
-			// 배찌선택 관련 코드
-			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
-			//{
-			//	if (isBazziVisited == false)
-			//	{
-			//		mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI); // 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
-			//	}
-			//	isBazziVisited = true;
-			//}
+		
+			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+			{
+				if (isBazziVisited == false)
+				{
+					isBazziVisited = true;
+					mouseMove->Play(false);
+				}
+				isBazziVisited = true;
+			}
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
 			{
 				if (isFirstPicked == false )
 				{
+					Click->Play(false);
 					mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI);
 					object::Instantiate<BazziLobbyUI>(eLayerType::UI);
 					isFirstPicked = true;
@@ -74,30 +79,34 @@ namespace ty
 				SceneManager::SetFirstCharactorPick(eCharactorPick::Bazzi); // 씬 매니저에서 캐릭터 선택 보유
 			}
 
-			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+			if (temp.y <= 300 ||temp.y >= 360 || temp.x <= 950 || temp.x >= 1040)
 			{
 				if (isBazziVisited == true)
 				{
-					object::Active(mBazziUIImage); // 여기서 상태를 다시 Active 시킴
+					isBazziVisited = false;
+					mouseMove->Stop(true);
+					 // 여기서 상태를 다시 Active 시킴
 				}
 			}
 
 			// 다오 선택 관련 코드
-			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
-			//{
-			//	if (isDaoVisited == false)
-			//	{
-			//		mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);// 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
-			//	}
+			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+			{
+				if (isDaoVisited == false)
+				{
+					isDaoVisited = true;
+					mouseMove->Play(false);// 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
+				}
 
-			//	isDaoVisited = true;
-			//}
+				isDaoVisited = true;
+			}
 
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
 			{
 				if (isFirstPicked == false)
 				{
+					Click->Play(false);
 					mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);
 					object::Instantiate<DaoLobbyUI>(eLayerType::UI);
 					isFirstPicked = true;
@@ -106,26 +115,27 @@ namespace ty
 				SceneManager::SetFirstCharactorPick(eCharactorPick::Dao);  // 씬 매니저에서 캐릭터 선택 보유
 			}
 
-			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
-			//{
-			//	if (isDaoVisited == true)
-			//	{
-			//		object::Active(mDaoUIImage); // 여기서 상태를 다시 Active 시킴
-			//	}
-			//}
+			if (temp.y <= 300 || temp.y >= 360 || temp.x <= 730 || temp.x >= 825)
+			{
+				if (isDaoVisited == true)
+				{
+					isDaoVisited = false;
+					mouseMove->Stop(true); // 여기서 상태를 다시 Active 시킴
+				}
+			}
 
 		}
 		else if (SceneManager::GetIsDuo() == true)
 		{
-			// 배찌선택 관련 코드
-			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
-			//{
-			//	if (isBazziVisited == false)
-			//	{
-			//		mBazziUIImage = object::Instantiate<BazziImage>(eLayerType::UI); // 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
-			//	}
-			//	isBazziVisited = true;
-			//}
+			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
+			{
+				if (isBazziVisited == false)
+				{
+					isBazziVisited = true;
+					mouseMove->Play(false);
+				}
+				isBazziVisited = true;
+			}
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
 			{
@@ -149,24 +159,26 @@ namespace ty
 				SceneManager::SetSecondCharactorPick(eCharactorPick::Bazzi); // 씬 매니저에서 캐릭터 선택 보유 2P셀렉
 			}
 
-			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 950 && temp.x <= 1040)
-			//{
-			//	if (isBazziVisited == true)
-			//	{
-			//		object::Active(mBazziUIImage); // 여기서 상태를 다시 Active 시킴
-			//	}
-			//}
+			if (temp.y <= 300 || temp.y >= 360 || temp.x <= 950 || temp.x >= 1040)
+			{
+				if (isBazziVisited == true)
+				{
+					isBazziVisited = false;
+					mouseMove->Stop(true);
+					// 여기서 상태를 다시 Active 시킴
+				}
+			}
 
-			// 다오 선택 관련 코드
-			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
-			//{
-			//	if (isDaoVisited == false)
-			//	{
-			//		mDaoUIImage = object::Instantiate<DaoImage>(eLayerType::UI);// 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
-			//	}
+			if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
+			{
+				if (isDaoVisited == false)
+				{
+					isDaoVisited = true;
+					mouseMove->Play(false);// 상태를 Pause로 전환시키는 것은 BazziImage 클래스안에서 구현
+				}
 
-			//	isDaoVisited = true;
-			//}
+				isDaoVisited = true;
+			}
 
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
@@ -192,13 +204,15 @@ namespace ty
 				SceneManager::SetSecondCharactorPick(eCharactorPick::Dao); // 씬 매니저에서 캐릭터 선택 보유 2P셀렉
 			}
 
-			//if (temp.y >= 300 && temp.y <= 360 && temp.x >= 730 && temp.x <= 825)
-			//{
-			//	if (isDaoVisited == true)
-			//	{
-			//		object::Active(mDaoUIImage); // 여기서 상태를 다시 Active 시킴
-			//	}
-			//}
+
+			if (temp.y <= 300 || temp.y >= 360 || temp.x <= 730 || temp.x >= 825)
+			{
+				if (isDaoVisited == true)
+				{
+					isDaoVisited = false;
+					mouseMove->Stop(true); // 여기서 상태를 다시 Active 시킴
+				}
+			}
 		}
 
 
@@ -206,6 +220,7 @@ namespace ty
 		// 맵 선택
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 647 && temp.y <= 716 && temp.x >= 970 && temp.x <= 1150 && isMapClicked == false)
 		{
+			Click->Play(false);
 			isMapClicked = true;
 			MapSelect* MapObj = object::Instantiate<MapSelect>(eLayerType::UI);
 			MapObj->GetLobbyScene(this); // 로비신이랑 맵 오브젝트랑 연동 // 
@@ -215,6 +230,7 @@ namespace ty
 		// UI 키고 난 다음
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 298 && temp.y <= 318 && temp.x >= 525 && temp.x <= 906 && isMapClicked == true)
 		{
+			Click->Play(false);
 			object::Instantiate<CookieSelect>(eLayerType::UI);
 			object::Instantiate<CookieMapSelect>(eLayerType::MapSelectUI);
 			mSceneType = eSceneType::ToyStage3;
@@ -222,6 +238,7 @@ namespace ty
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 358 && temp.y <= 378 && temp.x >= 525 && temp.x <= 906 && isMapClicked == true)
 		{
+			Click->Play(false);
 			object::Instantiate<ForestSelect>(eLayerType::UI);
 			object::Instantiate<ForestMapSelect>(eLayerType::MapSelectUI);
 			mSceneType = eSceneType::ForestStage3;
@@ -230,6 +247,7 @@ namespace ty
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 378 && temp.y <= 398 && temp.x >= 525 && temp.x <= 906 && isMapClicked == true)
 		{
+			Click->Play(false);
 			object::Instantiate<IceSelect>(eLayerType::UI);
 			object::Instantiate<IceMapSelect>(eLayerType::MapSelectUI);
 			mSceneType = eSceneType::Play;
@@ -237,6 +255,7 @@ namespace ty
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 458 && temp.y <= 478 && temp.x >= 525 && temp.x <= 906 && isMapClicked == true)
 		{
+			Click->Play(false);
 			object::Instantiate<PirateSelect>(eLayerType::UI);
 			object::Instantiate<PirateMapSelect>(eLayerType::MapSelectUI);
 			mSceneType = eSceneType::PirateStage3;
@@ -244,6 +263,7 @@ namespace ty
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 877 && temp.y <= 890 && temp.x >= 157 && temp.x <= 191 && isMapClicked == false)
 		{
+			Click->Play(false);
 			SceneManager::SetIsDuo(false);
 			isFirstPicked = false;
 			isSecondPicked = false;
@@ -257,6 +277,7 @@ namespace ty
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 750 && temp.y <= 820 && temp.x >= 780 && temp.x <= 1050)
 		{
+			Click->Play(false);
 			isMapClicked = false;
 			SceneManager::LoadScene(mSceneType);
 		}

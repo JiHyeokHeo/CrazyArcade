@@ -48,5 +48,7 @@ namespace ty
 		
 
 		Sound* Lobby;
+		Sound* Click;
+		Sound* mouseMove;
 	};
 }

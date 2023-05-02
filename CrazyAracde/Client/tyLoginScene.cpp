@@ -23,7 +23,10 @@ namespace ty
 	{
 		SetName(L"Login");
 		Scene::Initialize();
-
+		Click = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+		Click->SetVolume(20);
+		mouseMove = Resources::Load<Sound>(L"MouseMove", L"..\\Resources\\Sound\\pt_in_rect.wav");
+		mouseMove->SetVolume(20);
 		Login = Resources::Load<Sound>(L"LoginTheme", L"..\\Resources\\Sound\\login_scene.wav");
 		Login->SetVolume(20);
 		object::Instantiate<Login_BG>(eLayerType::BG);
@@ -36,7 +39,31 @@ namespace ty
 		Vector2 temp = Input::GetMousePos();
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 78 && temp.y <= 302 && temp.x >= 480 && temp.x <= 700 && isChecked == true)
 		{
+			Click->Play(false);
 			SceneManager::LoadScene(eSceneType::Lobby);
+		}
+
+		if (temp.y >= 143 && temp.y <= 250 && temp.x >= 354 && temp.x <= 446 && isPlayed == false)
+		{
+			isPlayed = true;
+			mouseMove->Play(false);
+		}
+		
+		if (temp.y <= 143 || temp.y >= 250 || temp.x <= 354 || temp.x >= 446)
+		{
+			isPlayed = false;
+			
+		}
+		if (temp.y >= 143 && temp.y <= 250 && temp.x >= 726 && temp.x <= 816 && isPlayed == false)
+		{
+			isPlayed = true;
+			mouseMove->Play(false);
+		}
+
+		if (temp.y <= 143 || temp.y >= 250 || temp.x <= 726 || temp.x >= 816)
+		{
+			isPlayed = false;
+			
 		}
 
 		if (Input::GetKeyState(eKeyCode::T) == eKeyState::Down)
@@ -46,12 +73,14 @@ namespace ty
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 143 && temp.y <= 250 && temp.x >= 354 && temp.x <= 446)
 		{
+			Click->Play(false);
 			SceneManager::SetIsDuo(false);
 			isChecked = true;
 		}
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 143 && temp.y <= 250 && temp.x >= 726 && temp.x <= 816)
 		{
+			Click->Play(false);
 			SceneManager::SetIsDuo(true);
 			isChecked = true;
 		}
