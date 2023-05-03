@@ -296,7 +296,7 @@ namespace ty
 
 		if (SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] >=2 || SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1)
 		{
-			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y / 2)));;
+			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y / 2)));
 			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			pushcnt = 0;
 			hasBeenPushed = true;

@@ -68,15 +68,18 @@ namespace ty
 	}
 	void Collider::OnCollisionEnter(Collider* other)
 	{
+		if(other->GetOwner()->GetState() != GameObject::eState::Pause)
 		GetOwner()->OnCollisionEnter(other);
 	}
 	void Collider::OnCollisionStay(Collider* other)
 	{
+		if (other->GetOwner()->GetState() != GameObject::eState::Pause)
 		mCollisionCount = 1;
 		GetOwner()->OnCollisionStay(other);
 	}
 	void Collider::OnCollisionExit(Collider* other)
 	{
+		if (other->GetOwner()->GetState() != GameObject::eState::Pause)
 		GetOwner()->OnCollisionExit(other);
 	}
 }
