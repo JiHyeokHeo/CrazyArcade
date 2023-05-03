@@ -59,8 +59,8 @@ namespace ty
 		// 생성과 동시에 일단 Pause 상태로 진입
 		mBazziUI = object::Instantiate<InGameBazziUI>(eLayerType::UI);
 		mDaoUI = object::Instantiate<InGameDaoUI>(eLayerType::UI);
-		mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f));
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
+		mDao->GetComponent<Transform>()->SetPos(Vector2(380.0f, 420.0f));
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(380.0f, 360.0f));
 
 		// ------------------ 시간 관련
 		time[0] = object::Instantiate<Timer>(Vector2(1064.0f, 110.0f), eLayerType::UI);
@@ -281,14 +281,14 @@ namespace ty
 		{
 			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
 			{
-				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(380.0f, 360.0f)); // 화면 전환시 기능 추가
 				mBazziUI->SetState(GameObject::eState::Pause);
 				mBazzi->SetState(GameObject::eState::Pause);
 				mBazzi->Reset();
 			}
 			else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
 			{
-				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDao->GetComponent<Transform>()->SetPos(Vector2(380.0f, 420.0f)); // 화면 전환시 기능 추가
 				mDaoUI->SetState(GameObject::eState::Pause);
 				mDao->SetState(GameObject::eState::Pause);
 				mDao->Reset();
@@ -298,14 +298,14 @@ namespace ty
 		{
 			if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi)
 			{
-				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(380.0f, 360.0f)); // 화면 전환시 기능 추가
 				mBazziUI->SetState(GameObject::eState::Pause);
 				mBazzi->SetState(GameObject::eState::Pause);
 				mBazzi->Reset();
 			}
 			else if (SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao)
 			{
-				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDao->GetComponent<Transform>()->SetPos(Vector2(380.0f, 420.0f)); // 화면 전환시 기능 추가
 				mDaoUI->SetState(GameObject::eState::Pause);
 				mDao->SetState(GameObject::eState::Pause);
 				mDao->Reset();
@@ -313,14 +313,14 @@ namespace ty
 
 			if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Bazzi)
 			{
-				mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f)); // 화면 전환시 기능 추가
+				mBazzi->GetComponent<Transform>()->SetPos(Vector2(380.0f, 360.0f)); // 화면 전환시 기능 추가
 				mBazziUI->SetState(GameObject::eState::Pause);
 				mBazzi->SetState(GameObject::eState::Pause);
 				mBazzi->Reset();
 			}
 			else if (SceneManager::GetSecondCharactorPick() == eCharactorPick::Dao)
 			{
-				mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f)); // 화면 전환시 기능 추가
+				mDao->GetComponent<Transform>()->SetPos(Vector2(380.0f, 420.0f)); // 화면 전환시 기능 추가
 				mDaoUI->SetState(GameObject::eState::Pause);
 				mDao->SetState(GameObject::eState::Pause);
 				mDao->Reset();

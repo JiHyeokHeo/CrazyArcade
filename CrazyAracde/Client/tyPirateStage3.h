@@ -39,6 +39,7 @@ namespace ty
 		float mTime;
 		class Monster* monster[10];
 		class Monster2* monster2[10];
+		class PirateBoss* Bossmonster[3];
 		bool isPlayed;
 
 		class Sound* pirateSound;

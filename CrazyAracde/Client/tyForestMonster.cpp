@@ -263,8 +263,8 @@ namespace ty
 			int monstercnt = SceneManager::GetMonsterCnt();
 			monstercnt--;
 			SceneManager::SetMonsterCnt(monstercnt);
-			mState = eMonsterState::Idle;
 			object::Pause(this);
+			mState = eMonsterState::Idle;
 		}
 	}
 	void ForestMonster::animationCtr()

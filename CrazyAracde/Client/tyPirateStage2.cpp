@@ -76,10 +76,10 @@ namespace ty
 		time[4]->SetTimeType(Timer::TimeType::Seconds);
 
 		// ------------------ 아이템 테스트
-		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
-		object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
+		//object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
 
 		// ------------------ 배경
 		object::Instantiate<Play_BG>(eLayerType::BG);
@@ -96,10 +96,10 @@ namespace ty
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
 		monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
-		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
-		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
-		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 420.0f), eLayerType::Monster);
-		monster[4] = object::Instantiate<Monster>(Vector2(750.0f, 420.0f), eLayerType::Monster);
+		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 360.0f), eLayerType::Monster);
+		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 360.0f), eLayerType::Monster);
+		monster[3] = object::Instantiate<Monster>(Vector2(690.0f, 480.0f), eLayerType::Monster);
+		monster[4] = object::Instantiate<Monster>(Vector2(630.0f, 480.0f), eLayerType::Monster);
 	}
 	void PirateStage2::Update()
 	{
@@ -191,10 +191,10 @@ namespace ty
 		{
 			Scene::ChangeGameObjectState();
 			monster[0]->GetComponent<Transform>()->SetPos(Vector2(450.0f, 120.0f));
-			monster[1]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 420.0f));
-			monster[2]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 420.0f));
-			monster[3]->GetComponent<Transform>()->SetPos(Vector2(690.0f, 420.0f));
-			monster[4]->GetComponent<Transform>()->SetPos(Vector2(750.0f, 420.0f));
+			monster[1]->GetComponent<Transform>()->SetPos(Vector2(570.0f, 360.0f));
+			monster[2]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 360.0f));
+			monster[3]->GetComponent<Transform>()->SetPos(Vector2(690.0f, 480.0f));
+			monster[4]->GetComponent<Transform>()->SetPos(Vector2(630.0f, 480.0f));
 			for (int i = 0; i < 13; i++)
 			{
 				for (int j = 0; j < 15; j++)

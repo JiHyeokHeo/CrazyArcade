@@ -61,7 +61,7 @@ namespace ty
 		mBazziUI = object::Instantiate<InGameBazziUI>(eLayerType::UI);
 		mDaoUI = object::Instantiate<InGameDaoUI>(eLayerType::UI);
 		mDao->GetComponent<Transform>()->SetPos(Vector2(80.0f, 450.0f));
-		mBazzi->GetComponent<Transform>()->SetPos(Vector2(80.0f, 300.0f));
+		mBazzi->GetComponent<Transform>()->SetPos(Vector2(440.0f, 700.0f));
 
 		// ------------------ 시간 관련
 		time[0] = object::Instantiate<Timer>(Vector2(1064.0f, 110.0f), eLayerType::UI);
@@ -76,10 +76,10 @@ namespace ty
 		time[4]->SetTimeType(Timer::TimeType::Seconds);
 
 		// ------------------ 아이템 테스트
-		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
-		object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
-		object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
+		//object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
+		//object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
 
 		// ------------------ 배경
 		object::Instantiate<Play_BG>(eLayerType::BG);
@@ -95,6 +95,7 @@ namespace ty
 		//object::Instantiate<Bazzi>(Vector2(80.0f, 100.0f), eLayerType::Player); // PlayerNum 과는 x축 플러스 25 y축 - 30유지
 		//object::Instantiate<PirateBoss>(Vector2(690.0f, 380.0f), eLayerType::Monster);
 		//object::Instantiate<SealBoss>(Vector2(510.0f, 380.0f), eLayerType::Monster);
+		Bossmonster[0] = object::Instantiate<PirateBoss>(Vector2(350.0f, 120.0f), eLayerType::Boss);
 		monster[0] = object::Instantiate<Monster>(Vector2(450.0f, 120.0f), eLayerType::Monster);
 		monster[1] = object::Instantiate<Monster>(Vector2(570.0f, 420.0f), eLayerType::Monster);
 		monster[2] = object::Instantiate<Monster>(Vector2(630.0f, 420.0f), eLayerType::Monster);
@@ -171,7 +172,7 @@ namespace ty
 				SceneManager::SetDao(mDao);
 			}
 		}
-		SceneManager::SetMonsterCnt(5);
+		SceneManager::SetMonsterCnt(6);
 		GameStartUI* obj = object::Instantiate<GameStartUI>(Vector2(168.0f, 60.0f), eLayerType::UI);
 		GameStartUI* obj2 = object::Instantiate<GameStartUI>(Vector2(450.0f, 840.0f), eLayerType::UI);
 

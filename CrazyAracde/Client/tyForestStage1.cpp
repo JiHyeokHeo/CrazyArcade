@@ -71,7 +71,7 @@ namespace ty
 		time[2]->SetTimeType(Timer::TimeType::None);
 		time[3] = object::Instantiate<Timer>(Vector2(1124.0f, 110.0f), eLayerType::UI);
 		time[3]->SetTimeType(Timer::TimeType::TenSeconds);
-		time[4] = object::Instantiate<Timer>(Vector2(1144.0f, 110.0f), eLayerType::UI);
+		time[4] = object::Instantiate<Timer>(Vector2(1144.0f, 110.0f), eLayerType::UI);	
 		time[4]->SetTimeType(Timer::TimeType::Seconds);
 
 		// ------------------ 아이템 테스트
@@ -124,6 +124,12 @@ namespace ty
 	}
 	void ForestStage1::OnEnter()
 	{
+		monster[0]->SetState(GameObject::eState::Active);
+		monster[1]->SetState(GameObject::eState::Active);
+		monster[2]->SetState(GameObject::eState::Active);
+		monster[3]->SetState(GameObject::eState::Active);
+		monster[4]->SetState(GameObject::eState::Active);
+		monster[5]->SetState(GameObject::eState::Active);
 		forestSound->Play(true);
 		// UI 상태 변환
 		mBazziUI->SetState(GameObject::eState::Active);
