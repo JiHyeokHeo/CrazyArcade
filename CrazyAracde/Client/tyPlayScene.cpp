@@ -114,7 +114,6 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-
 		Scene::Update();
 	}
 	void PlayScene::Render(HDC hdc)

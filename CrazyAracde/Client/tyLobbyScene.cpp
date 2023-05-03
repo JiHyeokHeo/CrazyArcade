@@ -233,7 +233,7 @@ namespace ty
 			Click->Play(false);
 			object::Instantiate<CookieSelect>(eLayerType::UI);
 			object::Instantiate<CookieMapSelect>(eLayerType::MapSelectUI);
-			mSceneType = eSceneType::ToyStage3;
+			mSceneType = eSceneType::ToyStage1;
 		}
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 358 && temp.y <= 378 && temp.x >= 525 && temp.x <= 906 && isMapClicked == true)
@@ -241,7 +241,7 @@ namespace ty
 			Click->Play(false);
 			object::Instantiate<ForestSelect>(eLayerType::UI);
 			object::Instantiate<ForestMapSelect>(eLayerType::MapSelectUI);
-			mSceneType = eSceneType::ForestStage3;
+			mSceneType = eSceneType::ForestStage1;
 		}
 
 
@@ -258,7 +258,7 @@ namespace ty
 			Click->Play(false);
 			object::Instantiate<PirateSelect>(eLayerType::UI);
 			object::Instantiate<PirateMapSelect>(eLayerType::MapSelectUI);
-			mSceneType = eSceneType::PirateStage3;
+			mSceneType = eSceneType::PirateStage1;
 		}
 
 		if (Input::GetKeyDown(eKeyCode::LBUTTON) && temp.y >= 877 && temp.y <= 890 && temp.x >= 157 && temp.x <= 191 && isMapClicked == false)

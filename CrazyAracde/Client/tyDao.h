@@ -127,6 +127,7 @@ namespace ty
 
 		class Sound* popsound;
 		class Sound* diesound;
+		class Sound* shield;
 	};
 }
 

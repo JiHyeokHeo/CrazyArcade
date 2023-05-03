@@ -57,6 +57,7 @@ namespace ty
 		Transform* tr = GetComponent<Transform>();
 		popsound = Resources::Load<Sound>(L"PopSound", L"..\\Resources\\Sound\\bomb_pop.wav");
 		diesound = Resources::Load<Sound>(L"DieSound", L"..\\Resources\\Sound\\player_die.wav");
+		shield = Resources::Load<Sound>(L"SheildSound", L"..\\Resources\\Sound\\shield.wav");
 		tr->SetScale(Vector2(1.18f, 1.18f));
 		SetName(L"Bazzi");
 		Image* mUpImage = Resources::Load<Image>(L"BazziU", L"..\\Resources\\Bazzi\\up.bmp");
@@ -363,6 +364,7 @@ namespace ty
 
 			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
 			{
+				shield->Play(false);
 				isShieldOn = true;
 				mInvincibility = 2;
 				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
@@ -468,6 +470,7 @@ namespace ty
 
 			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
 			{
+
 				isShieldOn = true;
 				mInvincibility = 2;
 				object::Instantiate<ShieldEffect>(mPos, eLayerType::Effect);
@@ -716,6 +719,7 @@ namespace ty
 
 			if (Input::GetKeyDown(eKeyCode::LCTRL) && mItemState == eItemType::Shield)
 			{
+				shield->Play(false);
 				isShieldOn = true;
 				mInvincibility = 2;
 				mItemState = eItemType::None;

@@ -2,6 +2,7 @@
 #include "tyTransform.h"
 #include "tyGameObject.h"
 #include "tyCamera.h"
+#include "tyinput.h"
 
 namespace ty
 {
@@ -28,6 +29,15 @@ namespace ty
 	}
 	void Collider::Update()
 	{
+		if (Input::GetKeyDown(eKeyCode::O))
+		{
+			isCollider = true;
+		}
+
+		if (Input::GetKeyDown(eKeyCode::P))
+		{
+			isCollider = false;
+		}
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		mPos = tr->GetPos() + mCenter;
 	}
