@@ -112,6 +112,7 @@ namespace ty
 		}
 
 		Scene::Update();
+		CheckCharactor::Skip(eSceneType::ForestStage2); // Q´©¸£¸é ½ºÅµ
 	}
 	void ForestStage1::Render(HDC hdc)
 	{

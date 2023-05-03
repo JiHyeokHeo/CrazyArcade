@@ -117,7 +117,7 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-
+		CheckCharactor::Skip(eSceneType::ToyStage3); // Q´©¸£¸é ½ºÅµ
 		Scene::Update();
 	}
 	void ToyStage2::Render(HDC hdc)

@@ -111,7 +111,7 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-
+		CheckCharactor::Skip(eSceneType::PirateStage3); // Q´©¸£¸é ½ºÅµ
 		Scene::Update();
 	}
 	void PirateStage2::Render(HDC hdc)

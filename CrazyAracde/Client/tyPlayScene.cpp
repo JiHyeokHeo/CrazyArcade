@@ -113,7 +113,7 @@ namespace ty
 		{
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
-
+		CheckCharactor::Skip(eSceneType::PlayStage2); // Q´©¸£¸é ½ºÅµ
 		Scene::Update();
 	}
 	void PlayScene::Render(HDC hdc)

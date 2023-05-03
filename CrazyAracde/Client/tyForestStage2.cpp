@@ -111,7 +111,7 @@ namespace ty
 			SceneManager::LoadScene(eSceneType::Lobby);
 		}
 
-
+		CheckCharactor::Skip(eSceneType::ForestStage3); // Q´©¸£¸é ½ºÅµ
 		Scene::Update();
 	}
 	void ForestStage2::Render(HDC hdc)

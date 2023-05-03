@@ -34,7 +34,7 @@ namespace ty::CheckCharactor
 						mTime = 0;
 					}
 				}
-				else if (SceneManager::GetBazzi()->GetPlayerHP() == -1)
+				else if (SceneManager::GetBazzi()->GetPlayerHP() <= 0)
 				{
 					if (isPlayed == false)
 					{
@@ -44,6 +44,7 @@ namespace ty::CheckCharactor
 					mTime += Time::DeltaTime();
 					if (mTime >= 3.0f)
 					{
+						isPlayed = false;
 						SceneManager::LoadScene(eSceneType::Lobby);
 						mTime = 0;
 					}
@@ -66,7 +67,7 @@ namespace ty::CheckCharactor
 						mTime = 0;
 					}
 				}
-				else if (SceneManager::GetDao()->GetPlayerHP() == -1)
+				else if (SceneManager::GetDao()->GetPlayerHP() <= 0)
 				{
 					if (isPlayed == false)
 					{
@@ -76,6 +77,7 @@ namespace ty::CheckCharactor
 					mTime += Time::DeltaTime();
 					if (mTime >= 3.0f)
 					{
+						isPlayed = false;
 						SceneManager::LoadScene(eSceneType::Lobby);
 						mTime = 0;
 					}
@@ -102,7 +104,7 @@ namespace ty::CheckCharactor
 
 			if (SceneManager::GetDao() != NULL && SceneManager::GetBazzi() != NULL)
 			{
-				if (SceneManager::GetDao()->GetPlayerHP() == -1 && SceneManager::GetBazzi()->GetPlayerHP() == -1)
+				if (SceneManager::GetDao()->GetPlayerHP() <= 0 && SceneManager::GetBazzi()->GetPlayerHP() <= 0)
 				{
 					if (isPlayed == false)
 					{
@@ -112,6 +114,7 @@ namespace ty::CheckCharactor
 					mTime += Time::DeltaTime();
 					if (mTime >= 3.0f)
 					{
+						isPlayed = false;
 						SceneManager::LoadScene(eSceneType::Lobby);
 						mTime = 0;
 					}
@@ -120,5 +123,11 @@ namespace ty::CheckCharactor
 		}
 	};
 
+
+	void Skip(eSceneType type)
+	{
+		if(Input::GetKeyDown(eKeyCode::Q))
+		SceneManager::LoadScene(type);
+	}
 }
 
