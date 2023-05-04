@@ -17,7 +17,7 @@ namespace ty::CheckCharactor
 	{
 		if (SceneManager::GetIsDuo() == false)
 		{
-			if (SceneManager::GetBazzi() != NULL) // ¹èÂî
+			if (SceneManager::GetBazzi() != NULL && SceneManager::GetFirstCharactorPick() == eCharactorPick::Bazzi) // ¹èÂî
 			{
 				if (SceneManager::GetMonsterCnt() == 0)
 				{
@@ -50,7 +50,7 @@ namespace ty::CheckCharactor
 					}
 				}
 			}
-			else if (SceneManager::GetDao() != NULL) // ´Ù¿À
+			else if (SceneManager::GetDao() != NULL && SceneManager::GetFirstCharactorPick() == eCharactorPick::Dao) // ´Ù¿À
 			{
 				if (SceneManager::GetMonsterCnt() == 0)
 				{
@@ -86,6 +86,7 @@ namespace ty::CheckCharactor
 		}
 		else if (SceneManager::GetIsDuo() == true)
 		{
+			
 			if (SceneManager::GetMonsterCnt() == 0)
 			{
 				if (isPlayed == false)
@@ -123,6 +124,10 @@ namespace ty::CheckCharactor
 		}
 	};
 
+	void Reset()
+	{
+		isPlayed = false;
+	}
 
 	void Skip(eSceneType type)
 	{

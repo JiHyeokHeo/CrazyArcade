@@ -983,6 +983,7 @@ namespace ty
 		}
 		mInvincibility = 3.0f;
 		mHP = -1;
+		mState = eDaoState::NoMove;
 	}
 	void Dao::liveCompleteEvent()
 	{

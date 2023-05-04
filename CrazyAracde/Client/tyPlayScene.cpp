@@ -243,6 +243,7 @@ namespace ty
 	}
 	void PlayScene::OnExit()
 	{
+		CheckCharactor::Reset();
 		iceStage->Stop(true);
 		
 		TilePalatte::Clear();

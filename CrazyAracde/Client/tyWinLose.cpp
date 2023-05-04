@@ -41,7 +41,7 @@ namespace ty
 		
 			if (SceneManager::GetBazzi() !=NULL)
 			{
-				if (SceneManager::GetBazzi()->GetPlayerHP() == -1 && isPlayed == false)
+				if (SceneManager::GetBazzi()->GetPlayerHP() <= -1 && isPlayed == false)
 				{
 					mLose->Play(false);
 					isPlayed = true;
@@ -50,7 +50,7 @@ namespace ty
 			}
 			else if (SceneManager::GetDao() != NULL)
 			{
-				if (SceneManager::GetDao()->GetPlayerHP() == -1 && isPlayed == false)
+				if (SceneManager::GetDao()->GetPlayerHP() <= -1 && isPlayed == false)
 				{
 					mLose->Play(false);
 					isPlayed = true;
@@ -61,13 +61,13 @@ namespace ty
 			{
 				object::Destroy(this);
 			}
-			if (SceneManager::GetMonsterCnt() == 0 && isPlayed == false)
+			if (SceneManager::GetMonsterCnt() <= 0 && isPlayed == false)
 			{
 				mWin->Play(false);
 				isPlayed = true;
 				mAnimator->Play(L"UIWin", false);
 			}
-			else if (SceneManager::GetTime() == 0 && isPlayed == false)
+			else if (SceneManager::GetTime() <= 0 && isPlayed == false)
 			{
 				mLose->Play(false);
 				isPlayed = true;
