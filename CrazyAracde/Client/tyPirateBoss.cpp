@@ -15,7 +15,7 @@
 namespace ty
 {
 	PirateBoss::PirateBoss()
-		: Hp(10)
+		: Hp(5)
 	{
 	}
 	PirateBoss::~PirateBoss()

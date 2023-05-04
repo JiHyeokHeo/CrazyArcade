@@ -17,7 +17,7 @@
 namespace ty
 {
 	SealBoss::SealBoss()
-		: Hp(2)
+		: Hp(5)
 	{
 	}
 	SealBoss::~SealBoss()

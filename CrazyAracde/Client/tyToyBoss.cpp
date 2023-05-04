@@ -15,7 +15,7 @@
 namespace ty
 {
 	ToyBoss::ToyBoss()
-		: Hp(2)
+		: Hp(5)
 		, mInvincibility(0)
 	{
 	}
