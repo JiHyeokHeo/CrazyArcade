@@ -296,9 +296,10 @@ namespace ty
 
 		if (SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] >=2 || SceneManager::GetMapIndex()[ColUIdx.y][ColUIdx.x] == 1)
 		{
-			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y / 2)));
+			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y)));
 			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			pushcnt = 0;
+			mTime = 0;
 			hasBeenPushed = true;
 		}
 	}
@@ -456,7 +457,7 @@ namespace ty
 
 		if (SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] >= 2 || SceneManager::GetMapIndex()[ColDIdx.y][ColDIdx.x] == 1)
 		{
-			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y * 1.5 )));;
+			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y)));;
 			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			pushcnt = 0;
 			mTime = 0;
@@ -535,7 +536,7 @@ namespace ty
 
 		if (SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] >= 2 || SceneManager::GetMapIndex()[ColLIdx.y][ColLIdx.x] == 1)
 		{
-			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X / 2, ColMidPos.y - TILE_SIZE_Y)));
+			tr->SetPos(TileBomb::SetPos(Vector2(ColMidPos.x - TILE_SIZE_X, ColMidPos.y - TILE_SIZE_Y)));
 			SceneManager::GetMapIndex()[ColMidIdx.y][ColMidIdx.x] = 1;
 			pushcnt = 0;
 			mTime = 0;
