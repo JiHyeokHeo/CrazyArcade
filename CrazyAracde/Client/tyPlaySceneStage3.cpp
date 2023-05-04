@@ -78,7 +78,7 @@ namespace ty
 		time[4]->SetTimeType(Timer::TimeType::Seconds);
 		
 		// ------------------ 아이템 테스트
-		object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);
+		/*object::Instantiate<Devil>(Vector2(450.0f, 120.0f), eLayerType::Item);*/
 		//object::Instantiate<Bird>(Vector2(690.0f, 420.0f), eLayerType::Item);
 		//object::Instantiate<Needle>(Vector2(630.0f, 420.0f), eLayerType::Item);
 		//object::Instantiate<Shield>(Vector2(570.0f, 420.0f), eLayerType::Item);
