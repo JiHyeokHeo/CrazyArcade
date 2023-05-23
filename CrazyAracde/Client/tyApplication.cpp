@@ -50,7 +50,7 @@ namespace ty
 		Time::Initialize();
 		Input::Initialize();
 		SoundManager::Initialize();
-6;		SceneManager::Initialize();
+		SceneManager::Initialize();
 		/*Camera::Initialize();*/
 
 		SetMenuBar(false);
