@@ -124,7 +124,7 @@ struct Vector2 // ¡°¿Ã¥Ÿ
 		y *= value;
 	}
 
-	bool operator==(const Vector2& other)
+	bool operator==(const Vector2& other)const
 	{
 		return (x == other.x && y == other.y);
 	}

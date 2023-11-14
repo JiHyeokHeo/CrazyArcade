@@ -17,6 +17,16 @@ namespace ty::object
 	}
 
 	template <typename T>
+	static inline T* Instantiate(eLayerType type, eBGType bgtype)
+	{
+		T* gameObj = new T(bgtype);
+		Scene* scene = SceneManager::GetActiveScene();
+		scene->AddGameObject(gameObj, type);
+		gameObj->Initialize();
+		return gameObj;
+	}
+
+	template <typename T>
 	static inline T* Instantiate(Vector2 pos, eLayerType type)
 	{
 		T* gameObj = new T();

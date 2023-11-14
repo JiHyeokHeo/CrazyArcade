@@ -22,7 +22,7 @@
 #include "tyDaoLobbyUI.h"
 #include "tySound.h"
 #include "tyResources.h"
-
+#include "tyBGInstance.h"
 
 namespace ty
 {
@@ -45,8 +45,7 @@ namespace ty
 		mouseMove->SetVolume(20);
 		Lobby = Resources::Load<Sound>(L"LobbbyTheme", L"..\\Resources\\Sound\\lobby_scene.wav");
 		Lobby->SetVolume(20);
-		object::Instantiate<Lobby_BG>(eLayerType::BG);
-		//object::Instantiate<MapSelect>(eLayerType::UI);
+		object::Instantiate<BGInstance>(eLayerType::BG, eBGType::Lobby);
 	}
 	void LobbyScene::Update()
 	{

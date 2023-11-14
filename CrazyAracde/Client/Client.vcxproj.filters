@@ -188,6 +188,12 @@
     <Filter Include="Engine\Component\Sound">
       <UniqueIdentifier>{ce1136d1-d3a3-4dea-ab4e-6e3bbed30a14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\BG\BGMain">
+      <UniqueIdentifier>{1918ac3f-55e2-4212-b1c9-6e4e03b304fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Sound">
+      <UniqueIdentifier>{213e6848-7cab-42f9-b30f-f78600090258}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -544,6 +550,9 @@
     <ClInclude Include="tyCheckCharactor.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="tyBGInstance.h">
+      <Filter>Contents\BG\BGMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -876,6 +885,9 @@
     </ClCompile>
     <ClCompile Include="tySoundManager.cpp">
       <Filter>Engine\Component\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="tyBGInstance.cpp">
+      <Filter>Contents\BG\BGMain</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
